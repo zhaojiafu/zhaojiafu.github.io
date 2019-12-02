@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <link rel="canonical" href="https://zhaojiafu.github.io/2019/12/02/f02cf2bcf94b333149b12bf76e37e412/">
+    
+    
+    <title>pycharm 报错内存不足： There is not enough memory to perform the requested operation。。。 | 赵家富的博客 | 保持好奇心</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="pycharm">
+    <meta name="description" content="1、问题我的pycharm第二天早上刚到公司发现报错： pycharm There is not enough memory to perform the requested operation.Please increase Xmx’ setting and restart the IDE for change to take effect. 然后谷歌开始搜索查找原因：最后搜到一个，里面可以有人">
+<meta name="keywords" content="pycharm">
+<meta property="og:type" content="article">
+<meta property="og:title" content="pycharm 报错内存不足： There is not enough memory to perform the requested operation。。。">
+<meta property="og:url" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;2019&#x2F;12&#x2F;02&#x2F;f02cf2bcf94b333149b12bf76e37e412&#x2F;index.html">
+<meta property="og:site_name" content="赵家富的博客">
+<meta property="og:description" content="1、问题我的pycharm第二天早上刚到公司发现报错： pycharm There is not enough memory to perform the requested operation.Please increase Xmx’ setting and restart the IDE for change to take effect. 然后谷歌开始搜索查找原因：最后搜到一个，里面可以有人">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-12-02T07:26:18.590Z">
+<meta name="twitter:card" content="summary">
+    
+    <link rel="shortcut icon" href="/img/cb2nm-5l9w0-001.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" target="_blank" rel="noopener" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/zhao.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">赵家富</h5>
+          <a href="mailto:530519174@qq.com" target="_blank" rel="noopener" title="530519174@qq.com" class="mail">530519174@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                archives(所有)
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags/"  >
+                <i class="icon icon-lg icon-tags"></i>
+                tag(标签)
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories/"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories(分类)
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/zhaojiafu" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://blog.csdn.net/weixin_42081389" target="_blank" >
+                <i class="icon icon-lg icon-csdn"></i>
+                Csdn
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" target="_blank" rel="noopener" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+
+        <div class="flex-col header-title ellipsis">pycharm 报错内存不足： There is not enough memory to perform the requested operation。。。</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" target="_blank" rel="noopener" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" target="_blank" rel="noopener" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" target="_blank" rel="noopener" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+
+        <h1 class="title">pycharm 报错内存不足： There is not enough memory to perform the requested operation。。。
+        </h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2019-12-02T03:34:32.000Z" itemprop="datePublished" class="page-time">
+  2019-12-02
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/pycharm/">pycharm</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#1、问题"><span class="post-toc-number">1.</span> <span class="post-toc-text">1、问题</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#2、中文解决步骤："><span class="post-toc-number">2.</span> <span class="post-toc-text">2、中文解决步骤：</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#1、点击"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">1、点击</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#2、更改内容"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">2、更改内容</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#第三步，彻底删除缓存数据"><span class="post-toc-number">3.</span> <span class="post-toc-text">第三步，彻底删除缓存数据</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#重要提示，"><span class="post-toc-number">3.1.</span> <span class="post-toc-text">重要提示，</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#1、查找数据缓存位置"><span class="post-toc-number">3.2.</span> <span class="post-toc-text">1、查找数据缓存位置</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#给你个福利"><span class="post-toc-number">3.3.</span> <span class="post-toc-text">给你个福利</span></a></li></ol></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-f02cf2bcf94b333149b12bf76e37e412"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">pycharm 报错内存不足： There is not enough memory to perform the requested operation。。。</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2019-12-02 11:34:32" datetime="2019-12-02T03:34:32.000Z"  itemprop="datePublished">2019-12-02</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/pycharm/">pycharm</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h1 id="1、问题"><a href="#1、问题" class="headerlink" title="1、问题"></a>1、问题</h1><p>我的pycharm第二天早上刚到公司发现报错：</p>
+<p>pycharm There is not enough memory to perform the requested operation.Please increase Xmx’ setting and restart the IDE for change to take effect.</p>
+<p>然后谷歌开始搜索查找原因：<br>最后搜到一个，里面可以有人解决问题<br><a href="https://stackoverflow.com/questions/36137671/pycharm-running-out-of-memory" target="_blank" rel="noopener">https://stackoverflow.com/questions/36137671/pycharm-running-out-of-memory</a></p>
+<h1 id="2、中文解决步骤："><a href="#2、中文解决步骤：" class="headerlink" title="2、中文解决步骤："></a>2、中文解决步骤：</h1><p>对pycharm单击菜单上的帮助</p>
+<h2 id="1、点击"><a href="#1、点击" class="headerlink" title="1、点击"></a>1、点击</h2><p><strong>Help -&gt; Edit custom VM options</strong><br>出现提示时创建文件。</p>
+<h2 id="2、更改内容"><a href="#2、更改内容" class="headerlink" title="2、更改内容"></a>2、更改内容</h2><p>将设置更改为以下内容或使用以下内容替换文件的整个内容：<br>下面这个是我的更改之后的内容，然后问题就解决了，你也可以先把你的保留一份复制到你自己记住的地方，然后全部更改为我的试试，如果可以，备份那一份就不要了，如果不能解决，还能更改回来，更改之后保存，然后重启pycharm就应该可以了。</p>
+<pre><code>-Xms512m
+-Xmx2040m
+-XX:ReservedCodeCacheSize=2040m
+-XX:+UseConcMarkSweepGC
+-XX:SoftRefLRUPolicyMSPerMB=50
+-ea
+-Dsun.io.useCanonCaches=false
+-Djava.net.preferIPv4Stack=true
+-XX:+HeapDumpOnOutOfMemoryError
+-XX:-OmitStackTraceInFastThrow
+-XX:MaxMetaspaceSize=3500m</code></pre><h1 id="第三步，彻底删除缓存数据"><a href="#第三步，彻底删除缓存数据" class="headerlink" title="第三步，彻底删除缓存数据"></a>第三步，彻底删除缓存数据</h1><p>(这个方法我经常用，时不时会删除过多内存，刚刚解决上面问题时我一看我的数据缓存快3G了，所以果断的删除了)</p>
+<h2 id="重要提示，"><a href="#重要提示，" class="headerlink" title="重要提示，"></a>重要提示，</h2><p>经过我多次测试，这个缓存数据，一旦删除，就是你现在更改的代码除了<strong>没有crtl + Z 的撤销功能</strong>，其他我没有发现大的影响，所以我也时不时看看大小，及时删除，因为撤销功能对我来说影响不大，如果撤销功能对你有影响，请先保存好文件，再删除，<strong>删除之前要先关闭pycharm</strong> （因为pycharm在使用数据，所以和电脑删除不掉正在打开的文件一样的道理）</p>
+<h2 id="1、查找数据缓存位置"><a href="#1、查找数据缓存位置" class="headerlink" title="1、查找数据缓存位置"></a>1、查找数据缓存位置</h2><p>先找到你安装pycharm软件的文件夹，然后找到下面的bin里面的idea.properties文件，这个时pycharm的设置数据储存位置的目录，</p>
+<p>我的bin目录：</p>
+<pre><code>D:\tools\pycharm\PyCharm Community Edition 2018.1.3\bin</code></pre><p>我的idea文件位置：</p>
+<pre><code>D:\tools\pycharm\PyCharm Community Edition 2018.1.3\bin\idea.properties</code></pre><p>用电脑记事本打开文件：<br>找到这一句，意思就是默认安装在C盘的用户目录下面的.PyCharmCE目录下面的system，</p>
+<pre><code>idea.system.path=${user.home}/.PyCharmCE/system</code></pre><p>然后缓存数据就在system下面的caches目录下面的content.dat.storageData文件，这个如果你的很大，应该pycharm的使用，如果感觉跑程序很卡，可以进行删除（删除之前你可以先剪切到其他备用位置，以防万一，记得先退出pycharm，然后再剪切）</p>
+<pre><code> # caches文件夹目录
+.PyCharmCE\system\caches
+# 数据缓存文件
+.PyCharmCE\system\caches\content.dat.storageData</code></pre><h2 id="给你个福利"><a href="#给你个福利" class="headerlink" title="给你个福利"></a>给你个福利</h2><p>你看到这个地方是否想到，文件这么大，我为何不修改下位置呐，这样C盘只放系统多好，省的电脑卡，如果想更改位置，可以参考下我之前的一个博客。</p>
+<p>里面有更改pycharm缓存的地方，（偷偷告诉你，我第一次更改位置时，我的缓存数据达到了15G，电脑C盘本来30G的空间占满了，也有一部分是电脑临时文件，也可以直接删除，具体如果想弄看博客把，如果觉得有帮助，期待给我点个赞哈）</p>
+<p>我的博客连接：<br><a href="https://blog.csdn.net/weixin_42081389/article/details/86630515" target="_blank" rel="noopener">https://blog.csdn.net/weixin_42081389/article/details/86630515</a></p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2019-12-02T07:26:18.590Z" itemprop="dateUpdated">2019-12-02 15:26:18</time>
+</span><br>
+
+
+        
+        这里可以写作者留言，标签和 hexo 中所有变量及辅助函数等均可调用，示例：<a href="/2019/12/02/f02cf2bcf94b333149b12bf76e37e412/" target="_blank" rel="external">https://zhaojiafu.github.io/2019/12/02/f02cf2bcf94b333149b12bf76e37e412/</a>
+        
+    </div>
+    
+    <footer>
+        <a href="https://zhaojiafu.github.io">
+            <img src="/img/zhao.jpg" alt="赵家富">
+            赵家富
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" target="_blank" rel="noopener" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/pycharm/" rel="tag">pycharm</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://zhaojiafu.github.io/2019/12/02/f02cf2bcf94b333149b12bf76e37e412/&title=《pycharm 报错内存不足： There is not enough memory to perform the requested operation。。。》 — 赵家富的博客&pic=https://zhaojiafu.github.io/img/zhao.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" target="_blank" rel="noopener" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://zhaojiafu.github.io/2019/12/02/f02cf2bcf94b333149b12bf76e37e412/&title=《pycharm 报错内存不足： There is not enough memory to perform the requested operation。。。》 — 赵家富的博客&source=感觉无从下手的时候，问自己“不难，要你干啥？”" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://zhaojiafu.github.io/2019/12/02/f02cf2bcf94b333149b12bf76e37e412/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《pycharm 报错内存不足： There is not enough memory to perform the requested operation。。。》 — 赵家富的博客&url=https://zhaojiafu.github.io/2019/12/02/f02cf2bcf94b333149b12bf76e37e412/&via=https://zhaojiafu.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://zhaojiafu.github.io/2019/12/02/f02cf2bcf94b333149b12bf76e37e412/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" target="_blank" rel="noopener" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2019/12/02/341a3f2bb65f6520121e55017d1cf338/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">HTML对于一些特殊转义字符&amp;#x的去脏处理。</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2019/12/02/ec62b23c152c05cac955157240ae0fe2/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">python Unicode字符与数值转换</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<section class="comments" id="comments">
+    <div id="gitalk-container"></div>
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+        var id = location.pathname
+        if (location.pathname.length > 50) {
+          id = location.pathname.replace(/\/\d+\/\d+\/\d+\//, '').replace('/', '').substring(0, 50)
+        }
+        const gitalk = new Gitalk({
+          clientID: '388d0a78cda30f118f86',
+          clientSecret: '2c64b34cc20f23d768dffff64acb8c2ee02c3bee',
+          repo: 'https://zhaojiafu.github.io/',
+          owner: 'zjf',
+          admin: ['zjf'],
+          id: id,      // Ensure uniqueness and length less than 50
+          title: document.title.split('|')[0],
+          distractionFreeMode: false  // Facebook-like distraction free mode
+        })
+
+        gitalk.render('gitalk-container')
+    </script>
+</section>
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;" target="_blank" rel="noopener"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢大爷~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.jpg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.jpg" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+            <span>博客内容遵循 <a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+        <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=0 height=0 src="http://music.163.com/song/media/outer/url?id=1369798757&auto=1"></iframe>
+
+    </div>
+    <div class="bottom">
+        <p><span>赵家富 &copy; 2019</span>
+            <span>
+                
+
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" target="_blank" rel="noopener" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://zhaojiafu.github.io/2019/12/02/f02cf2bcf94b333149b12bf76e37e412/&title=《pycharm 报错内存不足： There is not enough memory to perform the requested operation。。。》 — 赵家富的博客&pic=https://zhaojiafu.github.io/img/zhao.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" target="_blank" rel="noopener" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://zhaojiafu.github.io/2019/12/02/f02cf2bcf94b333149b12bf76e37e412/&title=《pycharm 报错内存不足： There is not enough memory to perform the requested operation。。。》 — 赵家富的博客&source=感觉无从下手的时候，问自己“不难，要你干啥？”" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://zhaojiafu.github.io/2019/12/02/f02cf2bcf94b333149b12bf76e37e412/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《pycharm 报错内存不足： There is not enough memory to perform the requested operation。。。》 — 赵家富的博客&url=https://zhaojiafu.github.io/2019/12/02/f02cf2bcf94b333149b12bf76e37e412/&via=https://zhaojiafu.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://zhaojiafu.github.io/2019/12/02/f02cf2bcf94b333149b12bf76e37e412/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;" target="_blank" rel="noopener"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACs0lEQVR42u3aQW4jMQwEQP//09nLHhZY2O4mpTgBak4BYo9UOpA0qccjfr7+eZJP/v+t18+zVZ598vCDh4eHt9j6bOEW/PogksNN9oyHh4d3m5dv6/WSeWSeJZJ8z3h4eHg/mRcF6DhJ5IkBDw8P77fwkuC+geUlOB4eHt5neZsSNvl8mzAS9uFeCx4eHl5X60ZTpJ/z95X5Hh4eHt56qp4H3KLALY9yts+/b8DDw8O7wMs3kTcgZlep8sFYu088PDy8s7zZyGpzlpuGb97+wMPDw7vNex2sZ6G5bW3kB120a/Hw8PAu8JINzUZT7aGcbUbg4eHhfQ/v7OWnTam9SgNR+wUPDw/vJG8TlNt37sv66MoXHh4e3lHebBNtOzVv3SYr1pM9PDw8vAu8vBZtC9z8ikB7jSBZBQ8PD+8Gr21MtOG7HWhdb4jg4eHhrXntwH5W7NbhuyzZn/6Nh4eHd4GXL58H7rYJu0khw4yHh4eHt+DlP/Lbgjtnz8rr6Ft4eHh438ibldH5oKstsvMi/mmXGg8PD+8QL18+qVrzFkZyrG2CKQZgeHh4eGteW7y2oT8vx28cNB4eHt5ZXv7zvu0NtyVvmwCio8fDw8O7wMs3l7cJ2vFVHu7bVISHh4d3jzcbWZ1tSeRXBIbNCDw8PLzLvPZKVl4uD4vg+D2PeiaGh4eHN+fN/jtr0c7ekzcv8PDw8D7LawvZPNy3reHhAeHh4eEd5X2Vz6w52147yFd88188PDy8C7xZwJ0dRN6oTYZb9UwPDw8P7ygvD+6vt9uSNgmmSAx4eHh413jtZabkCPaYPGm9uXSFh4eH91Hevk3QtnqTvdUDMDw8PLwP8fLWbduYaIdtj/0J4eHh4ZW82RBr32Y99c43iQEPDw/vKG//g78da7WBfnYRAQ8PD+8C7w//rZKXZPtBCgAAAABJRU5ErkJggg==" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '死鬼去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+<script src="/node_modules/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"node_modules/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/node_modules/assets/shizuku.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"react":{"opacity":0.7},"log":false});</script></body>
+</html>

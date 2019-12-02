@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <link rel="canonical" href="https://zhaojiafu.github.io/2019/04/22/b1b4ac29f1119ec18f0167464308a00a/">
+    
+    
+    <title>短网址生成api使用教程 | 赵家富的博客 | 保持好奇心</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="其他">
+    <meta name="description" content="目前，国内网又很多提供短地址服务的平台，例如：第三个网址我没有找到api接口，有人找到了可以告诉我一下哈，第四个需要微信登陆，由于不是特别了解这个网站的安全性，故没有登陆测试。目前前俩个转换的短连接地址都是长期有效的，如果失效会网站通知的。 1、新浪：http:&#x2F;&#x2F;sina.lt&#x2F;2、百度：http:&#x2F;&#x2F;dwz.cn&#x2F;3、0x3：http:&#x2F;&#x2F;0x3.me&#x2F;4、MRW：http:&#x2F;&#x2F;mrw.so">
+<meta name="keywords" content="其他">
+<meta property="og:type" content="article">
+<meta property="og:title" content="短网址生成api使用教程">
+<meta property="og:url" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;2019&#x2F;04&#x2F;22&#x2F;b1b4ac29f1119ec18f0167464308a00a&#x2F;index.html">
+<meta property="og:site_name" content="赵家富的博客">
+<meta property="og:description" content="目前，国内网又很多提供短地址服务的平台，例如：第三个网址我没有找到api接口，有人找到了可以告诉我一下哈，第四个需要微信登陆，由于不是特别了解这个网站的安全性，故没有登陆测试。目前前俩个转换的短连接地址都是长期有效的，如果失效会网站通知的。 1、新浪：http:&#x2F;&#x2F;sina.lt&#x2F;2、百度：http:&#x2F;&#x2F;dwz.cn&#x2F;3、0x3：http:&#x2F;&#x2F;0x3.me&#x2F;4、MRW：http:&#x2F;&#x2F;mrw.so">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20190422151612997.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20190422152349734.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20190422152410975.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20190423155259752.png">
+<meta property="og:updated_time" content="2019-12-02T07:00:37.097Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20190422151612997.png">
+    
+    <link rel="shortcut icon" href="/img/cb2nm-5l9w0-001.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" target="_blank" rel="noopener" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/zhao.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">赵家富</h5>
+          <a href="mailto:530519174@qq.com" target="_blank" rel="noopener" title="530519174@qq.com" class="mail">530519174@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                archives(所有)
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags/"  >
+                <i class="icon icon-lg icon-tags"></i>
+                tag(标签)
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories/"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories(分类)
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/zhaojiafu" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://blog.csdn.net/weixin_42081389" target="_blank" >
+                <i class="icon icon-lg icon-csdn"></i>
+                Csdn
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" target="_blank" rel="noopener" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+
+        <div class="flex-col header-title ellipsis">短网址生成api使用教程</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" target="_blank" rel="noopener" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" target="_blank" rel="noopener" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" target="_blank" rel="noopener" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+
+        <h1 class="title">短网址生成api使用教程
+        </h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2019-04-22T03:34:32.000Z" itemprop="datePublished" class="page-time">
+  2019-04-22
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/%E5%85%B6%E4%BB%96/">其他</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#1、新浪api使用"><span class="post-toc-number">1.</span> <span class="post-toc-text">1、新浪api使用</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#2、百度和新浪的python-实现api接口代码："><span class="post-toc-number">2.</span> <span class="post-toc-text">**2、百度和新浪的python 实现api接口代码：</span></a></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-b1b4ac29f1119ec18f0167464308a00a"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">短网址生成api使用教程</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2019-04-22 11:34:32" datetime="2019-04-22T03:34:32.000Z"  itemprop="datePublished">2019-04-22</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/%E5%85%B6%E4%BB%96/">其他</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p>﻿<strong>目前，国内网又很多提供短地址服务的平台，例如：</strong><br>第三个网址我没有找到api接口，有人找到了可以告诉我一下哈，第四个需要微信登陆，由于不是特别了解这个网站的安全性，故没有登陆测试。<br>目前前俩个转换的短连接地址都是长期有效的，如果失效会网站通知的。</p>
+<p>1、新浪：<a href="http://sina.lt/" target="_blank" rel="noopener">http://sina.lt/</a><br>2、百度：<a href="http://dwz.cn/" target="_blank" rel="noopener">http://dwz.cn/</a><br>3、0x3：<a href="http://0x3.me/" target="_blank" rel="noopener">http://0x3.me/</a><br>4、MRW：<a href="http://mrw.so/" target="_blank" rel="noopener">http://mrw.so/</a><br>5、<a href="https://www.shorturl.at/" target="_blank" rel="noopener">https://www.shorturl.at/</a></p>
+<h1 id="1、新浪api使用"><a href="#1、新浪api使用" class="headerlink" title="1、新浪api使用"></a>1、新浪api使用</h1><p><strong>如果单转一个，也可以使用网页版：</strong><br>    <a href="http://sina.lt/" target="_blank" rel="noopener">http://sina.lt/</a></p>
+<p>下面是api使用，如果需要批量处理长地址转换可以代码使用。</p>
+<p><a href="http://api.t.sina.com.cn/short_url/shorten.json?source=3271760578&amp;url_long=此处替换成你要缩短的网址" target="_blank" rel="noopener">http://api.t.sina.com.cn/short_url/shorten.json?source=3271760578&amp;url_long=此处替换成你要缩短的网址</a></p>
+<p>使用方法就是将上面中文换成你想转换的长地址，比如我想换：<br><a href="https://blog.csdn.net/weixin_42081389/article/details/89381735" target="_blank" rel="noopener">https://blog.csdn.net/weixin_42081389/article/details/89381735</a></p>
+<p>把下面这行直接复制到浏览器：<br><a href="http://api.t.sina.com.cn/short_url/shorten.json?source=3271760578&amp;url_long=https://blog.csdn.net/weixin_42081389/article/details/89381735" target="_blank" rel="noopener">http://api.t.sina.com.cn/short_url/shorten.json?source=3271760578&amp;url_long=https://blog.csdn.net/weixin_42081389/article/details/89381735</a></p>
+<p>出现以下一个json格式的结果：”url_short”后面就是成功的短网址，复制到浏览器可以查看。结果是一样的。<br>[{“url_short”:”<a href="http://t.cn/EafsGzA&quot;,&quot;url_long&quot;:&quot;https://blog.csdn.net/weixin_42081389/article/details/89381735&quot;,&quot;type&quot;:0}]" target="_blank" rel="noopener">http://t.cn/EafsGzA&quot;,&quot;url_long&quot;:&quot;https://blog.csdn.net/weixin_42081389/article/details/89381735&quot;,&quot;type&quot;:0}]</a></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/20190422151612997.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+
+<p><strong>注意</strong>：如果你想转换的url地址如果含有？后面有数字，比如<br><a href="https://blog.csdn.net/weixin_42081389/article/details/89381735?key=good&amp;kw=hello" target="_blank" rel="noopener">https://blog.csdn.net/weixin_42081389/article/details/89381735?key=good&amp;kw=hello</a></p>
+<p><a href="http://api.t.sina.com.cn/short_url/shorten.json?source=3271760578&amp;url_long=https://blog.csdn.net/weixin_42081389/article/details/89381735?key=good&amp;kw=hello" target="_blank" rel="noopener">http://api.t.sina.com.cn/short_url/shorten.json?source=3271760578&amp;url_long=https://blog.csdn.net/weixin_42081389/article/details/89381735?key=good&amp;kw=hello</a><br>转换之后响应结果为：<br>[{“url_short”:”<a href="http://t.cn/EaI7l1d&quot;,&quot;url_long&quot;:&quot;https://blog.csdn.net/weixin_42081389/article/details/89381735?key=good&quot;,&quot;type&quot;:0}]" target="_blank" rel="noopener">http://t.cn/EaI7l1d&quot;,&quot;url_long&quot;:&quot;https://blog.csdn.net/weixin_42081389/article/details/89381735?key=good&quot;,&quot;type&quot;:0}]</a><br>观察发现你想转换的地址“&amp;kw=hello”不见了，所以这时候需要先将地址进行url编码，再进行转换。<br>url在线编码<br><a href="https://tool.chinaz.com/tools/urlencode.aspx" target="_blank" rel="noopener">https://tool.chinaz.com/tools/urlencode.aspx</a></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/20190422152349734.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/20190422152410975.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+
+<p>得到编码后的url：<br>https%3a%2f%2fblog.csdn.net%2fweixin_42081389%2farticle%2fdetails%2f89381735%3fkey%3dgood%26kw%3dhello</p>
+<p><a href="http://api.t.sina.com.cn/short_url/shorten.json?source=3271760578&amp;url_long=https%3a%2f%2fblog.csdn.net%2fweixin_42081389%2farticle%2fdetails%2f89381735%3fkey%3dgood%26kw%3dhello" target="_blank" rel="noopener">http://api.t.sina.com.cn/short_url/shorten.json?source=3271760578&amp;url_long=https%3a%2f%2fblog.csdn.net%2fweixin_42081389%2farticle%2fdetails%2f89381735%3fkey%3dgood%26kw%3dhello</a></p>
+<p>然后响应结果为：<br>[{“url_short”:”<a href="http://t.cn/EaIASvI&quot;,&quot;url_long&quot;:&quot;https://blog.csdn.net/weixin_42081389/article/details/89381735?key=good&amp;kw=hello&quot;,&quot;type&quot;:0}]" target="_blank" rel="noopener">http://t.cn/EaIASvI&quot;,&quot;url_long&quot;:&quot;https://blog.csdn.net/weixin_42081389/article/details/89381735?key=good&amp;kw=hello&quot;,&quot;type&quot;:0}]</a><br>这时候就满足自己想要的结果了。</p>
+<h1 id="2、百度和新浪的python-实现api接口代码："><a href="#2、百度和新浪的python-实现api接口代码：" class="headerlink" title="**2、百度和新浪的python 实现api接口代码："></a>**2、百度和新浪的python 实现api接口代码：</h1><p>注意： ‘Token’: ‘这个要自己登陆之后可以获取’**<br><a href="https://dwz.cn/" target="_blank" rel="noopener">https://dwz.cn/</a><br>进入网址之后登陆自己百度账号，点击token既可以获取token。</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/20190423155259752.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+
+
+<pre><code>import json
+import requests
+import urllib
+
+def baidu(url_long):
+    # 百度api接口
+    url = &apos;https://dwz.cn/admin/v2/create&apos;
+
+    # TODO：设置待创建的长网址
+    bodys = {
+        &apos;url&apos;: url_long
+    }
+    # 配置headers
+    headers = {
+        &apos;Content-Type&apos;: &apos;application/json&apos;,
+        &apos;Token&apos;: &apos;自己登陆之后可以获取&apos;
+    }
+    # 发起请求
+    # response = requests.post(url=url, data=json.dumps(bodys), headers=headers)
+    response = requests.post(url=url, json=bodys, headers=headers)
+    data=json.dumps(bodys)
+    # print(data,type(data))
+    # 读取响应
+    # print(response.text)
+    url_data = json.loads(response.text)
+    # print(url_data[&apos;ShortUrl&apos;])
+    return url_data[&apos;ShortUrl&apos;]
+
+
+def xinlang(url_long):
+    # 新浪需要转换一下，不至于get方式的参数传递会少
+    url1 = urllib.parse.quote(url_long)
+    print(url1)
+    url = &apos;http://api.t.sina.com.cn/short_url/shorten.json?source=3271760578&amp;url_long=&apos; + url1
+    resp = requests.get(url=url)
+    print(resp.text)
+    data_short = json.loads(resp.text)
+    return data_short[0][&apos;url_short&apos;]
+
+
+if __name__ == &apos;__main__&apos;:
+    url_long = &apos;https://blog.csdn.net/weixin_42081389/article/details/89381735?key=good&amp;kw=hello&apos;
+    ShortUrl = baidu(url_long)
+    print(&apos;baidu&apos;,ShortUrl)
+    url_short = xinlang(url_long)
+    print(&apos;xinlang&apos;,url_short)</code></pre>
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2019-12-02T07:00:37.097Z" itemprop="dateUpdated">2019-12-02 15:00:37</time>
+</span><br>
+
+
+        
+        这里可以写作者留言，标签和 hexo 中所有变量及辅助函数等均可调用，示例：<a href="/2019/04/22/b1b4ac29f1119ec18f0167464308a00a/" target="_blank" rel="external">https://zhaojiafu.github.io/2019/04/22/b1b4ac29f1119ec18f0167464308a00a/</a>
+        
+    </div>
+    
+    <footer>
+        <a href="https://zhaojiafu.github.io">
+            <img src="/img/zhao.jpg" alt="赵家富">
+            赵家富
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" target="_blank" rel="noopener" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%85%B6%E4%BB%96/" rel="tag">其他</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://zhaojiafu.github.io/2019/04/22/b1b4ac29f1119ec18f0167464308a00a/&title=《短网址生成api使用教程》 — 赵家富的博客&pic=https://zhaojiafu.github.io/img/zhao.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" target="_blank" rel="noopener" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://zhaojiafu.github.io/2019/04/22/b1b4ac29f1119ec18f0167464308a00a/&title=《短网址生成api使用教程》 — 赵家富的博客&source=感觉无从下手的时候，问自己“不难，要你干啥？”" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://zhaojiafu.github.io/2019/04/22/b1b4ac29f1119ec18f0167464308a00a/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《短网址生成api使用教程》 — 赵家富的博客&url=https://zhaojiafu.github.io/2019/04/22/b1b4ac29f1119ec18f0167464308a00a/&via=https://zhaojiafu.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://zhaojiafu.github.io/2019/04/22/b1b4ac29f1119ec18f0167464308a00a/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" target="_blank" rel="noopener" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2019/04/28/bcd9724e71d8d468a2014155c2e67877/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">pytube.exceptions.RegexMatchError_ regex pattern (_W[_&#39;_]_t[_&#39;_]__ _[_&#39;_](.+_)[_&#39;_]) had zero matc问题</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2019/04/18/b84b7a7d9aa655400659bfc885492d77/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">selenium.common.exceptions.StaleElementReferenceException_ Message_ stale element reference_ element</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<section class="comments" id="comments">
+    <div id="gitalk-container"></div>
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+        var id = location.pathname
+        if (location.pathname.length > 50) {
+          id = location.pathname.replace(/\/\d+\/\d+\/\d+\//, '').replace('/', '').substring(0, 50)
+        }
+        const gitalk = new Gitalk({
+          clientID: '388d0a78cda30f118f86',
+          clientSecret: '2c64b34cc20f23d768dffff64acb8c2ee02c3bee',
+          repo: 'https://zhaojiafu.github.io/',
+          owner: 'zjf',
+          admin: ['zjf'],
+          id: id,      // Ensure uniqueness and length less than 50
+          title: document.title.split('|')[0],
+          distractionFreeMode: false  // Facebook-like distraction free mode
+        })
+
+        gitalk.render('gitalk-container')
+    </script>
+</section>
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;" target="_blank" rel="noopener"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢大爷~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.jpg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.jpg" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+            <span>博客内容遵循 <a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+        <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=0 height=0 src="http://music.163.com/song/media/outer/url?id=1369798757&auto=1"></iframe>
+
+    </div>
+    <div class="bottom">
+        <p><span>赵家富 &copy; 2019</span>
+            <span>
+                
+
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" target="_blank" rel="noopener" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://zhaojiafu.github.io/2019/04/22/b1b4ac29f1119ec18f0167464308a00a/&title=《短网址生成api使用教程》 — 赵家富的博客&pic=https://zhaojiafu.github.io/img/zhao.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" target="_blank" rel="noopener" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://zhaojiafu.github.io/2019/04/22/b1b4ac29f1119ec18f0167464308a00a/&title=《短网址生成api使用教程》 — 赵家富的博客&source=感觉无从下手的时候，问自己“不难，要你干啥？”" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://zhaojiafu.github.io/2019/04/22/b1b4ac29f1119ec18f0167464308a00a/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《短网址生成api使用教程》 — 赵家富的博客&url=https://zhaojiafu.github.io/2019/04/22/b1b4ac29f1119ec18f0167464308a00a/&via=https://zhaojiafu.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://zhaojiafu.github.io/2019/04/22/b1b4ac29f1119ec18f0167464308a00a/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;" target="_blank" rel="noopener"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACrElEQVR42u3a0Y4aMRAEQP7/p5PXSBF73TM2IVLxhPaQcRnJ42vP6xW/fj2+ks+0I7wb83XjhYeHh3d56n8++fv981/zEd7NMJ8zHh4e3m3eu0H3U8y3/vbJ83fh4eHhfRuvfdIWg6Qw4OHh4f0vvNkn7x3H8fDw8P4VLwkjouEeJ508z4vK4awFDw8PL+blh9rveX/lfg8PDw9vfauebLg3Vvq5eBSzxcPDw7vAy6fyTE0aC9oD8fOROg988fDw8M7yThWGDXvTavDDyHh4eHgf5LX/3bcBbttQ9Ux6O2c8PDy8j/NWm3Ly9aOYuKDi4eHhXeDl/+q3ZSA5NOfRQzK3OhvGw8PDG/HaI3K7TbdT3xeqKMbFw8PDu8Zrg4n2uDwbJwl/X+0vgIeHhxfzkmunfOvftAicWmg8PDy827zZoEkkkW/lObsuPHh4eHgf4eVD74/gs4uxIv7Aw8PDu8CbHXyTJchHmJWQ+mYPDw8P7ygvDxfai6hZSWgXt266wsPDw1vzijU4FEC0PVGz5gM8PDy8T/KSofOGgORb9gXm7TLh4eHhHeXlZWBWDGaLVTdUJT1leHh4eEd5baT7w4XTqKjM4t2i4uHh4eEd4q0+Oiob7ZJtYhE8PDy8T/JmrVezSCJHbmJfPDw8vLO82cadH6/z5oC2AERlDA8PD+8ab3OVtYkS8gIz+0nw8PDw7vFmQW375FTwkZccPDw8vLO8X+WrjW7bA3QeNEQ/Bh4eHt4F3mzDzVtRc2rezJq/x8PDw7vHS4rBpo2gvbh6nkNdNvDw8PCu8e7dHM1aAfIFjQoDHh4e3hfw9pt+HvW2hQcPDw/v+3nRPduieORLuVohPDw8vJLXBgGz+HVzVdYe8fHw8PDu8dp/+JPikXzZrEFhHzHj4eHhLXi/AZiH2k92A/EwAAAAAElFTkSuQmCC" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '死鬼去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+<script src="/node_modules/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"node_modules/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/node_modules/assets/shizuku.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"react":{"opacity":0.7},"log":false});</script></body>
+</html>

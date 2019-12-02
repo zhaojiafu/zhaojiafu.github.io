@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <link rel="canonical" href="https://zhaojiafu.github.io/2019/08/20/631ee538bd13e908439a70593365e051/">
+    
+    
+    <title>爬虫解决--反调试之无限debugger | 赵家富的博客 | 保持好奇心</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="python爬虫,JS反反爬">
+    <meta name="description" content="需求：对于一些网站，人家是不让使用前端调试，不然就无限出现debugger，然后自己也很无奈，说下我学到的俩个解决方法思路吧。 方法一：对debugger编写断点false，使之失效。在debugger处，前面对应的行数右击，（记得指针在行数位置上，这个点我也弄了好久才弄出来），选择第三项 Add conditional breakpoint，然后填写一个false回车确定即可，然后如果">
+<meta name="keywords" content="python爬虫,JS反反爬">
+<meta property="og:type" content="article">
+<meta property="og:title" content="爬虫解决--反调试之无限debugger">
+<meta property="og:url" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;2019&#x2F;08&#x2F;20&#x2F;631ee538bd13e908439a70593365e051&#x2F;index.html">
+<meta property="og:site_name" content="赵家富的博客">
+<meta property="og:description" content="需求：对于一些网站，人家是不让使用前端调试，不然就无限出现debugger，然后自己也很无奈，说下我学到的俩个解决方法思路吧。 方法一：对debugger编写断点false，使之失效。在debugger处，前面对应的行数右击，（记得指针在行数位置上，这个点我也弄了好久才弄出来），选择第三项 Add conditional breakpoint，然后填写一个false回车确定即可，然后如果">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20190820154658856.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20190820155625157.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;2019082016021945.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20190820160253505.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20190820163114731.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20190820163432308.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;2019082016370762.png">
+<meta property="og:updated_time" content="2019-12-02T07:40:52.614Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20190820154658856.png">
+    
+    <link rel="shortcut icon" href="/img/cb2nm-5l9w0-001.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" target="_blank" rel="noopener" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/zhao.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">赵家富</h5>
+          <a href="mailto:530519174@qq.com" target="_blank" rel="noopener" title="530519174@qq.com" class="mail">530519174@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                archives(所有)
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags/"  >
+                <i class="icon icon-lg icon-tags"></i>
+                tag(标签)
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories/"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories(分类)
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/zhaojiafu" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://blog.csdn.net/weixin_42081389" target="_blank" >
+                <i class="icon icon-lg icon-csdn"></i>
+                Csdn
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" target="_blank" rel="noopener" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+
+        <div class="flex-col header-title ellipsis">爬虫解决--反调试之无限debugger</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" target="_blank" rel="noopener" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" target="_blank" rel="noopener" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" target="_blank" rel="noopener" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+
+        <h1 class="title">爬虫解决--反调试之无限debugger
+        </h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2019-08-20T03:34:32.000Z" itemprop="datePublished" class="page-time">
+  2019-08-20
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/python%E7%88%AC%E8%99%AB/">python爬虫</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#需求："><span class="post-toc-number">1.</span> <span class="post-toc-text">需求：</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#方法一：对debugger编写断点false，使之失效。"><span class="post-toc-number">2.</span> <span class="post-toc-text">方法一：对debugger编写断点false，使之失效。</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#方法二、使用fiddler替换"><span class="post-toc-number">3.</span> <span class="post-toc-text">方法二、使用fiddler替换</span></a></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-631ee538bd13e908439a70593365e051"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">爬虫解决--反调试之无限debugger</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2019-08-20 11:34:32" datetime="2019-08-20T03:34:32.000Z"  itemprop="datePublished">2019-08-20</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/python%E7%88%AC%E8%99%AB/">python爬虫</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h1 id="需求："><a href="#需求：" class="headerlink" title="需求："></a>需求：</h1><p>对于一些网站，人家是不让使用前端调试，不然就无限出现debugger，然后自己也很无奈，说下我学到的俩个解决方法思路吧。</p>
+<h1 id="方法一：对debugger编写断点false，使之失效。"><a href="#方法一：对debugger编写断点false，使之失效。" class="headerlink" title="方法一：对debugger编写断点false，使之失效。"></a>方法一：对debugger编写断点false，使之失效。</h1><p>在debugger处，前面对应的行数右击，（记得指针在行数位置上，这个点我也弄了好久才弄出来），选择第三项 <strong>Add conditional breakpoint</strong>，然后填写一个false回车确定即可，然后如果</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/20190820154658856.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/20190820155625157.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+
+
+<p>后来我发现，也可以先点个断点变成蓝色，然后编辑，填写false，效果是一样的。</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/2019082016021945.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/20190820160253505.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+
+<p>效果一夜，然后点击右上角，继续断点，结果无限debugger消失了，至此解决。</p>
+<h1 id="方法二、使用fiddler替换"><a href="#方法二、使用fiddler替换" class="headerlink" title="方法二、使用fiddler替换"></a>方法二、使用fiddler替换</h1><p>我是默认为你电脑上的fiddler可以直接使用的，配置使用本文章不讲解，可以百度搜索。</p>
+<p>1、先将需要替换的js下载保存到本地，然后进行修改debugger处。<br>2、然后进入fiddler，按下图步骤进入填写。</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/20190820163114731.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/20190820163432308.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+<p>关闭替换之后，就是原来的代码了。</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/2019082016370762.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+
+
+
+
+
+
+
+
+
+
+<p>参考：<br><a href="https://segmentfault.com/a/1190000012359015" target="_blank" rel="noopener">https://segmentfault.com/a/1190000012359015</a><br><a href="https://mp.weixin.qq.com/s?__biz=MzIwNDI1NjUxMg==&amp;mid=2651261739&amp;idx=1&amp;sn=1403385e24bc8be953b5c930a7164f63&amp;scene=19#wechat_redirect" target="_blank" rel="noopener">https://mp.weixin.qq.com/s?__biz=MzIwNDI1NjUxMg==&amp;mid=2651261739&amp;idx=1&amp;sn=1403385e24bc8be953b5c930a7164f63&amp;scene=19#wechat_redirect</a></p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2019-12-02T07:40:52.614Z" itemprop="dateUpdated">2019-12-02 15:40:52</time>
+</span><br>
+
+
+        
+        这里可以写作者留言，标签和 hexo 中所有变量及辅助函数等均可调用，示例：<a href="/2019/08/20/631ee538bd13e908439a70593365e051/" target="_blank" rel="external">https://zhaojiafu.github.io/2019/08/20/631ee538bd13e908439a70593365e051/</a>
+        
+    </div>
+    
+    <footer>
+        <a href="https://zhaojiafu.github.io">
+            <img src="/img/zhao.jpg" alt="赵家富">
+            赵家富
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" target="_blank" rel="noopener" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JS%E5%8F%8D%E5%8F%8D%E7%88%AC/" rel="tag">JS反反爬</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python%E7%88%AC%E8%99%AB/" rel="tag">python爬虫</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://zhaojiafu.github.io/2019/08/20/631ee538bd13e908439a70593365e051/&title=《爬虫解决--反调试之无限debugger》 — 赵家富的博客&pic=https://zhaojiafu.github.io/img/zhao.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" target="_blank" rel="noopener" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://zhaojiafu.github.io/2019/08/20/631ee538bd13e908439a70593365e051/&title=《爬虫解决--反调试之无限debugger》 — 赵家富的博客&source=感觉无从下手的时候，问自己“不难，要你干啥？”" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://zhaojiafu.github.io/2019/08/20/631ee538bd13e908439a70593365e051/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《爬虫解决--反调试之无限debugger》 — 赵家富的博客&url=https://zhaojiafu.github.io/2019/08/20/631ee538bd13e908439a70593365e051/&via=https://zhaojiafu.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://zhaojiafu.github.io/2019/08/20/631ee538bd13e908439a70593365e051/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" target="_blank" rel="noopener" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2019/08/21/c874a52b55520ef216408aef77566b68/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">python 使用execjs执行接js解密时报错execjs UnicodeDecodeError_ &#39;gbk&#39; codec can&#39;t decode byte</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2019/08/19/c69443b0b8ae87a5811a5391e498adc6/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">搜狗拼音带来的俩个烦人的弹窗解决方法</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<section class="comments" id="comments">
+    <div id="gitalk-container"></div>
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+        var id = location.pathname
+        if (location.pathname.length > 50) {
+          id = location.pathname.replace(/\/\d+\/\d+\/\d+\//, '').replace('/', '').substring(0, 50)
+        }
+        const gitalk = new Gitalk({
+          clientID: '388d0a78cda30f118f86',
+          clientSecret: '2c64b34cc20f23d768dffff64acb8c2ee02c3bee',
+          repo: 'https://zhaojiafu.github.io/',
+          owner: 'zjf',
+          admin: ['zjf'],
+          id: id,      // Ensure uniqueness and length less than 50
+          title: document.title.split('|')[0],
+          distractionFreeMode: false  // Facebook-like distraction free mode
+        })
+
+        gitalk.render('gitalk-container')
+    </script>
+</section>
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;" target="_blank" rel="noopener"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢大爷~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.jpg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.jpg" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+            <span>博客内容遵循 <a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+        <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=0 height=0 src="http://music.163.com/song/media/outer/url?id=1369798757&auto=1"></iframe>
+
+    </div>
+    <div class="bottom">
+        <p><span>赵家富 &copy; 2019</span>
+            <span>
+                
+
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" target="_blank" rel="noopener" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://zhaojiafu.github.io/2019/08/20/631ee538bd13e908439a70593365e051/&title=《爬虫解决--反调试之无限debugger》 — 赵家富的博客&pic=https://zhaojiafu.github.io/img/zhao.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" target="_blank" rel="noopener" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://zhaojiafu.github.io/2019/08/20/631ee538bd13e908439a70593365e051/&title=《爬虫解决--反调试之无限debugger》 — 赵家富的博客&source=感觉无从下手的时候，问自己“不难，要你干啥？”" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://zhaojiafu.github.io/2019/08/20/631ee538bd13e908439a70593365e051/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《爬虫解决--反调试之无限debugger》 — 赵家富的博客&url=https://zhaojiafu.github.io/2019/08/20/631ee538bd13e908439a70593365e051/&via=https://zhaojiafu.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://zhaojiafu.github.io/2019/08/20/631ee538bd13e908439a70593365e051/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;" target="_blank" rel="noopener"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACtElEQVR42u3awW4DIQwE0Pz/T6fXSlVgbEOSSm9PVdOwPA7gjnk84uf54vn76e/frL+7Hmc95uEHDw8P79DU1y9ORntFXS/BeuR8znh4eHi3eclw1Y0+YVQXN58zHh4e3vfwqpPOlyyph/Hw8PD+I+/VpHuYU9/Cw8PDez+vGqHmyPzT6mIdzlrw8PDwYl7eRfqen6/09/Dw8PDGXfVP3V9YHzmF2eLh4eFd4OUTmsSpk6ZXEppsCnc8PDy8C7yzdWkvoq2GDr1Fx8PDwzvFyxv/p5pSkwtV1fgYDw8P7yyvuuH2Gv/5KVQtvjfvwsPDw7vGO3X5ac6oFt+bT/Hw8PA+xEsuNiXfzRcu3/o3YQQeHh7eBV5hkx1EGNVFnFw42IyAh4eHd42XHwaTJzkM8pI6Who8PDy8Q7x8Q0828WojrVpAlw8zPDw8vKO8yZZdDQLyBaq2xF4W7nh4eHgXeHlhmregeht99QgZ/a+Ah4eHN+blwUEevPbK8V6Jv6Hi4eHhHeWVC9PBopwKOPLLB3h4eHj3eElTP78KUN2TJ/HHppTHw8PDu9XSiUKHySurYUdv6oXEBQ8PD2/Mm5SzveL41DWF0aUrPDw8vBavFyj04tfkLXnDbHTpCg8PD2/Ay4PRXrHbi4nPvhEPDw/vBq93aaAaNyTjVEPhqF2Hh4eH9xZeNT6ottCqUXIeLkeRBB4eHt413rwplR8Po6ChWlLj4eHhDXjP4jOPbnsXFJqf4uHh4V3gzTfxJFDID5hqoNw7PPDw8PDmvHlTP49cq9t6tfWFh4eH905e9Z7SemteT7e6oL37VHh4eHjfw+tFsT1GHu9Gt8nw8PDwPsqbHAz5IVEtzQ+U1Hh4eHgxLx86jyTyrX8e4xYuXeHh4eGNeb1/+PPtuwfr/eWov4eHh4e35/0AcuD5PkfpuFsAAAAASUVORK5CYII=" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '死鬼去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+<script src="/node_modules/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"node_modules/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/node_modules/assets/shizuku.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"react":{"opacity":0.7},"log":false});</script></body>
+</html>

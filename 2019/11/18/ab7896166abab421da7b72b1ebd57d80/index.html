@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <link rel="canonical" href="https://zhaojiafu.github.io/2019/11/18/ab7896166abab421da7b72b1ebd57d80/">
+    
+    
+    <title>对于文本中含有Unicode编码和&amp;quot;时，如何提取出想要的字符串 | 赵家富的博客 | 保持好奇心</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="问题解决">
+    <meta name="description" content="一、问题说明：今天爬取一个页面，但是获取的文本确实有点问题，将近几个小时都在搞这个问题，刚开始想着直接使用正则把所有中文和中文字符提取出来，但是发现里面还有HTML样式，说白了就是一个HTML字符串，但是直接使用lxml和bs4无法提取出问本，因为中间还有Unicode编码。 二、最终找到一个解决方法：我感觉肯定有比我这个简单的方法，既然人家页面可以直接用，但是我能力有限，没有想到也没有找到如何解">
+<meta name="keywords" content="问题解决">
+<meta property="og:type" content="article">
+<meta property="og:title" content="对于文本中含有Unicode编码和&quot;时，如何提取出想要的字符串">
+<meta property="og:url" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;2019&#x2F;11&#x2F;18&#x2F;ab7896166abab421da7b72b1ebd57d80&#x2F;index.html">
+<meta property="og:site_name" content="赵家富的博客">
+<meta property="og:description" content="一、问题说明：今天爬取一个页面，但是获取的文本确实有点问题，将近几个小时都在搞这个问题，刚开始想着直接使用正则把所有中文和中文字符提取出来，但是发现里面还有HTML样式，说白了就是一个HTML字符串，但是直接使用lxml和bs4无法提取出问本，因为中间还有Unicode编码。 二、最终找到一个解决方法：我感觉肯定有比我这个简单的方法，既然人家页面可以直接用，但是我能力有限，没有想到也没有找到如何解">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20191118183902433.png">
+<meta property="og:updated_time" content="2019-12-02T07:00:36.591Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20191118183902433.png">
+    
+    <link rel="shortcut icon" href="/img/cb2nm-5l9w0-001.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" target="_blank" rel="noopener" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/zhao.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">赵家富</h5>
+          <a href="mailto:530519174@qq.com" target="_blank" rel="noopener" title="530519174@qq.com" class="mail">530519174@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                archives(所有)
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags/"  >
+                <i class="icon icon-lg icon-tags"></i>
+                tag(标签)
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories/"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories(分类)
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/zhaojiafu" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://blog.csdn.net/weixin_42081389" target="_blank" >
+                <i class="icon icon-lg icon-csdn"></i>
+                Csdn
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" target="_blank" rel="noopener" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+
+        <div class="flex-col header-title ellipsis">对于文本中含有Unicode编码和&amp;quot;时，如何提取出想要的字符串</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" target="_blank" rel="noopener" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" target="_blank" rel="noopener" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" target="_blank" rel="noopener" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+
+        <h1 class="title">对于文本中含有Unicode编码和&amp;quot;时，如何提取出想要的字符串
+        </h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2019-11-18T03:34:32.000Z" itemprop="datePublished" class="page-time">
+  2019-11-18
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3/">问题解决</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#一、问题说明："><span class="post-toc-number">1.</span> <span class="post-toc-text">一、问题说明：</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#二、最终找到一个解决方法："><span class="post-toc-number">2.</span> <span class="post-toc-text">二、最终找到一个解决方法：</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#1、有问题的文本："><span class="post-toc-number">2.1.</span> <span class="post-toc-text">1、有问题的文本：</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#2、先把Unicode的编码转换："><span class="post-toc-number">2.2.</span> <span class="post-toc-text">2、先把Unicode的编码转换：</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#3、使用lxml模块或者bs4提取需要的数据："><span class="post-toc-number">2.3.</span> <span class="post-toc-text">3、使用lxml模块或者bs4提取需要的数据：</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#4、最后提出的结果就是我需要的数据："><span class="post-toc-number">2.4.</span> <span class="post-toc-text">4、最后提出的结果就是我需要的数据：</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#三、总结："><span class="post-toc-number">3.</span> <span class="post-toc-text">三、总结：</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#至此，我的笨方法解决过程就这么多了，如果有简单方法的大佬，还望不吝赐教哈，谢谢。"><span class="post-toc-number">3.1.</span> <span class="post-toc-text">至此，我的笨方法解决过程就这么多了，如果有简单方法的大佬，还望不吝赐教哈，谢谢。</span></a></li></ol></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-ab7896166abab421da7b72b1ebd57d80"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">对于文本中含有Unicode编码和&quot;时，如何提取出想要的字符串</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2019-11-18 11:34:32" datetime="2019-11-18T03:34:32.000Z"  itemprop="datePublished">2019-11-18</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3/">问题解决</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h1 id="一、问题说明："><a href="#一、问题说明：" class="headerlink" title="一、问题说明："></a>一、问题说明：</h1><p>今天爬取一个页面，但是获取的文本确实有点问题，将近几个小时都在搞这个问题，刚开始想着直接使用正则把所有中文和中文字符提取出来，但是发现里面还有HTML样式，说白了就是一个HTML字符串，但是直接使用lxml和bs4无法提取出问本，因为中间还有Unicode编码。</p>
+<h1 id="二、最终找到一个解决方法："><a href="#二、最终找到一个解决方法：" class="headerlink" title="二、最终找到一个解决方法："></a>二、最终找到一个解决方法：</h1><p>我感觉肯定有比我这个简单的方法，既然人家页面可以直接用，但是我能力有限，没有想到也没有找到如何解决这中问题，如果有懂得简单方法，还望不吝赐教哈</p>
+<h2 id="1、有问题的文本："><a href="#1、有问题的文本：" class="headerlink" title="1、有问题的文本："></a>1、有问题的文本：</h2><p>这是个列表，每个列表有一个元素，这个元素就是一个含有Unicode编码的HTML样式的字符串，但是还有中文，我没有找到简单的方法解决，下面说说我的笨方法。</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">[<span class="string">'&amp;quot;提醒血的教训！乘公交做这个动作，相当于自杀&amp;quot;'</span>]</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">[<span class="string">'&amp;quot;\\u003Cp\\u003E坐公交车总会听见一句广播：“请不要把头手伸出窗外”。由于太熟悉，很多人有意无意会“忽略”，然而，近日发生在贵州贵阳的一起“公交车惨案”，用血的教训再次提醒大家引以为戒！\\u003C\\u002Fp\\u003E\\u003Cp\\u003E6月17日21时左右，微博网友@我是黑猫你是谁 报料称，在贵阳32路公交车终点站发生一件惨案：两辆公交车把乘客的头夹破了，乘客当场身亡。\\u003C\\u002Fp\\u003E\\u003Cp\\u003E\\u003Cimg src&amp;#x3D;\\&amp;quot;http:\\u002F\\u002Fp1.pstatp.com\\u002Flarge\\u002Fa36000c653c29d56232\\&amp;quot; img_width&amp;#x3D;\\&amp;quot;511\\&amp;quot; img_height&amp;#x3D;\\&amp;quot;110\\&amp;quot; alt&amp;#x3D;\\&amp;quot;提醒血的教训！乘公交做这个动作，相当于自杀\\&amp;quot; inline&amp;#x3D;\\&amp;quot;0\\&amp;quot;\\u003E\\u003C\\u002Fp\\u003E\\u003Cp\\u003E这条微博除了用简短文字表述外，下方还附了5张照片。其中一张照片显示，事发后，两辆32路公交车并排停在一块，10余名观围者站在警戒线外驻足观看。\\u003C\\u002Fp\\u003E\\u003Cp\\u003E\\u003Cimg src&amp;#x3D;\\&amp;quot;http:\\u002F\\u002Fp3.pstatp.com\\u002Flarge\\u002F9cd0008f557e14ca71e\\&amp;quot; img_width&amp;#x3D;\\&amp;quot;543\\&amp;quot; img_height&amp;#x3D;\\&amp;quot;535\\&amp;quot; alt&amp;#x3D;\\&amp;quot;提醒血的教训！乘公交做这个动作，相当于自杀\\&amp;quot; inline&amp;#x3D;\\&amp;quot;0\\&amp;quot;\\u003E\\u003C\\u002Fp\\u003E\\u003Cp\\u003E\\u003Cimg src&amp;#x3D;\\&amp;quot;http:\\u002F\\u002Fp1.pstatp.com\\u002Flarge\\u002F9c800097f0618ea2779\\&amp;quot; img_width&amp;#x3D;\\&amp;quot;543\\&amp;quot; img_height&amp;#x3D;\\&amp;quot;537\\&amp;quot; alt&amp;#x3D;\\&amp;quot;提醒血的教训！乘公交做这个动作，相当于自杀\\&amp;quot; inline&amp;#x3D;\\&amp;quot;0\\&amp;quot;\\u003E\\u003C\\u002Fp\\u003E\\u003Cp\\u003E 网友发布的现场图\\u003C\\u002Fp\\u003E\\u003Cp\\u003E\\u003Cstrong\\u003E男子疑因打瞌睡头伸到窗外被夹\\u003C\\u002Fstrong\\u003E\\u003C\\u002Fp\\u003E\\u003Cp\\u003E记者赶到位于金关村32路公交车终点站时，公交车正常运营，乘客依次排队上下车，没有受到事故影响。\\u003C\\u002Fp\\u003E\\u003Cp\\u003E一位目击者告诉记者，17日中午三四点，一辆32路公交车停在站台入口不远处，后来，另一辆32路公交车进站时，坐在后排的一男子将头伸出了窗外，就在两车并排时，男子的头被两车车身给夹住。\\u003C\\u002Fp\\u003E\\u003Cp\\u003E\\u003Cimg src&amp;#x3D;\\&amp;quot;http:\\u002F\\u002Fp9.pstatp.com\\u002Flarge\\u002F9c50009822c33b729f8\\&amp;quot; img_width&amp;#x3D;\\&amp;quot;544\\&amp;quot; img_height&amp;#x3D;\\&amp;quot;548\\&amp;quot; alt&amp;#x3D;\\&amp;quot;提醒血的教训！乘公交做这个动作，相当于自杀\\&amp;quot; inline&amp;#x3D;\\&amp;quot;0\\&amp;quot;\\u003E\\u003C\\u002Fp\\u003E\\u003Cp\\u003E另一位妇女告诉记者，事发后，她赶紧过去看到公交车的车窗玻璃也碎了。“后来，我听和坐在这名男子旁边的一位女乘客说，在乘车过程中，这名男子一直在打瞌睡，到了终点站后，大家都下车了，就他没有下车，很有可能是这名男子睡着了，头伸出了窗外才发生的意外。”\\u003C\\u002Fp\\u003E\\u003Cp\\u003E有市民表示，就算是男子自己把头伸出窗外，在公交车进站且两车并排时，如果驾驶员能够多往后视镜看一眼，也许悲剧就能避免。\\u003C\\u002Fp\\u003E\\u003Cp\\u003E记者在32路公交车终点站看到，入口处大约有10多米宽，如果是一辆公交车进站，空间还算大，但如果同时两车并排进站的话，空间就显得很狭小。\\u003C\\u002Fp\\u003E\\u003Cp\\u003E\\u003Cstrong\\u003E事情属实，原因正在调查中\\u003C\\u002Fstrong\\u003E\\u003C\\u002Fp\\u003E\\u003Cp\\u003E在32路公交车终点站办公室里，工作人员告诉记者说，乘客被两辆公交车车身夹破头身亡的事故属实，不过，对于具体原因他们并不清楚，当事驾驶员、分管领导目前都在交警队接受调查。\\u003C\\u002Fp\\u003E\\u003Cp\\u003E附近的村民告诉记者，这名乘客40岁左右，毕节人，在金关村附近租房居住。\\u003C\\u002Fp\\u003E\\u003Cp\\u003E目前，事故具体原因警方正在调查中。\\u003C\\u002Fp\\u003E\\u003Cp\\u003E\\u003Cstrong\\u003E多知道点儿\\u003C\\u002Fstrong\\u003E\\u003C\\u002Fp\\u003E\\u003Cp\\u003E交警说，在汽车行驶的过程中，把身体的某个部位置于车外无异于自杀。\\u003C\\u002Fp\\u003E\\u003Cp\\u003E\\u003Cimg src&amp;#x3D;\\&amp;quot;http:\\u002F\\u002Fp3.pstatp.com\\u002Flarge\\u002F9c50009822e1ceb37bb\\&amp;quot; img_width&amp;#x3D;\\&amp;quot;383\\&amp;quot; img_height&amp;#x3D;\\&amp;quot;232\\&amp;quot; alt&amp;#x3D;\\&amp;quot;提醒血的教训！乘公交做这个动作，相当于自杀\\&amp;quot; inline&amp;#x3D;\\&amp;quot;0\\&amp;quot;\\u003E\\u003C\\u002Fp\\u003E\\u003Cp\\u003E这样的事故常有发生，而且一般都是大事故！汽车行驶中，请注意四件事：\\u003C\\u002Fp\\u003E\\u003Cblockquote\\u003E\\u003Cul\\u003E\\u003Cli\\u003E\\u003Cp\\u003E手勿伸出窗外；\\u003C\\u002Fp\\u003E\\u003C\\u002Fli\\u003E\\u003Cli\\u003E\\u003Cp\\u003E脚勿搭在车窗上；\\u003C\\u002Fp\\u003E\\u003C\\u002Fli\\u003E\\u003Cli\\u003E\\u003Cp\\u003E别让你的宠物把头伸出窗外；\\u003C\\u002Fp\\u003E\\u003C\\u002Fli\\u003E\\u003Cli\\u003E\\u003Cp\\u003E看好孩子\\u003C\\u002Fp\\u003E\\u003C\\u002Fli\\u003E\\u003C\\u002Ful\\u003E\\u003C\\u002Fblockquote\\u003E\\u003Cp\\u003E2014年6月30日，无锡一女子在驾驶车辆时不慎侧翻，由于开车时把手伸出车外，结果酿成悲剧，一只手当场折断，血肉模糊。\\u003C\\u002Fp\\u003E\\u003Cp\\u003E\\u003Cimg src&amp;#x3D;\\&amp;quot;http:\\u002F\\u002Fp3.pstatp.com\\u002Flarge\\u002F9c800097f084217a4d0\\&amp;quot; img_width&amp;#x3D;\\&amp;quot;395\\&amp;quot; img_height&amp;#x3D;\\&amp;quot;436\\&amp;quot; alt&amp;#x3D;\\&amp;quot;提醒血的教训！乘公交做这个动作，相当于自杀\\&amp;quot; inline&amp;#x3D;\\&amp;quot;0\\&amp;quot;\\u003E\\u003C\\u002Fp\\u003E\\u003Cp\\u003E温州一位乘客晚上喝完酒之后乘坐出租车回家，途中把头伸出窗外呕吐，之后用纸巾擦嘴时，旁边一辆车子超上来，刮到其手臂，所幸伤势并不严重。\\u003C\\u002Fp\\u003E\\u003Cp\\u003E还有——\\u003C\\u002Fp\\u003E\\u003Cp\\u003E\\u003Cimg src&amp;#x3D;\\&amp;quot;http:\\u002F\\u002Fp1.pstatp.com\\u002Flarge\\u002F9c900096e9fd2eac174\\&amp;quot; img_width&amp;#x3D;\\&amp;quot;440\\&amp;quot; img_height&amp;#x3D;\\&amp;quot;2967\\&amp;quot; alt&amp;#x3D;\\&amp;quot;提醒血的教训！乘公交做这个动作，相当于自杀\\&amp;quot; inline&amp;#x3D;\\&amp;quot;0\\&amp;quot;\\u003E\\u003C\\u002Fp\\u003E\\u003Cp\\u003E看完这些，你还敢将身体伸出车外么？\\u003C\\u002Fp\\u003E\\u003Cp\\u003E来源丨齐鲁晚报（ID：qiluwanbao002）、羊城晚报（ID：wanbaoweixin）、贵州都市报、新浪微博、平安北京、寿光公安、网络\\u003C\\u002Fp\\u003E\\u003Cp\\u003E版权归原作者所有\\u003C\\u002Fp\\u003E&amp;quot;'</span>]</span></pre></td></tr></table></figure>
+
+
+<h2 id="2、先把Unicode的编码转换："><a href="#2、先把Unicode的编码转换：" class="headerlink" title="2、先把Unicode的编码转换："></a>2、先把Unicode的编码转换：</h2><p>这个我刚看到以为很多，直接把这个方法放弃了，后来其他方法找了好久，也没有弄出来，最后又来找这个一个一个替换的方法，发现也就7个，尴尬。。。</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">encode_json = &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">            <span class="string">'\\u003C'</span>: <span class="string">'&lt;'</span>,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">            <span class="string">'\\u003E'</span>: <span class="string">'&gt;'</span>,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">            <span class="string">'\\u002F'</span>: <span class="string">'/'</span>,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">            <span class="string">'&amp;#x3D;\\'</span>:<span class="string">'='</span>,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">            <span class="string">'&amp;quot;'</span>:<span class="string">''</span>,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">            <span class="string">'\\'</span>:<span class="string">''</span>,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">            <span class="string">'\/'</span>:<span class="string">'/'</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">        &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">print(<span class="string">'encode_json'</span>,encode_json)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> key <span class="keyword">in</span> encode_json.keys():</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">    title1 = title1.replace(key, encode_json[key])</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">    content1 = content1.replace(key, encode_json[key])</span></pre></td></tr></table></figure>
+
+<p>替换之后的正确的HTML字符串：</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">提醒血的教训！乘公交做这个动作，相当于自杀</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">&lt;p&gt;坐公交车总会听见一句广播：“请不要把头手伸出窗外”。由于太熟悉，很多人有意无意会“忽略”，然而，近日发生在贵州贵阳的一起“公交车惨案”，用血的教训再次提醒大家引以为戒！&lt;/p&gt;&lt;p&gt;<span class="number">6</span>月<span class="number">17</span>日<span class="number">21</span>时左右，微博网友@我是黑猫你是谁 报料称，在贵阳<span class="number">32</span>路公交车终点站发生一件惨案：两辆公交车把乘客的头夹破了，乘客当场身亡。&lt;/p&gt;&lt;p&gt;&lt;img src=http://p1.pstatp.com/large/a36000c653c29d56232 img_width=<span class="number">511</span> img_height=<span class="number">110</span> alt=提醒血的教训！乘公交做这个动作，相当于自杀 inline=<span class="number">0</span>&gt;&lt;/p&gt;&lt;p&gt;这条微博除了用简短文字表述外，下方还附了<span class="number">5</span>张照片。其中一张照片显示，事发后，两辆<span class="number">32</span>路公交车并排停在一块，<span class="number">10</span>余名观围者站在警戒线外驻足观看。&lt;/p&gt;&lt;p&gt;&lt;img src=http://p3.pstatp.com/large/<span class="number">9</span>cd0008f557e14ca71e img_width=<span class="number">543</span> img_height=<span class="number">535</span> alt=提醒血的教训！乘公交做这个动作，相当于自杀 inline=<span class="number">0</span>&gt;&lt;/p&gt;&lt;p&gt;&lt;img src=http://p1.pstatp.com/large/<span class="number">9</span>c800097f0618ea2779 img_width=<span class="number">543</span> img_height=<span class="number">537</span> alt=提醒血的教训！乘公交做这个动作，相当于自杀 inline=<span class="number">0</span>&gt;&lt;/p&gt;&lt;p&gt; 网友发布的现场图&lt;/p&gt;&lt;p&gt;&lt;strong&gt;男子疑因打瞌睡头伸到窗外被夹&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;记者赶到位于金关村<span class="number">32</span>路公交车终点站时，公交车正常运营，乘客依次排队上下车，没有受到事故影响。&lt;/p&gt;&lt;p&gt;一位目击者告诉记者，<span class="number">17</span>日中午三四点，一辆<span class="number">32</span>路公交车停在站台入口不远处，后来，另一辆<span class="number">32</span>路公交车进站时，坐在后排的一男子将头伸出了窗外，就在两车并排时，男子的头被两车车身给夹住。&lt;/p&gt;&lt;p&gt;&lt;img src=http://p9.pstatp.com/large/<span class="number">9</span>c50009822c33b729f8 img_width=<span class="number">544</span> img_height=<span class="number">548</span> alt=提醒血的教训！乘公交做这个动作，相当于自杀 inline=<span class="number">0</span>&gt;&lt;/p&gt;&lt;p&gt;另一位妇女告诉记者，事发后，她赶紧过去看到公交车的车窗玻璃也碎了。“后来，我听和坐在这名男子旁边的一位女乘客说，在乘车过程中，这名男子一直在打瞌睡，到了终点站后，大家都下车了，就他没有下车，很有可能是这名男子睡着了，头伸出了窗外才发生的意外。”&lt;/p&gt;&lt;p&gt;有市民表示，就算是男子自己把头伸出窗外，在公交车进站且两车并排时，如果驾驶员能够多往后视镜看一眼，也许悲剧就能避免。&lt;/p&gt;&lt;p&gt;记者在<span class="number">32</span>路公交车终点站看到，入口处大约有<span class="number">10</span>多米宽，如果是一辆公交车进站，空间还算大，但如果同时两车并排进站的话，空间就显得很狭小。&lt;/p&gt;&lt;p&gt;&lt;strong&gt;事情属实，原因正在调查中&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;在<span class="number">32</span>路公交车终点站办公室里，工作人员告诉记者说，乘客被两辆公交车车身夹破头身亡的事故属实，不过，对于具体原因他们并不清楚，当事驾驶员、分管领导目前都在交警队接受调查。&lt;/p&gt;&lt;p&gt;附近的村民告诉记者，这名乘客<span class="number">40</span>岁左右，毕节人，在金关村附近租房居住。&lt;/p&gt;&lt;p&gt;目前，事故具体原因警方正在调查中。&lt;/p&gt;&lt;p&gt;&lt;strong&gt;多知道点儿&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;交警说，在汽车行驶的过程中，把身体的某个部位置于车外无异于自杀。&lt;/p&gt;&lt;p&gt;&lt;img src=http://p3.pstatp.com/large/<span class="number">9</span>c50009822e1ceb37bb img_width=<span class="number">383</span> img_height=<span class="number">232</span> alt=提醒血的教训！乘公交做这个动作，相当于自杀 inline=<span class="number">0</span>&gt;&lt;/p&gt;&lt;p&gt;这样的事故常有发生，而且一般都是大事故！汽车行驶中，请注意四件事：&lt;/p&gt;&lt;blockquote&gt;&lt;ul&gt;&lt;li&gt;&lt;p&gt;手勿伸出窗外；&lt;/p&gt;&lt;/li&gt;&lt;li&gt;&lt;p&gt;脚勿搭在车窗上；&lt;/p&gt;&lt;/li&gt;&lt;li&gt;&lt;p&gt;别让你的宠物把头伸出窗外；&lt;/p&gt;&lt;/li&gt;&lt;li&gt;&lt;p&gt;看好孩子&lt;/p&gt;&lt;/li&gt;&lt;/ul&gt;&lt;/blockquote&gt;&lt;p&gt;<span class="number">2014</span>年<span class="number">6</span>月<span class="number">30</span>日，无锡一女子在驾驶车辆时不慎侧翻，由于开车时把手伸出车外，结果酿成悲剧，一只手当场折断，血肉模糊。&lt;/p&gt;&lt;p&gt;&lt;img src=http://p3.pstatp.com/large/<span class="number">9</span>c800097f084217a4d0 img_width=<span class="number">395</span> img_height=<span class="number">436</span> alt=提醒血的教训！乘公交做这个动作，相当于自杀 inline=<span class="number">0</span>&gt;&lt;/p&gt;&lt;p&gt;温州一位乘客晚上喝完酒之后乘坐出租车回家，途中把头伸出窗外呕吐，之后用纸巾擦嘴时，旁边一辆车子超上来，刮到其手臂，所幸伤势并不严重。&lt;/p&gt;&lt;p&gt;还有——&lt;/p&gt;&lt;p&gt;&lt;img src=http://p1.pstatp.com/large/<span class="number">9</span>c900096e9fd2eac174 img_width=<span class="number">440</span> img_height=<span class="number">2967</span> alt=提醒血的教训！乘公交做这个动作，相当于自杀 inline=<span class="number">0</span>&gt;&lt;/p&gt;&lt;p&gt;看完这些，你还敢将身体伸出车外么？&lt;/p&gt;&lt;p&gt;来源丨齐鲁晚报（ID：qiluwanbao002）、羊城晚报（ID：wanbaoweixin）、贵州都市报、新浪微博、平安北京、寿光公安、网络&lt;/p&gt;&lt;p&gt;版权归原作者所有&lt;/p&gt;</span></pre></td></tr></table></figure>
+
+<h2 id="3、使用lxml模块或者bs4提取需要的数据："><a href="#3、使用lxml模块或者bs4提取需要的数据：" class="headerlink" title="3、使用lxml模块或者bs4提取需要的数据："></a>3、使用lxml模块或者bs4提取需要的数据：</h2><p>我这里提取标题，文本，和文本中的图片地址：</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">title_html = etree.HTML(title1)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">title_str = <span class="string">''</span>.join(title_html.xpath(<span class="string">'//text()'</span>))</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">print(<span class="string">'title_str'</span>,title_str)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">content1_html = etree.HTML(content1)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line"><span class="comment"># content_str = content1_html.xpath('//text()')</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">content_str = <span class="string">''</span>.join(content1_html.xpath(<span class="string">'//text()'</span>))</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">print(<span class="string">'content_str'</span>,content_str)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">img_list = content1_html.xpath(<span class="string">'//img/@src'</span>)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">print(<span class="string">'img_list'</span>,img_list)</span></pre></td></tr></table></figure>
+
+<h2 id="4、最后提出的结果就是我需要的数据："><a href="#4、最后提出的结果就是我需要的数据：" class="headerlink" title="4、最后提出的结果就是我需要的数据："></a>4、最后提出的结果就是我需要的数据：</h2><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">title_str 提醒血的教训！乘公交做这个动作，相当于自杀</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">content_str 坐公交车总会听见一句广播：“请不要把头手伸出窗外”。由于太熟悉，很多人有意无意会“忽略”，然而，近日发生在贵州贵阳的一起“公交车惨案”，用血的教训再次提醒大家引以为戒！<span class="number">6</span>月<span class="number">17</span>日<span class="number">21</span>时左右，微博网友@我是黑猫你是谁 报料称，在贵阳<span class="number">32</span>路公交车终点站发生一件惨案：两辆公交车把乘客的头夹破了，乘客当场身亡。这条微博除了用简短文字表述外，下方还附了<span class="number">5</span>张照片。其中一张照片显示，事发后，两辆<span class="number">32</span>路公交车并排停在一块，<span class="number">10</span>余名观围者站在警戒线外驻足观看。 网友发布的现场图男子疑因打瞌睡头伸到窗外被夹记者赶到位于金关村<span class="number">32</span>路公交车终点站时，公交车正常运营，乘客依次排队上下车，没有受到事故影响。一位目击者告诉记者，<span class="number">17</span>日中午三四点，一辆<span class="number">32</span>路公交车停在站台入口不远处，后来，另一辆<span class="number">32</span>路公交车进站时，坐在后排的一男子将头伸出了窗外，就在两车并排时，男子的头被两车车身给夹住。另一位妇女告诉记者，事发后，她赶紧过去看到公交车的车窗玻璃也碎了。“后来，我听和坐在这名男子旁边的一位女乘客说，在乘车过程中，这名男子一直在打瞌睡，到了终点站后，大家都下车了，就他没有下车，很有可能是这名男子睡着了，头伸出了窗外才发生的意外。”有市民表示，就算是男子自己把头伸出窗外，在公交车进站且两车并排时，如果驾驶员能够多往后视镜看一眼，也许悲剧就能避免。记者在<span class="number">32</span>路公交车终点站看到，入口处大约有<span class="number">10</span>多米宽，如果是一辆公交车进站，空间还算大，但如果同时两车并排进站的话，空间就显得很狭小。事情属实，原因正在调查中在<span class="number">32</span>路公交车终点站办公室里，工作人员告诉记者说，乘客被两辆公交车车身夹破头身亡的事故属实，不过，对于具体原因他们并不清楚，当事驾驶员、分管领导目前都在交警队接受调查。附近的村民告诉记者，这名乘客<span class="number">40</span>岁左右，毕节人，在金关村附近租房居住。目前，事故具体原因警方正在调查中。多知道点儿交警说，在汽车行驶的过程中，把身体的某个部位置于车外无异于自杀。这样的事故常有发生，而且一般都是大事故！汽车行驶中，请注意四件事：手勿伸出窗外；脚勿搭在车窗上；别让你的宠物把头伸出窗外；看好孩子<span class="number">2014</span>年<span class="number">6</span>月<span class="number">30</span>日，无锡一女子在驾驶车辆时不慎侧翻，由于开车时把手伸出车外，结果酿成悲剧，一只手当场折断，血肉模糊。温州一位乘客晚上喝完酒之后乘坐出租车回家，途中把头伸出窗外呕吐，之后用纸巾擦嘴时，旁边一辆车子超上来，刮到其手臂，所幸伤势并不严重。还有——看完这些，你还敢将身体伸出车外么？来源丨齐鲁晚报（ID：qiluwanbao002）、羊城晚报（ID：wanbaoweixin）、贵州都市报、新浪微博、平安北京、寿光公安、网络版权归原作者所有</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">img_list [<span class="string">'http://p1.pstatp.com/large/a36000c653c29d56232'</span>, <span class="string">'http://p3.pstatp.com/large/9cd0008f557e14ca71e'</span>, <span class="string">'http://p1.pstatp.com/large/9c800097f0618ea2779'</span>, <span class="string">'http://p9.pstatp.com/large/9c50009822c33b729f8'</span>, <span class="string">'http://p3.pstatp.com/large/9c50009822e1ceb37bb'</span>, <span class="string">'http://p3.pstatp.com/large/9c800097f084217a4d0'</span>, <span class="string">'http://p1.pstatp.com/large/9c900096e9fd2eac174'</span>]</span></pre></td></tr></table></figure>
+
+
+<h1 id="三、总结："><a href="#三、总结：" class="headerlink" title="三、总结："></a>三、总结：</h1><p>这个问题其他如果当初我就用笨方法，一个一个替换，其实也不会弄了这么久，但是找的过程我也复习了下正则，还学习了一个正则匹配所有的中文汉字和中文标点符号的，但是由于本文的后来发现是个HTML，含有我需要的图片地址，所以还不能直接全部只提取中文，而且里面文字中还有英文数字，所以发现正则行不通，python中也没有找的好的方法。</p>
+<p>其中中间找的一个可以把所以Unicode的字符串全部匹配正确，因为是字符串，可以使用：</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">ret.encode(<span class="string">'utf-8'</span>).decode(<span class="string">'unicode_escape'</span>)</span></pre></td></tr></table></figure>
+
+<p>得到的结果：<br>从结果来看，如果全部是Unicode的编码字符串，可以使用上面的一句话解决问题，，下面的结果中，第一行是人家的中文字符+Unicode+英文字符，下面是转换之后的结果，Unicode编码的都解码成功，但是中文的字符（汉字和中文标点符号）都是乱码。</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/20191118183902433.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+
+
+<h2 id="至此，我的笨方法解决过程就这么多了，如果有简单方法的大佬，还望不吝赐教哈，谢谢。"><a href="#至此，我的笨方法解决过程就这么多了，如果有简单方法的大佬，还望不吝赐教哈，谢谢。" class="headerlink" title="至此，我的笨方法解决过程就这么多了，如果有简单方法的大佬，还望不吝赐教哈，谢谢。"></a>至此，我的笨方法解决过程就这么多了，如果有简单方法的大佬，还望不吝赐教哈，谢谢。</h2>
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2019-12-02T07:00:36.591Z" itemprop="dateUpdated">2019-12-02 15:00:36</time>
+</span><br>
+
+
+        
+        这里可以写作者留言，标签和 hexo 中所有变量及辅助函数等均可调用，示例：<a href="/2019/11/18/ab7896166abab421da7b72b1ebd57d80/" target="_blank" rel="external">https://zhaojiafu.github.io/2019/11/18/ab7896166abab421da7b72b1ebd57d80/</a>
+        
+    </div>
+    
+    <footer>
+        <a href="https://zhaojiafu.github.io">
+            <img src="/img/zhao.jpg" alt="赵家富">
+            赵家富
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" target="_blank" rel="noopener" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3/" rel="tag">问题解决</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://zhaojiafu.github.io/2019/11/18/ab7896166abab421da7b72b1ebd57d80/&title=《对于文本中含有Unicode编码和&quot;时，如何提取出想要的字符串》 — 赵家富的博客&pic=https://zhaojiafu.github.io/img/zhao.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" target="_blank" rel="noopener" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://zhaojiafu.github.io/2019/11/18/ab7896166abab421da7b72b1ebd57d80/&title=《对于文本中含有Unicode编码和&quot;时，如何提取出想要的字符串》 — 赵家富的博客&source=感觉无从下手的时候，问自己“不难，要你干啥？”" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://zhaojiafu.github.io/2019/11/18/ab7896166abab421da7b72b1ebd57d80/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《对于文本中含有Unicode编码和&quot;时，如何提取出想要的字符串》 — 赵家富的博客&url=https://zhaojiafu.github.io/2019/11/18/ab7896166abab421da7b72b1ebd57d80/&via=https://zhaojiafu.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://zhaojiafu.github.io/2019/11/18/ab7896166abab421da7b72b1ebd57d80/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" target="_blank" rel="noopener" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2019/11/19/50013d8dab9229907ac2894d6aba2f8f/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">window下安装pybloom_live报错的问题解决--（Microsoft Visual C++ 14.0 is required. Get it with _Microsoft Visual）</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2019/11/17/4a473d39e271debadf157952092027ca/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">selenium报错之---Message_ session not created_ Chrome version must be between 71 and 75</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<section class="comments" id="comments">
+    <div id="gitalk-container"></div>
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+        var id = location.pathname
+        if (location.pathname.length > 50) {
+          id = location.pathname.replace(/\/\d+\/\d+\/\d+\//, '').replace('/', '').substring(0, 50)
+        }
+        const gitalk = new Gitalk({
+          clientID: '388d0a78cda30f118f86',
+          clientSecret: '2c64b34cc20f23d768dffff64acb8c2ee02c3bee',
+          repo: 'https://zhaojiafu.github.io/',
+          owner: 'zjf',
+          admin: ['zjf'],
+          id: id,      // Ensure uniqueness and length less than 50
+          title: document.title.split('|')[0],
+          distractionFreeMode: false  // Facebook-like distraction free mode
+        })
+
+        gitalk.render('gitalk-container')
+    </script>
+</section>
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;" target="_blank" rel="noopener"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢大爷~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.jpg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.jpg" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+            <span>博客内容遵循 <a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+        <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=0 height=0 src="http://music.163.com/song/media/outer/url?id=1369798757&auto=1"></iframe>
+
+    </div>
+    <div class="bottom">
+        <p><span>赵家富 &copy; 2019</span>
+            <span>
+                
+
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" target="_blank" rel="noopener" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://zhaojiafu.github.io/2019/11/18/ab7896166abab421da7b72b1ebd57d80/&title=《对于文本中含有Unicode编码和&quot;时，如何提取出想要的字符串》 — 赵家富的博客&pic=https://zhaojiafu.github.io/img/zhao.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" target="_blank" rel="noopener" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://zhaojiafu.github.io/2019/11/18/ab7896166abab421da7b72b1ebd57d80/&title=《对于文本中含有Unicode编码和&quot;时，如何提取出想要的字符串》 — 赵家富的博客&source=感觉无从下手的时候，问自己“不难，要你干啥？”" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://zhaojiafu.github.io/2019/11/18/ab7896166abab421da7b72b1ebd57d80/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《对于文本中含有Unicode编码和&quot;时，如何提取出想要的字符串》 — 赵家富的博客&url=https://zhaojiafu.github.io/2019/11/18/ab7896166abab421da7b72b1ebd57d80/&via=https://zhaojiafu.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://zhaojiafu.github.io/2019/11/18/ab7896166abab421da7b72b1ebd57d80/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;" target="_blank" rel="noopener"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACp0lEQVR42u3awU7kMBAE0Pn/n969rsQGqrrtAaSXE4KM4xckt6fcr1d8/flw/fv7p/ufPvtxnM2zDlx4eHh466k/Df3xAcmd+c+fA4avDA8PD+8aLxkuuT+/8k+1c8DDw8P7LbzPN8SnxsTDw8P7jbyzmFOfwsPDw3s/b7OdbV9EO+abshY8PDy87tQpOkX6OT9fOd/Dw8PDW5+q54dhZ9/xLOr9z2zx8PDwLvDyCSVtUrPp5kHtcJ54eHh4R3mbo6zkzqSEzEKH5Ll4eHh47+ElBSB/fBvIboLgV1Kv8PDw8A7xNjFE/rL2rVr13PDw8PAu8/KIoWXPlvi8ADz+FQ8PD+8yr12OZ8t30hzQRhtfhBF4eHh4R3mb5qdTx1p5aWmP2fDw8PBu8NqFO/nUJuDIRy7+b3h4eHhHefsAoi0V+6wgL1p4eHh4t3n5sjsLcPdNBrMvAHh4eHhnebk+X6DbqKINGoryg4eHh3eZNzvUbxsL8rg2KQlfIPHw8PCu8doFusUkU0xii7b5AA8PD+8ebzbdNp5oY9/ZXx/DCDw8PLxrvKQk5GVgFhO3UUXxjQEPDw/vMq+NTfPf5LFCvuHGw8PD+y7ebPluD89m5aTe0OPh4eFd4OWPz6+2YWvTmBXNBA8PD+/tvBtdTPk2vd2yFx1beHh4eEd5m0dGMUF55+oF4eHh4V3mveJrViRm+PZw7nFLjYeHh7fmbYKGNmZN2Hm0EbUa4OHh4V3gtYvvbNC8UWAWAa9geHh4eCNeUgxyWN5E1TYWDAsDHh4e3jVesqC3kUSLqQ+3kjvx8PDwfgzvVGjbth18Xooet9R4eHh438rbb6DzzXQ+8rHCgIeHhxfz8qHvNRDM4tqoMODh4eEd5W2+8LevI48tZncOLzw8PLyU9xefxNB12cg/DQAAAABJRU5ErkJggg==" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '死鬼去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+<script src="/node_modules/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"node_modules/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/node_modules/assets/shizuku.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"react":{"opacity":0.7},"log":false});</script></body>
+</html>

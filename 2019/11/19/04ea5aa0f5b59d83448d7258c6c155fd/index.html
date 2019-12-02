@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <link rel="canonical" href="https://zhaojiafu.github.io/2019/11/19/04ea5aa0f5b59d83448d7258c6c155fd/">
+    
+    
+    <title>pybloom_live的简单使用 | 赵家富的博客 | 保持好奇心</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="python模块">
+    <meta name="description" content="一、windows安装：这个参考我另一个博客吧，省的绕弯路，我都因为这个耽误很多时间。window下安装pybloom_live 二、pybloom_live的简单使用：pybloom_live下面有俩个方法，BloomFilter（定容）和ScalableBloomFilter（可伸缩的）。bloom是根据一个位进行投影的去重算法，具体我没有了解这么深，如果感兴趣，自己谷歌或者百度搜索了解吧。">
+<meta name="keywords" content="python模块">
+<meta property="og:type" content="article">
+<meta property="og:title" content="pybloom_live的简单使用">
+<meta property="og:url" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;2019&#x2F;11&#x2F;19&#x2F;04ea5aa0f5b59d83448d7258c6c155fd&#x2F;index.html">
+<meta property="og:site_name" content="赵家富的博客">
+<meta property="og:description" content="一、windows安装：这个参考我另一个博客吧，省的绕弯路，我都因为这个耽误很多时间。window下安装pybloom_live 二、pybloom_live的简单使用：pybloom_live下面有俩个方法，BloomFilter（定容）和ScalableBloomFilter（可伸缩的）。bloom是根据一个位进行投影的去重算法，具体我没有了解这么深，如果感兴趣，自己谷歌或者百度搜索了解吧。">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20191119110130745.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20191119110953228.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20191119111621917.png">
+<meta property="og:updated_time" content="2019-12-02T06:45:48.985Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20191119110130745.png">
+    
+    <link rel="shortcut icon" href="/img/cb2nm-5l9w0-001.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" target="_blank" rel="noopener" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/zhao.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">赵家富</h5>
+          <a href="mailto:530519174@qq.com" target="_blank" rel="noopener" title="530519174@qq.com" class="mail">530519174@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                archives(所有)
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags/"  >
+                <i class="icon icon-lg icon-tags"></i>
+                tag(标签)
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories/"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories(分类)
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/zhaojiafu" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://blog.csdn.net/weixin_42081389" target="_blank" >
+                <i class="icon icon-lg icon-csdn"></i>
+                Csdn
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" target="_blank" rel="noopener" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+
+        <div class="flex-col header-title ellipsis">pybloom_live的简单使用</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" target="_blank" rel="noopener" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" target="_blank" rel="noopener" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" target="_blank" rel="noopener" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+
+        <h1 class="title">pybloom_live的简单使用
+        </h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2019-11-19T03:34:32.000Z" itemprop="datePublished" class="page-time">
+  2019-11-19
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/python%E6%A8%A1%E5%9D%97/">python模块</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#一、windows安装："><span class="post-toc-number">1.</span> <span class="post-toc-text">一、windows安装：</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#二、pybloom-live的简单使用："><span class="post-toc-number">2.</span> <span class="post-toc-text">二、pybloom_live的简单使用：</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#1、定容BloomFilter的用法："><span class="post-toc-number">2.1.</span> <span class="post-toc-text">1、定容BloomFilter的用法：</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#2、ScalableBloomFilter（可伸缩）"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">2、ScalableBloomFilter（可伸缩）</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#3、对比定容不一样，加入的一样的ScalableBloomFilter（LARGE-SET-GROWTH）"><span class="post-toc-number">2.3.</span> <span class="post-toc-text">3、对比定容不一样，加入的一样的ScalableBloomFilter（LARGE_SET_GROWTH）</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#4、对比定容不一样，加入的一样的ScalableBloomFilter（SMALL-SET-GROWTH）"><span class="post-toc-number">2.4.</span> <span class="post-toc-text">4、对比定容不一样，加入的一样的ScalableBloomFilter（SMALL_SET_GROWTH）</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#5、俩个mode对比："><span class="post-toc-number">2.5.</span> <span class="post-toc-text">5、俩个mode对比：</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#6、总结测试："><span class="post-toc-number">2.6.</span> <span class="post-toc-text">6、总结测试：</span></a></li></ol></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-04ea5aa0f5b59d83448d7258c6c155fd"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">pybloom_live的简单使用</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2019-11-19 11:34:32" datetime="2019-11-19T03:34:32.000Z"  itemprop="datePublished">2019-11-19</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/python%E6%A8%A1%E5%9D%97/">python模块</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h1 id="一、windows安装："><a href="#一、windows安装：" class="headerlink" title="一、windows安装："></a>一、windows安装：</h1><p>这个参考我另一个博客吧，省的绕弯路，我都因为这个耽误很多时间。<br><a href="https://blog.csdn.net/weixin_42081389/article/details/103136312" target="_blank" rel="noopener">window下安装pybloom_live</a></p>
+<h1 id="二、pybloom-live的简单使用："><a href="#二、pybloom-live的简单使用：" class="headerlink" title="二、pybloom_live的简单使用："></a>二、pybloom_live的简单使用：</h1><p>pybloom_live下面有俩个方法，BloomFilter（定容）和ScalableBloomFilter（可伸缩的）。<br>bloom是根据一个位进行投影的去重算法，具体我没有了解这么深，如果感兴趣，自己谷歌或者百度搜索了解吧。</p>
+<h2 id="1、定容BloomFilter的用法："><a href="#1、定容BloomFilter的用法：" class="headerlink" title="1、定容BloomFilter的用法："></a>1、定容BloomFilter的用法：</h2><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">from pybloom_live import BloomFilter</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">bf = BloomFilter(capacity=<span class="number">1000</span>)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">bf.add(<span class="string">"皮卡丘1"</span>)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">print(<span class="string">"皮卡丘1"</span> <span class="keyword">in</span> bf)   <span class="comment"># True</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">print(<span class="string">"皮卡丘2"</span> <span class="keyword">in</span> bf)  <span class="comment"># False</span></span></pre></td></tr></table></figure>
+
+<p>其中：<br>capacity是必须的参数，<br>    进入方法说明，查看：<br>    capacity意思就是做多可以加入这么多数，如果再插入就会增加错误率，但是我    好奇测试了，结果报错了。</p>
+<p>error_rate：错误率（选填）</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/20191119110130745.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+
+<p>测试能否超过定容数量：</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">from pybloom_live import BloomFilter</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">f = BloomFilter(capacity=<span class="number">1000</span>, error_rate=<span class="number">0.001</span>)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">print(f.capacity)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line"><span class="comment"># 1000</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">print(<span class="string">'len(f):'</span>, len(f))</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">0</span>, f.capacity):</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">    f.add(i)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">    print(<span class="string">"加入成功"</span>,i)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">0</span>, f.capacity):</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">    f.add(i + <span class="number">999</span>)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">    print(<span class="string">"加入成功"</span>,i,len(f))</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line">print(<span class="string">'len(f):'</span>, len(f))</span></pre></td></tr></table></figure>
+
+<p>报错：</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/20191119110953228.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+
+<p>可以看出，数量是固定的，不能过多的加入。定容1000时，1001可以加入，到1002时就报错了。</p>
+<h2 id="2、ScalableBloomFilter（可伸缩）"><a href="#2、ScalableBloomFilter（可伸缩）" class="headerlink" title="2、ScalableBloomFilter（可伸缩）"></a>2、ScalableBloomFilter（可伸缩）</h2><p>这个就是如果超过初始数量，也是可以的，但是错误率会增加一点，但是不会报错。所以实际是还是使用可伸缩比较好，具体还是看看需求吧，如果数量去重的不多，定容的也很好。</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">from pybloom_live import ScalableBloomFilter</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"><span class="comment">#mode=ScalableBloomFilter.SMALL_SET_GROWTH</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">sbf = ScalableBloomFilter(initial_capacity=<span class="number">100</span>, error_rate=<span class="number">0.001</span>, mode=ScalableBloomFilter.LARGE_SET_GROWTH)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">url = <span class="string">"皮卡丘1"</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">url2 = <span class="string">"皮卡丘2"</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">sbf.add(url)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">print(url <span class="keyword">in</span> sbf)   <span class="comment"># True</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">print(url2 <span class="keyword">in</span> sbf)  <span class="comment"># False</span></span></pre></td></tr></table></figure>
+
+<p>官方参数：<br>initial_capacity：这个初始化默认容量100，其实加入1000，也能用。错误率和mode都有默认。</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/20191119111621917.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+
+<h2 id="3、对比定容不一样，加入的一样的ScalableBloomFilter（LARGE-SET-GROWTH）"><a href="#3、对比定容不一样，加入的一样的ScalableBloomFilter（LARGE-SET-GROWTH）" class="headerlink" title="3、对比定容不一样，加入的一样的ScalableBloomFilter（LARGE_SET_GROWTH）"></a>3、对比定容不一样，加入的一样的ScalableBloomFilter（LARGE_SET_GROWTH）</h2><p>（mode=ScalableBloomFilter.LARGE_SET_GROWTH）</p>
+<p>我这里以分别定容为100,1000,10000，加入都是1000，测试总共加入完毕用时，和加入成功的数量为对比依据。</p>
+<p>代码：</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="comment"># mode=LARGE_SET_GROWTH</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="comment"># 1、定容100，加入10000</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">from pybloom_live import ScalableBloomFilter</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">import time</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line"><span class="comment"># sbf = ScalableBloomFilter(initial_capacity=100, mode=ScalableBloomFilter.SMALL_SET_GROWTH)</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">sbf = ScalableBloomFilter(initial_capacity=<span class="number">100</span>, mode=ScalableBloomFilter.LARGE_SET_GROWTH)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">count = <span class="number">10000</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">start_time = time.time()</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">0</span>, count):</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">    sbf.add(i)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">    <span class="comment"># print("加入成功", i, len(sbf))</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">end_time = time.time()</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">print(<span class="string">'定容100，加入10000'</span>)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line">print(<span class="string">"时间"</span>, end_time-start_time)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line">print(<span class="string">"成功加入长度"</span>, len(sbf))</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">17</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">18</span></pre></td><td class="code"><pre><span class="line"><span class="comment"># 2、定容1000，加入10000</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">19</span></pre></td><td class="code"><pre><span class="line">from pybloom_live import ScalableBloomFilter</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">20</span></pre></td><td class="code"><pre><span class="line">import time</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">21</span></pre></td><td class="code"><pre><span class="line"><span class="comment"># sbf = ScalableBloomFilter(initial_capacity=1000, mode=ScalableBloomFilter.SMALL_SET_GROWTH)</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">22</span></pre></td><td class="code"><pre><span class="line">sbf = ScalableBloomFilter(initial_capacity=<span class="number">1000</span>, mode=ScalableBloomFilter.LARGE_SET_GROWTH)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">23</span></pre></td><td class="code"><pre><span class="line">count = <span class="number">10000</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">24</span></pre></td><td class="code"><pre><span class="line">start_time = time.time()</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">25</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">0</span>, count):</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">26</span></pre></td><td class="code"><pre><span class="line">    sbf.add(i)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">27</span></pre></td><td class="code"><pre><span class="line">    <span class="comment"># print("加入成功", i, len(sbf))</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">28</span></pre></td><td class="code"><pre><span class="line">end_time = time.time()</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">29</span></pre></td><td class="code"><pre><span class="line">print(<span class="string">'定容1000，加入10000'</span>)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">30</span></pre></td><td class="code"><pre><span class="line">print(<span class="string">"时间"</span>, end_time-start_time)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">31</span></pre></td><td class="code"><pre><span class="line">print(<span class="string">"成功加入长度"</span>, len(sbf))</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">32</span></pre></td><td class="code"><pre><span class="line"><span class="comment"># print((1.0 - (len(sbf) / float(count))) &lt;= sbf.error_rate + 2e-18)#True</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">33</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">34</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">35</span></pre></td><td class="code"><pre><span class="line"><span class="comment"># 3、定容10000，加入10000</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">36</span></pre></td><td class="code"><pre><span class="line">from pybloom_live import ScalableBloomFilter</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">37</span></pre></td><td class="code"><pre><span class="line">import time</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">38</span></pre></td><td class="code"><pre><span class="line"><span class="comment"># sbf = ScalableBloomFilter(initial_capacity=10000, mode=ScalableBloomFilter.SMALL_SET_GROWTH)</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">39</span></pre></td><td class="code"><pre><span class="line">sbf = ScalableBloomFilter(initial_capacity=<span class="number">10000</span>, mode=ScalableBloomFilter.LARGE_SET_GROWTH)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">40</span></pre></td><td class="code"><pre><span class="line">count = <span class="number">10000</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">41</span></pre></td><td class="code"><pre><span class="line">start_time = time.time()</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">42</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">0</span>, count):</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">43</span></pre></td><td class="code"><pre><span class="line">    sbf.add(i)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">44</span></pre></td><td class="code"><pre><span class="line">    <span class="comment"># print("加入成功", i, len(sbf))</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">45</span></pre></td><td class="code"><pre><span class="line">end_time = time.time()</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">46</span></pre></td><td class="code"><pre><span class="line">print(<span class="string">'定容10000，加入10000'</span>)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">47</span></pre></td><td class="code"><pre><span class="line">print(<span class="string">"时间"</span>, end_time-start_time)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">48</span></pre></td><td class="code"><pre><span class="line">print(<span class="string">"成功加入长度"</span>, len(sbf))</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">49</span></pre></td><td class="code"><pre><span class="line"><span class="comment"># print((1.0 - (len(sbf) / float(count))) &lt;= sbf.error_rate + 2e-18)#True</span></span></pre></td></tr></table></figure>
+<p>输出结果：</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">定容<span class="number">100</span>，加入<span class="number">10000</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">时间 <span class="number">0.1988668441772461</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">成功加入长度 <span class="number">9982</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">定容<span class="number">1000</span>，加入<span class="number">10000</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">时间 <span class="number">0.15590405464172363</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">成功加入长度 <span class="number">9986</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">定容<span class="number">10000</span>，加入<span class="number">10000</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">时间 <span class="number">0.1089334487915039</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">成功加入长度 <span class="number">9999</span></span></pre></td></tr></table></figure>
+<p><strong><em>小总结（mode=ScalableBloomFilter.LARGE_SET_GROWTH）：</em></strong><br>通过输出的对比结果来看，选取的定容数量越是接近或者大于等于需要加入的去重数量，使用的时间越短，正确率越高。</p>
+<h2 id="4、对比定容不一样，加入的一样的ScalableBloomFilter（SMALL-SET-GROWTH）"><a href="#4、对比定容不一样，加入的一样的ScalableBloomFilter（SMALL-SET-GROWTH）" class="headerlink" title="4、对比定容不一样，加入的一样的ScalableBloomFilter（SMALL_SET_GROWTH）"></a>4、对比定容不一样，加入的一样的ScalableBloomFilter（SMALL_SET_GROWTH）</h2><p><strong>（mode=ScalableBloomFilter.SMALL_SET_GROWTH）</strong></p>
+<p>代码：</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="comment"># SMALL_SET_GROWTH</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="comment"># 1、定容100，加入10000</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">from pybloom_live import ScalableBloomFilter</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">import time</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">sbf = ScalableBloomFilter(initial_capacity=<span class="number">100</span>, mode=ScalableBloomFilter.SMALL_SET_GROWTH)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line"><span class="comment"># sbf = ScalableBloomFilter(initial_capacity=100, mode=ScalableBloomFilter.LARGE_SET_GROWTH)</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">count = <span class="number">10000</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">start_time = time.time()</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">0</span>, count):</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">    sbf.add(i)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">    <span class="comment"># print("加入成功", i, len(sbf))</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">end_time = time.time()</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">print(<span class="string">'定容100，加入10000'</span>)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line">print(<span class="string">"时间"</span>, end_time-start_time)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line">print(<span class="string">"成功加入长度"</span>, len(sbf))</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">17</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">18</span></pre></td><td class="code"><pre><span class="line"><span class="comment"># 2、定容1000，加入10000</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">19</span></pre></td><td class="code"><pre><span class="line">from pybloom_live import ScalableBloomFilter</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">20</span></pre></td><td class="code"><pre><span class="line">import time</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">21</span></pre></td><td class="code"><pre><span class="line">sbf = ScalableBloomFilter(initial_capacity=<span class="number">1000</span>, mode=ScalableBloomFilter.SMALL_SET_GROWTH)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">22</span></pre></td><td class="code"><pre><span class="line"><span class="comment"># sbf = ScalableBloomFilter(initial_capacity=1000, mode=ScalableBloomFilter.LARGE_SET_GROWTH)</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">23</span></pre></td><td class="code"><pre><span class="line">count = <span class="number">10000</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">24</span></pre></td><td class="code"><pre><span class="line">start_time = time.time()</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">25</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">0</span>, count):</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">26</span></pre></td><td class="code"><pre><span class="line">    sbf.add(i)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">27</span></pre></td><td class="code"><pre><span class="line">    <span class="comment"># print("加入成功", i, len(sbf))</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">28</span></pre></td><td class="code"><pre><span class="line">end_time = time.time()</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">29</span></pre></td><td class="code"><pre><span class="line">print(<span class="string">'定容1000，加入10000'</span>)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">30</span></pre></td><td class="code"><pre><span class="line">print(<span class="string">"时间"</span>, end_time-start_time)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">31</span></pre></td><td class="code"><pre><span class="line">print(<span class="string">"成功加入长度"</span>, len(sbf))</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">32</span></pre></td><td class="code"><pre><span class="line"><span class="comment"># print((1.0 - (len(sbf) / float(count))) &lt;= sbf.error_rate + 2e-18)#True</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">33</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">34</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">35</span></pre></td><td class="code"><pre><span class="line"><span class="comment"># 3、定容10000，加入10000</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">36</span></pre></td><td class="code"><pre><span class="line">from pybloom_live import ScalableBloomFilter</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">37</span></pre></td><td class="code"><pre><span class="line">import time</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">38</span></pre></td><td class="code"><pre><span class="line">sbf = ScalableBloomFilter(initial_capacity=<span class="number">10000</span>, mode=ScalableBloomFilter.SMALL_SET_GROWTH)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">39</span></pre></td><td class="code"><pre><span class="line"><span class="comment"># sbf = ScalableBloomFilter(initial_capacity=10000, mode=ScalableBloomFilter.LARGE_SET_GROWTH)</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">40</span></pre></td><td class="code"><pre><span class="line">count = <span class="number">10000</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">41</span></pre></td><td class="code"><pre><span class="line">start_time = time.time()</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">42</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">0</span>, count):</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">43</span></pre></td><td class="code"><pre><span class="line">    sbf.add(i)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">44</span></pre></td><td class="code"><pre><span class="line">    <span class="comment"># print("加入成功", i, len(sbf))</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">45</span></pre></td><td class="code"><pre><span class="line">end_time = time.time()</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">46</span></pre></td><td class="code"><pre><span class="line">print(<span class="string">'定容10000，加入10000'</span>)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">47</span></pre></td><td class="code"><pre><span class="line">print(<span class="string">"时间"</span>, end_time-start_time)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">48</span></pre></td><td class="code"><pre><span class="line">print(<span class="string">"成功加入长度"</span>, len(sbf))</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">49</span></pre></td><td class="code"><pre><span class="line"><span class="comment"># print((1.0 - (len(sbf) / float(count))) &lt;= sbf.error_rate + 2e-18)#True</span></span></pre></td></tr></table></figure>
+
+<p>结果：</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">定容<span class="number">100</span>，加入<span class="number">10000</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">时间 <span class="number">0.2538635730743408</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">成功加入长度 <span class="number">9961</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">定容<span class="number">1000</span>，加入<span class="number">10000</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">时间 <span class="number">0.1958630084991455</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">成功加入长度 <span class="number">9979</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">定容<span class="number">10000</span>，加入<span class="number">10000</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">时间 <span class="number">0.1329190731048584</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">成功加入长度 <span class="number">9999</span></span></pre></td></tr></table></figure>
+<p><strong><em>小总结：（mode=ScalableBloomFilter.SMALL_SET_GROWTH）</em></strong><br>通过上面的结果对比来看，当定容数量和结果大于等于需要去重的个数时，去重效率越好，错误率越低（加入的正确率越高）</p>
+<h2 id="5、俩个mode对比："><a href="#5、俩个mode对比：" class="headerlink" title="5、俩个mode对比："></a>5、俩个mode对比：</h2><p>通过上面3,4的来个结果对比，一下俩个mode的区别：</p>
+<p> <strong><em>mode=ScalableBloomFilter.LARGE_SET_GROWTH的结果</em></strong></p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">定容<span class="number">100</span>，加入<span class="number">10000</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">时间 <span class="number">0.1988668441772461</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">成功加入长度 <span class="number">9982</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">定容<span class="number">1000</span>，加入<span class="number">10000</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">时间 <span class="number">0.15590405464172363</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">成功加入长度 <span class="number">9986</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">定容<span class="number">10000</span>，加入<span class="number">10000</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">时间 <span class="number">0.1089334487915039</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">成功加入长度 <span class="number">9999</span></span></pre></td></tr></table></figure>
+
+
+<p><strong><em>mode=ScalableBloomFilter.SMALL_SET_GROWTH的结果</em></strong></p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">定容<span class="number">100</span>，加入<span class="number">10000</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">时间 <span class="number">0.2538635730743408</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">成功加入长度 <span class="number">9961</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">定容<span class="number">1000</span>，加入<span class="number">10000</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">时间 <span class="number">0.1958630084991455</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">成功加入长度 <span class="number">9979</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">定容<span class="number">10000</span>，加入<span class="number">10000</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">时间 <span class="number">0.1329190731048584</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">成功加入长度 <span class="number">9999</span></span></pre></td></tr></table></figure>
+
+<p>通过定容数量从小往大排序来看，当数量越接近加入的去重数量，效果幅度，SMALL_SET_GROWTH是最大的，而且SMALL_SET_GROWTH的用时和效率也比LARGE_SET_GROWTH的低，这也就反映出为什么默认是LARGE_SET_GROWTH。</p>
+<h2 id="6、总结测试："><a href="#6、总结测试：" class="headerlink" title="6、总结测试："></a>6、总结测试：</h2><p>通过上面的简单测试，发现使用ScalableBloomFilter（可伸缩）进入检查去重效果比较好,而且数量初始化参数尽量大于需求去重的数量效果最优，模式就使用默认的LARGE_SET_GROWTH最好。</p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2019-12-02T06:45:48.985Z" itemprop="dateUpdated">2019-12-02 14:45:48</time>
+</span><br>
+
+
+        
+        这里可以写作者留言，标签和 hexo 中所有变量及辅助函数等均可调用，示例：<a href="/2019/11/19/04ea5aa0f5b59d83448d7258c6c155fd/" target="_blank" rel="external">https://zhaojiafu.github.io/2019/11/19/04ea5aa0f5b59d83448d7258c6c155fd/</a>
+        
+    </div>
+    
+    <footer>
+        <a href="https://zhaojiafu.github.io">
+            <img src="/img/zhao.jpg" alt="赵家富">
+            赵家富
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" target="_blank" rel="noopener" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python%E6%A8%A1%E5%9D%97/" rel="tag">python模块</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://zhaojiafu.github.io/2019/11/19/04ea5aa0f5b59d83448d7258c6c155fd/&title=《pybloom_live的简单使用》 — 赵家富的博客&pic=https://zhaojiafu.github.io/img/zhao.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" target="_blank" rel="noopener" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://zhaojiafu.github.io/2019/11/19/04ea5aa0f5b59d83448d7258c6c155fd/&title=《pybloom_live的简单使用》 — 赵家富的博客&source=感觉无从下手的时候，问自己“不难，要你干啥？”" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://zhaojiafu.github.io/2019/11/19/04ea5aa0f5b59d83448d7258c6c155fd/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《pybloom_live的简单使用》 — 赵家富的博客&url=https://zhaojiafu.github.io/2019/11/19/04ea5aa0f5b59d83448d7258c6c155fd/&via=https://zhaojiafu.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://zhaojiafu.github.io/2019/11/19/04ea5aa0f5b59d83448d7258c6c155fd/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" target="_blank" rel="noopener" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2019/11/20/27867a069a56d6dbec2952579d204b64/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">shell编程学习笔记之一--学习第一天</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2019/11/19/50013d8dab9229907ac2894d6aba2f8f/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">window下安装pybloom_live报错的问题解决--（Microsoft Visual C++ 14.0 is required. Get it with _Microsoft Visual）</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<section class="comments" id="comments">
+    <div id="gitalk-container"></div>
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+        var id = location.pathname
+        if (location.pathname.length > 50) {
+          id = location.pathname.replace(/\/\d+\/\d+\/\d+\//, '').replace('/', '').substring(0, 50)
+        }
+        const gitalk = new Gitalk({
+          clientID: '388d0a78cda30f118f86',
+          clientSecret: '2c64b34cc20f23d768dffff64acb8c2ee02c3bee',
+          repo: 'https://zhaojiafu.github.io/',
+          owner: 'zjf',
+          admin: ['zjf'],
+          id: id,      // Ensure uniqueness and length less than 50
+          title: document.title.split('|')[0],
+          distractionFreeMode: false  // Facebook-like distraction free mode
+        })
+
+        gitalk.render('gitalk-container')
+    </script>
+</section>
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;" target="_blank" rel="noopener"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢大爷~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.jpg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.jpg" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+            <span>博客内容遵循 <a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+        <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=0 height=0 src="http://music.163.com/song/media/outer/url?id=1369798757&auto=1"></iframe>
+
+    </div>
+    <div class="bottom">
+        <p><span>赵家富 &copy; 2019</span>
+            <span>
+                
+
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" target="_blank" rel="noopener" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://zhaojiafu.github.io/2019/11/19/04ea5aa0f5b59d83448d7258c6c155fd/&title=《pybloom_live的简单使用》 — 赵家富的博客&pic=https://zhaojiafu.github.io/img/zhao.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" target="_blank" rel="noopener" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://zhaojiafu.github.io/2019/11/19/04ea5aa0f5b59d83448d7258c6c155fd/&title=《pybloom_live的简单使用》 — 赵家富的博客&source=感觉无从下手的时候，问自己“不难，要你干啥？”" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://zhaojiafu.github.io/2019/11/19/04ea5aa0f5b59d83448d7258c6c155fd/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《pybloom_live的简单使用》 — 赵家富的博客&url=https://zhaojiafu.github.io/2019/11/19/04ea5aa0f5b59d83448d7258c6c155fd/&via=https://zhaojiafu.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://zhaojiafu.github.io/2019/11/19/04ea5aa0f5b59d83448d7258c6c155fd/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;" target="_blank" rel="noopener"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACsElEQVR42u3aQW7DMAwEwPz/0+2lhwKtnSUpBj6MT0EcxxoHkBiuXq/4+PpzXJ1Nrq1+/vf7r40DDw8Pbzz0q6++v8H9cJPXCbj8yPDw8PDWePmwTs3MydDv34keMR4eHt4DePnkflV854+vWl7j4eHhPZlXLXBzWO8qPDw8vM/zeoNLyui83VB93Id7LXh4eHi11ClqKDzn9Uq+h4eHhzdO1fPtAtWobLKoFEaLh4eHt8A7WyKfDf7vmxT5OPHw8PDO8vLYKV8kEliv6ZBHYnh4eHh7vGo832vyJhHXvHy/XDbw8PDwjvKSUGqy7akXTc1Lczw8PLxt3qSQrS4teSPjQLKHh4eHt8Cbl87zhmw+0ffawXh4eHgbvLwhmxe+85Cs+plo8cDDw8Mb86obmKoB2LxRm/wyURsXDw8P7yO8+e3zqbz6yCI8Hh4e3jKviqm2Vidti+q1P6/x8PDwFni9sjVvVeSNierdk0IfDw8Pb4OXF9OTCCoPqE6NBA8PD2+PN18k8sFVNwrk8dviGoiHh4cXLA+TWCt5Px9cdYG5LNDx8PDwPsKbbALobcDKp/7RBgI8PDy8MW/SjMgfR6+922thHGvj4uHh4d3yqh2LfELvbe2qLiRvimk8PDy8o7xJMN+bsvNv7iHLhTUeHh7eIV7+h3+vsJ7EYK/q74CHh4c34OUBWI7vfU8vhIu61Hh4eHhHedXCenL08MdiMDw8PLwW76t4VJeBXmDWa3/8cxYPDw9vgXdqEp9sveqFW9UtWXh4eHhnedWp/NSCkZ8dPWI8PDy8NV4yoffar3nZnS82hU/i4eHhPYA3ibWqmw/ysb0JwPDw8PAeyTtVmveK7/WFAQ8PD6/VjEgGmrdu82t7TRA8PDy8PV71D38SdyU3620pWMz38PDw8N5f9Q3dUdpPAMnQdAAAAABJRU5ErkJggg==" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '死鬼去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+<script src="/node_modules/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"node_modules/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/node_modules/assets/shizuku.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"react":{"opacity":0.7},"log":false});</script></body>
+</html>

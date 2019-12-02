@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <link rel="canonical" href="https://zhaojiafu.github.io/2019/09/19/71c5247eabdf2f897661db5e8af6bd2e/">
+    
+    
+    <title>使用 2to3 模块可以初步将python2版本的文件一键转换为python3文件格式 | 赵家富的博客 | 保持好奇心</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="python模块,2to3">
+    <meta name="description" content="我的配置 window10系统 python3.6版本  需求：有时候在GitHub上下载一些项目时，人家用的是python2写的，和自己电脑安装的是python3.6，有时候一个项目很大py文件，这个时候一个一个文件改，耗时费力，如果在安装配置python2环境，也可行，但是也很费精力，而且有些更新的模块功能不支持python2的环境，也不少。所以就网上搜到还真有python2转换成python">
+<meta name="keywords" content="python模块,2to3">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用 2to3 模块可以初步将python2版本的文件一键转换为python3文件格式">
+<meta property="og:url" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;2019&#x2F;09&#x2F;19&#x2F;71c5247eabdf2f897661db5e8af6bd2e&#x2F;index.html">
+<meta property="og:site_name" content="赵家富的博客">
+<meta property="og:description" content="我的配置 window10系统 python3.6版本  需求：有时候在GitHub上下载一些项目时，人家用的是python2写的，和自己电脑安装的是python3.6，有时候一个项目很大py文件，这个时候一个一个文件改，耗时费力，如果在安装配置python2环境，也可行，但是也很费精力，而且有些更新的模块功能不支持python2的环境，也不少。所以就网上搜到还真有python2转换成python">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20190919111641702.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20190919112519820.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20190919112639629.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;2019091911341381.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20190919113500216.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;2019091911370576.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20190919113759272.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20190919113836558.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;2019091911325025.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20190919114236628.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20190919114446718.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20190919121205300.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20190919121319981.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20190919121457930.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20190919121551899.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20190919121729441.png">
+<meta property="og:updated_time" content="2019-12-02T07:40:52.764Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20190919111641702.png">
+    
+    <link rel="shortcut icon" href="/img/cb2nm-5l9w0-001.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" target="_blank" rel="noopener" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/zhao.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">赵家富</h5>
+          <a href="mailto:530519174@qq.com" target="_blank" rel="noopener" title="530519174@qq.com" class="mail">530519174@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                archives(所有)
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags/"  >
+                <i class="icon icon-lg icon-tags"></i>
+                tag(标签)
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories/"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories(分类)
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/zhaojiafu" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://blog.csdn.net/weixin_42081389" target="_blank" >
+                <i class="icon icon-lg icon-csdn"></i>
+                Csdn
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" target="_blank" rel="noopener" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+
+        <div class="flex-col header-title ellipsis">使用 2to3 模块可以初步将python2版本的文件一键转换为python3文件格式</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" target="_blank" rel="noopener" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" target="_blank" rel="noopener" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" target="_blank" rel="noopener" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+
+        <h1 class="title">使用 2to3 模块可以初步将python2版本的文件一键转换为python3文件格式
+        </h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2019-09-19T03:34:32.000Z" itemprop="datePublished" class="page-time">
+  2019-09-19
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/python%E6%A8%A1%E5%9D%97/">python模块</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#我的配置"><span class="post-toc-number">1.</span> <span class="post-toc-text">我的配置</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#需求："><span class="post-toc-number">2.</span> <span class="post-toc-text">需求：</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#解决方法："><span class="post-toc-number">3.</span> <span class="post-toc-text">解决方法：</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#1、安装模块："><span class="post-toc-number">3.1.</span> <span class="post-toc-text">1、安装模块：</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#2、使用模块更改一个py文件（后缀不是py也可以）"><span class="post-toc-number">3.2.</span> <span class="post-toc-text">2、使用模块更改一个py文件（后缀不是py也可以）</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#3、更改一个项目"><span class="post-toc-number">3.3.</span> <span class="post-toc-text">3、更改一个项目</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#4、项目同意更改为python3解决思路"><span class="post-toc-number">3.4.</span> <span class="post-toc-text">4、项目同意更改为python3解决思路</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#1、既然这些更改成功了，我直接全部复制到原来的目录下，"><span class="post-toc-number">3.4.1.</span> <span class="post-toc-text">1、既然这些更改成功了，我直接全部复制到原来的目录下，</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#2、单独转换剩余不是py后缀的python文件（大多数项目都是py后缀就忽略这一步）"><span class="post-toc-number">3.4.2.</span> <span class="post-toc-text">2、单独转换剩余不是py后缀的python文件（大多数项目都是py后缀就忽略这一步）</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#1、验证是否含有不是py后缀的python文件，pycharm打开项目，进入第一层一看就知道了。"><span class="post-toc-number">3.4.2.1.</span> <span class="post-toc-text">1、验证是否含有不是py后缀的python文件，pycharm打开项目，进入第一层一看就知道了。</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#2、单独转换："><span class="post-toc-number">3.4.2.2.</span> <span class="post-toc-text">2、单独转换：</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#3、初步转换成功，剩下自己调试吧（和此项目无关，我也是随便找的一个python2项目）"><span class="post-toc-number">3.4.3.</span> <span class="post-toc-text">3、初步转换成功，剩下自己调试吧（和此项目无关，我也是随便找的一个python2项目）</span></a></li></ol></li></ol></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-71c5247eabdf2f897661db5e8af6bd2e"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">使用 2to3 模块可以初步将python2版本的文件一键转换为python3文件格式</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2019-09-19 11:34:32" datetime="2019-09-19T03:34:32.000Z"  itemprop="datePublished">2019-09-19</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/python%E6%A8%A1%E5%9D%97/">python模块</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h1 id="我的配置"><a href="#我的配置" class="headerlink" title="我的配置"></a>我的配置</h1><blockquote>
+<p>window10系统</p>
+<p>python3.6版本</p>
+</blockquote>
+<h1 id="需求："><a href="#需求：" class="headerlink" title="需求："></a>需求：</h1><p>有时候在GitHub上下载一些项目时，人家用的是python2写的，和自己电脑安装的是python3.6，有时候一个项目很大py文件，这个时候一个一个文件改，耗时费力，如果在安装配置python2环境，也可行，但是也很费精力，而且有些更新的模块功能不支持python2的环境，也不少。所以就网上搜到还真有python2转换成python3的模块，然后自己再根据调试着，剩下的慢慢改，剩下不少精力和时间（对比一个一个改py文件）</p>
+<h1 id="解决方法："><a href="#解决方法：" class="headerlink" title="解决方法："></a>解决方法：</h1><h2 id="1、安装模块："><a href="#1、安装模块：" class="headerlink" title="1、安装模块："></a>1、安装模块：</h2><blockquote>
+<pre><code>pip install 2to3</code></pre></blockquote>
+<p>模块地址：<br><a href="https://pypi.org/project/2to3/" target="_blank" rel="noopener">https://pypi.org/project/2to3/</a></p>
+<h2 id="2、使用模块更改一个py文件（后缀不是py也可以）"><a href="#2、使用模块更改一个py文件（后缀不是py也可以）" class="headerlink" title="2、使用模块更改一个py文件（后缀不是py也可以）"></a>2、使用模块更改一个py文件（后缀不是py也可以）</h2><p>这个命令有点缺陷，就是每次只能改一个，但是却不错：</p>
+<p>安装好直接在cmd中或者powershell，test_ci.py是需要更改的py文件</p>
+<blockquote>
+<pre><code>2to3 -w .\test_ci.py</code></pre></blockquote>
+<p>更改之后，会生成一个test_ci.py.bak，就是原来的文件名加上.bak的文件就是更改前的python2文件，test_ci.py文件变成了想要的python3文件</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/20190919111641702.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+
+<h2 id="3、更改一个项目"><a href="#3、更改一个项目" class="headerlink" title="3、更改一个项目"></a>3、更改一个项目</h2><p>   命令： </p>
+<blockquote>
+<p>2to3 –output-dir=python3 -W -n  DeepVideoAnalytics-master</p>
+</blockquote>
+<p>解释：</p>
+<ol>
+<li>python3 是改成之后的python3文件夹，可以不存在，之后会自动生成这个目录。</li>
+<li>DeepVideoAnalytics-master 这个是需要更改的python2项目</li>
+</ol>
+<p><strong>注意点：</strong></p>
+<p>这里更改的只是后缀为py的文件，不是py后缀好像不会更改过来。</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/20190919112519820.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+
+<p>更改过后的目录：</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/20190919112639629.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+
+<h2 id="4、项目同意更改为python3解决思路"><a href="#4、项目同意更改为python3解决思路" class="headerlink" title="4、项目同意更改为python3解决思路"></a>4、项目同意更改为python3解决思路</h2><p>根据上面步骤3之后，可以进行以下操作:</p>
+<h3 id="1、既然这些更改成功了，我直接全部复制到原来的目录下，"><a href="#1、既然这些更改成功了，我直接全部复制到原来的目录下，" class="headerlink" title="1、既然这些更改成功了，我直接全部复制到原来的目录下，"></a>1、既然这些更改成功了，我直接全部复制到原来的目录下，</h3><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/2019091911341381.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+
+<p>然后复制到第一层目录下，选择替换全部<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/20190919113500216.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure><br>复制替换成功</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/2019091911370576.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+<p>验证猜想，果然没有py文件：</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/20190919113759272.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/20190919113836558.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+
+
+
+
+<h3 id="2、单独转换剩余不是py后缀的python文件（大多数项目都是py后缀就忽略这一步）"><a href="#2、单独转换剩余不是py后缀的python文件（大多数项目都是py后缀就忽略这一步）" class="headerlink" title="2、单独转换剩余不是py后缀的python文件（大多数项目都是py后缀就忽略这一步）"></a>2、单独转换剩余不是py后缀的python文件（大多数项目都是py后缀就忽略这一步）</h3><p>然后还有个别不是py后缀的文件，单独使用命令更改一个一个文件（这种文件不会太多，一般就是目录第一层的文件（不是目录下的文件）中才有）</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/2019091911325025.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+
+<h4 id="1、验证是否含有不是py后缀的python文件，pycharm打开项目，进入第一层一看就知道了。"><a href="#1、验证是否含有不是py后缀的python文件，pycharm打开项目，进入第一层一看就知道了。" class="headerlink" title="1、验证是否含有不是py后缀的python文件，pycharm打开项目，进入第一层一看就知道了。"></a>1、验证是否含有不是py后缀的python文件，pycharm打开项目，进入第一层一看就知道了。</h4><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/20190919114236628.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+
+<h4 id="2、单独转换："><a href="#2、单独转换：" class="headerlink" title="2、单独转换："></a>2、单独转换：</h4><p>复制出来：</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/20190919114446718.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+<p>转换第一个python文件</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/20190919121205300.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+<p>转换第二个python文件</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/20190919121319981.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/20190919121457930.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+<p>复制替换原来的python2文件</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/20190919121551899.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+<h3 id="3、初步转换成功，剩下自己调试吧（和此项目无关，我也是随便找的一个python2项目）"><a href="#3、初步转换成功，剩下自己调试吧（和此项目无关，我也是随便找的一个python2项目）" class="headerlink" title="3、初步转换成功，剩下自己调试吧（和此项目无关，我也是随便找的一个python2项目）"></a>3、初步转换成功，剩下自己调试吧（和此项目无关，我也是随便找的一个python2项目）</h3><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/20190919121729441.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+
+
+<p>参考：<br><a href="https://pypi.org/project/2to3/" target="_blank" rel="noopener">https://pypi.org/project/2to3/</a><br><a href="https://docs.python.org/zh-cn/3.7/library/2to3.html" target="_blank" rel="noopener">https://docs.python.org/zh-cn/3.7/library/2to3.html</a></p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2019-12-02T07:40:52.764Z" itemprop="dateUpdated">2019-12-02 15:40:52</time>
+</span><br>
+
+
+        
+        这里可以写作者留言，标签和 hexo 中所有变量及辅助函数等均可调用，示例：<a href="/2019/09/19/71c5247eabdf2f897661db5e8af6bd2e/" target="_blank" rel="external">https://zhaojiafu.github.io/2019/09/19/71c5247eabdf2f897661db5e8af6bd2e/</a>
+        
+    </div>
+    
+    <footer>
+        <a href="https://zhaojiafu.github.io">
+            <img src="/img/zhao.jpg" alt="赵家富">
+            赵家富
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" target="_blank" rel="noopener" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/2to3/" rel="tag">2to3</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python%E6%A8%A1%E5%9D%97/" rel="tag">python模块</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://zhaojiafu.github.io/2019/09/19/71c5247eabdf2f897661db5e8af6bd2e/&title=《使用 2to3 模块可以初步将python2版本的文件一键转换为python3文件格式》 — 赵家富的博客&pic=https://zhaojiafu.github.io/img/zhao.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" target="_blank" rel="noopener" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://zhaojiafu.github.io/2019/09/19/71c5247eabdf2f897661db5e8af6bd2e/&title=《使用 2to3 模块可以初步将python2版本的文件一键转换为python3文件格式》 — 赵家富的博客&source=感觉无从下手的时候，问自己“不难，要你干啥？”" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://zhaojiafu.github.io/2019/09/19/71c5247eabdf2f897661db5e8af6bd2e/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《使用 2to3 模块可以初步将python2版本的文件一键转换为python3文件格式》 — 赵家富的博客&url=https://zhaojiafu.github.io/2019/09/19/71c5247eabdf2f897661db5e8af6bd2e/&via=https://zhaojiafu.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://zhaojiafu.github.io/2019/09/19/71c5247eabdf2f897661db5e8af6bd2e/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" target="_blank" rel="noopener" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2019/09/22/476704b331f87fd74331e2fe9cd82b08/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">windows上安装ubuntu双系统，ubuntu无法连接有线网问题+如何将安装好的英文版的Ubuntu系统改为中文问题</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2019/09/19/a487ca618a8a5b24af27ad2757871bcc/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">网页限制解除（国内国外都可以使用此方法解决问题：通杀大部分网站，可以解除禁止复制、剪切、选择文本、右键菜单的限制）</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<section class="comments" id="comments">
+    <div id="gitalk-container"></div>
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+        var id = location.pathname
+        if (location.pathname.length > 50) {
+          id = location.pathname.replace(/\/\d+\/\d+\/\d+\//, '').replace('/', '').substring(0, 50)
+        }
+        const gitalk = new Gitalk({
+          clientID: '388d0a78cda30f118f86',
+          clientSecret: '2c64b34cc20f23d768dffff64acb8c2ee02c3bee',
+          repo: 'https://zhaojiafu.github.io/',
+          owner: 'zjf',
+          admin: ['zjf'],
+          id: id,      // Ensure uniqueness and length less than 50
+          title: document.title.split('|')[0],
+          distractionFreeMode: false  // Facebook-like distraction free mode
+        })
+
+        gitalk.render('gitalk-container')
+    </script>
+</section>
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;" target="_blank" rel="noopener"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢大爷~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.jpg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.jpg" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+            <span>博客内容遵循 <a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+        <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=0 height=0 src="http://music.163.com/song/media/outer/url?id=1369798757&auto=1"></iframe>
+
+    </div>
+    <div class="bottom">
+        <p><span>赵家富 &copy; 2019</span>
+            <span>
+                
+
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" target="_blank" rel="noopener" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://zhaojiafu.github.io/2019/09/19/71c5247eabdf2f897661db5e8af6bd2e/&title=《使用 2to3 模块可以初步将python2版本的文件一键转换为python3文件格式》 — 赵家富的博客&pic=https://zhaojiafu.github.io/img/zhao.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" target="_blank" rel="noopener" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://zhaojiafu.github.io/2019/09/19/71c5247eabdf2f897661db5e8af6bd2e/&title=《使用 2to3 模块可以初步将python2版本的文件一键转换为python3文件格式》 — 赵家富的博客&source=感觉无从下手的时候，问自己“不难，要你干啥？”" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://zhaojiafu.github.io/2019/09/19/71c5247eabdf2f897661db5e8af6bd2e/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《使用 2to3 模块可以初步将python2版本的文件一键转换为python3文件格式》 — 赵家富的博客&url=https://zhaojiafu.github.io/2019/09/19/71c5247eabdf2f897661db5e8af6bd2e/&via=https://zhaojiafu.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://zhaojiafu.github.io/2019/09/19/71c5247eabdf2f897661db5e8af6bd2e/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;" target="_blank" rel="noopener"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACsUlEQVR42u3aUWorMRAEQN//0slvHiF294xk/KD2a1mHtUoBjdyjxyO+vn5cv588f55c7bccvvDw8PAWQ88H/fN58v78fja5f04BHh4e3jVePqx27U2W/ufvyceDh4eH9/m8dpt7tjDg4eHh/S+8drlvYZstOB4eHt47efl2NvmCTUT7V6xwPWvBw8PDi3mntsLvvL/S38PDw8Nbd9VPLdz5xD1/Uo8WDw8P7wKvbf+3Q9k8mUXGeHh4eO/n5ZFBG8LmxaM9/vUiOsHDw8O7xsuX5htTkExK+y14eHh4t3ntRnY2rHZDnE/Ei/4eHh4e3iHebHHPp2M/NZt/AB4eHt4NXt5tT8LW2YGtJGhog5Li1wMeHh5eyUs2qfnQN0Ul2XznQUmxQ8fDw8MrefsQoS0Vm4bWrGGGh4eHd5a3aX21Me7ZYpAUMzw8PLwbvE07qg1S2/b/pmBESDw8PLwRLw9b25g1D2GTEpKDi14cHh4e3prXHiloDxBsSsJsuvHw8PBu8JIykDfG8gCiHVxStIZtMDw8PLwFLxnErB01m6zZlj0KR/Dw8PDWvHYLu2lltdM0i4kf7Xzj4eHhxbxT0W2boLaFJy9F9U4cDw8Pr+S1Q9xQi8g1bpjVvw/w8PDwjvLyQ06zJf72G150+fDw8PAu8PIjWUk0kBeYNm6oD2zh4eHhXePlbad20PkGeh+RRCk1Hh4e3iFevsRHB5vKt7VByaoNhoeHh7fgfZXXJq6dvaH99J97PDw8vAu82YK7CSPawW3u8fDw8O7xZkt50ohKPs0jj2FhwMPDw7vG2zfA8mmaHcOaRcB4eHh4n8A7hc//fnYcAQ8PD+9zePmmdnPY9FhRwcPDw7vG2xy9yhn5t7dTVp8pw8PDw1vwDvzgj+Pa2d/nG/HV+S88PDy817xvqrn5Piadvb8AAAAASUVORK5CYII=" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '死鬼去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+<script src="/node_modules/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"node_modules/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/node_modules/assets/shizuku.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"react":{"opacity":0.7},"log":false});</script></body>
+</html>

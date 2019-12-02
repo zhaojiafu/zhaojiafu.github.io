@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <link rel="canonical" href="https://zhaojiafu.github.io/2019/01/22/8f8f494d2b14b441d0c9adc487d0aac9/">
+    
+    
+    <title>python对视频截帧的俩个方法 | 赵家富的博客 | 保持好奇心</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="python视频截帧">
+    <meta name="description" content="#  python读取视频流提取视频帧的方法 注意事项(路径尽量全部英文，不然很可能会耽误很多时间) 安装环境： pip install imageio  pip install skimage  这时候会报错：    Please install the scikit-image package (instead of skimage)所以按照提示操作即可：     pip install s">
+<meta name="keywords" content="python视频截帧">
+<meta property="og:type" content="article">
+<meta property="og:title" content="python对视频截帧的俩个方法">
+<meta property="og:url" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;2019&#x2F;01&#x2F;22&#x2F;8f8f494d2b14b441d0c9adc487d0aac9&#x2F;index.html">
+<meta property="og:site_name" content="赵家富的博客">
+<meta property="og:description" content="#  python读取视频流提取视频帧的方法 注意事项(路径尽量全部英文，不然很可能会耽误很多时间) 安装环境： pip install imageio  pip install skimage  这时候会报错：    Please install the scikit-image package (instead of skimage)所以按照提示操作即可：     pip install s">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-12-02T06:45:49.795Z">
+<meta name="twitter:card" content="summary">
+    
+    <link rel="shortcut icon" href="/img/cb2nm-5l9w0-001.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" target="_blank" rel="noopener" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/zhao.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">赵家富</h5>
+          <a href="mailto:530519174@qq.com" target="_blank" rel="noopener" title="530519174@qq.com" class="mail">530519174@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                archives(所有)
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags/"  >
+                <i class="icon icon-lg icon-tags"></i>
+                tag(标签)
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories/"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories(分类)
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/zhaojiafu" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://blog.csdn.net/weixin_42081389" target="_blank" >
+                <i class="icon icon-lg icon-csdn"></i>
+                Csdn
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" target="_blank" rel="noopener" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+
+        <div class="flex-col header-title ellipsis">python对视频截帧的俩个方法</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" target="_blank" rel="noopener" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" target="_blank" rel="noopener" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" target="_blank" rel="noopener" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+
+        <h1 class="title">python对视频截帧的俩个方法
+        </h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2019-01-22T03:34:32.000Z" itemprop="datePublished" class="page-time">
+  2019-01-22
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/python%E8%A7%86%E9%A2%91%E6%88%AA%E5%B8%A7/">python视频截帧</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#注意事项-路径尽量全部英文，不然很可能会耽误很多时间"><span class="post-toc-number">1.</span> <span class="post-toc-text">注意事项(路径尽量全部英文，不然很可能会耽误很多时间)</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#方法一："><span class="post-toc-number">2.</span> <span class="post-toc-text">方法一：</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#方法二："><span class="post-toc-number">3.</span> <span class="post-toc-text">方法二：</span></a></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-8f8f494d2b14b441d0c9adc487d0aac9"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">python对视频截帧的俩个方法</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2019-01-22 11:34:32" datetime="2019-01-22T03:34:32.000Z"  itemprop="datePublished">2019-01-22</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/python%E8%A7%86%E9%A2%91%E6%88%AA%E5%B8%A7/">python视频截帧</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p>﻿#  python读取视频流提取视频帧的方法</p>
+<h2 id="注意事项-路径尽量全部英文，不然很可能会耽误很多时间"><a href="#注意事项-路径尽量全部英文，不然很可能会耽误很多时间" class="headerlink" title="注意事项(路径尽量全部英文，不然很可能会耽误很多时间)"></a>注意事项(路径尽量全部英文，不然很可能会耽误很多时间)</h2><ol>
+<li><p>安装环境：</p>
+<pre><code>pip install imageio
+
+pip install skimage</code></pre></li>
+</ol>
+<p>这时候会报错：<br>    Please install the <code>scikit-image</code> package (instead of <code>skimage</code>)<br>所以按照提示操作即可：    </p>
+<pre><code>pip install scikit-image</code></pre><p>环境安装成功。</p>
+{% image /imgs/2019012211141851.png '在这里插入图片描述' '' %}
+<p>2、cv2模块安装，刚开始看到别人写的import cv2 以为是需要安装pip install cv2(尴尬。。。结果是 pip install opencv-python)</p>
+<pre><code>pip install opencv-python</code></pre><p>3、视频截帧代码</p>
+<h2 id="方法一："><a href="#方法一：" class="headerlink" title="方法一："></a>方法一：</h2><p>使用imageio库提取视频帧<br>imageio官方文档地址：<a href="http://imageio.readthedocs.io/en/latest/examples.html" target="_blank" rel="noopener">http://imageio.readthedocs.io/en/latest/examples.html</a><br>        # coding:utf-8<br>        import imageio<br>        import pylab</p>
+<pre><code># 注释的代码执行一次就好，以后都会默认下载完成
+# imageio.plugins.ffmpeg.download()
+
+# 视频的绝对路径
+filename =r&apos;e:\video\159725149.mp4&apos;
+# 可以选择解码工具
+# print(filename)
+# vid = imageio.get_reader(uri=filename, format=&apos;ffmpeg&apos;)
+vid = imageio.get_reader(filename ,&apos;ffmpeg&apos;)
+print(type(vid),len(vid))
+try:
+    # 这个地方需要加个异常处理，我也不知道什么原因，用imageio读取的视频总是最后俩帧是无法读取，用俩个视频测试都是如此，就加个异常，忽略最后俩帧就可以了。
+    for num, im in enumerate(vid):
+        print(num)
+        if (num % 101) == 0:
+            imageio.imwrite(&apos;E:\save_photo_from_video\{}.jpg&apos;.format(num // 101), im)
+except imageio.core.format.CannotReadFrameError or RuntimeError:
+    pass
+
+# for num, im in enumerate(vid):
+#     print(num)
+#     if (num % 101) == 0:
+#         imageio.imwrite(&apos;E:\save_photo_from_video\{}.jpg&apos;.format(num // 101), im)</code></pre><h2 id="方法二："><a href="#方法二：" class="headerlink" title="方法二："></a>方法二：</h2><p>需要安装opencv-python，也就是导入cv2模块。</p>
+<pre><code>&apos;&apos;&apos;    pip install opencv-python&apos;&apos;&apos;</code></pre><p>用法：</p>
+<pre><code>#!usr/bin/python
+import cv2
+
+# 需要安装opencv-python
+&apos;&apos;&apos;    pip install opencv-python&apos;&apos;&apos;
+
+# 读入视频文件
+vc = cv2.VideoCapture(r&apos;D:\zjf_workspace\000爬虫代码-基础的\scrapy_100_工具\视频处理\mp4\55563878.mp4&apos;)
+
+c = 1
+if vc.isOpened():
+    # 判断是否正常打开
+    real, frame = vc.read()
+    # print(real)
+else:
+    real = False
+
+timeF = 100
+# 视频帧计数间隔频率
+
+while real:
+    real, frame = vc.read()
+    # print(real, frame)
+    if (c % timeF == 0):
+        # 每隔timeF帧进行储存为图像，（注意保存地址必须全部为英文和数字，不能含有中文或者中文字符，我这个错误就是刚开始不知道是地址中文原因，找了好久。）
+        cv2.imwrite(r&apos;E:\save_photo_from_video&apos; + &apos;\\&apos; + str(c // timeF) + &apos;.jpg&apos;, frame)
+    c += 1
+    cv2.waitKey(1)
+vc.release()</code></pre><hr>
+<p>参考文章：<br><a href="https://blog.csdn.net/NFMSR/article/details/78559930" target="_blank" rel="noopener">https://blog.csdn.net/NFMSR/article/details/78559930</a><br><a href="https://blog.csdn.net/xinxing__8185/article/details/48440133" target="_blank" rel="noopener">https://blog.csdn.net/xinxing__8185/article/details/48440133</a></p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2019-12-02T06:45:49.795Z" itemprop="dateUpdated">2019-12-02 14:45:49</time>
+</span><br>
+
+
+        
+        这里可以写作者留言，标签和 hexo 中所有变量及辅助函数等均可调用，示例：<a href="/2019/01/22/8f8f494d2b14b441d0c9adc487d0aac9/" target="_blank" rel="external">https://zhaojiafu.github.io/2019/01/22/8f8f494d2b14b441d0c9adc487d0aac9/</a>
+        
+    </div>
+    
+    <footer>
+        <a href="https://zhaojiafu.github.io">
+            <img src="/img/zhao.jpg" alt="赵家富">
+            赵家富
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" target="_blank" rel="noopener" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python%E8%A7%86%E9%A2%91%E6%88%AA%E5%B8%A7/" rel="tag">python视频截帧</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://zhaojiafu.github.io/2019/01/22/8f8f494d2b14b441d0c9adc487d0aac9/&title=《python对视频截帧的俩个方法》 — 赵家富的博客&pic=https://zhaojiafu.github.io/img/zhao.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" target="_blank" rel="noopener" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://zhaojiafu.github.io/2019/01/22/8f8f494d2b14b441d0c9adc487d0aac9/&title=《python对视频截帧的俩个方法》 — 赵家富的博客&source=感觉无从下手的时候，问自己“不难，要你干啥？”" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://zhaojiafu.github.io/2019/01/22/8f8f494d2b14b441d0c9adc487d0aac9/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《python对视频截帧的俩个方法》 — 赵家富的博客&url=https://zhaojiafu.github.io/2019/01/22/8f8f494d2b14b441d0c9adc487d0aac9/&via=https://zhaojiafu.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://zhaojiafu.github.io/2019/01/22/8f8f494d2b14b441d0c9adc487d0aac9/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" target="_blank" rel="noopener" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2019/01/24/a64692d6bd06a5feec63df3647aec56e/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">window电脑C盘占用过大问题的几种解决方法</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2019/01/18/a2ff09f7d5877efa8cc7bcff2de3da08/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">scrapy-redis爬虫异常</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<section class="comments" id="comments">
+    <div id="gitalk-container"></div>
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+        var id = location.pathname
+        if (location.pathname.length > 50) {
+          id = location.pathname.replace(/\/\d+\/\d+\/\d+\//, '').replace('/', '').substring(0, 50)
+        }
+        const gitalk = new Gitalk({
+          clientID: '388d0a78cda30f118f86',
+          clientSecret: '2c64b34cc20f23d768dffff64acb8c2ee02c3bee',
+          repo: 'https://zhaojiafu.github.io/',
+          owner: 'zjf',
+          admin: ['zjf'],
+          id: id,      // Ensure uniqueness and length less than 50
+          title: document.title.split('|')[0],
+          distractionFreeMode: false  // Facebook-like distraction free mode
+        })
+
+        gitalk.render('gitalk-container')
+    </script>
+</section>
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;" target="_blank" rel="noopener"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢大爷~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.jpg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.jpg" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+            <span>博客内容遵循 <a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+        <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=0 height=0 src="http://music.163.com/song/media/outer/url?id=1369798757&auto=1"></iframe>
+
+    </div>
+    <div class="bottom">
+        <p><span>赵家富 &copy; 2019</span>
+            <span>
+                
+
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" target="_blank" rel="noopener" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://zhaojiafu.github.io/2019/01/22/8f8f494d2b14b441d0c9adc487d0aac9/&title=《python对视频截帧的俩个方法》 — 赵家富的博客&pic=https://zhaojiafu.github.io/img/zhao.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" target="_blank" rel="noopener" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://zhaojiafu.github.io/2019/01/22/8f8f494d2b14b441d0c9adc487d0aac9/&title=《python对视频截帧的俩个方法》 — 赵家富的博客&source=感觉无从下手的时候，问自己“不难，要你干啥？”" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://zhaojiafu.github.io/2019/01/22/8f8f494d2b14b441d0c9adc487d0aac9/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《python对视频截帧的俩个方法》 — 赵家富的博客&url=https://zhaojiafu.github.io/2019/01/22/8f8f494d2b14b441d0c9adc487d0aac9/&via=https://zhaojiafu.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://zhaojiafu.github.io/2019/01/22/8f8f494d2b14b441d0c9adc487d0aac9/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;" target="_blank" rel="noopener"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACuUlEQVR42u3aQW4CMQwFUO5/abrpolLFzP9JTFH1WCEYkrwsYmPn8Yhfz8vX7yfz3/58/vqT3yMfe+Hh4eENLD3HvBo/f5+Pk2w3Hh4e3hwvX1ayNclBnweDV89crxkPDw/vc3jJ4naCxPUm4uHh4f0P3s6vzm4HHh4e3jt5bQq7NvF1kTcvfIzUWvDw8PBiXt5F+pz3I/09PDw8vO2u+lqQOLuVa+v8HgEPDw9vgNe27RPwWtJ8nRDn6TIeHh7eNC+5GNqGgbw9lpQn1ppteHh4eHO8dlnJ8Z2nyPmi6zR6bdfx8PDwYl57fK+lwvm1qjZU3KwEDw8Pb4DXJrvtJ+1Z3ba+oiIyHh4e3lFecpkpL9fmB/3a7HUBBQ8PD2+Al7Sa1oq8+4WGtnwcBQk8PDy8DV47cVKuTY7vfK6tb/Hw8PDGeG1ZNi9YtKPtPxPVPPDw8PAO8fLGfF4saFPndpabcfDw8PCGeWthIEnH564g3IQNPDw8vAFeW0pom1h5MWKtbZaPjIeHh3eKlxzoycT7pYq1wHNTXsHDw8Mb4LVXqfJLqG0gaS9dFek1Hh4e3lFeUjaduIq6c5Fr69IVHh4e3gAvT5TXSqsTdZSXT+Lh4eEN8IpDtiwE5MvNt6NdDx4eHt40L0+a1y5ItVluXlCOAgMeHh7eUV7y579NbdvAk/+qLljg4eHhjfHylDefpgWvbffNXHh4eHhv4e1cojpV8mjHuWmD4eHh4R3iPcvXfqss2axj3+Lh4eEN8NYO8SRI5HEpWW5yneuxH1vw8PDwYt5+Uz8vE7THet6WW6y14OHh4W3w2tLqzgm8k7gv1lrw8PDw/pR3PXF+TWpttDZQ4eHh4X0CLy/atr9qP4+CBx4eHt4Yr02FT6XjE802PDw8vGle+4c/SbiTyfKDfqdUgYeHh3eU9wXXTyIWFTUEhQAAAABJRU5ErkJggg==" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '死鬼去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+<script src="/node_modules/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"node_modules/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/node_modules/assets/shizuku.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"react":{"opacity":0.7},"log":false});</script></body>
+</html>

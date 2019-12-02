@@ -1,0 +1,829 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <link rel="canonical" href="https://zhaojiafu.github.io/2019/10/09/526b19c90f74051ef7d7d2d6a7e4e2fb/">
+    
+    
+    <title>python爬虫之scrapy 框架学习复习整理一--最基本入门的知识点 | 赵家富的博客 | 保持好奇心</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="python爬虫">
+    <meta name="description" content="说明：由于好久（半年以上了）没有用到scrapy框架做爬虫了，日常的使用request+多线程和协程就能高速爬取了，时间久了发现不怎么熟练了，抽空闲时间再复习一下，巩固。 我的工作环境：1windows10系统2python3.6 学习目标 创建一个Scrapy项目 定义提取的结构化数据(Item) 编写爬取网站的 Spider 并提取出结构化数据(Item) 编写 Item Pipelines">
+<meta name="keywords" content="python爬虫">
+<meta property="og:type" content="article">
+<meta property="og:title" content="python爬虫之scrapy 框架学习复习整理一--最基本入门的知识点">
+<meta property="og:url" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;2019&#x2F;10&#x2F;09&#x2F;526b19c90f74051ef7d7d2d6a7e4e2fb&#x2F;index.html">
+<meta property="og:site_name" content="赵家富的博客">
+<meta property="og:description" content="说明：由于好久（半年以上了）没有用到scrapy框架做爬虫了，日常的使用request+多线程和协程就能高速爬取了，时间久了发现不怎么熟练了，抽空闲时间再复习一下，巩固。 我的工作环境：1windows10系统2python3.6 学习目标 创建一个Scrapy项目 定义提取的结构化数据(Item) 编写爬取网站的 Spider 并提取出结构化数据(Item) 编写 Item Pipelines">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20191009090424505.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20191009090444775.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20191008160550885.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20191008160826878.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20191008161116989.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20191008161433235.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20191008162115459.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20191008162130198.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20191008163455346.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20191008163717443.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20191008163811564.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20191008164527646.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20191008164759432.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20191008170335973.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20191009093836438.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20191008170625696.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20191008171746512.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20191008171848425.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20191008172405217.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20191008172527196.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20191008172715614.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20191008172940800.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20191008173035175.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20191008175221108.png">
+<meta property="og:updated_time" content="2019-12-02T06:45:47.600Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20191009090424505.png">
+    
+    <link rel="shortcut icon" href="/img/cb2nm-5l9w0-001.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" target="_blank" rel="noopener" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/zhao.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">赵家富</h5>
+          <a href="mailto:530519174@qq.com" target="_blank" rel="noopener" title="530519174@qq.com" class="mail">530519174@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                archives(所有)
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags/"  >
+                <i class="icon icon-lg icon-tags"></i>
+                tag(标签)
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories/"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories(分类)
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/zhaojiafu" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://blog.csdn.net/weixin_42081389" target="_blank" >
+                <i class="icon icon-lg icon-csdn"></i>
+                Csdn
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" target="_blank" rel="noopener" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+
+        <div class="flex-col header-title ellipsis">python爬虫之scrapy 框架学习复习整理一--最基本入门的知识点</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" target="_blank" rel="noopener" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" target="_blank" rel="noopener" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" target="_blank" rel="noopener" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+
+        <h1 class="title">python爬虫之scrapy 框架学习复习整理一--最基本入门的知识点
+        </h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2019-10-09T03:34:32.000Z" itemprop="datePublished" class="page-time">
+  2019-10-09
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/scrapy/">scrapy</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#说明："><span class="post-toc-number">1.</span> <span class="post-toc-text">说明：</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#我的工作环境："><span class="post-toc-number">1.1.</span> <span class="post-toc-text">我的工作环境：</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#学习目标"><span class="post-toc-number">2.</span> <span class="post-toc-text">学习目标</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#1、scrapy的爬虫流程："><span class="post-toc-number">2.1.</span> <span class="post-toc-text">1、scrapy的爬虫流程：</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#2、scrapy入门："><span class="post-toc-number">2.2.</span> <span class="post-toc-text">2、scrapy入门：</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#3、几个必须掌握的全局命令："><span class="post-toc-number">2.3.</span> <span class="post-toc-text">3、几个必须掌握的全局命令：</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#1、创建一个scrapy项目"><span class="post-toc-number">3.</span> <span class="post-toc-text">1、创建一个scrapy项目</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#2、明确目标-mySpider-items-py"><span class="post-toc-number">4.</span> <span class="post-toc-text">2、明确目标(mySpider/items.py)</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#3、制作爬虫-（spiders-baidu-py）"><span class="post-toc-number">5.</span> <span class="post-toc-text">3、制作爬虫 （spiders/baidu.py）</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#1、制作爬虫文件默认格式"><span class="post-toc-number">5.1.</span> <span class="post-toc-text">1、制作爬虫文件默认格式</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#2、修改parse-方法"><span class="post-toc-number">5.2.</span> <span class="post-toc-text">2、修改parse()方法</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#3、使用xpath提取数据："><span class="post-toc-number">5.3.</span> <span class="post-toc-text">3、使用xpath提取数据：</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#注意点："><span class="post-toc-number">5.3.1.</span> <span class="post-toc-text">注意点：</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#4、管道保存数据（pipelines-py）"><span class="post-toc-number">5.4.</span> <span class="post-toc-text">4、管道保存数据（pipelines.py）</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#注意点：yield返回的只能是dict或者None，"><span class="post-toc-number">5.4.1.</span> <span class="post-toc-text">注意点：yield返回的只能是dict或者None，</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#5、保存到MongoDB数据库："><span class="post-toc-number">5.5.</span> <span class="post-toc-text">5、保存到MongoDB数据库：</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#注意点：-1"><span class="post-toc-number">5.5.1.</span> <span class="post-toc-text">注意点：</span></a></li></ol></li></ol></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-526b19c90f74051ef7d7d2d6a7e4e2fb"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">python爬虫之scrapy 框架学习复习整理一--最基本入门的知识点</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2019-10-09 11:34:32" datetime="2019-10-09T03:34:32.000Z"  itemprop="datePublished">2019-10-09</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/scrapy/">scrapy</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h1 id="说明："><a href="#说明：" class="headerlink" title="说明："></a>说明：</h1><p>由于好久（半年以上了）没有用到scrapy框架做爬虫了，日常的使用request+多线程和协程就能高速爬取了，时间久了发现不怎么熟练了，抽空闲时间再复习一下，巩固。</p>
+<h2 id="我的工作环境："><a href="#我的工作环境：" class="headerlink" title="我的工作环境："></a>我的工作环境：</h2><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">windows10系统</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">python3.<span class="number">6</span></span></pre></td></tr></table></figure>
+<h1 id="学习目标"><a href="#学习目标" class="headerlink" title="学习目标"></a>学习目标</h1><ol>
+<li>创建一个Scrapy项目</li>
+<li>定义提取的结构化数据(Item)</li>
+<li>编写爬取网站的 Spider 并提取出结构化数据(Item)</li>
+<li>编写 Item Pipelines 来存储提取到的Item(即结构化数据)</li>
+<li><h2 id="1、scrapy的爬虫流程："><a href="#1、scrapy的爬虫流程：" class="headerlink" title="1、scrapy的爬虫流程："></a>1、scrapy的爬虫流程：</h2><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/20191009090424505.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/20191009090444775.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+
+</li>
+</ol>
+<h2 id="2、scrapy入门："><a href="#2、scrapy入门：" class="headerlink" title="2、scrapy入门："></a>2、scrapy入门：</h2><ol>
+<li><p>创建一个scrapy项目<br>scrapy startproject mySpider</p>
+</li>
+<li><p>生成一个爬虫<br>scrapy genspider xiaohuar “xiaohuar.com”</p>
+</li>
+<li><p>提取数据<br>完善spider，使用xpath等方法</p>
+</li>
+<li><p>保存数据<br>pipeline中保存数据</p>
+</li>
+</ol>
+<h2 id="3、几个必须掌握的全局命令："><a href="#3、几个必须掌握的全局命令：" class="headerlink" title="3、几个必须掌握的全局命令："></a>3、几个必须掌握的全局命令：</h2><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="number">1</span>. scrapy startproject（创建项目）</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="number">2</span>. scrapy genspider demo demo.com (初始化爬虫文件）</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"><span class="number">3</span>. scrapy crawl XX（运行XX蜘蛛）、</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"><span class="number">4</span>. scrapy shell http://www.scrapyd.cn（调试网址为http://www.scrapyd.cn的网站）-- 可以用来调试测试response含有的方法，或者xpath提取的方法，进行测试。</span></pre></td></tr></table></figure>
+
+
+
+
+
+<h1 id="1、创建一个scrapy项目"><a href="#1、创建一个scrapy项目" class="headerlink" title="1、创建一个scrapy项目"></a>1、创建一个scrapy项目</h1><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">scrapy startproject mySpider</span></pre></td></tr></table></figure>
+<p><strong>scrapy  startproject</strong>这里是固定的，注意scrapy和startproject和mySpider中间是有空格的！后面的：mySpider是我们创建的蜘蛛名字，后面我们运行的时候用得到，你需要根据你的情况创建，比如你是想爬取淘宝你可以这样创建：</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">scrapy startproject taobao</span></pre></td></tr></table></figure>
+<p>会在当前目录下生成一个test_1的目录，结构如下图</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/20191008160550885.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+
+<p>下面来简单介绍一下各个主要文件的作用：</p>
+<ol>
+<li>scrapy.cfg ：项目的配置文件</li>
+<li>mySpider/ ：项目的Python模块，将会从这里引用代码</li>
+<li>mySpider/items.py ：项目的目标文件</li>
+<li>mySpider/pipelines.py ：项目的管道文件</li>
+<li>mySpider/settings.py ：项目的设置文件</li>
+<li>mySpider/spiders/ ：存储爬虫代码目录</li>
+</ol>
+<h1 id="2、明确目标-mySpider-items-py"><a href="#2、明确目标-mySpider-items-py" class="headerlink" title="2、明确目标(mySpider/items.py)"></a>2、明确目标(mySpider/items.py)</h1><p>我们打算抓取：<a href="http://top.baidu.com/百度风云榜实时热点前十条信息" target="_blank" rel="noopener">http://top.baidu.com/百度风云榜实时热点前十条信息</a> </p>
+<ol>
+<li>打开mySpider目录下的items.py</li>
+<li>Item 定义结构化数据字段，用来保存爬取到的数据，有点像Python中的dict，但是提供了一些额外的保护减少错误。</li>
+<li>可以通过创建一个 scrapy.Item 类， 并且定义类型为 scrapy.Field的类属性来定义一个Item（可以理解成类似于ORM的映射关系）。</li>
+<li>接下来，创建一个BaiduItem 类，和构建item模型（model）。</li>
+</ol>
+<p>items.py 默认会是这种：</p>
+<p><img src="/imgs/20191008160826878.png" alt="在这里插入图片描述"></p>
+<p>改为这个：</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">import scrapy</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">class BaiduItem(scrapy.Item):</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">    bd_id = scrapy.Field()</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">    bd_title = scrapy.Field()</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">    bd_num = scrapy.Field()</span></pre></td></tr></table></figure>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/20191008161116989.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+<h1 id="3、制作爬虫-（spiders-baidu-py）"><a href="#3、制作爬虫-（spiders-baidu-py）" class="headerlink" title="3、制作爬虫 （spiders/baidu.py）"></a>3、制作爬虫 （spiders/baidu.py）</h1><p>这里主要分为俩步：爬数据+取数据</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/20191008161433235.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+<h2 id="1、制作爬虫文件默认格式"><a href="#1、制作爬虫文件默认格式" class="headerlink" title="1、制作爬虫文件默认格式"></a>1、制作爬虫文件默认格式</h2><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">cd mySpider</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">scrapy genspider baidu <span class="string">"top.baidu.com/"</span></span></pre></td></tr></table></figure>
+<p>然后会在spiders下面生成一个baidu.py文件，里面内容是下面的默认格式，自己再进行修改。</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/20191008162115459.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+
+<p>打开 mySpider/spider目录里的 baidu.py，默认增加了下列代码:</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/20191008162130198.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+
+<p>其实也可以由我们自行创建baidu.py并编写上面的代码，只不过使用命令可以免去编写固定代码的麻烦</p>
+<p>要建立一个Spider， 你必须用scrapy.Spider类创建一个子类，并确定了三个强制的属性 和 一个方法。</p>
+<ol>
+<li>name = “” ：这个爬虫的识别名称，必须是唯一的，在不同的爬虫必须定义不同的名字。</li>
+<li>allow_domains = [] 是搜索的域名范围，也就是爬虫的约束区域，规定爬虫只爬取这个域名下的网页，不存在的URL会被忽略。</li>
+<li>start_urls = () ：爬取的URL元组/列表。爬虫从这里开始抓取数据，所以，第一次下载的数据将会从这些urls开始。其他子URL将会从这些起始URL中继承性生成。</li>
+<li>parse(self, response) ：解析的方法，每个初始URL完成下载后将被调用，调用的时候传入从每一个URL传回的Response对象来作为唯一参数，主要作用如下：<br>负责解析返回的网页数据(response.body)，提取结构化数据(生成item)<br>生成需要下一页的URL请求。</li>
+</ol>
+<p>如果需要将start_urls的值修改为需要爬取的第一个url，或多个url，会多线程爬取这些。</p>
+<h2 id="2、修改parse-方法"><a href="#2、修改parse-方法" class="headerlink" title="2、修改parse()方法"></a>2、修改parse()方法</h2><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">def parse(self, response):</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">       <span class="comment"># pass</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">       print(<span class="string">"进来了"</span>)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">       with open(<span class="string">'./baidu.html'</span>, <span class="string">'wb'</span>) as file:</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">           file.write(response.body)</span></pre></td></tr></table></figure>
+
+<p>结果发现打印不出来“进来了”，我这里猜想是robot协议问题</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/20191008163455346.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+<p>更改robot协议，为False，并且将log级别更改为：</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">ROBOTSTXT_OBEY = False</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">_LEVEL = <span class="string">'DEBUG'</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">LOG_LEVEL = <span class="string">"WARNING"</span></span></pre></td></tr></table></figure>
+
+<p>成功打印出“进来了”：</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/20191008163717443.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+
+<p>然后在项目目录下生成一个baidu.html,这个就是爬取<a href="http://top.baidu.com/返回的页面。" target="_blank" rel="noopener">http://top.baidu.com/返回的页面。</a></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/20191008163811564.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+<p>这个时候，我们可以提取数据了，但是我忘记之前是如何提取的了，我只记得和request返回的是不一样的，怎么办，这时候可以考虑打印出来，看看response是什么类型，有什么方法：</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/20191008164527646.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+<p>打印出类型和拥有的方法：</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/20191008164759432.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+
+<h2 id="3、使用xpath提取数据："><a href="#3、使用xpath提取数据：" class="headerlink" title="3、使用xpath提取数据："></a>3、使用xpath提取数据：</h2><p>保存的页面分析：</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/20191008170335973.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+
+
+
+<p>提取代码：</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">def parse(self, response):</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">       <span class="comment"># 测试是否能进来</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">       print(<span class="string">"进来了"</span>)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">       <span class="comment"># 保存下来响应页面</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">       <span class="comment"># with open('./baidu.html', 'wb') as file:</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">       <span class="comment">#     file.write(response.body)</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">       <span class="comment"># 打印出类型和方法</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">       <span class="comment"># print("type_response", type(response))</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">       <span class="comment"># print("dir_response", dir(response))</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">       <span class="comment"># xpath提取数据</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">       li_list = response.xpath(<span class="string">'//*[@id="hot-list"]//li'</span>)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">       items = []</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">       <span class="keyword">for</span> li <span class="keyword">in</span> li_list:</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line">           <span class="comment"># 将我们得到的数据封装到一个 `BaiduItem` 对象</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line">           item = BaiduItem()</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><span class="line">           <span class="comment"># extract()方法返回的都是字符串</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">17</span></pre></td><td class="code"><pre><span class="line">           <span class="comment"># 名次</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">18</span></pre></td><td class="code"><pre><span class="line">           bd_id = li.xpath(<span class="string">'./span[@class="num-top" or @class="num-normal"]/text()'</span>).extract()</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">19</span></pre></td><td class="code"><pre><span class="line">           <span class="comment"># 标题</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">20</span></pre></td><td class="code"><pre><span class="line">           bd_title = li.xpath(<span class="string">'./a[@class="list-title"]/text()'</span>).extract()</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">21</span></pre></td><td class="code"><pre><span class="line">           <span class="comment"># 搜索指数</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">22</span></pre></td><td class="code"><pre><span class="line">           bd_num = li.xpath(<span class="string">'./span[@class="icon-rise" or @class="icon-fall" or @class="icon-fair"]/text()'</span>).extract()</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">23</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">24</span></pre></td><td class="code"><pre><span class="line">           <span class="comment"># xpath返回的是包含一个元素的列表</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">25</span></pre></td><td class="code"><pre><span class="line">           item[<span class="string">'bd_id'</span>] = bd_id[<span class="number">0</span>]</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">26</span></pre></td><td class="code"><pre><span class="line">           item[<span class="string">'bd_title'</span>] = bd_title[<span class="number">0</span>]</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">27</span></pre></td><td class="code"><pre><span class="line">           item[<span class="string">'bd_num'</span>] = bd_num[<span class="number">0</span>]</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">28</span></pre></td><td class="code"><pre><span class="line">           print(bd_id, bd_title, bd_num)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">29</span></pre></td><td class="code"><pre><span class="line">           items.append(item)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">30</span></pre></td><td class="code"><pre><span class="line">           <span class="comment"># 直接返回最后数据</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">31</span></pre></td><td class="code"><pre><span class="line">       print(<span class="string">"items"</span>,items)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">32</span></pre></td><td class="code"><pre><span class="line">       <span class="keyword">return</span> items</span></pre></td></tr></table></figure>
+
+<h3 id="注意点："><a href="#注意点：" class="headerlink" title="注意点："></a>注意点：</h3><ol>
+<li><p>使用xpath提取字符串：<br>后来补充测试，截图如图：</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/20191009093836438.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+
+<p> ①、extract() 返回的是一个包含字符串数据的列表【和getall()方法返回的结果一样】</p>
+<p>②、extract_first() 返回的是列表的第一个字符串【和get()方法返回的结果一样,】</p>
+</li>
+<li><p>response.xpath() 返回的是一个含有selector对象的列表</p>
+</li>
+<li><p>需要爬取的url必须在allowed_domains域名下的链接，allowed_domains里面可以存放多个域名，如果需要爬取其他地址，可以自己想需要爬取的跳转网页的域名加入allowed_domains的列表中。</p>
+</li>
+</ol>
+<p>打印出来的数据：</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/20191008170625696.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+
+<h2 id="4、管道保存数据（pipelines-py）"><a href="#4、管道保存数据（pipelines-py）" class="headerlink" title="4、管道保存数据（pipelines.py）"></a>4、管道保存数据（pipelines.py）</h2><p>先在pipelines.py文件中增加一句，测试内容：</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/20191008171746512.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+
+<p>发现没有进入管道pipelines<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/20191008171848425.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure></p>
+<p>我们修改baidu.py，将return改为yield，不能对于单个dict数据返回给管道pipelines</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/20191008172405217.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+<p>需要在setting里面把设置的管道注销的打开，这样才能进入管道。</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/20191008172527196.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+<p>这时候就可以进入管道了。</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/20191008172715614.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+
+<h3 id="注意点：yield返回的只能是dict或者None，"><a href="#注意点：yield返回的只能是dict或者None，" class="headerlink" title="注意点：yield返回的只能是dict或者None，"></a>注意点：yield返回的只能是dict或者None，</h3><p>yield返回进入管道的，只能是字典格式的，如果是其他的就会报错：</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/20191008172940800.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/20191008173035175.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+
+
+<h2 id="5、保存到MongoDB数据库："><a href="#5、保存到MongoDB数据库：" class="headerlink" title="5、保存到MongoDB数据库："></a>5、保存到MongoDB数据库：</h2><p>管道代码：</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">from pymongo import MongoClient</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">class MyspiderPipeline(object):</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">    def open_spider(self, spider):</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">        print(<span class="string">"准备创建一个数据库"</span>)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">        <span class="comment"># 这个会在项目开始时第一次进入pipelines.py进入，之后不再进入</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">        <span class="comment"># 建立于MongoClient 的连接：</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">        self.client = MongoClient(<span class="string">'localhost'</span>, <span class="number">27017</span>)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">        <span class="comment"># 得到数据库</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">        self.db = self.client[<span class="string">'111_test_database_baidu'</span>]</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">        <span class="comment"># 得到一个集合</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line">        self.collection = self.db[<span class="string">'111_test_collection_baidu'</span>]</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><span class="line">    def close_spider(self, spider):</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">17</span></pre></td><td class="code"><pre><span class="line">        print(<span class="string">'项目结束，断开数据库连接'</span>)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">18</span></pre></td><td class="code"><pre><span class="line">        <span class="comment"># 这个会在结束时开始时第一次进入pipelines.py进入，之后不再进入</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">19</span></pre></td><td class="code"><pre><span class="line">        self.client.close()</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">20</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">21</span></pre></td><td class="code"><pre><span class="line">    def process_item(self, item, spider):</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">22</span></pre></td><td class="code"><pre><span class="line">        print(<span class="string">"process_item"</span>, item, spider)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">23</span></pre></td><td class="code"><pre><span class="line">        print(<span class="string">"type"</span>,type(item))</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">24</span></pre></td><td class="code"><pre><span class="line">        <span class="comment"># 储存到数据库</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">25</span></pre></td><td class="code"><pre><span class="line">        print(<span class="string">"准备保存到数据库"</span>)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">26</span></pre></td><td class="code"><pre><span class="line">        self.collection.save(dict(item))</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">27</span></pre></td><td class="code"><pre><span class="line">        <span class="keyword">return</span> item</span></pre></td></tr></table></figure>
+
+<h3 id="注意点：-1"><a href="#注意点：-1" class="headerlink" title="注意点："></a>注意点：</h3><p>item看着是dict，但是还不python里面的dict，需要使用dict(item)转换一下，才能正常保存，不然报错，我这里改了就成功了：</p>
+<p>成功报错效果图：</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/20191008175221108.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+
+
+<p>参考：<br><a href="https://doc.scrapy.org/en/latest/topics/item-pipeline.html" target="_blank" rel="noopener">https://doc.scrapy.org/en/latest/topics/item-pipeline.html</a></p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2019-12-02T06:45:47.600Z" itemprop="dateUpdated">2019-12-02 14:45:47</time>
+</span><br>
+
+
+        
+        这里可以写作者留言，标签和 hexo 中所有变量及辅助函数等均可调用，示例：<a href="/2019/10/09/526b19c90f74051ef7d7d2d6a7e4e2fb/" target="_blank" rel="external">https://zhaojiafu.github.io/2019/10/09/526b19c90f74051ef7d7d2d6a7e4e2fb/</a>
+        
+    </div>
+    
+    <footer>
+        <a href="https://zhaojiafu.github.io">
+            <img src="/img/zhao.jpg" alt="赵家富">
+            赵家富
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" target="_blank" rel="noopener" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python%E7%88%AC%E8%99%AB/" rel="tag">python爬虫</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://zhaojiafu.github.io/2019/10/09/526b19c90f74051ef7d7d2d6a7e4e2fb/&title=《python爬虫之scrapy 框架学习复习整理一--最基本入门的知识点》 — 赵家富的博客&pic=https://zhaojiafu.github.io/img/zhao.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" target="_blank" rel="noopener" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://zhaojiafu.github.io/2019/10/09/526b19c90f74051ef7d7d2d6a7e4e2fb/&title=《python爬虫之scrapy 框架学习复习整理一--最基本入门的知识点》 — 赵家富的博客&source=感觉无从下手的时候，问自己“不难，要你干啥？”" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://zhaojiafu.github.io/2019/10/09/526b19c90f74051ef7d7d2d6a7e4e2fb/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《python爬虫之scrapy 框架学习复习整理一--最基本入门的知识点》 — 赵家富的博客&url=https://zhaojiafu.github.io/2019/10/09/526b19c90f74051ef7d7d2d6a7e4e2fb/&via=https://zhaojiafu.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://zhaojiafu.github.io/2019/10/09/526b19c90f74051ef7d7d2d6a7e4e2fb/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" target="_blank" rel="noopener" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2019/10/09/b6288208a9fabc0a558dbcfc23223334/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">python爬虫之scrapy 框架学习复习整理二--scrapy.Request（自己提取url再发送请求）</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2019/10/08/c3135e3a74347c2b3436fc37c2c6d8d5/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">Linux下vim_vi 编辑器 命令总结</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<section class="comments" id="comments">
+    <div id="gitalk-container"></div>
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+        var id = location.pathname
+        if (location.pathname.length > 50) {
+          id = location.pathname.replace(/\/\d+\/\d+\/\d+\//, '').replace('/', '').substring(0, 50)
+        }
+        const gitalk = new Gitalk({
+          clientID: '388d0a78cda30f118f86',
+          clientSecret: '2c64b34cc20f23d768dffff64acb8c2ee02c3bee',
+          repo: 'https://zhaojiafu.github.io/',
+          owner: 'zjf',
+          admin: ['zjf'],
+          id: id,      // Ensure uniqueness and length less than 50
+          title: document.title.split('|')[0],
+          distractionFreeMode: false  // Facebook-like distraction free mode
+        })
+
+        gitalk.render('gitalk-container')
+    </script>
+</section>
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;" target="_blank" rel="noopener"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢大爷~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.jpg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.jpg" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+            <span>博客内容遵循 <a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+        <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=0 height=0 src="http://music.163.com/song/media/outer/url?id=1369798757&auto=1"></iframe>
+
+    </div>
+    <div class="bottom">
+        <p><span>赵家富 &copy; 2019</span>
+            <span>
+                
+
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" target="_blank" rel="noopener" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://zhaojiafu.github.io/2019/10/09/526b19c90f74051ef7d7d2d6a7e4e2fb/&title=《python爬虫之scrapy 框架学习复习整理一--最基本入门的知识点》 — 赵家富的博客&pic=https://zhaojiafu.github.io/img/zhao.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" target="_blank" rel="noopener" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://zhaojiafu.github.io/2019/10/09/526b19c90f74051ef7d7d2d6a7e4e2fb/&title=《python爬虫之scrapy 框架学习复习整理一--最基本入门的知识点》 — 赵家富的博客&source=感觉无从下手的时候，问自己“不难，要你干啥？”" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://zhaojiafu.github.io/2019/10/09/526b19c90f74051ef7d7d2d6a7e4e2fb/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《python爬虫之scrapy 框架学习复习整理一--最基本入门的知识点》 — 赵家富的博客&url=https://zhaojiafu.github.io/2019/10/09/526b19c90f74051ef7d7d2d6a7e4e2fb/&via=https://zhaojiafu.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://zhaojiafu.github.io/2019/10/09/526b19c90f74051ef7d7d2d6a7e4e2fb/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;" target="_blank" rel="noopener"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACrUlEQVR42u3a0U7DQAwEwP7/T5dnBEnX9rkUafJUiZDcFOlsvPd4xNfzx9X7ravr5/2T95YvPDw8vPHSk9dcvTJ5zv3n+xVW14OHh4e3x7t66NU9Vd6pLy5fMx4eHt7n8KrlIX9mtTDg4eHh/S9edXyQwyYtOB4eHt47edUhQt7+3peKpDDka8DDw8N7Dy9PkT7n80q+h4eHh3c02s835fn3PRkNf1sDHh4e3gKv2s7mjXV1YJE03L114uHh4Z3lnQqxkhJSHcXmRxMuSwseHh7eAi/fgnthWB5xVctDc4CLh4eHt8brbcHV0CvZ7nutOR4eHt42bz4OqI5rk4HvsWQPDw8Pb4FXTd57jXLeoFdHG83gDQ8PD6/Fyzf6+XJzTK/8FJI9PDw8vAHv7II2jnDlDf2L0AsPDw9vgZfPevPXnx0B956Dh4eH9x5eL76qHqXKBxzV+cov/zfg4eHhLfAmIVmvLe41zfejkEcvncPDw8OLeflCJ4cJes+cRG54eHh4e7xq67wxOOhFX4UCg4eHh7fAqw4aqi14sqDqoavCMAIPDw/vKK+6ofeGBVVw768RVTw8PDy8Q7yzG3SvYEyef3k/Hh4e3gJvsgXnEVoSj+Vj5eahKzw8PLyjvI1lTY4LVI8pNNMuPDw8vAFvEn3lhaHaWOcF4MXv4uHh4a3xkut+a55UoV5bXD50hYeHh3eUl7S5k+LRi80OIPHw8PCO8p7Fqxpo5SXk7BgCDw8Pb49X3XyTo1H5PQm++vkxqS14eHh4MW/7lb0jXPkQ5MVP8fDw8NZ41dFqPsCtFobD4w88PDy8D+D1FlQtOdXDClEAhoeHh/envF64lR9ByIvKi1Xh4eHhrfH2DlolEVrvzij6wsPDw1vgTf7hT4aq1WSqGrwduPDw8PBS3hdPL0rfz1PKDQAAAABJRU5ErkJggg==" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '死鬼去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+<script src="/node_modules/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"node_modules/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/node_modules/assets/shizuku.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"react":{"opacity":0.7},"log":false});</script></body>
+</html>

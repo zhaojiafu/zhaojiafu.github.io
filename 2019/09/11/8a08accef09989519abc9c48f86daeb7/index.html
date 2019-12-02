@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <link rel="canonical" href="https://zhaojiafu.github.io/2019/09/11/8a08accef09989519abc9c48f86daeb7/">
+    
+    
+    <title>使用img2pdf 模块将目录下图片合并成pdf | 赵家富的博客 | 保持好奇心</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="python模块,pdf,img2pdf">
+    <meta name="description" content="@[toc] 配置 window 10系统 python3.6版本 说明：之前做些测试，将本地的一些图片合并成功pdf，然后搜到的一些博客都是用PIL，而且博客都是一俩年前的了，找了几个都没用弄成，今天突然又看到这几张突然，然后就再次搜索测试，最终经过不懈努力找到一个好的模块：img2pdf 1、安装img2pdf pip3 install img2pdf  2、直接上代码如过你也是window">
+<meta name="keywords" content="python模块,pdf,img2pdf">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用img2pdf 模块将目录下图片合并成pdf">
+<meta property="og:url" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;2019&#x2F;09&#x2F;11&#x2F;8a08accef09989519abc9c48f86daeb7&#x2F;index.html">
+<meta property="og:site_name" content="赵家富的博客">
+<meta property="og:description" content="@[toc] 配置 window 10系统 python3.6版本 说明：之前做些测试，将本地的一些图片合并成功pdf，然后搜到的一些博客都是用PIL，而且博客都是一俩年前的了，找了几个都没用弄成，今天突然又看到这几张突然，然后就再次搜索测试，最终经过不懈努力找到一个好的模块：img2pdf 1、安装img2pdf pip3 install img2pdf  2、直接上代码如过你也是window">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20190911141242825.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20190911141229854.png">
+<meta property="og:updated_time" content="2019-12-02T07:40:53.083Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20190911141242825.png">
+    
+    <link rel="shortcut icon" href="/img/cb2nm-5l9w0-001.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" target="_blank" rel="noopener" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/zhao.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">赵家富</h5>
+          <a href="mailto:530519174@qq.com" target="_blank" rel="noopener" title="530519174@qq.com" class="mail">530519174@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                archives(所有)
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags/"  >
+                <i class="icon icon-lg icon-tags"></i>
+                tag(标签)
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories/"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories(分类)
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/zhaojiafu" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://blog.csdn.net/weixin_42081389" target="_blank" >
+                <i class="icon icon-lg icon-csdn"></i>
+                Csdn
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" target="_blank" rel="noopener" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+
+        <div class="flex-col header-title ellipsis">使用img2pdf 模块将目录下图片合并成pdf</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" target="_blank" rel="noopener" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" target="_blank" rel="noopener" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" target="_blank" rel="noopener" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+
+        <h1 class="title">使用img2pdf 模块将目录下图片合并成pdf
+        </h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2019-09-11T03:34:32.000Z" itemprop="datePublished" class="page-time">
+  2019-09-11
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/python%E6%A8%A1%E5%9D%97/">python模块</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#配置"><span class="post-toc-number">1.</span> <span class="post-toc-text">配置</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#说明："><span class="post-toc-number">2.</span> <span class="post-toc-text">说明：</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#1、安装img2pdf"><span class="post-toc-number">3.</span> <span class="post-toc-text">1、安装img2pdf</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#2、直接上代码"><span class="post-toc-number">4.</span> <span class="post-toc-text">2、直接上代码</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#3、生成的效果图："><span class="post-toc-number">5.</span> <span class="post-toc-text">3、生成的效果图：</span></a></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-8a08accef09989519abc9c48f86daeb7"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">使用img2pdf 模块将目录下图片合并成pdf</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2019-09-11 11:34:32" datetime="2019-09-11T03:34:32.000Z"  itemprop="datePublished">2019-09-11</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/python%E6%A8%A1%E5%9D%97/">python模块</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p>﻿<br>@[toc]</p>
+<h1 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h1><blockquote>
+<pre><code>window 10系统
+python3.6版本</code></pre></blockquote>
+<h1 id="说明："><a href="#说明：" class="headerlink" title="说明："></a>说明：</h1><p>之前做些测试，将本地的一些图片合并成功pdf，然后搜到的一些博客都是用PIL，而且博客都是一俩年前的了，找了几个都没用弄成，今天突然又看到这几张突然，然后就再次搜索测试，最终经过不懈努力找到一个好的模块：img2pdf</p>
+<h1 id="1、安装img2pdf"><a href="#1、安装img2pdf" class="headerlink" title="1、安装img2pdf"></a>1、安装img2pdf</h1><blockquote>
+<p>pip3 install img2pdf</p>
+</blockquote>
+<h1 id="2、直接上代码"><a href="#2、直接上代码" class="headerlink" title="2、直接上代码"></a>2、直接上代码</h1><p>如过你也是window系统，可以直接修改一些photo_path图片的绝对路径就能用了，生成的pdf就在图片目录里面，其系统自行修改相关不同代码吧。（记得目录里面要都是图片，我没有进行图片判断）</p>
+<pre><code>import img2pdf
+import  os
+
+
+def from_photo_to_pdf(photo_path):
+    # 1、生成地址列表
+    photo_list = os.listdir(photo_path)
+    photo_list = [os.path.join(photo_path,i) for i in photo_list]
+
+    # 1、指定pdf的单页的宽和高
+    # A4纸张
+    # a4inpt = (img2pdf.mm_to_pt(210), img2pdf.mm_to_pt(297))
+    # 我的自定义：
+    a4inpt = (img2pdf.mm_to_pt(720), img2pdf.mm_to_pt(1080))
+    layout_fun = img2pdf.get_layout_fun(a4inpt)
+    with open(photo_path+&apos;\\1result.pdf&apos;, &apos;wb&apos;) as f:
+        f.write(img2pdf.convert(photo_list, layout_fun=layout_fun))
+
+
+if __name__ == &apos;__main__&apos;:
+    photo_path = r&apos;图片目录的绝对地址&apos;
+    from_photo_to_pdf(photo_path)</code></pre><h1 id="3、生成的效果图："><a href="#3、生成的效果图：" class="headerlink" title="3、生成的效果图："></a>3、生成的效果图：</h1><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/20190911141242825.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/20190911141229854.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+
+
+<p>参考：<br><a href="https://pypi.org/project/img2pdf/" target="_blank" rel="noopener">https://pypi.org/project/img2pdf/</a><br><a href="https://blog.csdn.net/cloveses/article/details/79142533" target="_blank" rel="noopener">https://blog.csdn.net/cloveses/article/details/79142533</a></p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2019-12-02T07:40:53.083Z" itemprop="dateUpdated">2019-12-02 15:40:53</time>
+</span><br>
+
+
+        
+        这里可以写作者留言，标签和 hexo 中所有变量及辅助函数等均可调用，示例：<a href="/2019/09/11/8a08accef09989519abc9c48f86daeb7/" target="_blank" rel="external">https://zhaojiafu.github.io/2019/09/11/8a08accef09989519abc9c48f86daeb7/</a>
+        
+    </div>
+    
+    <footer>
+        <a href="https://zhaojiafu.github.io">
+            <img src="/img/zhao.jpg" alt="赵家富">
+            赵家富
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" target="_blank" rel="noopener" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/img2pdf/" rel="tag">img2pdf</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/pdf/" rel="tag">pdf</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python%E6%A8%A1%E5%9D%97/" rel="tag">python模块</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://zhaojiafu.github.io/2019/09/11/8a08accef09989519abc9c48f86daeb7/&title=《使用img2pdf 模块将目录下图片合并成pdf》 — 赵家富的博客&pic=https://zhaojiafu.github.io/img/zhao.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" target="_blank" rel="noopener" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://zhaojiafu.github.io/2019/09/11/8a08accef09989519abc9c48f86daeb7/&title=《使用img2pdf 模块将目录下图片合并成pdf》 — 赵家富的博客&source=感觉无从下手的时候，问自己“不难，要你干啥？”" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://zhaojiafu.github.io/2019/09/11/8a08accef09989519abc9c48f86daeb7/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《使用img2pdf 模块将目录下图片合并成pdf》 — 赵家富的博客&url=https://zhaojiafu.github.io/2019/09/11/8a08accef09989519abc9c48f86daeb7/&via=https://zhaojiafu.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://zhaojiafu.github.io/2019/09/11/8a08accef09989519abc9c48f86daeb7/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" target="_blank" rel="noopener" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2019/09/17/2a1b3339784f53fcde84bab4573189c8/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">使用openpyxl 进行excel文件读写</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2019/09/07/d7129ace2f4b92f2a04c044df02ae5ab/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">window10系统下nodejs一些知识（后续学到用的知识会持续更新。。。）</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<section class="comments" id="comments">
+    <div id="gitalk-container"></div>
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+        var id = location.pathname
+        if (location.pathname.length > 50) {
+          id = location.pathname.replace(/\/\d+\/\d+\/\d+\//, '').replace('/', '').substring(0, 50)
+        }
+        const gitalk = new Gitalk({
+          clientID: '388d0a78cda30f118f86',
+          clientSecret: '2c64b34cc20f23d768dffff64acb8c2ee02c3bee',
+          repo: 'https://zhaojiafu.github.io/',
+          owner: 'zjf',
+          admin: ['zjf'],
+          id: id,      // Ensure uniqueness and length less than 50
+          title: document.title.split('|')[0],
+          distractionFreeMode: false  // Facebook-like distraction free mode
+        })
+
+        gitalk.render('gitalk-container')
+    </script>
+</section>
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;" target="_blank" rel="noopener"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢大爷~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.jpg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.jpg" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+            <span>博客内容遵循 <a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+        <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=0 height=0 src="http://music.163.com/song/media/outer/url?id=1369798757&auto=1"></iframe>
+
+    </div>
+    <div class="bottom">
+        <p><span>赵家富 &copy; 2019</span>
+            <span>
+                
+
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" target="_blank" rel="noopener" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://zhaojiafu.github.io/2019/09/11/8a08accef09989519abc9c48f86daeb7/&title=《使用img2pdf 模块将目录下图片合并成pdf》 — 赵家富的博客&pic=https://zhaojiafu.github.io/img/zhao.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" target="_blank" rel="noopener" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://zhaojiafu.github.io/2019/09/11/8a08accef09989519abc9c48f86daeb7/&title=《使用img2pdf 模块将目录下图片合并成pdf》 — 赵家富的博客&source=感觉无从下手的时候，问自己“不难，要你干啥？”" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://zhaojiafu.github.io/2019/09/11/8a08accef09989519abc9c48f86daeb7/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《使用img2pdf 模块将目录下图片合并成pdf》 — 赵家富的博客&url=https://zhaojiafu.github.io/2019/09/11/8a08accef09989519abc9c48f86daeb7/&via=https://zhaojiafu.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://zhaojiafu.github.io/2019/09/11/8a08accef09989519abc9c48f86daeb7/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;" target="_blank" rel="noopener"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACr0lEQVR42u3aMXLDMAwEQP//00mbJtQdSHpUrCqN44hcZkZAAHw+8fXz5/r7yfqb+bX+3fWKBy48PDy8ja0nC//3hPXz8/v8cNd7xsPDw7vNy7eVLLl+Tr7RNkjg4eHhvZmXBIxZkNhP6PHw8PDexktCwnpDSciZHQceHh7eN3ltCrtOoE99nqTmx2oteHh4eDHvVCr8zfsr/T08PDy87a76+oWbJ807R7k1joCHh4d3gZdvpS0u7JQqkmfm+8TDw8O7xzvV1J8VFFp2EZbw8PDwrvHyltjOKz5Hzlb/tGeMh4eHN+LVzfg45W1bU/lz1gEMDw8P7zYv/+rWqzkubRzu7OHh4eFd4w3jScDOt75TDn5ogOHh4eEd4iWwNuXNB7bypLldpfi74eHh4ZW82ZDT7OWeb30Gw8PDw3sPb/bNWcCYFYIfAg8eHh7e13ltU6pNmtujOTZ0hYeHh7fB2y/Ltg3+WYvrVPsNDw8Pb4f3s3HlYwd5mGlbXw9Hj4eHh3eBd2qKqW2htaNXSVlkKxLi4eHhjXizwNA2sWYNs9lP8fDw8O7x9gsHsxbXLMlO1qprGHh4eHglL99WUpJoRw3yQkOe4uPh4eHd4802nYSH/IByWB1+8PDw8C7w2uWLIdGNcYE2EX/YMx4eHt413ux+1qxqg1Bb8P3k8QoPDw/vEC8psLaMHDB78kNnDw8PD+8CL28g1VMJp6rLo73h4eHhneXNBq3y8uusYZYEpKiIjIeHh3eBN3vh7qTaeevrbKEEDw8P7yxv1tRvt96+9NvEPSpG4OHh4R3lzYYD2hCSl1/bFR8CAx4eHt5reEmhYRZyZoNZeHh4eO/ntc2tWQpeD1rh4eHhfYW3nwrnDbM8tCRHf6zWgoeHhxfz2n/4Z6nzLB1PVh+S8PDw8Ca8X9rzQQV4kKrCAAAAAElFTkSuQmCC" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '死鬼去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+<script src="/node_modules/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"node_modules/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/node_modules/assets/shizuku.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"react":{"opacity":0.7},"log":false});</script></body>
+</html>

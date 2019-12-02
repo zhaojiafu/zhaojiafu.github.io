@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <link rel="canonical" href="https://zhaojiafu.github.io/2019/08/28/755ec4031b51cb0075e88fe283a2aba0/">
+    
+    
+    <title>pyinstaller 打包报错： AttributeError_ &#39;str&#39; object has no attribute &#39;decode&#39; | 赵家富的博客 | 保持好奇心</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="问题解决,python打包">
+    <meta name="description" content="说明：这个错误的原因我也不太清楚，因为我之前打包是没有问题的，这次突然想打包一个文件，然后就报错了，所以，搜索了一番，找到一个大概意思看懂了，但是没有写出解决步骤，所以自己尝试一下，成功解决。所以记录下来，嘻嘻                                                                                              在">
+<meta name="keywords" content="问题解决,python打包">
+<meta property="og:type" content="article">
+<meta property="og:title" content="pyinstaller 打包报错： AttributeError_ &#39;str&#39; object has no attribute &#39;decode&#39;">
+<meta property="og:url" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;2019&#x2F;08&#x2F;28&#x2F;755ec4031b51cb0075e88fe283a2aba0&#x2F;index.html">
+<meta property="og:site_name" content="赵家富的博客">
+<meta property="og:description" content="说明：这个错误的原因我也不太清楚，因为我之前打包是没有问题的，这次突然想打包一个文件，然后就报错了，所以，搜索了一番，找到一个大概意思看懂了，但是没有写出解决步骤，所以自己尝试一下，成功解决。所以记录下来，嘻嘻                                                                                              在">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20190828102906293.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20190828103127331.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20190828103241860.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20190828103519141.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20190828103835121.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20190828104208572.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20190828104058516.png">
+<meta property="og:updated_time" content="2019-12-02T07:40:52.740Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20190828102906293.png">
+    
+    <link rel="shortcut icon" href="/img/cb2nm-5l9w0-001.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" target="_blank" rel="noopener" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/zhao.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">赵家富</h5>
+          <a href="mailto:530519174@qq.com" target="_blank" rel="noopener" title="530519174@qq.com" class="mail">530519174@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                archives(所有)
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags/"  >
+                <i class="icon icon-lg icon-tags"></i>
+                tag(标签)
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories/"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories(分类)
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/zhaojiafu" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://blog.csdn.net/weixin_42081389" target="_blank" >
+                <i class="icon icon-lg icon-csdn"></i>
+                Csdn
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" target="_blank" rel="noopener" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+
+        <div class="flex-col header-title ellipsis">pyinstaller 打包报错： AttributeError_ &#39;str&#39; object has no attribute &#39;decode&#39;</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" target="_blank" rel="noopener" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" target="_blank" rel="noopener" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" target="_blank" rel="noopener" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+
+        <h1 class="title">pyinstaller 打包报错： AttributeError_ &#39;str&#39; object has no attribute &#39;decode&#39;
+        </h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2019-08-28T03:34:32.000Z" itemprop="datePublished" class="page-time">
+  2019-08-28
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3/">问题解决</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#说明："><span class="post-toc-number">1.</span> <span class="post-toc-text">说明：</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#一、问题："><span class="post-toc-number">2.</span> <span class="post-toc-text">一、问题：</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#二、解决步骤："><span class="post-toc-number">3.</span> <span class="post-toc-text">二、解决步骤：</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#1、谷歌或者百度搜索："><span class="post-toc-number">3.1.</span> <span class="post-toc-text">1、谷歌或者百度搜索：</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#三、成功运行"><span class="post-toc-number">4.</span> <span class="post-toc-text">三、成功运行</span></a></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-755ec4031b51cb0075e88fe283a2aba0"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">pyinstaller 打包报错： AttributeError_ 'str' object has no attribute 'decode'</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2019-08-28 11:34:32" datetime="2019-08-28T03:34:32.000Z"  itemprop="datePublished">2019-08-28</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3/">问题解决</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h1 id="说明："><a href="#说明：" class="headerlink" title="说明："></a>说明：</h1><p>这个错误的原因我也不太清楚，因为我之前打包是没有问题的，这次突然想打包一个文件，然后就报错了，所以，搜索了一番，找到一个大概意思看懂了，但是没有写出解决步骤，所以自己尝试一下，成功解决。所以记录下来，嘻嘻</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/20190828102906293.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+
+<h1 id="一、问题："><a href="#一、问题：" class="headerlink" title="一、问题："></a>一、问题：</h1><p>pyinstaller 打包报错：</p>
+<p>具体错误代码：</p>
+<pre><code>PS D:\zjf_workspace\000、爬虫代码-基础的\scrapy_100_工具\11、视频处理&gt; pyinstaller -F .\cv2视频截帧.py
+525 INFO: PyInstaller: 3.5
+525 INFO: Python: 3.6.8
+527 INFO: Platform: Windows-10-10.0.17134-SP0
+530 INFO: wrote D:\zjf_workspace\000、爬虫代码-基础的\scrapy_100_工具\11、视频处理\cv2视频截帧.spec
+566 INFO: UPX is not available.
+575 INFO: Extending PYTHONPATH with paths
+[&apos;D:\\zjf_workspace\\000、爬虫代码-基础的\\scrapy_100_工具\\11、视频处理&apos;,
+ &apos;D:\\zjf_workspace\\000、爬虫代码-基础的\\scrapy_100_工具\\11、视频处理&apos;]
+576 INFO: checking Analysis
+577 INFO: Building Analysis because Analysis-00.toc is non existent
+577 INFO: Initializing module dependency graph...
+601 INFO: Initializing module graph hooks...
+604 INFO: Analyzing base_library.zip ...
+Traceback (most recent call last):
+  File &quot;d:\tools\python3.6\lib\runpy.py&quot;, line 193, in _run_module_as_main
+    &quot;__main__&quot;, mod_spec)
+  File &quot;d:\tools\python3.6\lib\runpy.py&quot;, line 85, in _run_code
+    exec(code, run_globals)
+  File &quot;D:\tools\Python3.6\Scripts\pyinstaller.exe\__main__.py&quot;, line 9, in &lt;module&gt;
+  File &quot;d:\tools\python3.6\lib\site-packages\PyInstaller\__main__.py&quot;, line 111, in run
+    run_build(pyi_config, spec_file, **vars(args))
+  File &quot;d:\tools\python3.6\lib\site-packages\PyInstaller\__main__.py&quot;, line 63, in run_build
+    PyInstaller.building.build_main.main(pyi_config, spec_file, **kwargs)
+  File &quot;d:\tools\python3.6\lib\site-packages\PyInstaller\building\build_main.py&quot;, line 844, in main
+    build(specfile, kw.get(&apos;distpath&apos;), kw.get(&apos;workpath&apos;), kw.get(&apos;clean_build&apos;))
+  File &quot;d:\tools\python3.6\lib\site-packages\PyInstaller\building\build_main.py&quot;, line 791, in build
+    exec(code, spec_namespace)
+  File &quot;D:\zjf_workspace\000、爬虫代码-基础的\scrapy_100_工具\11、视频处理\cv2视频截帧.spec&quot;, line 17, in &lt;module&gt;
+    noarchive=False)
+  File &quot;d:\tools\python3.6\lib\site-packages\PyInstaller\building\build_main.py&quot;, line 243, in __init__
+    self.__postinit__()
+  File &quot;d:\tools\python3.6\lib\site-packages\PyInstaller\building\datastruct.py&quot;, line 158, in __postinit__
+    self.assemble()
+  File &quot;d:\tools\python3.6\lib\site-packages\PyInstaller\building\build_main.py&quot;, line 349, in assemble
+    excludes=self.excludes, user_hook_dirs=self.hookspath)
+  File &quot;d:\tools\python3.6\lib\site-packages\PyInstaller\depend\analysis.py&quot;, line 608, in initialize_modgraph
+    required_mods += collect_submodules(m)
+  File &quot;d:\tools\python3.6\lib\site-packages\PyInstaller\utils\hooks\__init__.py&quot;, line 624, in collect_submodules
+    repr(pkg_dir), package))
+  File &quot;d:\tools\python3.6\lib\site-packages\PyInstaller\utils\hooks\__init__.py&quot;, line 83, in exec_statement
+    return __exec_python_cmd(cmd)
+  File &quot;d:\tools\python3.6\lib\site-packages\PyInstaller\utils\hooks\__init__.py&quot;, line 72, in __exec_python_cmd
+    txt = exec_python(*cmd, env=pp_env)
+  File &quot;d:\tools\python3.6\lib\site-packages\PyInstaller\compat.py&quot;, line 637, in exec_python
+    return exec_command(*cmdargs, **kwargs)
+  File &quot;d:\tools\python3.6\lib\site-packages\PyInstaller\compat.py&quot;, line 427, in exec_command
+    out = out.decode(encoding)
+AttributeError: &apos;str&apos; object has no attribute &apos;decode&apos;</code></pre><p>错误图：</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/20190828103127331.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+
+
+<h1 id="二、解决步骤："><a href="#二、解决步骤：" class="headerlink" title="二、解决步骤："></a>二、解决步骤：</h1><h2 id="1、谷歌或者百度搜索："><a href="#1、谷歌或者百度搜索：" class="headerlink" title="1、谷歌或者百度搜索："></a>1、谷歌或者百度搜索：</h2><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/20190828103241860.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+
+<p>上面这俩个我都看了，但是第一个我按他的步骤没有解决问题，博客地址：</p>
+<p><a href="https://blog.csdn.net/jylonger/article/details/86537290" target="_blank" rel="noopener">https://blog.csdn.net/jylonger/article/details/86537290</a></p>
+<p>第二个：大概意思看懂了，其实错误人家也说出来了，<br><a href="https://blog.csdn.net/qq_41185868/article/details/82079079" target="_blank" rel="noopener">https://blog.csdn.net/qq_41185868/article/details/82079079</a></p>
+<p>错误提示，意思就是他是字符串类型的，不能再decode,所以,我复制错误的地址，使用pycharm打开，然后复制out = out.decode(encoding)一句，然后搜索进行修改人家的模块（记得先备份一份，防止改错，如果改错还能还原）</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/20190828103519141.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+
+<p>打开之后，下面是我改的方法，很简单，就是在原先的基础上增加个条件，做个判断，如果是字符串类行的，直接跳过，如果是其他的还和之前代码功能一样。</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/20190828103835121.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+
+<h1 id="三、成功运行"><a href="#三、成功运行" class="headerlink" title="三、成功运行"></a>三、成功运行</h1><p>再次执行打包命令，成功运行：<br>高兴<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/20190828104208572.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure><br>效果图：</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/20190828104058516.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+
+
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2019-12-02T07:40:52.740Z" itemprop="dateUpdated">2019-12-02 15:40:52</time>
+</span><br>
+
+
+        
+        这里可以写作者留言，标签和 hexo 中所有变量及辅助函数等均可调用，示例：<a href="/2019/08/28/755ec4031b51cb0075e88fe283a2aba0/" target="_blank" rel="external">https://zhaojiafu.github.io/2019/08/28/755ec4031b51cb0075e88fe283a2aba0/</a>
+        
+    </div>
+    
+    <footer>
+        <a href="https://zhaojiafu.github.io">
+            <img src="/img/zhao.jpg" alt="赵家富">
+            赵家富
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" target="_blank" rel="noopener" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python%E6%89%93%E5%8C%85/" rel="tag">python打包</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3/" rel="tag">问题解决</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://zhaojiafu.github.io/2019/08/28/755ec4031b51cb0075e88fe283a2aba0/&title=《pyinstaller 打包报错： AttributeError_ 'str' object has no attribute 'decode'》 — 赵家富的博客&pic=https://zhaojiafu.github.io/img/zhao.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" target="_blank" rel="noopener" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://zhaojiafu.github.io/2019/08/28/755ec4031b51cb0075e88fe283a2aba0/&title=《pyinstaller 打包报错： AttributeError_ 'str' object has no attribute 'decode'》 — 赵家富的博客&source=感觉无从下手的时候，问自己“不难，要你干啥？”" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://zhaojiafu.github.io/2019/08/28/755ec4031b51cb0075e88fe283a2aba0/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《pyinstaller 打包报错： AttributeError_ 'str' object has no attribute 'decode'》 — 赵家富的博客&url=https://zhaojiafu.github.io/2019/08/28/755ec4031b51cb0075e88fe283a2aba0/&via=https://zhaojiafu.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://zhaojiafu.github.io/2019/08/28/755ec4031b51cb0075e88fe283a2aba0/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" target="_blank" rel="noopener" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2019/08/29/ac081ae484b386b7968f8412323c4d23/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">python使用danmaku2ass 将xml字幕转换成ass字幕+ffmpeg将ass字幕合并成含有字幕的视频</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2019/08/28/4e43a71e6cf8eb412ede54c6bd9c2c27/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">文件访问被拒绝XXX 你需要权限才能执行此操作你需要计算机管理员提供的权限才能对此文件进行更改</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<section class="comments" id="comments">
+    <div id="gitalk-container"></div>
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+        var id = location.pathname
+        if (location.pathname.length > 50) {
+          id = location.pathname.replace(/\/\d+\/\d+\/\d+\//, '').replace('/', '').substring(0, 50)
+        }
+        const gitalk = new Gitalk({
+          clientID: '388d0a78cda30f118f86',
+          clientSecret: '2c64b34cc20f23d768dffff64acb8c2ee02c3bee',
+          repo: 'https://zhaojiafu.github.io/',
+          owner: 'zjf',
+          admin: ['zjf'],
+          id: id,      // Ensure uniqueness and length less than 50
+          title: document.title.split('|')[0],
+          distractionFreeMode: false  // Facebook-like distraction free mode
+        })
+
+        gitalk.render('gitalk-container')
+    </script>
+</section>
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;" target="_blank" rel="noopener"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢大爷~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.jpg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.jpg" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+            <span>博客内容遵循 <a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+        <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=0 height=0 src="http://music.163.com/song/media/outer/url?id=1369798757&auto=1"></iframe>
+
+    </div>
+    <div class="bottom">
+        <p><span>赵家富 &copy; 2019</span>
+            <span>
+                
+
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" target="_blank" rel="noopener" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://zhaojiafu.github.io/2019/08/28/755ec4031b51cb0075e88fe283a2aba0/&title=《pyinstaller 打包报错： AttributeError_ 'str' object has no attribute 'decode'》 — 赵家富的博客&pic=https://zhaojiafu.github.io/img/zhao.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" target="_blank" rel="noopener" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://zhaojiafu.github.io/2019/08/28/755ec4031b51cb0075e88fe283a2aba0/&title=《pyinstaller 打包报错： AttributeError_ 'str' object has no attribute 'decode'》 — 赵家富的博客&source=感觉无从下手的时候，问自己“不难，要你干啥？”" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://zhaojiafu.github.io/2019/08/28/755ec4031b51cb0075e88fe283a2aba0/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《pyinstaller 打包报错： AttributeError_ 'str' object has no attribute 'decode'》 — 赵家富的博客&url=https://zhaojiafu.github.io/2019/08/28/755ec4031b51cb0075e88fe283a2aba0/&via=https://zhaojiafu.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://zhaojiafu.github.io/2019/08/28/755ec4031b51cb0075e88fe283a2aba0/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;" target="_blank" rel="noopener"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACr0lEQVR42u3awa4aQQwEwPz/T79cI0Us7fYMIVLtCQGCKQ5r0/avX/H188f19/OvnvmJr1ff8uqdhy88PDy8xdHzL37+hGfw8+Pnc+ZnxsPDw7vNSz4uLwbJsZ7fP/2Wl8/j4eHhfQ2vu913hSH5UfDw8PD+F17S5u5h/6ww4OHh4T3y8sNtbuVJA5231IezFjw8PLyYl0+RvufxlfkeHh4e3nqqPi0Sp37pvFl/c1o8PDy8C7zp2D5pYbumOQkvpufEw8PDu8dLgtFTA/4udMgLRplV4+Hh4cW8rmme3r67QHa6QBDl03h4eHhrXvf1UQtbtcJ5icrHZnh4eHg3eN0C1ia6na4m5ItZgzkeHh4eXsXLx11JYeii3i56KMMIPDw8vDWvGzVNS0IC6EZr49EXHh4e3pqXF4NpYehChDwsjn5uPDw8vAu8/Qi/rEXD6HYVAePh4eEd5XV/9bt2vCsAedv9su7h4eHhHeV1Q6/NiCsPbS8uXeHh4eEd5U1H+N2YKmdMzxal1Hh4eHgLXt4u55jN8tb0JG+QeHh4eBd4+dGT8VV+W58GEN2reHh4ePd408PlZSMfs20GaeMwAg8PD+8oLwkFuuBguqbQLX7h4eHh3eZtQtK8W+/G/wcWs/Dw8PAu8LrANMFshv1d6BAN2PDw8PAO8TYHzZvpfH3q2LoVHh4e3sd5U1gXv06b++kSAx4eHt7neZvQdloeuusNEg8PD+8o72d4Pd/EpwtS05Hb+FU8PDy8C7zuJr4fYnVRbxlG4OHh4V3g3Tt0N9DaLCjg4eHhfZI3jVanLfW+wOSbVHh4eHjfxtuHttOlgeT5NwMwPDw8vK/hJXHqvnhMiwoeHh7eZ3h5ZDDdTZje+vfDNjw8PLzbvM0f/u7nSErIc7t8YKaHh4eH1/B+AxR9St+y3rUoAAAAAElFTkSuQmCC" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '死鬼去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+<script src="/node_modules/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"node_modules/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/node_modules/assets/shizuku.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"react":{"opacity":0.7},"log":false});</script></body>
+</html>

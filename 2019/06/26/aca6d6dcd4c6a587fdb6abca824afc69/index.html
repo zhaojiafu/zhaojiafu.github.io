@@ -1,0 +1,1120 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <link rel="canonical" href="https://zhaojiafu.github.io/2019/06/26/aca6d6dcd4c6a587fdb6abca824afc69/">
+    
+    
+    <title>mysql常用命令总结 | 赵家富的博客 | 保持好奇心</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="mysql,python 模块">
+    <meta name="description" content="mysql常用命令总结1、连接数据库mysql -h ip地址 -P 端口号 -u 用户名 -p 密码2、显示所有数据库show databases;3、创建数据库create database 数据库名字 default charset&#x3D;utf8;4、使用数据库use 数据库名字;5、删除数据库drop 数据库名字;6、查询数据库下所有的表use 数据库名; show tables;7、创建表c">
+<meta name="keywords" content="mysql,python 模块">
+<meta property="og:type" content="article">
+<meta property="og:title" content="mysql常用命令总结">
+<meta property="og:url" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;2019&#x2F;06&#x2F;26&#x2F;aca6d6dcd4c6a587fdb6abca824afc69&#x2F;index.html">
+<meta property="og:site_name" content="赵家富的博客">
+<meta property="og:description" content="mysql常用命令总结1、连接数据库mysql -h ip地址 -P 端口号 -u 用户名 -p 密码2、显示所有数据库show databases;3、创建数据库create database 数据库名字 default charset&#x3D;utf8;4、使用数据库use 数据库名字;5、删除数据库drop 数据库名字;6、查询数据库下所有的表use 数据库名; show tables;7、创建表c">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-12-02T07:00:37.416Z">
+<meta name="twitter:card" content="summary">
+    
+    <link rel="shortcut icon" href="/img/cb2nm-5l9w0-001.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" target="_blank" rel="noopener" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/zhao.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">赵家富</h5>
+          <a href="mailto:530519174@qq.com" target="_blank" rel="noopener" title="530519174@qq.com" class="mail">530519174@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                archives(所有)
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags/"  >
+                <i class="icon icon-lg icon-tags"></i>
+                tag(标签)
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories/"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories(分类)
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/zhaojiafu" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://blog.csdn.net/weixin_42081389" target="_blank" >
+                <i class="icon icon-lg icon-csdn"></i>
+                Csdn
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" target="_blank" rel="noopener" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+
+        <div class="flex-col header-title ellipsis">mysql常用命令总结</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" target="_blank" rel="noopener" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" target="_blank" rel="noopener" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" target="_blank" rel="noopener" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+
+        <h1 class="title">mysql常用命令总结
+        </h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2019-06-26T03:34:32.000Z" itemprop="datePublished" class="page-time">
+  2019-06-26
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/python-%E6%A8%A1%E5%9D%97/">python 模块</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#mysql常用命令总结"><span class="post-toc-number">1.</span> <span class="post-toc-text">mysql常用命令总结</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#1、连接数据库"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">1、连接数据库</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#2、显示所有数据库"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">2、显示所有数据库</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#3、创建数据库"><span class="post-toc-number">1.3.</span> <span class="post-toc-text">3、创建数据库</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#4、使用数据库"><span class="post-toc-number">1.4.</span> <span class="post-toc-text">4、使用数据库</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#5、删除数据库"><span class="post-toc-number">1.5.</span> <span class="post-toc-text">5、删除数据库</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#6、查询数据库下所有的表"><span class="post-toc-number">1.6.</span> <span class="post-toc-text">6、查询数据库下所有的表</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#7、创建表"><span class="post-toc-number">1.7.</span> <span class="post-toc-text">7、创建表</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#8、常用的类型"><span class="post-toc-number">1.8.</span> <span class="post-toc-text">8、常用的类型</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#9、删除表"><span class="post-toc-number">1.9.</span> <span class="post-toc-text">9、删除表</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#10、约束"><span class="post-toc-number">1.10.</span> <span class="post-toc-text">10、约束</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#11、描述表的信息"><span class="post-toc-number">1.11.</span> <span class="post-toc-text">11、描述表的信息</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#12、显示表的创建sql语句"><span class="post-toc-number">1.12.</span> <span class="post-toc-text">12、显示表的创建sql语句</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#13、主键的生成策略"><span class="post-toc-number">1.13.</span> <span class="post-toc-text">13、主键的生成策略</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#14、基本的增删改查"><span class="post-toc-number">1.14.</span> <span class="post-toc-text">14、基本的增删改查</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#15、单表查询"><span class="post-toc-number">1.15.</span> <span class="post-toc-text">15、单表查询</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#15-0、三个表结构图"><span class="post-toc-number">1.15.1.</span> <span class="post-toc-text">15.0、三个表结构图</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#15-1、查询所有"><span class="post-toc-number">1.15.2.</span> <span class="post-toc-text">15.1、查询所有</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#15-2、去重查询"><span class="post-toc-number">1.15.3.</span> <span class="post-toc-text">15.2、去重查询</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#15-3、条件查询"><span class="post-toc-number">1.15.4.</span> <span class="post-toc-text">15.3、条件查询</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#15-4、模糊查询"><span class="post-toc-number">1.15.5.</span> <span class="post-toc-text">15.4、模糊查询</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#15-5、条件范围查询"><span class="post-toc-number">1.15.6.</span> <span class="post-toc-text">15.5、条件范围查询</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#15-6、聚合查询"><span class="post-toc-number">1.15.7.</span> <span class="post-toc-text">15.6、聚合查询</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#15-6、分组查询"><span class="post-toc-number">1.15.8.</span> <span class="post-toc-text">15.6、分组查询</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#15-7、排序查询"><span class="post-toc-number">1.15.9.</span> <span class="post-toc-text">15.7、排序查询</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#15-8、分页查询"><span class="post-toc-number">1.15.10.</span> <span class="post-toc-text">15.8、分页查询</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#16、三种映射关系"><span class="post-toc-number">1.16.</span> <span class="post-toc-text">16、三种映射关系</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#17、关联查询"><span class="post-toc-number">1.17.</span> <span class="post-toc-text">17、关联查询</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#17-1、内连接"><span class="post-toc-number">1.17.1.</span> <span class="post-toc-text">17.1、内连接</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#17-2、外连接"><span class="post-toc-number">1.17.2.</span> <span class="post-toc-text">17.2、外连接</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#简单小题练手"><span class="post-toc-number">1.18.</span> <span class="post-toc-text">简单小题练手</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#18、函数"><span class="post-toc-number">1.19.</span> <span class="post-toc-text">18、函数</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#19、视图"><span class="post-toc-number">1.20.</span> <span class="post-toc-text">19、视图</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#20、事务"><span class="post-toc-number">1.21.</span> <span class="post-toc-text">20、事务</span></a></li></ol></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-aca6d6dcd4c6a587fdb6abca824afc69"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">mysql常用命令总结</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2019-06-26 11:34:32" datetime="2019-06-26T03:34:32.000Z"  itemprop="datePublished">2019-06-26</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/python-%E6%A8%A1%E5%9D%97/">python 模块</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h1 id="mysql常用命令总结"><a href="#mysql常用命令总结" class="headerlink" title="mysql常用命令总结"></a>mysql常用命令总结</h1><h2 id="1、连接数据库"><a href="#1、连接数据库" class="headerlink" title="1、连接数据库"></a>1、连接数据库</h2><pre><code>mysql -h ip地址 -P 端口号 -u 用户名 -p 密码</code></pre><h2 id="2、显示所有数据库"><a href="#2、显示所有数据库" class="headerlink" title="2、显示所有数据库"></a>2、显示所有数据库</h2><pre><code>show databases;</code></pre><h2 id="3、创建数据库"><a href="#3、创建数据库" class="headerlink" title="3、创建数据库"></a>3、创建数据库</h2><pre><code>create database 数据库名字 default charset=utf8;</code></pre><h2 id="4、使用数据库"><a href="#4、使用数据库" class="headerlink" title="4、使用数据库"></a>4、使用数据库</h2><pre><code>use 数据库名字;</code></pre><h2 id="5、删除数据库"><a href="#5、删除数据库" class="headerlink" title="5、删除数据库"></a>5、删除数据库</h2><pre><code>drop 数据库名字;</code></pre><h2 id="6、查询数据库下所有的表"><a href="#6、查询数据库下所有的表" class="headerlink" title="6、查询数据库下所有的表"></a>6、查询数据库下所有的表</h2><pre><code>use 数据库名;
+show tables;</code></pre><h2 id="7、创建表"><a href="#7、创建表" class="headerlink" title="7、创建表"></a>7、创建表</h2><pre><code>create table 表名(
+    列名 类型,
+    列名 类型,
+    列名 类型
+);</code></pre><h2 id="8、常用的类型"><a href="#8、常用的类型" class="headerlink" title="8、常用的类型"></a>8、常用的类型</h2><pre><code>数字    int,float,decimal
+字符串    char,varchar,longtext
+日期    date,datetime</code></pre><h2 id="9、删除表"><a href="#9、删除表" class="headerlink" title="9、删除表"></a>9、删除表</h2><pre><code>drop table 表名</code></pre><h2 id="10、约束"><a href="#10、约束" class="headerlink" title="10、约束"></a>10、约束</h2><pre><code>1、主键约束
+2、非空约束
+3、唯一约束
+4、默认约束
+5、外键约束
+
+
+/*外键表*/
+create table student(
+    id int primary key,            
+    name varchar(100) not null,
+    idcard char(18) unique,
+    addres varchar(100) default &apos;郑州&apos;,
+    gid int not null,
+    foreign key(gid) references grade(id)
+);
+
+
+/*主键表*/
+create table grade(
+    id int primary key,
+    name varchar(100) not null
+);</code></pre><h2 id="11、描述表的信息"><a href="#11、描述表的信息" class="headerlink" title="11、描述表的信息"></a>11、描述表的信息</h2><pre><code>desc 表名</code></pre><h2 id="12、显示表的创建sql语句"><a href="#12、显示表的创建sql语句" class="headerlink" title="12、显示表的创建sql语句"></a>12、显示表的创建sql语句</h2><pre><code>show create table 表名</code></pre><h2 id="13、主键的生成策略"><a href="#13、主键的生成策略" class="headerlink" title="13、主键的生成策略"></a>13、主键的生成策略</h2><pre><code>1、int 自动增长   auto_increment
+2、字符串      uuid            了解
+
+create table grade(  
+    id int auto_increment primary key,
+    name varchar(100) not null
+);
+create table grade2(  
+    id char(36) primary key,
+    name varchar(100) not null
+);
+insert into grade(name) values(&apos;a&apos;);
+insert into grade(name) values(&apos;b&apos;);
+
+insert into grade2(id,name) values(uuid(),&apos;a&apos;);
+insert into grade2(id,name) values(uuid(),&apos;b&apos;);</code></pre><h2 id="14、基本的增删改查"><a href="#14、基本的增删改查" class="headerlink" title="14、基本的增删改查"></a>14、基本的增删改查</h2><pre><code>create table student(
+    id int auto_increment primary key,
+    name varchar(100) not null,
+    sex char(1) not null,
+    address varchar(100) default &apos;郑州&apos;,
+    phone varchar(11),
+    birthday date
+);
+
+insert into student(name,sex,address,phone,birthday) values(&apos;老王&apos;,&apos;男&apos;,&apos;开封&apos;,&apos;11111111111&apos;,&apos;1998-2-2&apos;);
+
+select * from student;
+select name,phone from student;
+select name 姓名,phone 电话 from student;
+
+delete from student where id = 3;
+
+update student set address=&apos;开封&apos; where id = 5;
+update student set sex=&apos;女&apos;,address=&apos;曼谷&apos; where id = 5;
+
+UPDATE 
+    student 
+SET 
+    sex=&apos;女&apos;,address=&apos;曼谷&apos; 
+WHERE 
+    id = 5;</code></pre><h2 id="15、单表查询"><a href="#15、单表查询" class="headerlink" title="15、单表查询"></a>15、单表查询</h2><h3 id="15-0、三个表结构图"><a href="#15-0、三个表结构图" class="headerlink" title="15.0、三个表结构图"></a>15.0、三个表结构图</h3><pre><code>基于三个表完成下面的常用命令训练，表结构如图所示：</code></pre>{% image /imgs/20190626224127107.png '在这里插入图片描述' '' %}
+
+<h3 id="15-1、查询所有"><a href="#15-1、查询所有" class="headerlink" title="15.1、查询所有"></a>15.1、查询所有</h3><pre><code>/*1、查询所有EMP信息*/
+select * from EMP;
+
+/*2、查询所有job*/
+select job from EMP;</code></pre><h3 id="15-2、去重查询"><a href="#15-2、去重查询" class="headerlink" title="15.2、去重查询"></a>15.2、去重查询</h3><pre><code>/*3、去重：查询所有job*/
+select distinct job from EMP;
+
+
+/*4、去重：查询所有deptno,job的组合*/
+select distinct deptno,job from EMP;</code></pre><h3 id="15-3、条件查询"><a href="#15-3、条件查询" class="headerlink" title="15.3、条件查询"></a>15.3、条件查询</h3><pre><code>/*5、条件：查询工资大于2000的*/
+select * from EMP where sal &gt; 2000;
+
+
+/*6、条件：查询工资大于2000的并且部门编号是10的*/
+select * from EMP where sal &gt; 2000 and deptno = 10;
+
+/*7、条件：查询工资2000-3000之间的*/
+select * from EMP where sal &gt;= 2000 and sal &lt;= 3000;
+select * from EMP where sal between 2000 and 3000;</code></pre><h3 id="15-4、模糊查询"><a href="#15-4、模糊查询" class="headerlink" title="15.4、模糊查询"></a>15.4、模糊查询</h3><pre><code>/*8、模糊：查询以S开头的员工信息*/
+select * from EMP where ename like &apos;S%&apos;;
+
+/*9、模糊：查询含有S的员工信息*/
+select * from EMP where ename like &apos;%S%&apos;;
+
+/*10、模糊：查询含第三个字符是R的员工信息*/
+select * from EMP where ename like &apos;__R%&apos;;</code></pre><h3 id="15-5、条件范围查询"><a href="#15-5、条件范围查询" class="headerlink" title="15.5、条件范围查询"></a>15.5、条件范围查询</h3><pre><code>/*11、范围：查询部门编号是10，20的员工信息*/
+select * from EMP where (deptno = 10) or (deptno=20);
+select * from EMP where deptno in (10,20);
+
+/*12、空：查询没有有奖金的员工信息*/
+select * from EMP where comm is null;
+
+/*13、空：查询奖金大于400的员工信息*/
+select * from EMP where comm &gt; 400;
+
+/*14、空：查询员工的编号，年薪  null参与的运算，结果还是null*/
+select empno 编号,(sal+ifnull(comm,0))*12 年薪 from EMP;</code></pre><h3 id="15-6、聚合查询"><a href="#15-6、聚合查询" class="headerlink" title="15.6、聚合查询"></a>15.6、聚合查询</h3><pre><code>/*15、聚合：统计员工的数量*/
+select count(*) from EMP;
+
+/*16、聚合：统计有奖金员工的数量*/
+select count(*) from EMP where comm is not null;
+select count(comm) from EMP;
+
+/*17、聚合：最高的工资，最低的工资，平均工资,工资的总和*/
+select max(sal),min(sal),avg(sal),sum(sal) from EMP;</code></pre><h3 id="15-6、分组查询"><a href="#15-6、分组查询" class="headerlink" title="15.6、分组查询"></a>15.6、分组查询</h3><pre><code>/*
+    分组需要注意：
+
+        1、分组之后只能查询两种 
+                1、被分组的列  
+                2、聚合函数
+
+        2、数据过滤
+                1、过滤的数据是分组之前，where
+                2、过滤的数据是分组之后，having
+
+        3、关键词的顺序
+                select
+                from 
+                where    分组之前的过滤
+                group by
+                having     分组之后的过滤
+                order by
+                limit
+
+*/
+
+/*18、分组：每个部门的平均工资~~~*/
+
+select deptno,avg(sal)
+from EMP
+group by deptno;
+
+
+/*19、分组：每个部门员工工资高于1000的平均工资*/
+
+select deptno,avg(sal)
+from EMP
+where sal &gt; 1000
+group by deptno;
+
+/*20、分组：每个部门员工工资高于1000的平均工资,平均工资高于2000*/
+select deptno,avg(sal)
+from EMP
+where sal &gt; 1000
+group by deptno
+having avg(sal)&gt;2000;
+
+
+select deptno,avg(sal) avg_sal
+from EMP
+where sal &gt; 1000
+group by deptno
+having avg_sal&gt;2000;
+
+/*21、分组：每个部门每个工种的最高工资*/
+
+select deptno,job,max(sal)
+from EMP
+group by deptno,job;</code></pre><h3 id="15-7、排序查询"><a href="#15-7、排序查询" class="headerlink" title="15.7、排序查询"></a>15.7、排序查询</h3><pre><code>/*22、排序：查询所有员工信息，按照工资排序*/
+
+select * from EMP
+order by sal asc;
+
+select * from EMP
+order by sal desc;
+
+/*23、排序：查询所有员工信息，按照按照部门正序，按照工资倒序*/
+select * from EMP
+order by deptno,sal desc;</code></pre><h3 id="15-8、分页查询"><a href="#15-8、分页查询" class="headerlink" title="15.8、分页查询"></a>15.8、分页查询</h3><pre><code>/*24、分页*/
+select * from EMP
+order by empno;
+
+select * from EMP
+order by empno
+limit 3;
+
+select * from EMP
+order by empno
+limit 2,3;
+
+
+/*25、分页：按照编号排序，每页显示2(page_size)条，查第5(page_now)页信息*/
+
+/*
+0 1
+2 3
+4 5
+...
+limit (page_now-1)*page_size,page_size
+*/
+select * from EMP
+order by empno
+limit 8,2;</code></pre><h2 id="16、三种映射关系"><a href="#16、三种映射关系" class="headerlink" title="16、三种映射关系"></a>16、三种映射关系</h2><pre><code>/*
+1:1
+    任选一个表当作主键表，另一个表当作外键表
+    并且外键列必须唯一
+*/
+drop table if exists husband;
+drop table if exists wife;
+
+create table wife(
+    id int auto_increment primary key,
+    name varchar(100)
+);
+
+create table husband(
+    id int auto_increment primary key,
+    name varchar(100),
+    wid int unique,
+    foreign key(wid) references wife(id) 
+);
+
+
+/*
+1:M
+    设置外键
+*/
+create table dept(
+    id int auto_increment primary key,
+    name varchar(100)
+);
+
+create table emp(
+    id int auto_increment primary key,
+    name varchar(100),
+    did int,
+    foreign key(did) references dept(id) on delete cascade
+);
+/*
+M:N
+    创建中间表
+    一般中间表也有用
+*/
+
+create table student(
+    id int auto_increment primary key,
+    name varchar(100)
+);
+
+create table subject(
+    id int auto_increment primary key,
+    name varchar(100)
+);
+
+create table student_subject(
+    id int auto_increment primary key,
+    stuid int,
+    subid int,
+    foreign key(stuid) references student(id), 
+  foreign key(subid) references subject(id)
+);</code></pre><h2 id="17、关联查询"><a href="#17、关联查询" class="headerlink" title="17、关联查询"></a>17、关联查询</h2><h3 id="17-1、内连接"><a href="#17-1、内连接" class="headerlink" title="17.1、内连接"></a>17.1、内连接</h3><pre><code>/*1、内连接*/
+select * from DEPT,EMP
+where DEPT.DEPTNO = EMP.DEPTNO;
+
+select  
+    EMP.EMPNO,EMP.ENAME,DEPT.DNAME
+from 
+    DEPT
+inner join 
+    EMP
+on 
+    DEPT.DEPTNO = EMP.DEPTNO;
+
+
+
+
+/*查询员工的编号，姓名，所在部门的名字*/
+select 
+    EMP.EMPNO,EMP.ENAME,DEPT.DNAME
+from 
+    DEPT,EMP
+where 
+    DEPT.DEPTNO = EMP.DEPTNO;
+
+
+
+
+select 
+    EMP.EMPNO,EMP.ENAME,DEPT.DNAME
+from 
+    DEPT,EMP
+where 
+    DEPT.DEPTNO = EMP.DEPTNO
+and
+    DEPT.DEPTNO = 10;</code></pre><h3 id="17-2、外连接"><a href="#17-2、外连接" class="headerlink" title="17.2、外连接"></a>17.2、外连接</h3><pre><code>/*外连接*/
+select  
+    t2.EMPNO,t2.ENAME,t1.DEPTNO,t1.DNAME
+from 
+    DEPT t1
+left join 
+    EMP t2
+on 
+    t1.DEPTNO = t2.DEPTNO;
+
+
+/*创建自关联的表*/
+
+create table EMP2(
+    id int auto_increment primary key,
+    name varchar(100),
+    mgr int foreign key(mgr) references EMP2(id)
+);
+
+
+
+
+/*查询员工的编号，姓名，上级名字*/
+select t1.empno,t1.ename,t2.ename 
+from EMP t1,EMP t2
+where t1.mgr = t2.empno
+
+select t1.empno 员工的编号 ,t1.ename 员工的姓名,t2.ename 上级的姓名
+from EMP t1 left join EMP t2
+on t1.mgr = t2.empno;</code></pre><h2 id="简单小题练手"><a href="#简单小题练手" class="headerlink" title="简单小题练手"></a>简单小题练手</h2><pre><code>/*1、一个表能完成不？*/
+
+1、查询emp中最高薪水人的名字
+
+    1、查询最高的薪水
+    select max(sal) from EMP;
+
+    2、将1作为条件
+    select ename from EMP
+    where sal = (select max(sal) from EMP);
+
+
+2、查询每个部门中的最高薪水人的名字和所在的部门编号
+
+    1、各个部门的最高薪水
+    select max(sal),deptno from EMP
+    group by deptno;
+
+    2、将1的结果作为一个新的表，联表查询
+    select t1.ename,t1.deptno
+    from 
+        EMP t1
+    inner join 
+        (select max(sal) max_sal,deptno from EMP group by deptno) t2
+    on t1.deptno = t2.deptno and sal = t2.max_sal;
+
+
+
+3、查询薪水在平均薪水之上的雇员的名字
+    select ename from EMP where sal &gt;(select avg(sal) from EMP);
+
+4、查询雇员的名字和所在部门的名字
+    select t1.ename,t2.dname
+    from EMP t1,DEPT t2
+    where t1.deptno = t2.deptno;
+
+5、查询薪水在在本部门平均薪水之上的雇员的名字
+        select t1.ename,t1.deptno
+        from 
+            EMP t1
+        inner join 
+            (select avg(sal) avg_sal,deptno from EMP group by deptno) t2
+        on t1.deptno = t2.deptno and sal &gt; t2.avg_sal;
+
+6、查询每个员工的薪水的等级,员工的姓名
+        select * from EMP;
+        select * from SALGRADE;
+
+        select t1.ename,t2.grade
+        from EMP t1,SALGRADE t2
+        where t1.sal between t2.losal and t2.hisal;
+
+
+
+7、查询每个部门的平均薪水的等级,部门的编号
+    1、各个部门的平均薪水
+        select avg(sal),deptno from EMP group by deptno;
+    2、将1的结果当作一个表
+        select
+                t1.grade,t2.deptno
+        from 
+            SALGRADE t1,(select avg(sal) avg_sal,deptno from EMP group by deptno) t2
+        where 
+            t2.avg_sal between t1.losal and t1.hisal
+
+
+
+8、查询雇员的名字，所在部门的名字，工资的等级
+        select t1.ename,t2.dname,t3.grade
+        from 
+            EMP t1,DEPT t2,SALGRADE t3
+        where 
+            t1.deptno = t2.deptno
+        and
+            t1.sal between t3.losal and t3.hisal;
+
+        select t1.ename,t2.dname,t3.grade
+        from 
+            EMP t1
+        inner join
+            DEPT t2    
+        on 
+            t1.deptno = t2.deptno
+        inner join
+            SALGRADE t3
+        on
+            t1.sal between t3.losal and t3.hisal;
+
+
+
+9、查询雇员的名字和其经理的名字
+
+        select employee.ename,employer.ename
+        from EMP employer,EMP employee
+        where employee.mgr = employer.empno;
+
+
+10、查询雇员中是经理人的名字
+        select * from EMP;
+
+        1、经理上的编号
+        select distinct mgr from EMP;
+        2、将1当作条件
+        select 
+                ename
+        from 
+                EMP
+        where 
+                empno in(select distinct mgr from EMP);
+
+
+11、查询平均薪水最高的部门的编号和名称
+        1、每个部门的平均薪水
+        select avg(sal) avg_sal,deptno from EMP group by deptno;
+        2、求1表中的最高平均薪水
+        select max(t.avg_sal) from (select avg(sal) avg_sal,deptno from EMP group by deptno) t
+        3、将2的结果当作条件
+        select t1.deptno
+        from (select avg(sal) avg_sal,deptno from EMP group by deptno) t1
+        where t1.avg_sal = (select max(t2.avg_sal) from (select avg(sal) avg_sal,deptno from EMP group by deptno) t2)
+        4、将3作为条件
+        select t.deptno,t.dname
+        from DEPT t
+        where deptno in (
+                select t1.deptno
+                from (select avg(sal) avg_sal,deptno from EMP group by deptno) t1
+                where t1.avg_sal = (select max(t2.avg_sal) from (select avg(sal) avg_sal,deptno from EMP group by deptno) t2)
+        );
+
+
+12、查询平均薪水等级最低的部门的部门名称
+
+
+13、查询部门经理人中平均薪水最低的部门名称  
+
+
+14、查询薪水最高的前5名雇员编号，名称，薪水
+        select empno,ename,sal
+        from EMP 
+        order by sal desc
+        limit 5;
+
+
+15、查询薪水最高的第6名到第10名雇员编号，名称，薪水
+
+        select empno,ename,sal
+        from EMP 
+        order by sal desc
+        limit 5,5;
+
+
+16、查询部门的名字和部门的人数(如果部门里没有人数，显示0个)
+        select t1.dname,ifnull(t2.num,0)
+        from 
+            DEPT t1
+        left join
+                (select count(*) num,deptno from EMP group by deptno) t2
+        on t1.deptno = t2.deptno;
+
+
+17、查询员工的编号，工资和所在部门的平均工资
+          select 
+                    empno,ename,sal,t2.deptno,(select avg(sal) from EMP t1 where t1.deptno = t2.deptno)
+                from 
+                    EMP t2;
+
+                select 
+                    empno,ename,sal,t2.deptno,t2.avg_sal 
+                from 
+                    EMP t1
+                inner join 
+                    (select avg(sal) avg_sal,deptno from EMP group by deptno) t2
+                on 
+                    t1.deptno = t2.deptno;</code></pre><h2 id="18、函数"><a href="#18、函数" class="headerlink" title="18、函数"></a>18、函数</h2><pre><code>1、字符串
+    1、length
+            select LENGTH(&quot;abc中国&quot;);
+            select ename,LENGTH(ename) from EMP;
+    2、concat
+            select CONCAT(&quot;a&quot;,&quot;bc&quot;,&quot;xx&quot;);
+
+    3、str_to_date
+            select STR_TO_DATE(&quot;2018年02月03日&quot;,&quot;%Y年%m月%d日&quot;);
+
+            create table tt(
+                    id int auto_increment primary key,
+                    birthday date
+            );
+            insert into tt(birthday) values(&quot;2018-2-4&quot;);
+            insert into tt(birthday) values(STR_TO_DATE(&quot;2018年02月03日&quot;,&quot;%Y年%m月%d日&quot;));
+            select * from tt;
+
+2、数字
+    1、floor，ceil
+            select FLOOR(1.56),CEIL(1.16);
+    2、rand    
+            select RAND(10);
+
+3、日期
+    1、now
+            select NOW();
+            select DAYOFWEEK(&apos;2018-08-26&apos;);
+
+    2、date_format  日期转字符串
+
+            select DATE_FORMAT(NOW(),&quot;%Y年%m月%d日 %H时%i分%s秒&quot;);
+            select DATE_FORMAT(&quot;2018-2-3&quot;,&quot;%Y年%m月%d日&quot;);</code></pre><h2 id="19、视图"><a href="#19、视图" class="headerlink" title="19、视图"></a>19、视图</h2><pre><code>创建视图
+create view myview 
+as
+select avg(sal) avg_sal,deptno from EMP group by deptno;
+
+
+使用视图
+select * from myview;</code></pre><h2 id="20、事务"><a href="#20、事务" class="headerlink" title="20、事务"></a>20、事务</h2><pre><code>drop table bank;
+
+create table bank(
+    id int primary key,
+    money int
+);
+
+insert into bank values(1,10);
+insert into bank values(2,1);
+
+
+select * from bank;
+
+begin;
+
+update bank 
+set money = money-5
+where id = 1;
+
+
+
+
+update bank 
+set money = money+5
+where id = 2;
+
+rollback;
+
+commit;
+
+
+select * from bank;
+
+begin;
+
+savepoint p1;
+
+update bank 
+set money = money-1
+where id = 1;
+
+savepoint p2;
+
+update bank 
+set money = money-1
+where id = 1;
+
+savepoint p3;
+
+update bank 
+set money = money-1
+where id = 1;
+
+savepoint p4;
+
+
+rollback to p4;
+commit;</code></pre>
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2019-12-02T07:00:37.416Z" itemprop="dateUpdated">2019-12-02 15:00:37</time>
+</span><br>
+
+
+        
+        这里可以写作者留言，标签和 hexo 中所有变量及辅助函数等均可调用，示例：<a href="/2019/06/26/aca6d6dcd4c6a587fdb6abca824afc69/" target="_blank" rel="external">https://zhaojiafu.github.io/2019/06/26/aca6d6dcd4c6a587fdb6abca824afc69/</a>
+        
+    </div>
+    
+    <footer>
+        <a href="https://zhaojiafu.github.io">
+            <img src="/img/zhao.jpg" alt="赵家富">
+            赵家富
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" target="_blank" rel="noopener" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mysql/" rel="tag">mysql</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python-%E6%A8%A1%E5%9D%97/" rel="tag">python 模块</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://zhaojiafu.github.io/2019/06/26/aca6d6dcd4c6a587fdb6abca824afc69/&title=《mysql常用命令总结》 — 赵家富的博客&pic=https://zhaojiafu.github.io/img/zhao.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" target="_blank" rel="noopener" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://zhaojiafu.github.io/2019/06/26/aca6d6dcd4c6a587fdb6abca824afc69/&title=《mysql常用命令总结》 — 赵家富的博客&source=感觉无从下手的时候，问自己“不难，要你干啥？”" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://zhaojiafu.github.io/2019/06/26/aca6d6dcd4c6a587fdb6abca824afc69/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《mysql常用命令总结》 — 赵家富的博客&url=https://zhaojiafu.github.io/2019/06/26/aca6d6dcd4c6a587fdb6abca824afc69/&via=https://zhaojiafu.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://zhaojiafu.github.io/2019/06/26/aca6d6dcd4c6a587fdb6abca824afc69/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" target="_blank" rel="noopener" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2019/06/27/4f4526766a3c0e2974fab50dd5dd4c0e/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">pycharm的便捷命令（后续更新）</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2019/06/19/5857d3be51819cd3a81f4e4ca8e488a4/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">window 系统chrome浏览器截屏</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<section class="comments" id="comments">
+    <div id="gitalk-container"></div>
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+        var id = location.pathname
+        if (location.pathname.length > 50) {
+          id = location.pathname.replace(/\/\d+\/\d+\/\d+\//, '').replace('/', '').substring(0, 50)
+        }
+        const gitalk = new Gitalk({
+          clientID: '388d0a78cda30f118f86',
+          clientSecret: '2c64b34cc20f23d768dffff64acb8c2ee02c3bee',
+          repo: 'https://zhaojiafu.github.io/',
+          owner: 'zjf',
+          admin: ['zjf'],
+          id: id,      // Ensure uniqueness and length less than 50
+          title: document.title.split('|')[0],
+          distractionFreeMode: false  // Facebook-like distraction free mode
+        })
+
+        gitalk.render('gitalk-container')
+    </script>
+</section>
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;" target="_blank" rel="noopener"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢大爷~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.jpg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.jpg" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+            <span>博客内容遵循 <a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+        <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=0 height=0 src="http://music.163.com/song/media/outer/url?id=1369798757&auto=1"></iframe>
+
+    </div>
+    <div class="bottom">
+        <p><span>赵家富 &copy; 2019</span>
+            <span>
+                
+
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" target="_blank" rel="noopener" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://zhaojiafu.github.io/2019/06/26/aca6d6dcd4c6a587fdb6abca824afc69/&title=《mysql常用命令总结》 — 赵家富的博客&pic=https://zhaojiafu.github.io/img/zhao.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" target="_blank" rel="noopener" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://zhaojiafu.github.io/2019/06/26/aca6d6dcd4c6a587fdb6abca824afc69/&title=《mysql常用命令总结》 — 赵家富的博客&source=感觉无从下手的时候，问自己“不难，要你干啥？”" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://zhaojiafu.github.io/2019/06/26/aca6d6dcd4c6a587fdb6abca824afc69/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《mysql常用命令总结》 — 赵家富的博客&url=https://zhaojiafu.github.io/2019/06/26/aca6d6dcd4c6a587fdb6abca824afc69/&via=https://zhaojiafu.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://zhaojiafu.github.io/2019/06/26/aca6d6dcd4c6a587fdb6abca824afc69/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;" target="_blank" rel="noopener"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACr0lEQVR42u3aQXLbMBAEQP3/084lh6RsUTO7hKJKNU8qSyTROADw7D4e8fX17frz78nn6+v7L6/fe/OFh4eHtx56/po9+xns2QjzMePh4eGd5j176Ow3s6W/ne7r8eDh4eF9Gi8ZYjsdyakYDw8P7//gXS/oLWx2Fx4eHt77ebMjbBtJzDaGNhrGw8PDO83Lq0if8/lIfQ8PDw9vXVXPi16bZfr6aD574+978fDw8A7w2uNs21bVFr3ytxe/xMPDw3s7b/PoWTwxm6ank4WHh4d3jDdjJIWxvD1rVlp7bIaLh4eHV/LqRTZuLNhsKvnTihgCDw8P7yZeskxvivftQNvpG9bu8PDw8Ba85HC8b6LKh35zGIGHh4f3lpxz9qB2O8kbApKY48WWhoeHh3crL79hH/Xmm9AGhoeHh/ce3iyMSL7NY9kZ+8Wo8PDw8A7w9uWrdmryDSYHD3vK8PDw8Ba8tlqUh62z2HfTWHBDMQwPDw/vkje7bRbdzraEWQSMh4eHd5qXL9PJNpAHsjk7D3b/eg4eHh7eMd5s6b+30aptuoqO8nh4eHiHebONoQ1899NR1Lnw8PDwjvE2Za12mvJ4dxNe/PAfAx4eHt6tvGTZTRb39vXtdNTFMzw8PLwDvHPNUpt2gTYIfnEXHh4e3jHe5gD9zg2mDZrx8PDwTvPaYtV+smZvKTYtPDw8vGO8fFj71qhZFDLbcvDw8PDu5X2V12ZxT6YviSGKkAIPDw/vAG+24OZB7V3U/UEfDw8P717erKjfRrSzRT+PbqP+CDw8PLxbefkRuS1NJd9ugoloY8DDw8P7p7w8dMjBbchbtBHg4eHhfRgvjxhmm0S75dxwpMbDw8OLefmj25e1DQSbMGIV4+Lh4eHFvM0//O3xOj9qz6Zg1auFh4eH95r3C/ENIhaVfw3EAAAAAElFTkSuQmCC" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '死鬼去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+<script src="/node_modules/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"node_modules/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/node_modules/assets/shizuku.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"react":{"opacity":0.7},"log":false});</script></body>
+</html>

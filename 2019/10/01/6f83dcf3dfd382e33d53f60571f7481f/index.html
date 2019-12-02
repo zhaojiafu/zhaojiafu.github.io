@@ -1,0 +1,1114 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <link rel="canonical" href="https://zhaojiafu.github.io/2019/10/01/6f83dcf3dfd382e33d53f60571f7481f/">
+    
+    
+    <title>Windows 10系统使用vmware 安装Ubuntu18.04双系统 + Ubuntu 18.04 安装 Docker-ce | 赵家富的博客 | 保持好奇心</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="window安装Ubuntu">
+    <meta name="description" content="说明：今天是十一假期的第一天，中午吃个饭玩玩手机，下午睡了一下午，晚上想到之前的说要把我前俩周安装Ubuntu最终成功的过程写下来，希望帮助到需要的人，也方便日子自己再需要安装或者其他的，网上搜索浪费时间。 我最终安装成功真的是费了很长的时间，因为需要安装docker测试，结果16.04一直安装不成功，也可能是我没有搜索到安装成功的命令，反正我是试了好几种安装docker的方法，没有成功，刚开始以">
+<meta name="keywords" content="window安装Ubuntu">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Windows 10系统使用vmware 安装Ubuntu18.04双系统 + Ubuntu 18.04 安装 Docker-ce">
+<meta property="og:url" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;2019&#x2F;10&#x2F;01&#x2F;6f83dcf3dfd382e33d53f60571f7481f&#x2F;index.html">
+<meta property="og:site_name" content="赵家富的博客">
+<meta property="og:description" content="说明：今天是十一假期的第一天，中午吃个饭玩玩手机，下午睡了一下午，晚上想到之前的说要把我前俩周安装Ubuntu最终成功的过程写下来，希望帮助到需要的人，也方便日子自己再需要安装或者其他的，网上搜索浪费时间。 我最终安装成功真的是费了很长的时间，因为需要安装docker测试，结果16.04一直安装不成功，也可能是我没有搜索到安装成功的命令，反正我是试了好几种安装docker的方法，没有成功，刚开始以">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20191001203358497.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20191001204226684.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20191001204403450.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;2019100120444796.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20191001204539347.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20191001204743239.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20191001205221365.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20191001205340566.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20191001205628317.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20191001205737283.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20191001205811566.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20191001205846426.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;2019100120591356.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20191001210025975.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20191001210241435.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20191001210400348.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20191001210526969.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20191001212328575.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20191001212522567.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20191001213659641.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20191001213846870.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20191001210628904.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20191001214509888.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20191001215844921.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20191001220114826.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20191001214633130.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20191001214746737.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20191001214912356.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20191001214947796.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20191001215108830.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20191001215145924.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20191001215218546.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20191001215328105.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20191001215527858.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20191001220410793.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20191001221707601.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20191001221951505.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20191001222112282.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20191001222715137.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;2019100122285620.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20191001223038802.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20191001223241648.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20191001223445472.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20191001223701862.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20191001223739733.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20191001223809183.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20191001223843878.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20191001224102928.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20191001224548400.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20191001224615333.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;2019100122480591.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20191001224944552.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20191001225104370.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20191001225148603.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20191001225251485.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20191001225334427.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20191001225417768.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20191001225538400.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20191001225811805.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20191001225941122.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20191001230031953.png">
+<meta property="og:updated_time" content="2019-12-02T06:45:49.673Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20191001203358497.png">
+    
+    <link rel="shortcut icon" href="/img/cb2nm-5l9w0-001.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" target="_blank" rel="noopener" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/zhao.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">赵家富</h5>
+          <a href="mailto:530519174@qq.com" target="_blank" rel="noopener" title="530519174@qq.com" class="mail">530519174@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                archives(所有)
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags/"  >
+                <i class="icon icon-lg icon-tags"></i>
+                tag(标签)
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories/"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories(分类)
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/zhaojiafu" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://blog.csdn.net/weixin_42081389" target="_blank" >
+                <i class="icon icon-lg icon-csdn"></i>
+                Csdn
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" target="_blank" rel="noopener" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+
+        <div class="flex-col header-title ellipsis">Windows 10系统使用vmware 安装Ubuntu18.04双系统 + Ubuntu 18.04 安装 Docker-ce</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" target="_blank" rel="noopener" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" target="_blank" rel="noopener" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" target="_blank" rel="noopener" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+
+        <h1 class="title">Windows 10系统使用vmware 安装Ubuntu18.04双系统 + Ubuntu 18.04 安装 Docker-ce
+        </h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2019-10-01T03:34:32.000Z" itemprop="datePublished" class="page-time">
+  2019-10-01
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Ubuntu/">Ubuntu</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#说明："><span class="post-toc-number">1.</span> <span class="post-toc-text">说明：</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#安装全过程："><span class="post-toc-number">2.</span> <span class="post-toc-text">安装全过程：</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#一、下载VMware-Workstation-15-5-Pro-："><span class="post-toc-number">2.1.</span> <span class="post-toc-text">一、下载VMware Workstation 15.5 Pro ：</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#二、安装Ubuntu"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">二、安装Ubuntu</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#三、下载Ubuntu"><span class="post-toc-number">2.3.</span> <span class="post-toc-text">三、下载Ubuntu</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#1、国内几个常用的镜像源地址："><span class="post-toc-number">2.3.1.</span> <span class="post-toc-text">1、国内几个常用的镜像源地址：</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#2、我下载的Ubuntu18-04的下载地址："><span class="post-toc-number">2.3.2.</span> <span class="post-toc-text">2、我下载的Ubuntu18.04的下载地址：</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#3、俩个方法获取到自己想要的清华镜像里面的Ubuntu版本（其他镜像源自己摸索着找吧）"><span class="post-toc-number">2.3.3.</span> <span class="post-toc-text">3、俩个方法获取到自己想要的清华镜像里面的Ubuntu版本（其他镜像源自己摸索着找吧）</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#方法1："><span class="post-toc-number">2.3.3.1.</span> <span class="post-toc-text">方法1：</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#方法2："><span class="post-toc-number">2.3.3.2.</span> <span class="post-toc-text">方法2：</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#四、配置启动Ubuntu"><span class="post-toc-number">2.4.</span> <span class="post-toc-text">四、配置启动Ubuntu</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#1、进入VMware"><span class="post-toc-number">2.4.1.</span> <span class="post-toc-text">1、进入VMware</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#2、设置Ubuntu系统ISO"><span class="post-toc-number">2.4.2.</span> <span class="post-toc-text">2、设置Ubuntu系统ISO</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#3-1、关闭VMware网络"><span class="post-toc-number">2.4.3.</span> <span class="post-toc-text">3.1、关闭VMware网络</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#3、启动-初始化设置Ubuntu："><span class="post-toc-number">2.4.4.</span> <span class="post-toc-text">3、启动+初始化设置Ubuntu：</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#五、设置下载源（重要加快后续下载各种软件速度）"><span class="post-toc-number">2.5.</span> <span class="post-toc-text">五、设置下载源（重要加快后续下载各种软件速度）</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#六、安装VMware-tools工具（用来Windows和Ubuntu文件互传）"><span class="post-toc-number">2.6.</span> <span class="post-toc-text">六、安装VMware tools工具（用来Windows和Ubuntu文件互传）</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#七、Ubuntu-18-04-安装-Docker-ce："><span class="post-toc-number">2.7.</span> <span class="post-toc-text">七、Ubuntu 18.04 安装 Docker-ce：</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#1-更换国内软件源，推荐中国科技大学的源，稳定速度快（可选）"><span class="post-toc-number">2.7.1.</span> <span class="post-toc-text">1.更换国内软件源，推荐中国科技大学的源，稳定速度快（可选）</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#2-安装需要的包"><span class="post-toc-number">2.7.2.</span> <span class="post-toc-text">2.安装需要的包</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#3-添加-GPG-密钥，并添加-Docker-ce-软件源，这里还是以中国科技大学的-Docker-ce-源为例"><span class="post-toc-number">2.7.3.</span> <span class="post-toc-text">3.添加 GPG 密钥，并添加 Docker-ce 软件源，这里还是以中国科技大学的 Docker-ce 源为例</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#4-添加成功后更新软件包缓存"><span class="post-toc-number">2.7.4.</span> <span class="post-toc-text">4.添加成功后更新软件包缓存</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#5-安装-Docker-ce"><span class="post-toc-number">2.7.5.</span> <span class="post-toc-text">5.安装 Docker-ce</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#6-设置开机自启动并启动-Docker-ce（安装成功后默认已设置并启动，可忽略）"><span class="post-toc-number">2.7.6.</span> <span class="post-toc-text">6.设置开机自启动并启动 Docker-ce（安装成功后默认已设置并启动，可忽略）</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#7-测试运行"><span class="post-toc-number">2.7.7.</span> <span class="post-toc-text">7.测试运行</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#8-添加当前用户到-docker-用户组，可以不用-sudo-运行-docker（可选）"><span class="post-toc-number">2.7.8.</span> <span class="post-toc-text">8.添加当前用户到 docker 用户组，可以不用 sudo 运行 docker（可选）</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#9-测试添加用户组（可选）"><span class="post-toc-number">2.7.9.</span> <span class="post-toc-text">9.测试添加用户组（可选）</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#参考："><span class="post-toc-number">3.</span> <span class="post-toc-text">参考：</span></a></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-6f83dcf3dfd382e33d53f60571f7481f"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">Windows 10系统使用vmware 安装Ubuntu18.04双系统 + Ubuntu 18.04 安装 Docker-ce</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2019-10-01 11:34:32" datetime="2019-10-01T03:34:32.000Z"  itemprop="datePublished">2019-10-01</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Ubuntu/">Ubuntu</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h1 id="说明："><a href="#说明：" class="headerlink" title="说明："></a>说明：</h1><p>今天是十一假期的第一天，中午吃个饭玩玩手机，下午睡了一下午，晚上想到之前的说要把我前俩周安装Ubuntu最终成功的过程写下来，希望帮助到需要的人，也方便日子自己再需要安装或者其他的，网上搜索浪费时间。</p>
+<p>我最终安装成功真的是费了很长的时间，因为需要安装docker测试，结果16.04一直安装不成功，也可能是我没有搜索到安装成功的命令，反正我是试了好几种安装docker的方法，没有成功，刚开始以为一直是我Ubuntu没有安装成功，然后重新安装了几次（这个安装Ubuntu也是遇到了问题，但是网上人家安装步骤没有说–需要把VMware的网络禁止，可能人家没有遇到过，或者太简单没有说的必要，但是我确实各种尝试，感觉之前听哪个同事说过一次或者很久之前的一个教程视频，但是记不住了，也弄了好久，下班回来就弄一俩个小时，大概弄了加上双休一周左右）</p>
+<p>如果想安装其他版本步骤基本上也一样，只不过去镜像网站下载一个需要版本的Ubuntu即可。</p>
+<h1 id="安装全过程："><a href="#安装全过程：" class="headerlink" title="安装全过程："></a>安装全过程：</h1><p>我的这个步骤直接网站+截图什么的，不废话了。</p>
+<h2 id="一、下载VMware-Workstation-15-5-Pro-："><a href="#一、下载VMware-Workstation-15-5-Pro-：" class="headerlink" title="一、下载VMware Workstation 15.5 Pro ："></a>一、下载VMware Workstation 15.5 Pro ：</h2><p>下载地址：<br><a href="https://www.vmware.com/cn/products/workstation-pro/workstation-pro-evaluation.html" target="_blank" rel="noopener">https://www.vmware.com/cn/products/workstation-pro/workstation-pro-evaluation.html</a></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/20191001203358497.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+
+<p>下载成功直接安装，最后激活的时候可以使用永久激活秘钥即可。（这个我就不再卸载演示了，和安装其他软件一样，改个安装目录就行，后面一个激活就行了）</p>
+<p>这个是我找到的一个激活，这个激活我也是迷糊了好久，因为之前没有弄个，参考人家博客，结果试了好几个激活一直不成功，后来才发现，人家的是VMware Workstation 14，后来找的一个，我直接复制过来粘贴这里了。参考的所有原博客连接我会统一放在结尾。</p>
+<p>VMware Workstation 15.5 Pro 永久激活密钥</p>
+<pre><code>UG5J2-0ME12-M89WY-NPWXX-WQH88
+
+GA590-86Y05-4806Y-X4PEE-ZV8E0
+
+YA18K-0WY8P-H85DY-L4NZG-X7RAD
+
+UA5DR-2ZD4H-089FY-6YQ5T-YPRX6
+
+B806Y-86Y05-GA590-X4PEE-ZV8E0
+
+ZF582-0NW5N-H8D2P-0XZEE-Z22VA</code></pre><h2 id="二、安装Ubuntu"><a href="#二、安装Ubuntu" class="headerlink" title="二、安装Ubuntu"></a>二、安装Ubuntu</h2><p>这个我就再截图演示一遍，省的你安装耽误时间，我不过多解释了，如果不懂可以留言交流，我踩坑地方肯定会解释的。</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/20191001204226684.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/20191001204403450.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/2019100120444796.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/20191001204539347.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/20191001204743239.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/20191001205221365.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/20191001205340566.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/20191001205628317.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/20191001205737283.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/20191001205811566.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/20191001205846426.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/2019100120591356.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+<p>磁盘大小20G一般够用了，如果后续不过可以修改，可以通过</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/20191001210025975.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/20191001210241435.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/20191001210400348.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/20191001210526969.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+
+<h2 id="三、下载Ubuntu"><a href="#三、下载Ubuntu" class="headerlink" title="三、下载Ubuntu"></a>三、下载Ubuntu</h2><h3 id="1、国内几个常用的镜像源地址："><a href="#1、国内几个常用的镜像源地址：" class="headerlink" title="1、国内几个常用的镜像源地址："></a>1、<strong>国内几个常用的镜像源地址：</strong></h3><p>1、阿里云镜像：<br><a href="https://opsx.alibaba.com/mirror" target="_blank" rel="noopener">https://opsx.alibaba.com/mirror</a><br>2、清华大学镜像：<br><a href="https://mirrors.tuna.tsinghua.edu.cn/#" target="_blank" rel="noopener">https://mirrors.tuna.tsinghua.edu.cn/#</a><br>3、网易的开源镜像：<br><a href="http://mirrors.163.com/" target="_blank" rel="noopener">http://mirrors.163.com/</a></p>
+<h3 id="2、我下载的Ubuntu18-04的下载地址："><a href="#2、我下载的Ubuntu18-04的下载地址：" class="headerlink" title="2、我下载的Ubuntu18.04的下载地址："></a>2、<strong>我下载的Ubuntu18.04的下载地址</strong>：</h3><p><a href="https://mirrors.tuna.tsinghua.edu.cn/ubuntu-releases/bionic/ubuntu-18.04.3-desktop-amd64.iso" target="_blank" rel="noopener">https://mirrors.tuna.tsinghua.edu.cn/ubuntu-releases/bionic/ubuntu-18.04.3-desktop-amd64.iso</a></p>
+<h3 id="3、俩个方法获取到自己想要的清华镜像里面的Ubuntu版本（其他镜像源自己摸索着找吧）"><a href="#3、俩个方法获取到自己想要的清华镜像里面的Ubuntu版本（其他镜像源自己摸索着找吧）" class="headerlink" title="3、俩个方法获取到自己想要的清华镜像里面的Ubuntu版本（其他镜像源自己摸索着找吧）"></a>3、俩个方法获取到自己想要的清华镜像里面的Ubuntu版本（其他镜像源自己摸索着找吧）</h3><p>下面我说我其他使用清华大学的镜像下载的方法（如果直接下载18.04这几步骤可以跳过，我只是想把我摸搜到的方法写出来，其他的镜像自己摸索着玩吧。）：</p>
+<h4 id="方法1："><a href="#方法1：" class="headerlink" title="方法1："></a>方法1：</h4><p>进去首页：<br><a href="https://mirrors.tuna.tsinghua.edu.cn/#" target="_blank" rel="noopener">https://mirrors.tuna.tsinghua.edu.cn/#</a></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/20191001212328575.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/20191001212522567.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+<h4 id="方法2："><a href="#方法2：" class="headerlink" title="方法2："></a>方法2：</h4><p>如果这个：</p>
+<p>下载地址：<a href="https://mirrors.tuna.tsinghua.edu.cn/ubuntu-releases/" target="_blank" rel="noopener">https://mirrors.tuna.tsinghua.edu.cn/ubuntu-releases/</a></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/20191001213659641.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/20191001213846870.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+
+
+<h2 id="四、配置启动Ubuntu"><a href="#四、配置启动Ubuntu" class="headerlink" title="四、配置启动Ubuntu"></a>四、配置启动Ubuntu</h2><h3 id="1、进入VMware"><a href="#1、进入VMware" class="headerlink" title="1、进入VMware"></a>1、进入VMware</h3><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/20191001210628904.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+
+<h3 id="2、设置Ubuntu系统ISO"><a href="#2、设置Ubuntu系统ISO" class="headerlink" title="2、设置Ubuntu系统ISO"></a>2、设置Ubuntu系统ISO</h3><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/20191001214509888.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+<h3 id="3-1、关闭VMware网络"><a href="#3-1、关闭VMware网络" class="headerlink" title="3.1、关闭VMware网络"></a>3.1、关闭VMware网络</h3><p>中间这里加入一个步骤：（关闭VMware网络，不然后面安装估计没有因为没有网络而出问题）<br>1、Windows右击，进入网络连接：</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/20191001215844921.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+<p>2、禁用一些网络（和前面我们选择桥接相关）：</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/20191001220114826.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+
+
+<h3 id="3、启动-初始化设置Ubuntu："><a href="#3、启动-初始化设置Ubuntu：" class="headerlink" title="3、启动+初始化设置Ubuntu："></a>3、启动+初始化设置Ubuntu：</h3><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/20191001214633130.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/20191001214746737.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/20191001214912356.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+<p>下面直接继续就行。</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/20191001214947796.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/20191001215108830.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/20191001215145924.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/20191001215218546.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/20191001215328105.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/20191001215527858.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+<p>记得这个快慢和上一步的禁用网络有关（当然肯定还和电脑的配置有关，肯定内存和磁盘越大越快），我也是装了好久才发现的，这个坑我也是弄了好久，偶然想到之前有人说过一次，不记得什么时候了。</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/20191001220410793.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/20191001221707601.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/20191001221951505.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/20191001222112282.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+<h2 id="五、设置下载源（重要加快后续下载各种软件速度）"><a href="#五、设置下载源（重要加快后续下载各种软件速度）" class="headerlink" title="五、设置下载源（重要加快后续下载各种软件速度）"></a>五、设置下载源（重要加快后续下载各种软件速度）</h2><p>设置下载源可以加快以后软件下载速度（比如使用apt-get软件时）</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/20191001222715137.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/2019100122285620.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/20191001223038802.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+<p>然后突然发现后面的选择最佳我就测试了一下，我上一个使用的是清华的，测试之后发现阿里云的是最佳的，然后使用测试好的，点击选择服务器即可</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/20191001223241648.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/20191001223445472.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/20191001223701862.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/20191001223739733.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/20191001223809183.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+<p>等待更新软件即可：</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/20191001223843878.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/20191001224102928.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+<h2 id="六、安装VMware-tools工具（用来Windows和Ubuntu文件互传）"><a href="#六、安装VMware-tools工具（用来Windows和Ubuntu文件互传）" class="headerlink" title="六、安装VMware tools工具（用来Windows和Ubuntu文件互传）"></a>六、安装VMware tools工具（用来Windows和Ubuntu文件互传）</h2><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/20191001224548400.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/20191001224615333.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/2019100122480591.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/20191001224944552.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/20191001225104370.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/20191001225148603.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/20191001225251485.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/20191001225334427.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/20191001225417768.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/20191001225538400.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/20191001225811805.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/20191001225941122.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/20191001230031953.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+<p>不重启我的不能把桌面文件直接拖到或者复制道Ubuntu里面：</p>
+<h2 id="七、Ubuntu-18-04-安装-Docker-ce："><a href="#七、Ubuntu-18-04-安装-Docker-ce：" class="headerlink" title="七、Ubuntu 18.04 安装 Docker-ce："></a>七、Ubuntu 18.04 安装 Docker-ce：</h2><h3 id="1-更换国内软件源，推荐中国科技大学的源，稳定速度快（可选）"><a href="#1-更换国内软件源，推荐中国科技大学的源，稳定速度快（可选）" class="headerlink" title="1.更换国内软件源，推荐中国科技大学的源，稳定速度快（可选）"></a>1.更换国内软件源，推荐中国科技大学的源，稳定速度快（可选）</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">sudo cp &#x2F;etc&#x2F;apt&#x2F;sources.list &#x2F;etc&#x2F;apt&#x2F;sources.list.bak</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">sudo sed -i &#39;s&#x2F;archive.ubuntu.com&#x2F;mirrors.ustc.edu.cn&#x2F;g&#39; &#x2F;etc&#x2F;apt&#x2F;sources.list</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">sudo apt update</span></pre></td></tr></table></figure>
+
+<h3 id="2-安装需要的包"><a href="#2-安装需要的包" class="headerlink" title="2.安装需要的包"></a>2.安装需要的包</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">sudo apt install apt-transport-https ca-certificates software-properties-common curl</span></pre></td></tr></table></figure>
+
+<h3 id="3-添加-GPG-密钥，并添加-Docker-ce-软件源，这里还是以中国科技大学的-Docker-ce-源为例"><a href="#3-添加-GPG-密钥，并添加-Docker-ce-软件源，这里还是以中国科技大学的-Docker-ce-源为例" class="headerlink" title="3.添加 GPG 密钥，并添加 Docker-ce 软件源，这里还是以中国科技大学的 Docker-ce 源为例"></a>3.添加 GPG 密钥，并添加 Docker-ce 软件源，这里还是以中国科技大学的 Docker-ce 源为例</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">curl -fsSL https:&#x2F;&#x2F;mirrors.ustc.edu.cn&#x2F;docker-ce&#x2F;linux&#x2F;ubuntu&#x2F;gpg | sudo apt-key add -</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">sudo add-apt-repository &quot;deb [arch&#x3D;amd64] https:&#x2F;&#x2F;mirrors.ustc.edu.cn&#x2F;docker-ce&#x2F;linux&#x2F;ubuntu $(lsb_release -cs) stable&quot;</span></pre></td></tr></table></figure>
+
+<h3 id="4-添加成功后更新软件包缓存"><a href="#4-添加成功后更新软件包缓存" class="headerlink" title="4.添加成功后更新软件包缓存"></a>4.添加成功后更新软件包缓存</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">sudo apt update</span></pre></td></tr></table></figure>
+
+<h3 id="5-安装-Docker-ce"><a href="#5-安装-Docker-ce" class="headerlink" title="5.安装 Docker-ce"></a>5.安装 Docker-ce</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">sudo apt install docker-ce</span></pre></td></tr></table></figure>
+
+<h3 id="6-设置开机自启动并启动-Docker-ce（安装成功后默认已设置并启动，可忽略）"><a href="#6-设置开机自启动并启动-Docker-ce（安装成功后默认已设置并启动，可忽略）" class="headerlink" title="6.设置开机自启动并启动 Docker-ce（安装成功后默认已设置并启动，可忽略）"></a>6.设置开机自启动并启动 Docker-ce（安装成功后默认已设置并启动，可忽略）</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">sudo systemctl enable docker</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">sudo systemctl start docker</span></pre></td></tr></table></figure>
+
+<h3 id="7-测试运行"><a href="#7-测试运行" class="headerlink" title="7.测试运行"></a>7.测试运行</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">sudo docker run hello-world</span></pre></td></tr></table></figure>
+
+<h3 id="8-添加当前用户到-docker-用户组，可以不用-sudo-运行-docker（可选）"><a href="#8-添加当前用户到-docker-用户组，可以不用-sudo-运行-docker（可选）" class="headerlink" title="8.添加当前用户到 docker 用户组，可以不用 sudo 运行 docker（可选）"></a>8.添加当前用户到 docker 用户组，可以不用 sudo 运行 docker（可选）</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">sudo groupadd docker</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">sudo usermod -aG docker $USER</span></pre></td></tr></table></figure>
+
+<h3 id="9-测试添加用户组（可选）"><a href="#9-测试添加用户组（可选）" class="headerlink" title="9.测试添加用户组（可选）"></a>9.测试添加用户组（可选）</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">docker run hello-world</span></pre></td></tr></table></figure>
+
+<p>弄了三个小时总算弄好了</p>
+<h1 id="参考："><a href="#参考：" class="headerlink" title="参考："></a>参考：</h1><p><a href="https://blog.csdn.net/kdongyi/article/details/82900243" target="_blank" rel="noopener">https://blog.csdn.net/kdongyi/article/details/82900243</a><br><a href="https://blog.csdn.net/beita08/article/details/80628840" target="_blank" rel="noopener">https://blog.csdn.net/beita08/article/details/80628840</a><br><a href="https://mirrors.tuna.tsinghua.edu.cn/#" target="_blank" rel="noopener">https://mirrors.tuna.tsinghua.edu.cn/#</a><br><a href="https://opsx.alibaba.com/mirror" target="_blank" rel="noopener">https://opsx.alibaba.com/mirror</a><br><a href="http://mirrors.163.com/" target="_blank" rel="noopener">http://mirrors.163.com/</a><br><a href="https://www.runoob.com/docker/ubuntu-docker-install.html" target="_blank" rel="noopener">https://www.runoob.com/docker/ubuntu-docker-install.html</a></p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2019-12-02T06:45:49.673Z" itemprop="dateUpdated">2019-12-02 14:45:49</time>
+</span><br>
+
+
+        
+        这里可以写作者留言，标签和 hexo 中所有变量及辅助函数等均可调用，示例：<a href="/2019/10/01/6f83dcf3dfd382e33d53f60571f7481f/" target="_blank" rel="external">https://zhaojiafu.github.io/2019/10/01/6f83dcf3dfd382e33d53f60571f7481f/</a>
+        
+    </div>
+    
+    <footer>
+        <a href="https://zhaojiafu.github.io">
+            <img src="/img/zhao.jpg" alt="赵家富">
+            赵家富
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" target="_blank" rel="noopener" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/window%E5%AE%89%E8%A3%85Ubuntu/" rel="tag">window安装Ubuntu</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://zhaojiafu.github.io/2019/10/01/6f83dcf3dfd382e33d53f60571f7481f/&title=《Windows 10系统使用vmware 安装Ubuntu18.04双系统 + Ubuntu 18.04 安装 Docker-ce》 — 赵家富的博客&pic=https://zhaojiafu.github.io/img/zhao.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" target="_blank" rel="noopener" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://zhaojiafu.github.io/2019/10/01/6f83dcf3dfd382e33d53f60571f7481f/&title=《Windows 10系统使用vmware 安装Ubuntu18.04双系统 + Ubuntu 18.04 安装 Docker-ce》 — 赵家富的博客&source=感觉无从下手的时候，问自己“不难，要你干啥？”" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://zhaojiafu.github.io/2019/10/01/6f83dcf3dfd382e33d53f60571f7481f/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Windows 10系统使用vmware 安装Ubuntu18.04双系统 + Ubuntu 18.04 安装 Docker-ce》 — 赵家富的博客&url=https://zhaojiafu.github.io/2019/10/01/6f83dcf3dfd382e33d53f60571f7481f/&via=https://zhaojiafu.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://zhaojiafu.github.io/2019/10/01/6f83dcf3dfd382e33d53f60571f7481f/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" target="_blank" rel="noopener" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2019/10/08/c3135e3a74347c2b3436fc37c2c6d8d5/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">Linux下vim_vi 编辑器 命令总结</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2019/09/30/fa47655a0e5a0275481489ebfb9e99c8/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">整理一些linux命令必须熟练掌握常的命令（复习+扩展学习Linux命令）</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<section class="comments" id="comments">
+    <div id="gitalk-container"></div>
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+        var id = location.pathname
+        if (location.pathname.length > 50) {
+          id = location.pathname.replace(/\/\d+\/\d+\/\d+\//, '').replace('/', '').substring(0, 50)
+        }
+        const gitalk = new Gitalk({
+          clientID: '388d0a78cda30f118f86',
+          clientSecret: '2c64b34cc20f23d768dffff64acb8c2ee02c3bee',
+          repo: 'https://zhaojiafu.github.io/',
+          owner: 'zjf',
+          admin: ['zjf'],
+          id: id,      // Ensure uniqueness and length less than 50
+          title: document.title.split('|')[0],
+          distractionFreeMode: false  // Facebook-like distraction free mode
+        })
+
+        gitalk.render('gitalk-container')
+    </script>
+</section>
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;" target="_blank" rel="noopener"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢大爷~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.jpg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.jpg" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+            <span>博客内容遵循 <a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+        <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=0 height=0 src="http://music.163.com/song/media/outer/url?id=1369798757&auto=1"></iframe>
+
+    </div>
+    <div class="bottom">
+        <p><span>赵家富 &copy; 2019</span>
+            <span>
+                
+
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" target="_blank" rel="noopener" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://zhaojiafu.github.io/2019/10/01/6f83dcf3dfd382e33d53f60571f7481f/&title=《Windows 10系统使用vmware 安装Ubuntu18.04双系统 + Ubuntu 18.04 安装 Docker-ce》 — 赵家富的博客&pic=https://zhaojiafu.github.io/img/zhao.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" target="_blank" rel="noopener" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://zhaojiafu.github.io/2019/10/01/6f83dcf3dfd382e33d53f60571f7481f/&title=《Windows 10系统使用vmware 安装Ubuntu18.04双系统 + Ubuntu 18.04 安装 Docker-ce》 — 赵家富的博客&source=感觉无从下手的时候，问自己“不难，要你干啥？”" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://zhaojiafu.github.io/2019/10/01/6f83dcf3dfd382e33d53f60571f7481f/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Windows 10系统使用vmware 安装Ubuntu18.04双系统 + Ubuntu 18.04 安装 Docker-ce》 — 赵家富的博客&url=https://zhaojiafu.github.io/2019/10/01/6f83dcf3dfd382e33d53f60571f7481f/&via=https://zhaojiafu.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://zhaojiafu.github.io/2019/10/01/6f83dcf3dfd382e33d53f60571f7481f/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;" target="_blank" rel="noopener"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACq0lEQVR42u3aQW4DMQgF0Nz/0u2mi25m8gGTTqU3q6hqHJ4j2QR4veLn69fTe9fVc/WuqxVeGw8eHh7eIPSr5Xp/uQr3nnEfZx4zHh4e3jYvWe4ell8G+XuTeN5Y8PDw8B7Du8dcrZysmST0eHh4eP+Ll6Tj1Q3qbSseHh7e3/ImR3zyMXnpNmcfrrXg4eHh1bpOURfpOa9X+nt4eHh4h1r7942uPI2uXiGTOH9WwMPDw1vgVYPIBwiSImw1Ia7GiYeHh/cZXrUkkTPOloYLK+Ph4eEd5SXjTdUtqCbN1aulUFDGw8PDW+NVm/H3H3MfejkhbpUk8PDw8PZ41Q/ojQXkyXf1VG/28fDw8PAGvOq4VS/9zVPkvAwRxY+Hh4f3EV5eYE2O73mhoZpwF7p2eHh4eC1eHvSpNlhvjKBapMDDw8Pb420MDZza9bxEW2iA4eHh4R3l9XrueSM/L1LkJeM3XwYeHh7eAi+5HqqFhmoRttp4KwwK4OHh4S3wekdzNY2uXgnJ0R9tEB4eHt4HefmtssGonvCXSDw8PLwF3nzOM0m1k4AmrbLyF4OHh4c34FV/3lfbVJPt6P3PqHqBh4eHF/N6barezTMvRuQFZTw8PLw93tlkt5egV8sKScx4eHh4G7yNbnt0ZI8viXzoAQ8PD2+D13vzvH1VbVyNLgM8PDy8Nd6kfNBs5A/Y0Rbj4eHhrfFe8XN/hfTW6a0QfRl4eHh4R3lfxSc5+qsr5OBqCRgPDw9vg3f2MsibVb2CbPU1Hh4e3h5vcpTnJdd8VKs31BXVWvDw8PCO8vKGU7X8OsFMthIPDw/vabzekV1lTNJ0PDw8vOfwcsDZQa7mNuHh4eGt8U4VAs4OTh27GPDw8PCO8qo/+PPLIy9hJFuQxDOa1cLDw8N7z/sGCTSIve2/Lp0AAAAASUVORK5CYII=" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '死鬼去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+<script src="/node_modules/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"node_modules/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/node_modules/assets/shizuku.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"react":{"opacity":0.7},"log":false});</script></body>
+</html>

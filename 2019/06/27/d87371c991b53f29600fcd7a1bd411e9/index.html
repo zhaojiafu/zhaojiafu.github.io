@@ -1,0 +1,1540 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <link rel="canonical" href="https://zhaojiafu.github.io/2019/06/27/d87371c991b53f29600fcd7a1bd411e9/">
+    
+    
+    <title>JavaScript 学习笔记（记录下） | 赵家富的博客 | 保持好奇心</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="JavaScript">
+    <meta name="description" content="0、前言写这个出发点是为了整理和收集自己认为自己学习以后有用的知识点，以前了解过一点JavaScript，现在想深入的学习JavaScript，如果想熟练一门语言，我还是偏向系统的从基础学习，不要眼高手低，也为了以方便以后找到，而不用在谷歌什么搜索，防止二次耽误时间。所以以后养成随时把搜集的一些知识点记录下来。加油！！！ 推荐一个自己学习JavaScript的一些网站：1、B站资源（小白尽量更正敲">
+<meta name="keywords" content="JavaScript">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JavaScript 学习笔记（记录下）">
+<meta property="og:url" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;2019&#x2F;06&#x2F;27&#x2F;d87371c991b53f29600fcd7a1bd411e9&#x2F;index.html">
+<meta property="og:site_name" content="赵家富的博客">
+<meta property="og:description" content="0、前言写这个出发点是为了整理和收集自己认为自己学习以后有用的知识点，以前了解过一点JavaScript，现在想深入的学习JavaScript，如果想熟练一门语言，我还是偏向系统的从基础学习，不要眼高手低，也为了以方便以后找到，而不用在谷歌什么搜索，防止二次耽误时间。所以以后养成随时把搜集的一些知识点记录下来。加油！！！ 推荐一个自己学习JavaScript的一些网站：1、B站资源（小白尽量更正敲">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20190627174103732.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20190627181959120.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;2019062718210083.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20190627182148470.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20190627182255739.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20190627182351563.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20190627182500305.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20190627182535763.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20190701111018759.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20190628084225223.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20190628103404740.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20190701171250517.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20190701171637724.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20190701171306733.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20190701174427283.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20190701174824407.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20190701174454558.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20190701175030601.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20190701174658690.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20190701180453380.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20190701180743492.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20190701181852710.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20190702111010697.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20190702154732158.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20190702155611476.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20190702155509363.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20190702155340693.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20190702155443303.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20190702164041153.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;2019070217021538.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20190702170204747.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;2019070216580289.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20190702174138528.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20190702175940371.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20190702180035172.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;201907021801145.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20190702180133204.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20190702180208787.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20190702180235749.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20190702180300637.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20190702180413685.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20190703092059414.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;201907030931449.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20190703093525257.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20190703094521443.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20190702180437103.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20190702180452165.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20190702181624478.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20190702181420624.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20190702181948811.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20190702182512608.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20190702182701398.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20190703110607835.png">
+<meta property="og:updated_time" content="2019-12-02T07:26:17.968Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20190627174103732.png">
+    
+    <link rel="shortcut icon" href="/img/cb2nm-5l9w0-001.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" target="_blank" rel="noopener" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/zhao.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">赵家富</h5>
+          <a href="mailto:530519174@qq.com" target="_blank" rel="noopener" title="530519174@qq.com" class="mail">530519174@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                archives(所有)
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags/"  >
+                <i class="icon icon-lg icon-tags"></i>
+                tag(标签)
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories/"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories(分类)
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/zhaojiafu" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://blog.csdn.net/weixin_42081389" target="_blank" >
+                <i class="icon icon-lg icon-csdn"></i>
+                Csdn
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" target="_blank" rel="noopener" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+
+        <div class="flex-col header-title ellipsis">JavaScript 学习笔记（记录下）</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" target="_blank" rel="noopener" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" target="_blank" rel="noopener" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" target="_blank" rel="noopener" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+
+        <h1 class="title">JavaScript 学习笔记（记录下）
+        </h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2019-06-27T03:34:32.000Z" itemprop="datePublished" class="page-time">
+  2019-06-27
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/JavaScript/">JavaScript</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#0、前言"><span class="post-toc-number">1.</span> <span class="post-toc-text">0、前言</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#一、Unicode编码与数值转换"><span class="post-toc-number">2.</span> <span class="post-toc-text">一、Unicode编码与数值转换</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#1-1、charCodeAt（类似于python的ord（））"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">1.1、charCodeAt（类似于python的ord（））</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#1-2、fromCharCode（类似于python的chr（））"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">1.2、fromCharCode（类似于python的chr（））</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#二、base64加密解密"><span class="post-toc-number">3.</span> <span class="post-toc-text">二、base64加密解密</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#1、代码实现1"><span class="post-toc-number">3.1.</span> <span class="post-toc-text">1、代码实现1</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#2、还找到一个base64封装的实现："><span class="post-toc-number">3.2.</span> <span class="post-toc-text">2、还找到一个base64封装的实现：</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#1-加密、解密算法封装："><span class="post-toc-number">3.2.1.</span> <span class="post-toc-text">1.加密、解密算法封装：</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#2-加密解密方法使用："><span class="post-toc-number">3.2.2.</span> <span class="post-toc-text">2.加密解密方法使用：</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#3、找到一个不错的博客自己用JavaScript写的base64"><span class="post-toc-number">3.3.</span> <span class="post-toc-text">3、找到一个不错的博客自己用JavaScript写的base64</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#三、JavaScript-运算符"><span class="post-toc-number">4.</span> <span class="post-toc-text">三、JavaScript 运算符</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#3-1-JavaScript-算术运算符"><span class="post-toc-number">4.1.</span> <span class="post-toc-text">3.1 JavaScript 算术运算符</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#3-2-JavaScript-赋值运算符"><span class="post-toc-number">4.2.</span> <span class="post-toc-text">3.2 JavaScript 赋值运算符</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#3-3-JavaScript-字符串运算符"><span class="post-toc-number">4.3.</span> <span class="post-toc-text">3.3 JavaScript 字符串运算符</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#3-4-比较运算符"><span class="post-toc-number">4.4.</span> <span class="post-toc-text">3.4 比较运算符</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#3-5-条件运算符（也称之为三目运算）"><span class="post-toc-number">4.5.</span> <span class="post-toc-text">3.5 条件运算符（也称之为三目运算）</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#3-6-逻辑运算符"><span class="post-toc-number">4.6.</span> <span class="post-toc-text">3.6 逻辑运算符</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#3-7-JavaScript-位运算符"><span class="post-toc-number">4.7.</span> <span class="post-toc-text">3.7 JavaScript 位运算符</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#3-8-JavaScript运算符优先级"><span class="post-toc-number">4.8.</span> <span class="post-toc-text">3.8 JavaScript运算符优先级</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#四、prompt-函数"><span class="post-toc-number">5.</span> <span class="post-toc-text">四、prompt() 函数</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#五、数组Array（）"><span class="post-toc-number">6.</span> <span class="post-toc-text">五、数组Array（）</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#5-1-、数字排序"><span class="post-toc-number">6.1.</span> <span class="post-toc-text">5.1 、数字排序</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#5-2-数组属性和方法："><span class="post-toc-number">6.2.</span> <span class="post-toc-text">5.2 数组属性和方法：</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#六、JavaScript-switch-语句"><span class="post-toc-number">7.</span> <span class="post-toc-text">六、JavaScript switch 语句</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#七、JavaScript-while-循环"><span class="post-toc-number">8.</span> <span class="post-toc-text">七、JavaScript while 循环</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#7-1、while-循环"><span class="post-toc-number">8.1.</span> <span class="post-toc-text">7.1、while 循环</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#7-2、do-while-循环"><span class="post-toc-number">8.2.</span> <span class="post-toc-text">7.2、do/while 循环</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#八、构造函数（类似于python创建的class类）"><span class="post-toc-number">9.</span> <span class="post-toc-text">八、构造函数（类似于python创建的class类）</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#8-1、原型"><span class="post-toc-number">9.1.</span> <span class="post-toc-text">8.1、原型</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#示例1："><span class="post-toc-number">9.1.1.</span> <span class="post-toc-text">示例1：</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#示例2："><span class="post-toc-number">9.1.2.</span> <span class="post-toc-text">示例2：</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#8-2、检查是否含有某个属性"><span class="post-toc-number">9.2.</span> <span class="post-toc-text">8.2、检查是否含有某个属性</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#九、垃圾回收机制（变量不用试设置为null）"><span class="post-toc-number">10.</span> <span class="post-toc-text">九、垃圾回收机制（变量不用试设置为null）</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#十、函数的call-和apply-方法"><span class="post-toc-number">11.</span> <span class="post-toc-text">十、函数的call()和apply()方法</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#十一、函数的arguments"><span class="post-toc-number">12.</span> <span class="post-toc-text">十一、函数的arguments</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#十二、Date对象"><span class="post-toc-number">13.</span> <span class="post-toc-text">十二、Date对象</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#12-1、俩种获取时间戳的方法："><span class="post-toc-number">13.1.</span> <span class="post-toc-text">12.1、俩种获取时间戳的方法：</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#十三、Math-对象"><span class="post-toc-number">14.</span> <span class="post-toc-text">十三、Math 对象</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#13-1、math的常量"><span class="post-toc-number">14.1.</span> <span class="post-toc-text">13.1、math的常量</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#13-2、math的方法"><span class="post-toc-number">14.2.</span> <span class="post-toc-text">13.2、math的方法</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#十四、String对象"><span class="post-toc-number">15.</span> <span class="post-toc-text">十四、String对象</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#14-1、方法表"><span class="post-toc-number">15.1.</span> <span class="post-toc-text">14.1、方法表</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#14-2、方法示例"><span class="post-toc-number">15.2.</span> <span class="post-toc-text">14.2、方法示例</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#14-3、注意事项（split方法和python有区别）"><span class="post-toc-number">15.3.</span> <span class="post-toc-text">14.3、注意事项（split方法和python有区别）</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#区别点1：JavaScript的字符串split，search、match、replace方法里面可以写正则，而python中不支持按正则匹配进行分割。"><span class="post-toc-number">15.4.</span> <span class="post-toc-text">区别点1：JavaScript的字符串split，search、match、replace方法里面可以写正则，而python中不支持按正则匹配进行分割。</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#注意点：split和其他三个有一点不一样，不用写g全局匹配模块，默认就是自动全局匹配，其他三个（search，match、replace）默认只匹配第一个"><span class="post-toc-number">15.4.1.</span> <span class="post-toc-text">注意点：split和其他三个有一点不一样，不用写g全局匹配模块，默认就是自动全局匹配，其他三个（search，match、replace）默认只匹配第一个</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#区别点2：search，也可以使用正则（类似于python正则模块re-search）"><span class="post-toc-number">15.5.</span> <span class="post-toc-text">区别点2：search，也可以使用正则（类似于python正则模块re.search）</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#区别点3：match"><span class="post-toc-number">15.6.</span> <span class="post-toc-text">区别点3：match</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#区别4：replace（类似于python的re模块的sub功能）"><span class="post-toc-number">15.7.</span> <span class="post-toc-text">区别4：replace（类似于python的re模块的sub功能）</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#十五、RegExp（正则表达式）-对象"><span class="post-toc-number">16.</span> <span class="post-toc-text">十五、RegExp（正则表达式） 对象</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#15-1、基本使用"><span class="post-toc-number">16.1.</span> <span class="post-toc-text">15.1、基本使用</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#15-2、字面量"><span class="post-toc-number">16.2.</span> <span class="post-toc-text">15.2、字面量</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#15-3、示例"><span class="post-toc-number">16.3.</span> <span class="post-toc-text">15.3、示例</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#15-4、使用字符串的replace结合正在去重字符串前后的空格。"><span class="post-toc-number">16.4.</span> <span class="post-toc-text">15.4、使用字符串的replace结合正在去重字符串前后的空格。</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#十六、字符串转josn"><span class="post-toc-number">17.</span> <span class="post-toc-text">十六、字符串转josn</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#参考：https-www-w3cschool-cn-json-nopz1pp7-html"><span class="post-toc-number">17.1.</span> <span class="post-toc-text">参考：https://www.w3cschool.cn/json/nopz1pp7.html</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#第一种方式：使用js函数eval"><span class="post-toc-number">17.2.</span> <span class="post-toc-text">第一种方式：使用js函数eval();</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#第二种方式：使用jquery-parseJSON-方法对json的格式要求比较高，必须符合json格式"><span class="post-toc-number">17.3.</span> <span class="post-toc-text">第二种方式：使用jquery.parseJSON()方法对json的格式要求比较高，必须符合json格式</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#第三种方式：使用Function来进行转换（python使用execjs调用需要转json时推荐使用这个）"><span class="post-toc-number">17.4.</span> <span class="post-toc-text">第三种方式：使用Function来进行转换（python使用execjs调用需要转json时推荐使用这个）</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#第四种方式：使用JSON全局对象，不过比较可惜的是IE8以下的版本没有这个对象，如果不考虑兼容IE8一下版本的话JSON全局对象是个很有用的东西"><span class="post-toc-number">17.5.</span> <span class="post-toc-text">第四种方式：使用JSON全局对象，不过比较可惜的是IE8以下的版本没有这个对象，如果不考虑兼容IE8一下版本的话JSON全局对象是个很有用的东西</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#第五种、使用node-js的JSON模块"><span class="post-toc-number">17.6.</span> <span class="post-toc-text">第五种、使用node.js的JSON模块</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#json转字符串"><span class="post-toc-number">17.6.1.</span> <span class="post-toc-text">json转字符串</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#字符串转json"><span class="post-toc-number">17.6.2.</span> <span class="post-toc-text">字符串转json</span></a></li></ol></li></ol></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-d87371c991b53f29600fcd7a1bd411e9"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">JavaScript 学习笔记（记录下）</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2019-06-27 11:34:32" datetime="2019-06-27T03:34:32.000Z"  itemprop="datePublished">2019-06-27</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/JavaScript/">JavaScript</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h2 id="0、前言"><a href="#0、前言" class="headerlink" title="0、前言"></a>0、前言</h2><p>写这个出发点是为了整理和收集自己认为自己学习以后有用的知识点，以前了解过一点JavaScript，现在想深入的学习JavaScript，如果想熟练一门语言，我还是偏向系统的从基础学习，不要眼高手低，也为了以方便以后找到，而不用在谷歌什么搜索，防止二次耽误时间。所以以后养成随时把搜集的一些知识点记录下来。加油！！！</p>
+<p><strong>推荐一个自己学习JavaScript的一些网站</strong>：<br><strong>1、B站资源</strong>（小白尽量更正敲，会其他语言的可以看懂就行，我是会python语言，所以学习这个，看懂思路和区别点就行，需要记不住再网上搜索和记录一些学习笔记）通过对比好多JavaScript资源，发现这个还是讲解还是不错的，如果想学JavaScript的可以看看，讲解很全，适合我的深入了解js：<a href="https://www.bilibili.com/video/av34087791" target="_blank" rel="noopener">https://www.bilibili.com/video/av34087791</a><br><strong>2、菜鸟教程JavaScript：</strong> 这个自学IT的都知道，但是我还是把网站写出来吧，里面都是很基础的，主要还能在线测试，改代码，很不错。<br><a href="https://www.runoob.com/js/js-tutorial.html" target="_blank" rel="noopener">https://www.runoob.com/js/js-tutorial.html</a></p>
+<p><strong>3、w3school：</strong>和菜鸟差不多，也很方便<br><a href="http://www.w3school.com.cn/js/index.asp" target="_blank" rel="noopener">http://www.w3school.com.cn/js/index.asp</a></p>
+<h2 id="一、Unicode编码与数值转换"><a href="#一、Unicode编码与数值转换" class="headerlink" title="一、Unicode编码与数值转换"></a>一、Unicode编码与数值转换</h2><h3 id="1-1、charCodeAt（类似于python的ord（））"><a href="#1-1、charCodeAt（类似于python的ord（））" class="headerlink" title="1.1、charCodeAt（类似于python的ord（））"></a>1.1、charCodeAt（类似于python的ord（））</h3><p>语法<br>string.charCodeAt(index)<br>参数值<br>参数    描述<br>index    必需。表示字符串中某个位置的数字，即字符在字符串中的下标。<br>返回值<br>类型    描述<br>Number    返回在指定的位置的字符的 Unicode 编码。</p>
+<pre><code>实例：
+var str=&quot;HELLO WORLD&quot;;
+var n=str.charCodeAt(1);
+此时n就是指str字符串中下表为1的字母是E的Unicode编码：</code></pre><h3 id="1-2、fromCharCode（类似于python的chr（））"><a href="#1-2、fromCharCode（类似于python的chr（））" class="headerlink" title="1.2、fromCharCode（类似于python的chr（））"></a>1.2、fromCharCode（类似于python的chr（））</h3><p>语法<br>String.fromCharCode(n1, n2, …, nX)<br>参数值<br>参数    描述<br>n1, n2, …, nX    必需。一个或多个 Unicode 值，即要创建的字符串中的字符的 Unicode 编码。<br>返回值<br>类型    描述<br>String    返回代表 Unicode 编码的字符。</p>
+<pre><code>实例
+将 Unicode 编码转换为一个字符串:
+
+var n = String.fromCharCode(72,69,76,76,79);
+n 输出结果:    
+HELLO</code></pre><h2 id="二、base64加密解密"><a href="#二、base64加密解密" class="headerlink" title="二、base64加密解密"></a>二、base64加密解密</h2><p>base64编码表</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/20190627174103732.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+
+<h3 id="1、代码实现1"><a href="#1、代码实现1" class="headerlink" title="1、代码实现1"></a>1、代码实现1</h3><p>代码实现：</p>
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+    &lt;head&gt;
+        &lt;meta charset=&quot;utf-8&quot; /&gt;
+        &lt;title&gt;js base64加密解密&lt;/title&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+        &lt;script&gt;
+            // 创建Base64对象
+            var Base64 = {
+                _keyStr: &quot;ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=&quot;,
+                encode: function(e) {
+                    var t = &quot;&quot;;
+                    var n, r, i, s, o, u, a;
+                    var f = 0;
+                    e = Base64._utf8_encode(e);
+                    while (f &lt; e.length) {
+                        n = e.charCodeAt(f++);
+                        r = e.charCodeAt(f++);
+                        i = e.charCodeAt(f++);
+                        s = n &gt;&gt; 2;
+                        o = (n &amp; 3) &lt;&lt; 4 | r &gt;&gt; 4;
+                        u = (r &amp; 15) &lt;&lt; 2 | i &gt;&gt; 6;
+                        a = i &amp; 63;
+                        if (isNaN(r)) {
+                            u = a = 64
+                        } else if (isNaN(i)) {
+                            a = 64
+                        }
+                        t = t + this._keyStr.charAt(s) + this._keyStr.charAt(o) + this._keyStr.charAt(u) + this._keyStr.charAt(a)
+                    }
+                    return t
+                },
+                decode: function(e) {
+                    var t = &quot;&quot;;
+                    var n, r, i;
+                    var s, o, u, a;
+                    var f = 0;
+                    e = e.replace(/[^A-Za-z0-9+/=]/g, &quot;&quot;);
+                    while (f &lt; e.length) {
+                        s = this._keyStr.indexOf(e.charAt(f++));
+                        o = this._keyStr.indexOf(e.charAt(f++));
+                        u = this._keyStr.indexOf(e.charAt(f++));
+                        a = this._keyStr.indexOf(e.charAt(f++));
+                        n = s &lt;&lt; 2 | o &gt;&gt; 4;
+                        r = (o &amp; 15) &lt;&lt; 4 | u &gt;&gt; 2;
+                        i = (u &amp; 3) &lt;&lt; 6 | a;
+                        t = t + String.fromCharCode(n);
+                        if (u != 64) {
+                            t = t + String.fromCharCode(r)
+                        }
+                        if (a != 64) {
+                            t = t + String.fromCharCode(i)
+                        }
+                    }
+                    t = Base64._utf8_decode(t);
+                    return t
+                },
+                _utf8_encode: function(e) {
+                    e = e.replace(/rn/g, &quot;n&quot;);
+                    var t = &quot;&quot;;
+                    for (var n = 0; n &lt; e.length; n++) {
+                        var r = e.charCodeAt(n);
+                        if (r &lt; 128) {
+                            t += String.fromCharCode(r)
+                        } else if (r &gt; 127 &amp;&amp; r &lt; 2048) {
+                            t += String.fromCharCode(r &gt;&gt; 6 | 192);
+                            t += String.fromCharCode(r &amp; 63 | 128)
+                        } else {
+                            t += String.fromCharCode(r &gt;&gt; 12 | 224);
+                            t += String.fromCharCode(r &gt;&gt; 6 &amp; 63 | 128);
+                            t += String.fromCharCode(r &amp; 63 | 128)
+                        }
+                    }
+                    return t
+                },
+                _utf8_decode: function(e) {
+                    var t = &quot;&quot;;
+                    var n = 0;
+                    var r = c1 = c2 = 0;
+                    while (n &lt; e.length) {
+                        r = e.charCodeAt(n);
+                        if (r &lt; 128) {
+                            t += String.fromCharCode(r);
+                            n++
+                        } else if (r &gt; 191 &amp;&amp; r &lt; 224) {
+                            c2 = e.charCodeAt(n + 1);
+                            t += String.fromCharCode((r &amp; 31) &lt;&lt; 6 | c2 &amp; 63);
+                            n += 2
+                        } else {
+                            c2 = e.charCodeAt(n + 1);
+                            c3 = e.charCodeAt(n + 2);
+                            t += String.fromCharCode((r &amp; 15) &lt;&lt; 12 | (c2 &amp; 63) &lt;&lt; 6 | c3 &amp; 63);
+                            n += 3
+                        }
+                    }
+                    return t
+                }
+            }
+            // 定义字符串
+            var string = &apos;hello！&apos;;
+            // 加密
+            var encodedString = Base64.encode(string);
+            console.log(encodedString); // 输出: &quot;SGVsbG8gV29ybGQh&quot;
+            // 解密
+            var decodedString = Base64.decode(encodedString);
+            console.log(decodedString); // 输出: &quot;Hello World!&quot;
+        &lt;/script&gt;
+    &lt;/body&gt;
+&lt;/html&gt;</code></pre><h3 id="2、还找到一个base64封装的实现："><a href="#2、还找到一个base64封装的实现：" class="headerlink" title="2、还找到一个base64封装的实现："></a>2、还找到一个base64封装的实现：</h3><h4 id="1-加密、解密算法封装："><a href="#1-加密、解密算法封装：" class="headerlink" title="1.加密、解密算法封装："></a>1.加密、解密算法封装：</h4><pre><code>function Base64() {
+    // private property  
+    _keyStr = &quot;ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=&quot;;
+
+    // public method for encoding  
+    this.encode = function(input) {
+        var output = &quot;&quot;;
+        var chr1, chr2, chr3, enc1, enc2, enc3, enc4;
+        var i = 0;
+        input = _utf8_encode(input);
+        while (i &lt; input.length) {
+            chr1 = input.charCodeAt(i++);
+            chr2 = input.charCodeAt(i++);
+            chr3 = input.charCodeAt(i++);
+            enc1 = chr1 &gt;&gt; 2;
+            enc2 = ((chr1 &amp; 3) &lt;&lt; 4) | (chr2 &gt;&gt; 4);
+            enc3 = ((chr2 &amp; 15) &lt;&lt; 2) | (chr3 &gt;&gt; 6);
+            enc4 = chr3 &amp; 63;
+            if (isNaN(chr2)) {
+                enc3 = enc4 = 64;
+            } else if (isNaN(chr3)) {
+                enc4 = 64;
+            }
+            output = output +
+                _keyStr.charAt(enc1) + _keyStr.charAt(enc2) +
+                _keyStr.charAt(enc3) + _keyStr.charAt(enc4);
+        }
+        return output;
+    }
+
+    // public method for decoding  
+    this.decode = function(input) {
+        var output = &quot;&quot;;
+        var chr1, chr2, chr3;
+        var enc1, enc2, enc3, enc4;
+        var i = 0;
+        input = input.replace(/[^A-Za-z0-9\+\/\=]/g, &quot;&quot;);
+        while (i &lt; input.length) {
+            enc1 = _keyStr.indexOf(input.charAt(i++));
+            enc2 = _keyStr.indexOf(input.charAt(i++));
+            enc3 = _keyStr.indexOf(input.charAt(i++));
+            enc4 = _keyStr.indexOf(input.charAt(i++));
+            chr1 = (enc1 &lt;&lt; 2) | (enc2 &gt;&gt; 4);
+            chr2 = ((enc2 &amp; 15) &lt;&lt; 4) | (enc3 &gt;&gt; 2);
+            chr3 = ((enc3 &amp; 3) &lt;&lt; 6) | enc4;
+            output = output + String.fromCharCode(chr1);
+            if (enc3 != 64) {
+                output = output + String.fromCharCode(chr2);
+            }
+            if (enc4 != 64) {
+                output = output + String.fromCharCode(chr3);
+            }
+        }
+        output = _utf8_decode(output);
+        return output;
+    }
+
+    // private method for UTF-8 encoding  
+    _utf8_encode = function(string) {
+        string = string.replace(/\r\n/g, &quot;\n&quot;);
+        var utftext = &quot;&quot;;
+        for (var n = 0; n &lt; string.length; n++) {
+            var c = string.charCodeAt(n);
+            if (c &lt; 128) {
+                utftext += String.fromCharCode(c);
+            } else if ((c &gt; 127) &amp;&amp; (c &lt; 2048)) {
+                utftext += String.fromCharCode((c &gt;&gt; 6) | 192);
+                utftext += String.fromCharCode((c &amp; 63) | 128);
+            } else {
+                utftext += String.fromCharCode((c &gt;&gt; 12) | 224);
+                utftext += String.fromCharCode(((c &gt;&gt; 6) &amp; 63) | 128);
+                utftext += String.fromCharCode((c &amp; 63) | 128);
+            }
+
+        }
+        return utftext;
+    }
+
+    // private method for UTF-8 decoding  
+    _utf8_decode = function(utftext) {
+        var string = &quot;&quot;;
+        var i = 0;
+        var c = c1 = c2 = 0;
+        while (i &lt; utftext.length) {
+            c = utftext.charCodeAt(i);
+            if (c &lt; 128) {
+                string += String.fromCharCode(c);
+                i++;
+            } else if ((c &gt; 191) &amp;&amp; (c &lt; 224)) {
+                c2 = utftext.charCodeAt(i + 1);
+                string += String.fromCharCode(((c &amp; 31) &lt;&lt; 6) | (c2 &amp; 63));
+                i += 2;
+            } else {
+                c2 = utftext.charCodeAt(i + 1);
+                c3 = utftext.charCodeAt(i + 2);
+                string += String.fromCharCode(((c &amp; 15) &lt;&lt; 12) | ((c2 &amp; 63) &lt;&lt; 6) | (c3 &amp; 63));
+                i += 3;
+            }
+        }
+        return string;
+    }
+}</code></pre><h4 id="2-加密解密方法使用："><a href="#2-加密解密方法使用：" class="headerlink" title="2.加密解密方法使用："></a>2.加密解密方法使用：</h4><pre><code>//1.加密  
+var str = &apos;124中文内容&apos;;
+var base = new Base64();
+var result = base.encode(str);
+document.write(&quot;base64加密:  &quot; + result + &quot;\t&quot;);  
+
+//2.解密  
+var result2 = base.decode(result);
+document.write(result2);</code></pre><h3 id="3、找到一个不错的博客自己用JavaScript写的base64"><a href="#3、找到一个不错的博客自己用JavaScript写的base64" class="headerlink" title="3、找到一个不错的博客自己用JavaScript写的base64"></a>3、找到一个不错的博客自己用JavaScript写的base64</h3><p>这个是博主的链接：<br><a href="https://my.oschina.net/goal/blog/201032" target="_blank" rel="noopener">https://my.oschina.net/goal/blog/201032</a></p>
+<pre><code>&lt;script type=&quot;text/javascript&quot;&gt;
+        /**
+         * UTF16和UTF8转换对照表
+         * U+00000000 – U+0000007F     0xxxxxxx
+         * U+00000080 – U+000007FF     110xxxxx 10xxxxxx
+         * U+00000800 – U+0000FFFF     1110xxxx 10xxxxxx 10xxxxxx
+         * U+00010000 – U+001FFFFF     11110xxx 10xxxxxx 10xxxxxx 10xxxxxx
+         * U+00200000 – U+03FFFFFF     111110xx 10xxxxxx 10xxxxxx 10xxxxxx 10xxxxxx
+         * U+04000000 – U+7FFFFFFF     1111110x 10xxxxxx 10xxxxxx 10xxxxxx 10xxxxxx 10xxxxxx
+         */
+        var Base64 = {
+            // 转码表
+            table: [
+                &apos;A&apos;, &apos;B&apos;, &apos;C&apos;, &apos;D&apos;, &apos;E&apos;, &apos;F&apos;, &apos;G&apos;, &apos;H&apos;,
+                &apos;I&apos;, &apos;J&apos;, &apos;K&apos;, &apos;L&apos;, &apos;M&apos;, &apos;N&apos;, &apos;O&apos;, &apos;P&apos;,
+                &apos;Q&apos;, &apos;R&apos;, &apos;S&apos;, &apos;T&apos;, &apos;U&apos;, &apos;V&apos;, &apos;W&apos;, &apos;X&apos;,
+                &apos;Y&apos;, &apos;Z&apos;, &apos;a&apos;, &apos;b&apos;, &apos;c&apos;, &apos;d&apos;, &apos;e&apos;, &apos;f&apos;,
+                &apos;g&apos;, &apos;h&apos;, &apos;i&apos;, &apos;j&apos;, &apos;k&apos;, &apos;l&apos;, &apos;m&apos;, &apos;n&apos;,
+                &apos;o&apos;, &apos;p&apos;, &apos;q&apos;, &apos;r&apos;, &apos;s&apos;, &apos;t&apos;, &apos;u&apos;, &apos;v&apos;,
+                &apos;w&apos;, &apos;x&apos;, &apos;y&apos;, &apos;z&apos;, &apos;0&apos;, &apos;1&apos;, &apos;2&apos;, &apos;3&apos;,
+                &apos;4&apos;, &apos;5&apos;, &apos;6&apos;, &apos;7&apos;, &apos;8&apos;, &apos;9&apos;, &apos;+&apos;, &apos;/&apos;
+            ],
+            UTF16ToUTF8: function(str) {
+                var res = [],
+                    len = str.length;
+                for (var i = 0; i &lt; len; i++) {
+                    var code = str.charCodeAt(i);
+                    if (code &gt; 0x0000 &amp;&amp; code &lt;= 0x007F) {
+                        // 单字节，这里并不考虑0x0000，因为它是空字节
+                        // U+00000000 – U+0000007F     0xxxxxxx
+                        res.push(str.charAt(i));
+                    } else if (code &gt;= 0x0080 &amp;&amp; code &lt;= 0x07FF) {
+                        // 双字节
+                        // U+00000080 – U+000007FF     110xxxxx 10xxxxxx
+                        // 110xxxxx
+                        var byte1 = 0xC0 | ((code &gt;&gt; 6) &amp; 0x1F);
+                        // 10xxxxxx
+                        var byte2 = 0x80 | (code &amp; 0x3F);
+                        res.push(
+                            String.fromCharCode(byte1),
+                            String.fromCharCode(byte2)
+                        );
+                    } else if (code &gt;= 0x0800 &amp;&amp; code &lt;= 0xFFFF) {
+                        // 三字节
+                        // U+00000800 – U+0000FFFF     1110xxxx 10xxxxxx 10xxxxxx
+                        // 1110xxxx
+                        var byte1 = 0xE0 | ((code &gt;&gt; 12) &amp; 0x0F);
+                        // 10xxxxxx
+                        var byte2 = 0x80 | ((code &gt;&gt; 6) &amp; 0x3F);
+                        // 10xxxxxx
+                        var byte3 = 0x80 | (code &amp; 0x3F);
+                        res.push(
+                            String.fromCharCode(byte1),
+                            String.fromCharCode(byte2),
+                            String.fromCharCode(byte3)
+                        );
+                    } else if (code &gt;= 0x00010000 &amp;&amp; code &lt;= 0x001FFFFF) {
+                        // 四字节
+                        // U+00010000 – U+001FFFFF     11110xxx 10xxxxxx 10xxxxxx 10xxxxxx
+                    } else if (code &gt;= 0x00200000 &amp;&amp; code &lt;= 0x03FFFFFF) {
+                        // 五字节
+                        // U+00200000 – U+03FFFFFF     111110xx 10xxxxxx 10xxxxxx 10xxxxxx 10xxxxxx
+                    } else /** if (code &gt;= 0x04000000 &amp;&amp; code &lt;= 0x7FFFFFFF)*/ {
+                        // 六字节
+                        // U+04000000 – U+7FFFFFFF     1111110x 10xxxxxx 10xxxxxx 10xxxxxx 10xxxxxx 10xxxxxx
+                    }
+                }
+
+                return res.join(&apos;&apos;);
+            },
+            UTF8ToUTF16: function(str) {
+                var res = [],
+                    len = str.length;
+                var i = 0;
+                for (var i = 0; i &lt; len; i++) {
+                    var code = str.charCodeAt(i);
+                    // 对第一个字节进行判断
+                    if (((code &gt;&gt; 7) &amp; 0xFF) == 0x0) {
+                        // 单字节
+                        // 0xxxxxxx
+                        res.push(str.charAt(i));
+                    } else if (((code &gt;&gt; 5) &amp; 0xFF) == 0x6) {
+                        // 双字节
+                        // 110xxxxx 10xxxxxx
+                        var code2 = str.charCodeAt(++i);
+                        var byte1 = (code &amp; 0x1F) &lt;&lt; 6;
+                        var byte2 = code2 &amp; 0x3F;
+                        var utf16 = byte1 | byte2;
+                        res.push(Sting.fromCharCode(utf16));
+                    } else if (((code &gt;&gt; 4) &amp; 0xFF) == 0xE) {
+                        // 三字节
+                        // 1110xxxx 10xxxxxx 10xxxxxx
+                        var code2 = str.charCodeAt(++i);
+                        var code3 = str.charCodeAt(++i);
+                        var byte1 = (code &lt;&lt; 4) | ((code2 &gt;&gt; 2) &amp; 0x0F);
+                        var byte2 = ((code2 &amp; 0x03) &lt;&lt; 6) | (code3 &amp; 0x3F);
+                        var utf16 = ((byte1 &amp; 0x00FF) &lt;&lt; 8) | byte2
+                        res.push(String.fromCharCode(utf16));
+                    } else if (((code &gt;&gt; 3) &amp; 0xFF) == 0x1E) {
+                        // 四字节
+                        // 11110xxx 10xxxxxx 10xxxxxx 10xxxxxx
+                    } else if (((code &gt;&gt; 2) &amp; 0xFF) == 0x3E) {
+                        // 五字节
+                        // 111110xx 10xxxxxx 10xxxxxx 10xxxxxx 10xxxxxx
+                    } else /** if (((code &gt;&gt; 1) &amp; 0xFF) == 0x7E)*/ {
+                        // 六字节
+                        // 1111110x 10xxxxxx 10xxxxxx 10xxxxxx 10xxxxxx 10xxxxxx
+                    }
+                }
+
+                return res.join(&apos;&apos;);
+            },
+            encode: function(str) {
+                if (!str) {
+                    return &apos;&apos;;
+                }
+                var utf8 = this.UTF16ToUTF8(str); // 转成UTF8
+                var i = 0; // 遍历索引
+                var len = utf8.length;
+                var res = [];
+                while (i &lt; len) {
+                    var c1 = utf8.charCodeAt(i++) &amp; 0xFF;
+                    res.push(this.table[c1 &gt;&gt; 2]);
+                    // 需要补2个=
+                    if (i == len) {
+                        res.push(this.table[(c1 &amp; 0x3) &lt;&lt; 4]);
+                        res.push(&apos;==&apos;);
+                        break;
+                    }
+                    var c2 = utf8.charCodeAt(i++);
+                    // 需要补1个=
+                    if (i == len) {
+                        res.push(this.table[((c1 &amp; 0x3) &lt;&lt; 4) | ((c2 &gt;&gt; 4) &amp; 0x0F)]);
+                        res.push(this.table[(c2 &amp; 0x0F) &lt;&lt; 2]);
+                        res.push(&apos;=&apos;);
+                        break;
+                    }
+                    var c3 = utf8.charCodeAt(i++);
+                    res.push(this.table[((c1 &amp; 0x3) &lt;&lt; 4) | ((c2 &gt;&gt; 4) &amp; 0x0F)]);
+                    res.push(this.table[((c2 &amp; 0x0F) &lt;&lt; 2) | ((c3 &amp; 0xC0) &gt;&gt; 6)]);
+                    res.push(this.table[c3 &amp; 0x3F]);
+                }
+
+                return res.join(&apos;&apos;);
+            },
+            decode: function(str) {
+                if (!str) {
+                    return &apos;&apos;;
+                }
+
+                var len = str.length;
+                var i = 0;
+                var res = [];
+
+                while (i &lt; len) {
+                    code1 = this.table.indexOf(str.charAt(i++));
+                    code2 = this.table.indexOf(str.charAt(i++));
+                    code3 = this.table.indexOf(str.charAt(i++));
+                    code4 = this.table.indexOf(str.charAt(i++));
+
+                    c1 = (code1 &lt;&lt; 2) | (code2 &gt;&gt; 4);
+                    res.push(String.fromCharCode(c1));
+
+                    if (code3 != -1) {
+                        c2 = ((code2 &amp; 0xF) &lt;&lt; 4) | (code3 &gt;&gt; 2);
+                        res.push(String.fromCharCode(c2));
+                    }
+                    if (code4 != -1) {
+                        c3 = ((code3 &amp; 0x3) &lt;&lt; 6) | code4;
+                        res.push(String.fromCharCode(c3));
+                    }
+
+                }
+
+                return this.UTF8ToUTF16(res.join(&apos;&apos;));
+            }
+        };
+
+        var msg = &apos;Hello, oschina！又是一年春来到~!&apos;;
+        console.group(&apos;Test Base64: &apos;);
+        var b64 = Base64.encode(msg);
+        console.log(b64);
+
+        d64 = Base64.decode(b64);
+        console.log(d64, d64 === msg);
+        console.groupEnd();
+    &lt;/script&gt;</code></pre><h2 id="三、JavaScript-运算符"><a href="#三、JavaScript-运算符" class="headerlink" title="三、JavaScript 运算符"></a>三、JavaScript 运算符</h2><p>学习参考：<br><a href="https://www.runoob.com/jsref/jsref-operators.html" target="_blank" rel="noopener">https://www.runoob.com/jsref/jsref-operators.html</a></p>
+<h3 id="3-1-JavaScript-算术运算符"><a href="#3-1-JavaScript-算术运算符" class="headerlink" title="3.1 JavaScript 算术运算符"></a>3.1 JavaScript 算术运算符</h3><p>y=5，下面的表格解释了这些算术运算符：</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/20190627181959120.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+
+<h3 id="3-2-JavaScript-赋值运算符"><a href="#3-2-JavaScript-赋值运算符" class="headerlink" title="3.2 JavaScript 赋值运算符"></a>3.2 JavaScript 赋值运算符</h3><p>赋值运算符用于给 JavaScript 变量赋值。</p>
+<p>给定 x=10 和 y=5，下面的表格解释了赋值运算符：</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/2019062718210083.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+
+<h3 id="3-3-JavaScript-字符串运算符"><a href="#3-3-JavaScript-字符串运算符" class="headerlink" title="3.3 JavaScript 字符串运算符"></a>3.3 JavaScript 字符串运算符</h3><ul>
+<li>运算符， += 运算符可用于连接字符串。</li>
+</ul>
+<p>给定 text1 = “Good “, text2 = “Morning”, 及 text3 = “”, 下面的表格解释了字符串运算符的使用：</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/20190627182148470.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+
+<h3 id="3-4-比较运算符"><a href="#3-4-比较运算符" class="headerlink" title="3.4 比较运算符"></a>3.4 比较运算符</h3><p>比较运算符用于逻辑语句的判断，从而确定给定的两个值或变量是否相等。</p>
+<p>给定 x=5, 下表展示了比较运算符的使用：</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/20190627182255739.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+
+<h3 id="3-5-条件运算符（也称之为三目运算）"><a href="#3-5-条件运算符（也称之为三目运算）" class="headerlink" title="3.5 条件运算符（也称之为三目运算）"></a>3.5 条件运算符（也称之为三目运算）</h3><p>条件运算符用于基于条件的赋值运算。</p>
+<p>给定 x=6 and y=3, 下表演示了条件运算符的运算：</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/20190627182351563.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+
+<h3 id="3-6-逻辑运算符"><a href="#3-6-逻辑运算符" class="headerlink" title="3.6 逻辑运算符"></a>3.6 逻辑运算符</h3><p>逻辑运算符用来确定变量或值之间的逻辑关系。</p>
+<p>给定 x=6 and y=3, 以下实例演示了逻辑运算符的使用：</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/20190627182500305.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+
+<h3 id="3-7-JavaScript-位运算符"><a href="#3-7-JavaScript-位运算符" class="headerlink" title="3.7 JavaScript 位运算符"></a>3.7 JavaScript 位运算符</h3><p>位运算符工作于32位的数字上。任何数字操作都将转换为32位。结果会转换为 JavaScript 数字。</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/20190627182535763.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+
+
+<h3 id="3-8-JavaScript运算符优先级"><a href="#3-8-JavaScript运算符优先级" class="headerlink" title="3.8 JavaScript运算符优先级"></a>3.8 JavaScript运算符优先级</h3><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/20190701111018759.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/20190628084225223.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+
+<h2 id="四、prompt-函数"><a href="#四、prompt-函数" class="headerlink" title="四、prompt() 函数"></a>四、prompt() 函数</h2><p>这个函数相当于python的input()函数</p>
+<p>定义和用法<br>prompt()方法用于显示可提示用户进行输入的对话框。</p>
+<p>这个方法返回用户输入的字符串。</p>
+<p>语法<br>prompt(msg,defaultText)</p>
+<p>参数    描述<br>msg    可选。要在对话框中显示的纯文本（而不是 HTML 格式的文本）。<br>defaultText    可选。默认的输入文本。</p>
+<p>示例：</p>
+<pre><code>var score = prompt(&quot;请输入你的成绩&quot;)
+console.log(score)</code></pre><h2 id="五、数组Array（）"><a href="#五、数组Array（）" class="headerlink" title="五、数组Array（）"></a>五、数组Array（）</h2><p>Array 对象<br>Array 对象用于在变量中存储多个值:<br>var cars = [“Saab”, “Volvo”, “BMW”];<br>第一个数组元素的索引值为 0，第二个索引值为 1，以此类推。</p>
+<p>也可以新创建一个new Array()对象，再进行添加。</p>
+<h3 id="5-1-、数字排序"><a href="#5-1-、数字排序" class="headerlink" title="5.1 、数字排序"></a>5.1 、数字排序</h3><p>示例：这个是从大到小排序。</p>
+<pre><code>var num1 = parseInt(prompt(&quot;请输入num1&quot;)),
+num2 = parseInt(prompt(&quot;请输入num2&quot;)),
+num3 = parseInt(prompt(&quot;请输入num3&quot;));
+var num_list = new Array(num1,num2,num3);
+num_list.sort(function(a,b){
+    return b-a
+})
+alert(num_list)</code></pre><p>示例：这个是从小到大排序。</p>
+<pre><code>var num1 = parseInt(prompt(&quot;请输入num1&quot;)),
+num2 = parseInt(prompt(&quot;请输入num2&quot;)),
+num3 = parseInt(prompt(&quot;请输入num3&quot;));
+var num_list = new Array(num1,num2,num3);
+num_list.sort(function(a,b){
+    return a - b
+})
+alert(num_list)</code></pre><h3 id="5-2-数组属性和方法："><a href="#5-2-数组属性和方法：" class="headerlink" title="5.2 数组属性和方法："></a>5.2 数组属性和方法：</h3><p>可以参考菜鸟教程：<a href="https://www.runoob.com/jsref/jsref-obj-array.html" target="_blank" rel="noopener">https://www.runoob.com/jsref/jsref-obj-array.html</a></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/20190628103404740.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+<p>数组方法比较多，等着日后用到什么，感觉不熟练再更新博客，可以参考上面链接学习。</p>
+<h2 id="六、JavaScript-switch-语句"><a href="#六、JavaScript-switch-语句" class="headerlink" title="六、JavaScript switch 语句"></a>六、JavaScript switch 语句</h2><p>请使用 switch 语句来选择要执行的多个代码块之一。</p>
+<p>语法<br>switch(n)<br>{<br>    case 1:<br>        执行代码块 1<br>        break;<br>    case 2:<br>        执行代码块 2<br>        break;<br>    default:<br>        与 case 1 和 case 2 不同时执行的代码<br>}</p>
+<p>工作原理：首先设置表达式 n（通常是一个变量）。随后表达式的值会与结构中的每个 case 的值做比较。如果存在匹配，则与该 case 关联的代码块会被执行。请使用 break 来阻止代码自动地向下一个 case 运行。</p>
+<p>示例：</p>
+<pre><code>var d=new Date().getDay(); 
+switch (d) 
+{ 
+  case 0:x=&quot;今天是星期日&quot;; 
+  break; 
+  case 1:x=&quot;今天是星期一&quot;; 
+  break; 
+  case 2:x=&quot;今天是星期二&quot;; 
+  break; 
+  case 3:x=&quot;今天是星期三&quot;; 
+  break; 
+  case 4:x=&quot;今天是星期四&quot;; 
+  break; 
+  case 5:x=&quot;今天是星期五&quot;; 
+  break; 
+  case 6:x=&quot;今天是星期六&quot;; 
+  break; 
+}</code></pre><h2 id="七、JavaScript-while-循环"><a href="#七、JavaScript-while-循环" class="headerlink" title="七、JavaScript while 循环"></a>七、JavaScript while 循环</h2><h3 id="7-1、while-循环"><a href="#7-1、while-循环" class="headerlink" title="7.1、while 循环"></a>7.1、while 循环</h3><p>while 循环会在指定条件为真时循环执行代码块。</p>
+<p>语法<br>while (条件)<br>{<br>    需要执行的代码<br>}<br>实例<br>本例中的循环将继续运行，只要变量 i 小于 5：</p>
+<p>实例</p>
+<pre><code>while (i&lt;5)
+{
+    x=x + &quot;The number is &quot; + i + &quot;&lt;br&gt;&quot;;
+    i++;
+}</code></pre><h3 id="7-2、do-while-循环"><a href="#7-2、do-while-循环" class="headerlink" title="7.2、do/while 循环"></a>7.2、do/while 循环</h3><p>do/while 循环是 while 循环的变体。该循环会在检查条件是否为真之前执行一次代码块，然后如果条件为真的话，就会重复这个循环。</p>
+<p>语法<br>do<br>{<br>    需要执行的代码<br>}<br>while (条件);<br>实例<br>下面的例子使用 do/while 循环。该循环至少会执行一次，即使条件为 false 它也会执行一次，因为代码块会在条件被测试前执行：</p>
+<p>实例</p>
+<pre><code>do
+{
+    x=x + &quot;The number is &quot; + i + &quot;&lt;br&gt;&quot;;
+    i++;
+}
+while (i&lt;5);</code></pre><h2 id="八、构造函数（类似于python创建的class类）"><a href="#八、构造函数（类似于python创建的class类）" class="headerlink" title="八、构造函数（类似于python创建的class类）"></a>八、构造函数（类似于python创建的class类）</h2><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/20190701171250517.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/20190701171637724.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/20190701171306733.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+
+<h3 id="8-1、原型"><a href="#8-1、原型" class="headerlink" title="8.1、原型"></a>8.1、原型</h3><p>b站学习地址：<a href="https://www.bilibili.com/video/av34087791/?p=66" target="_blank" rel="noopener">https://www.bilibili.com/video/av34087791/?p=66</a></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/20190701174427283.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/20190701174824407.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/20190701174454558.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+
+<h4 id="示例1："><a href="#示例1：" class="headerlink" title="示例1："></a>示例1：</h4><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/20190701175030601.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/20190701174658690.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+
+<h4 id="示例2："><a href="#示例2：" class="headerlink" title="示例2："></a>示例2：</h4><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/20190701180453380.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+
+<h3 id="8-2、检查是否含有某个属性"><a href="#8-2、检查是否含有某个属性" class="headerlink" title="8.2、检查是否含有某个属性"></a>8.2、检查是否含有某个属性</h3><p>如果用  “属性” in 构造函数实例，会在实例或者实例的原型中检查是否存在，如果存在返回true，否则返回false；<br>而构造函数的hasOwnProperty()方法只会检测实例中是否存在，不会件查原型中是否存在。</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/20190701180743492.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/20190701181852710.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+
+<h2 id="九、垃圾回收机制（变量不用试设置为null）"><a href="#九、垃圾回收机制（变量不用试设置为null）" class="headerlink" title="九、垃圾回收机制（变量不用试设置为null）"></a>九、垃圾回收机制（变量不用试设置为null）</h2><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/20190702111010697.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+
+<h2 id="十、函数的call-和apply-方法"><a href="#十、函数的call-和apply-方法" class="headerlink" title="十、函数的call()和apply()方法"></a>十、函数的call()和apply()方法</h2><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/20190702154732158.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/20190702155611476.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/20190702155509363.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+
+<h2 id="十一、函数的arguments"><a href="#十一、函数的arguments" class="headerlink" title="十一、函数的arguments"></a>十一、函数的arguments</h2><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/20190702155340693.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/20190702155443303.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+<h2 id="十二、Date对象"><a href="#十二、Date对象" class="headerlink" title="十二、Date对象"></a>十二、Date对象</h2><p>参考：<br><a href="https://www.runoob.com/jsref/jsref-obj-date.html" target="_blank" rel="noopener">https://www.runoob.com/jsref/jsref-obj-date.html</a></p>
+<p>常用的方法：其他需要时网上搜索着用。</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/20190702164041153.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+<h3 id="12-1、俩种获取时间戳的方法："><a href="#12-1、俩种获取时间戳的方法：" class="headerlink" title="12.1、俩种获取时间戳的方法："></a>12.1、俩种获取时间戳的方法：</h3><pre><code>var data = new Date()
+time = data.getTime()
+console.log(time)
+
+var time2 = Date.now()
+console.log(time2)</code></pre><h2 id="十三、Math-对象"><a href="#十三、Math-对象" class="headerlink" title="十三、Math 对象"></a>十三、Math 对象</h2><p>Math 对象用于执行数学任务。<br>Math 对象并不像 Date 和 String 那样是对象的类，因此没有构造函数 Math()。<br>方法详情：<br><a href="https://www.runoob.com/jsref/jsref-obj-math.html" target="_blank" rel="noopener">https://www.runoob.com/jsref/jsref-obj-math.html</a></p>
+<h3 id="13-1、math的常量"><a href="#13-1、math的常量" class="headerlink" title="13.1、math的常量"></a>13.1、math的常量</h3><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/2019070217021538.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+
+
+
+<h3 id="13-2、math的方法"><a href="#13-2、math的方法" class="headerlink" title="13.2、math的方法"></a>13.2、math的方法</h3><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/20190702170204747.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+
+
+<p>可以使用math.random(),生成随机数。（类似于python的random.randint(a,b)）</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/2019070216580289.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+<h2 id="十四、String对象"><a href="#十四、String对象" class="headerlink" title="十四、String对象"></a>十四、String对象</h2><h3 id="14-1、方法表"><a href="#14-1、方法表" class="headerlink" title="14.1、方法表"></a>14.1、方法表</h3><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/20190702174138528.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+
+<h3 id="14-2、方法示例"><a href="#14-2、方法示例" class="headerlink" title="14.2、方法示例"></a>14.2、方法示例</h3><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/20190702175940371.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/20190702180035172.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/201907021801145.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/20190702180133204.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/20190702180208787.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/20190702180235749.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/20190702180300637.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+<h3 id="14-3、注意事项（split方法和python有区别）"><a href="#14-3、注意事项（split方法和python有区别）" class="headerlink" title="14.3、注意事项（split方法和python有区别）"></a>14.3、注意事项（split方法和python有区别）</h3><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/20190702180413685.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+<h3 id="区别点1：JavaScript的字符串split，search、match、replace方法里面可以写正则，而python中不支持按正则匹配进行分割。"><a href="#区别点1：JavaScript的字符串split，search、match、replace方法里面可以写正则，而python中不支持按正则匹配进行分割。" class="headerlink" title="区别点1：JavaScript的字符串split，search、match、replace方法里面可以写正则，而python中不支持按正则匹配进行分割。"></a>区别点1：JavaScript的字符串split，search、match、replace方法里面可以写正则，而python中不支持按正则匹配进行分割。</h3><h4 id="注意点：split和其他三个有一点不一样，不用写g全局匹配模块，默认就是自动全局匹配，其他三个（search，match、replace）默认只匹配第一个"><a href="#注意点：split和其他三个有一点不一样，不用写g全局匹配模块，默认就是自动全局匹配，其他三个（search，match、replace）默认只匹配第一个" class="headerlink" title="注意点：split和其他三个有一点不一样，不用写g全局匹配模块，默认就是自动全局匹配，其他三个（search，match、replace）默认只匹配第一个"></a>注意点：split和其他三个有一点不一样，不用写g全局匹配模块，默认就是自动全局匹配，其他三个（search，match、replace）默认只匹配第一个</h4><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/20190703092059414.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+<h3 id="区别点2：search，也可以使用正则（类似于python正则模块re-search）"><a href="#区别点2：search，也可以使用正则（类似于python正则模块re-search）" class="headerlink" title="区别点2：search，也可以使用正则（类似于python正则模块re.search）"></a>区别点2：search，也可以使用正则（类似于python正则模块re.search）</h3><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/201907030931449.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+
+<h3 id="区别点3：match"><a href="#区别点3：match" class="headerlink" title="区别点3：match"></a>区别点3：match</h3><p>返回是数组：</p>
+<p>正则的/[A-z]/ig中的ig的意思：i忽略大小写，g是全局模式，如果不写g,则会指找到一个字母就返回，如果写上g就会全部匹配下来，返回一个数组（python成为列表，而且类似于python re模块的find和findall功能）。</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/20190703093525257.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+
+<h3 id="区别4：replace（类似于python的re模块的sub功能）"><a href="#区别4：replace（类似于python的re模块的sub功能）" class="headerlink" title="区别4：replace（类似于python的re模块的sub功能）"></a>区别4：replace（类似于python的re模块的sub功能）</h3><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/20190703094521443.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+
+
+
+<p><img src="/imgs/20190702180437103.png" alt="在这里插入图片描述"></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/20190702180452165.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+<h2 id="十五、RegExp（正则表达式）-对象"><a href="#十五、RegExp（正则表达式）-对象" class="headerlink" title="十五、RegExp（正则表达式） 对象"></a>十五、RegExp（正则表达式） 对象</h2><p>正则表达式是描述字符模式的对象。</p>
+<p>正则表达式用于对字符串模式匹配及检索替换，是对字符串执行模式匹配的强大工具。</p>
+<p>语法<br>var patt=new RegExp(pattern,modifiers);</p>
+<p>或者更简单的方式:</p>
+<p>var patt=/pattern/modifiers;<br>pattern（模式） 描述了表达式的模式<br>modifiers(修饰符) 用于指定全局匹配、区分大小写的匹配和多行匹配<br>注意：当使用构造函数创造正则对象时，需要常规的字符转义规则（在前面加反斜杠 \）。</p>
+<h3 id="15-1、基本使用"><a href="#15-1、基本使用" class="headerlink" title="15.1、基本使用"></a>15.1、基本使用</h3><p>修饰符也就是下面图的匹配模式。</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/20190702181624478.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/20190702181420624.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+
+<h3 id="15-2、字面量"><a href="#15-2、字面量" class="headerlink" title="15.2、字面量"></a>15.2、字面量</h3><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/20190702181948811.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+
+<h3 id="15-3、示例"><a href="#15-3、示例" class="headerlink" title="15.3、示例"></a>15.3、示例</h3><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/20190702182512608.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/20190702182701398.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+<h3 id="15-4、使用字符串的replace结合正在去重字符串前后的空格。"><a href="#15-4、使用字符串的replace结合正在去重字符串前后的空格。" class="headerlink" title="15.4、使用字符串的replace结合正在去重字符串前后的空格。"></a>15.4、使用字符串的replace结合正在去重字符串前后的空格。</h3><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/20190703110607835.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+
+
+<h2 id="十六、字符串转josn"><a href="#十六、字符串转josn" class="headerlink" title="十六、字符串转josn"></a>十六、字符串转josn</h2><h3 id="参考：https-www-w3cschool-cn-json-nopz1pp7-html"><a href="#参考：https-www-w3cschool-cn-json-nopz1pp7-html" class="headerlink" title="参考：https://www.w3cschool.cn/json/nopz1pp7.html"></a>参考：<a href="https://www.w3cschool.cn/json/nopz1pp7.html" target="_blank" rel="noopener">https://www.w3cschool.cn/json/nopz1pp7.html</a></h3><p>JavaScript中字符串(string)转json的方法主要有四种，详细介绍如下：</p>
+<h3 id="第一种方式：使用js函数eval"><a href="#第一种方式：使用js函数eval" class="headerlink" title="第一种方式：使用js函数eval();"></a>第一种方式：使用js函数eval();</h3><p>testJson=eval(testJson);是错误的转换方式。</p>
+<p>正确的转换方式需要加(): testJson = eval(“(“ + testJson + “)”);</p>
+<p>eval()的速度非常快，但是他可以编译以及执行任何javaScript程序，所以会存在安全问题。在使用eval()。来源必须是值得信赖的。需要使用更安全的json解析器。在服务器不严格的编码在json或者如果不严格验证的输入，就有可能提供无效的json或者载有危险的脚本，在eval()中执行脚本，释放恶意代码。</p>
+<p>js代码：</p>
+<p>代码如下:</p>
+<pre><code>function ConvertToJsonForJs() {
+//var testJson = &quot;{ name: &apos;小强&apos;, age: 16 }&quot;;(支持)
+//var testJson = &quot;{ &apos;name&apos;: &apos;小强&apos;, &apos;age&apos;: 16 }&quot;;(支持)
+var testJson = &apos;{ &quot;name&quot;: &quot;小强&quot;, &quot;age&quot;: 16 }&apos;;
+//testJson=eval(testJson);//错误的转换方式
+testJson = eval(&quot;(&quot; + testJson + &quot;)&quot;);
+alert(testJson.name);
+}</code></pre><h3 id="第二种方式：使用jquery-parseJSON-方法对json的格式要求比较高，必须符合json格式"><a href="#第二种方式：使用jquery-parseJSON-方法对json的格式要求比较高，必须符合json格式" class="headerlink" title="第二种方式：使用jquery.parseJSON()方法对json的格式要求比较高，必须符合json格式"></a>第二种方式：使用jquery.parseJSON()方法对json的格式要求比较高，必须符合json格式</h3><p>jquery.parseJSON()</p>
+<p>js:代码</p>
+<p>代码如下:</p>
+<pre><code>function ConvertToJsonForJq() {
+var testJson = &apos;{ &quot;name&quot;: &quot;小强&quot;, &quot;age&quot;: 16 }&apos;;
+//不知道
+//&apos;{ name: &quot;小强&quot;, age: 16 }&apos; (name 没有使用双引号包裹)
+//&quot;{ &apos;name&apos;: &quot;小强&quot;, &apos;age&apos;: 16 }&quot;(name使用单引号)
+testJson = $.parseJSON(testJson);
+alert(testJson.name);
+}</code></pre><h3 id="第三种方式：使用Function来进行转换（python使用execjs调用需要转json时推荐使用这个）"><a href="#第三种方式：使用Function来进行转换（python使用execjs调用需要转json时推荐使用这个）" class="headerlink" title="第三种方式：使用Function来进行转换（python使用execjs调用需要转json时推荐使用这个）"></a>第三种方式：使用Function来进行转换（python使用execjs调用需要转json时推荐使用这个）</h3><p>js:代码</p>
+<p>代码如下:</p>
+<pre><code>var jsonStr = &apos;{&quot;userName&quot;: &quot;tiu&quot;,&quot;userAge&quot;: 26,&quot;isMale&quot;: true}&apos;;
+var json = (new Function(&quot;return &quot; + jsonStr))();</code></pre><p>可以看到其原理就是拼接js代码字符串，然后使用Function创建一个匿名方法然后调用之！</p>
+<h3 id="第四种方式：使用JSON全局对象，不过比较可惜的是IE8以下的版本没有这个对象，如果不考虑兼容IE8一下版本的话JSON全局对象是个很有用的东西"><a href="#第四种方式：使用JSON全局对象，不过比较可惜的是IE8以下的版本没有这个对象，如果不考虑兼容IE8一下版本的话JSON全局对象是个很有用的东西" class="headerlink" title="第四种方式：使用JSON全局对象，不过比较可惜的是IE8以下的版本没有这个对象，如果不考虑兼容IE8一下版本的话JSON全局对象是个很有用的东西"></a>第四种方式：使用JSON全局对象，不过比较可惜的是IE8以下的版本没有这个对象，如果不考虑兼容IE8一下版本的话JSON全局对象是个很有用的东西</h3><p>代码如下：</p>
+<pre><code>var jsonStr = &apos;{&quot;userName&quot;: &quot;tiu&quot;,&quot;userAge&quot;: 26,&quot;isMale&quot;: true}&apos;;
+var json = JSON.parse(jsonStr);
+var str = JSON.stringify(json);</code></pre><h3 id="第五种、使用node-js的JSON模块"><a href="#第五种、使用node-js的JSON模块" class="headerlink" title="第五种、使用node.js的JSON模块"></a>第五种、使用node.js的JSON模块</h3><p>模块地址：<a href="https://www.npmjs.com/package/JSON" target="_blank" rel="noopener">https://www.npmjs.com/package/JSON</a><br>安装：npm i JSON</p>
+<h4 id="json转字符串"><a href="#json转字符串" class="headerlink" title="json转字符串"></a>json转字符串</h4><p>JSON.stringify(obj)将JSON转为字符串。</p>
+<p>obj传入的为json,返回结果是字符串类型的json</p>
+<h4 id="字符串转json"><a href="#字符串转json" class="headerlink" title="字符串转json"></a>字符串转json</h4><p>JSON.parse(string)将字符串转为JSON格式</p>
+<p>string为传入的json类型的字符串，返回的结果为json</p>
+<p>再不懂可以参考：<br><a href="https://blog.csdn.net/chy555chy/article/details/52552548" target="_blank" rel="noopener">https://blog.csdn.net/chy555chy/article/details/52552548</a></p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2019-12-02T07:26:17.968Z" itemprop="dateUpdated">2019-12-02 15:26:17</time>
+</span><br>
+
+
+        
+        这里可以写作者留言，标签和 hexo 中所有变量及辅助函数等均可调用，示例：<a href="/2019/06/27/d87371c991b53f29600fcd7a1bd411e9/" target="_blank" rel="external">https://zhaojiafu.github.io/2019/06/27/d87371c991b53f29600fcd7a1bd411e9/</a>
+        
+    </div>
+    
+    <footer>
+        <a href="https://zhaojiafu.github.io">
+            <img src="/img/zhao.jpg" alt="赵家富">
+            赵家富
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" target="_blank" rel="noopener" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/" rel="tag">JavaScript</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://zhaojiafu.github.io/2019/06/27/d87371c991b53f29600fcd7a1bd411e9/&title=《JavaScript 学习笔记（记录下）》 — 赵家富的博客&pic=https://zhaojiafu.github.io/img/zhao.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" target="_blank" rel="noopener" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://zhaojiafu.github.io/2019/06/27/d87371c991b53f29600fcd7a1bd411e9/&title=《JavaScript 学习笔记（记录下）》 — 赵家富的博客&source=感觉无从下手的时候，问自己“不难，要你干啥？”" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://zhaojiafu.github.io/2019/06/27/d87371c991b53f29600fcd7a1bd411e9/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《JavaScript 学习笔记（记录下）》 — 赵家富的博客&url=https://zhaojiafu.github.io/2019/06/27/d87371c991b53f29600fcd7a1bd411e9/&via=https://zhaojiafu.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://zhaojiafu.github.io/2019/06/27/d87371c991b53f29600fcd7a1bd411e9/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" target="_blank" rel="noopener" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2019/06/28/3b1dda7668cc82f3688f6443bd994f0b/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">python 运算符优先级顺序</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2019/06/27/4f4526766a3c0e2974fab50dd5dd4c0e/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">pycharm的便捷命令（后续更新）</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<section class="comments" id="comments">
+    <div id="gitalk-container"></div>
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+        var id = location.pathname
+        if (location.pathname.length > 50) {
+          id = location.pathname.replace(/\/\d+\/\d+\/\d+\//, '').replace('/', '').substring(0, 50)
+        }
+        const gitalk = new Gitalk({
+          clientID: '388d0a78cda30f118f86',
+          clientSecret: '2c64b34cc20f23d768dffff64acb8c2ee02c3bee',
+          repo: 'https://zhaojiafu.github.io/',
+          owner: 'zjf',
+          admin: ['zjf'],
+          id: id,      // Ensure uniqueness and length less than 50
+          title: document.title.split('|')[0],
+          distractionFreeMode: false  // Facebook-like distraction free mode
+        })
+
+        gitalk.render('gitalk-container')
+    </script>
+</section>
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;" target="_blank" rel="noopener"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢大爷~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.jpg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.jpg" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+            <span>博客内容遵循 <a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+        <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=0 height=0 src="http://music.163.com/song/media/outer/url?id=1369798757&auto=1"></iframe>
+
+    </div>
+    <div class="bottom">
+        <p><span>赵家富 &copy; 2019</span>
+            <span>
+                
+
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" target="_blank" rel="noopener" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://zhaojiafu.github.io/2019/06/27/d87371c991b53f29600fcd7a1bd411e9/&title=《JavaScript 学习笔记（记录下）》 — 赵家富的博客&pic=https://zhaojiafu.github.io/img/zhao.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" target="_blank" rel="noopener" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://zhaojiafu.github.io/2019/06/27/d87371c991b53f29600fcd7a1bd411e9/&title=《JavaScript 学习笔记（记录下）》 — 赵家富的博客&source=感觉无从下手的时候，问自己“不难，要你干啥？”" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://zhaojiafu.github.io/2019/06/27/d87371c991b53f29600fcd7a1bd411e9/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《JavaScript 学习笔记（记录下）》 — 赵家富的博客&url=https://zhaojiafu.github.io/2019/06/27/d87371c991b53f29600fcd7a1bd411e9/&via=https://zhaojiafu.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://zhaojiafu.github.io/2019/06/27/d87371c991b53f29600fcd7a1bd411e9/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;" target="_blank" rel="noopener"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACu0lEQVR42u3c207DQAwFwPz/T8MrEiQ9vmwBafJU0SbxbKXY9VpcV3x8fDu+/j35zN3Ru9fygYeHhzcOPQkxucLdEjy/fo6wvGR4eHh4x3h3F01Cubtx/m6+uHnMeHh4eH+N95wknh/xW4kBDw8P77/wnm+cp4c8zVTjwcPDw3sPL28o9B7f+ULkSWW514KHh4dX23W6qpf+3ddH9vfw8PDwxrvq1XGBrfWutnpvo8XDw8M7wJuXy9Whq0lB3IsTDw8Pb5eXt1+3Gg3V1vAkHjw8PLwTvK3HdHJWryjPU85ttHh4eHirvOqoU3L7yeZWcp2kNMfDw8M7zUtSwm67Nk8Go509PDw8vMO8eSjVxcpHqZqNEjw8PLwDvB6p16ToNRrmvQU8PDy8Xd68XVvdrKq2G5LFXch7eHh4eLVOwvI/wss30vIxgiSNXb3vBw8PD6/FmzcIqiVvdZCrdy4eHh7eCd7uzZIyd3dpXpyLh4eHd4A3qT+rLeCkyM4bu8ny4eHh4Z3mzTfpew2I6lnNLwAPDw9vlTcpi6uN4K2hq0KBjoeHh7fKqxas83ZDbzMs3wZ7MTSAh4eHN+b1Rk6rTdgkiBMtYzw8PLwTvOSjvWGpfGjgOVX0ivIrz2Z4eHh4RV5vNCovfKvjAvOBg2gbDA8PD2/M6wXaGyyYzDU8RxUNDeDh4eGt8pKf+knamIDnKed2JgIPDw/vGK93g7zsrj7We0vzYjICDw8Pb8D7KB6TNmu+qTZ594cNMDw8PLxVXn48F9DVG8+HsZobYHh4eHhLvGqLIS+Xq0uQtzYKiQEPDw/vGK/6UO41GnoDWHkzovA2Hh4e3ht58xZDUuP32ru3JTUeHh7eH+P18L2hhHJSwcPDwzvGyy89YSQJoNeujYau8PDw8JZ4vR/81dI5f2JXP9kk4eHh4XV4n5V30HVZp+FIAAAAAElFTkSuQmCC" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '死鬼去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+<script src="/node_modules/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"node_modules/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/node_modules/assets/shizuku.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"react":{"opacity":0.7},"log":false});</script></body>
+</html>

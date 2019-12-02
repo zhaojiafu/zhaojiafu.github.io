@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <link rel="canonical" href="https://zhaojiafu.github.io/2019/12/02/cc5a14390d75b02017bddc833115adf1/">
+    
+    
+    <title>FutureWarning_ Passing (type, 1) or &#39;1type&#39; as a synonym of type is deprecated; in a future version | 赵家富的博客 | 保持好奇心</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="问题解决">
+    <meta name="description" content="今天测试了一个大牛的去除图片马赛克的代码除了不少的错误，这个十个警告，能完成去重的效果，但是看着警告感觉不爽，所以接着寻找解决办法： 问题：FutureWarning: Passing (type, 1) or &amp;apos;1type&amp;apos; as a synonym of type is deprecated; in a future version of numpy, it will be">
+<meta name="keywords" content="问题解决">
+<meta property="og:type" content="article">
+<meta property="og:title" content="FutureWarning_ Passing (type, 1) or &#39;1type&#39; as a synonym of type is deprecated; in a future version">
+<meta property="og:url" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;2019&#x2F;12&#x2F;02&#x2F;cc5a14390d75b02017bddc833115adf1&#x2F;index.html">
+<meta property="og:site_name" content="赵家富的博客">
+<meta property="og:description" content="今天测试了一个大牛的去除图片马赛克的代码除了不少的错误，这个十个警告，能完成去重的效果，但是看着警告感觉不爽，所以接着寻找解决办法： 问题：FutureWarning: Passing (type, 1) or &amp;apos;1type&amp;apos; as a synonym of type is deprecated; in a future version of numpy, it will be">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-12-02T07:26:18.263Z">
+<meta name="twitter:card" content="summary">
+    
+    <link rel="shortcut icon" href="/img/cb2nm-5l9w0-001.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" target="_blank" rel="noopener" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/zhao.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">赵家富</h5>
+          <a href="mailto:530519174@qq.com" target="_blank" rel="noopener" title="530519174@qq.com" class="mail">530519174@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                archives(所有)
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags/"  >
+                <i class="icon icon-lg icon-tags"></i>
+                tag(标签)
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories/"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories(分类)
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/zhaojiafu" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://blog.csdn.net/weixin_42081389" target="_blank" >
+                <i class="icon icon-lg icon-csdn"></i>
+                Csdn
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" target="_blank" rel="noopener" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+
+        <div class="flex-col header-title ellipsis">FutureWarning_ Passing (type, 1) or &#39;1type&#39; as a synonym of type is deprecated; in a future version</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" target="_blank" rel="noopener" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" target="_blank" rel="noopener" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" target="_blank" rel="noopener" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+
+        <h1 class="title">FutureWarning_ Passing (type, 1) or &#39;1type&#39; as a synonym of type is deprecated; in a future version
+        </h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2019-12-02T03:34:32.000Z" itemprop="datePublished" class="page-time">
+  2019-12-02
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3/">问题解决</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#问题："><span class="post-toc-number">1.</span> <span class="post-toc-text">问题：</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#解决方法："><span class="post-toc-number">2.</span> <span class="post-toc-text">解决方法：</span></a></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-cc5a14390d75b02017bddc833115adf1"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">FutureWarning_ Passing (type, 1) or '1type' as a synonym of type is deprecated; in a future version</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2019-12-02 11:34:32" datetime="2019-12-02T03:34:32.000Z"  itemprop="datePublished">2019-12-02</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3/">问题解决</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p>今天测试了一个大牛的去除图片马赛克的代码除了不少的错误，这个十个警告，能完成去重的效果，但是看着警告感觉不爽，所以接着寻找解决办法：</p>
+<h1 id="问题："><a href="#问题：" class="headerlink" title="问题："></a>问题：</h1><pre><code>FutureWarning: Passing (type, 1) or &apos;1type&apos; as a synonym of type is deprecated; in a future version of numpy, it will be understood as (type, (1,)) / &apos;(1,)type&apos;.
+
+
+Using TensorFlow backend.
+D:\tools\_virtualenv_dir\myproject_2_quchumasaike\env2_py36_quchumasaike\lib\site-packages\tensorflow\python\framework\dtypes.py:516: FutureWarning: Passing (type, 1) or &apos;1type&apos; as a synonym of type is deprecated; in a future version of numpy, it will be understood as (type, (1,)) / &apos;(1,)type&apos;.
+  _np_qint8 = np.dtype([(&quot;qint8&quot;, np.int8, 1)])
+D:\tools\_virtualenv_dir\myproject_2_quchumasaike\env2_py36_quchumasaike\lib\site-packages\tensorflow\python\framework\dtypes.py:517: FutureWarning: Passing (type, 1) or &apos;1type&apos; as a synonym of type is deprecated; in a future version of numpy, it will be understood as (type, (1,)) / &apos;(1,)type&apos;.
+  _np_quint8 = np.dtype([(&quot;quint8&quot;, np.uint8, 1)])
+D:\tools\_virtualenv_dir\myproject_2_quchumasaike\env2_py36_quchumasaike\lib\site-packages\tensorflow\python\framework\dtypes.py:518: FutureWarning: Passing (type, 1) or &apos;1type&apos; as a synonym of type is deprecated; in a future version of numpy, it will be understood as (type, (1,)) / &apos;(1,)type&apos;.
+  _np_qint16 = np.dtype([(&quot;qint16&quot;, np.int16, 1)])
+D:\tools\_virtualenv_dir\myproject_2_quchumasaike\env2_py36_quchumasaike\lib\site-packages\tensorflow\python\framework\dtypes.py:519: FutureWarning: Passing (type, 1) or &apos;1type&apos; as a synonym of type is deprecated; in a future version of numpy, it will be understood as (type, (1,)) / &apos;(1,)type&apos;.
+  _np_quint16 = np.dtype([(&quot;quint16&quot;, np.uint16, 1)])
+D:\tools\_virtualenv_dir\myproject_2_quchumasaike\env2_py36_quchumasaike\lib\site-packages\tensorflow\python\framework\dtypes.py:520: FutureWarning: Passing (type, 1) or &apos;1type&apos; as a synonym of type is deprecated; in a future version of numpy, it will be understood as (type, (1,)) / &apos;(1,)type&apos;.
+  _np_qint32 = np.dtype([(&quot;qint32&quot;, np.int32, 1)])
+D:\tools\_virtualenv_dir\myproject_2_quchumasaike\env2_py36_quchumasaike\lib\site-packages\tensorflow\python\framework\dtypes.py:525: FutureWarning: Passing (type, 1) or &apos;1type&apos; as a synonym of type is deprecated; in a future version of numpy, it will be understood as (type, (1,)) / &apos;(1,)type&apos;.
+  np_resource = np.dtype([(&quot;resource&quot;, np.ubyte, 1)])
+D:\tools\_virtualenv_dir\myproject_2_quchumasaike\env2_py36_quchumasaike\lib\site-packages\tensorboard\compat\tensorflow_stub\dtypes.py:541: FutureWarning: Passing (type, 1) or &apos;1type&apos; as a synonym of type is deprecated; in a future version of numpy, it will be understood as (type, (1,)) / &apos;(1,)type&apos;.
+  _np_qint8 = np.dtype([(&quot;qint8&quot;, np.int8, 1)])
+D:\tools\_virtualenv_dir\myproject_2_quchumasaike\env2_py36_quchumasaike\lib\site-packages\tensorboard\compat\tensorflow_stub\dtypes.py:542: FutureWarning: Passing (type, 1) or &apos;1type&apos; as a synonym of type is deprecated; in a future version of numpy, it will be understood as (type, (1,)) / &apos;(1,)type&apos;.
+  _np_quint8 = np.dtype([(&quot;quint8&quot;, np.uint8, 1)])
+D:\tools\_virtualenv_dir\myproject_2_quchumasaike\env2_py36_quchumasaike\lib\site-packages\tensorboard\compat\tensorflow_stub\dtypes.py:543: FutureWarning: Passing (type, 1) or &apos;1type&apos; as a synonym of type is deprecated; in a future version of numpy, it will be understood as (type, (1,)) / &apos;(1,)type&apos;.
+  _np_qint16 = np.dtype([(&quot;qint16&quot;, np.int16, 1)])
+D:\tools\_virtualenv_dir\myproject_2_quchumasaike\env2_py36_quchumasaike\lib\site-packages\tensorboard\compat\tensorflow_stub\dtypes.py:544: FutureWarning: Passing (type, 1) or &apos;1type&apos; as a synonym of type is deprecated; in a future version of numpy, it will be understood as (type, (1,)) / &apos;(1,)type&apos;.
+  _np_quint16 = np.dtype([(&quot;quint16&quot;, np.uint16, 1)])
+D:\tools\_virtualenv_dir\myproject_2_quchumasaike\env2_py36_quchumasaike\lib\site-packages\tensorboard\compat\tensorflow_stub\dtypes.py:545: FutureWarning: Passing (type, 1) or &apos;1type&apos; as a synonym of type is deprecated; in a future version of numpy, it will be understood as (type, (1,)) / &apos;(1,)type&apos;.
+  _np_qint32 = np.dtype([(&quot;qint32&quot;, np.int32, 1)])
+D:\tools\_virtualenv_dir\myproject_2_quchumasaike\env2_py36_quchumasaike\lib\site-packages\tensorboard\compat\tensorflow_stub\dtypes.py:550: FutureWarning: Passing (type, 1) or &apos;1type&apos; as a synonym of type is deprecated; in a future version of numpy, it will be understood as (type, (1,)) / &apos;(1,)type&apos;.
+  np_resource = np.dtype([(&quot;resource&quot;, np.ubyte, 1)])</code></pre><h1 id="解决方法："><a href="#解决方法：" class="headerlink" title="解决方法："></a>解决方法：</h1><p>谷歌搜索找到了俩个问题连接：<br><a href="https://github.com/tensorflow/tensorflow/issues/30427" target="_blank" rel="noopener">https://github.com/tensorflow/tensorflow/issues/30427</a><br><a href="https://github.com/tensorflow/tensorflow/issues/31249" target="_blank" rel="noopener">https://github.com/tensorflow/tensorflow/issues/31249</a><br>想看可以去看看，不想看可以直接执行下面代码：</p>
+<p>这个问题意思就是numpy 的版本过低或者过高都会出现警告，只需要先卸载重新指定的1.16.4版本的numpy即可解决此问题，建议把需要执行的这个项目建个虚拟环境测试，以免影响其他代码或者项目</p>
+<pre><code>pip uninstall numpy
+pip install numpy==1.16.4</code></pre>
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2019-12-02T07:26:18.263Z" itemprop="dateUpdated">2019-12-02 15:26:18</time>
+</span><br>
+
+
+        
+        这里可以写作者留言，标签和 hexo 中所有变量及辅助函数等均可调用，示例：<a href="/2019/12/02/cc5a14390d75b02017bddc833115adf1/" target="_blank" rel="external">https://zhaojiafu.github.io/2019/12/02/cc5a14390d75b02017bddc833115adf1/</a>
+        
+    </div>
+    
+    <footer>
+        <a href="https://zhaojiafu.github.io">
+            <img src="/img/zhao.jpg" alt="赵家富">
+            赵家富
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" target="_blank" rel="noopener" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3/" rel="tag">问题解决</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://zhaojiafu.github.io/2019/12/02/cc5a14390d75b02017bddc833115adf1/&title=《FutureWarning_ Passing (type, 1) or '1type' as a synonym of type is deprecated; in a future version》 — 赵家富的博客&pic=https://zhaojiafu.github.io/img/zhao.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" target="_blank" rel="noopener" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://zhaojiafu.github.io/2019/12/02/cc5a14390d75b02017bddc833115adf1/&title=《FutureWarning_ Passing (type, 1) or '1type' as a synonym of type is deprecated; in a future version》 — 赵家富的博客&source=感觉无从下手的时候，问自己“不难，要你干啥？”" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://zhaojiafu.github.io/2019/12/02/cc5a14390d75b02017bddc833115adf1/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《FutureWarning_ Passing (type, 1) or '1type' as a synonym of type is deprecated; in a future version》 — 赵家富的博客&url=https://zhaojiafu.github.io/2019/12/02/cc5a14390d75b02017bddc833115adf1/&via=https://zhaojiafu.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://zhaojiafu.github.io/2019/12/02/cc5a14390d75b02017bddc833115adf1/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" target="_blank" rel="noopener" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2019/12/02/5de1dc66d6edf42256fd25988094ee2a/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">使用python os模块复制文件到指定文件夹</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2019/12/02/615ebf68260a8b564bb0fd673ab7aea6/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">python的copy模块之deepcopy（深拷贝）和copy（也称之为shallow copy浅拷贝）</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<section class="comments" id="comments">
+    <div id="gitalk-container"></div>
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+        var id = location.pathname
+        if (location.pathname.length > 50) {
+          id = location.pathname.replace(/\/\d+\/\d+\/\d+\//, '').replace('/', '').substring(0, 50)
+        }
+        const gitalk = new Gitalk({
+          clientID: '388d0a78cda30f118f86',
+          clientSecret: '2c64b34cc20f23d768dffff64acb8c2ee02c3bee',
+          repo: 'https://zhaojiafu.github.io/',
+          owner: 'zjf',
+          admin: ['zjf'],
+          id: id,      // Ensure uniqueness and length less than 50
+          title: document.title.split('|')[0],
+          distractionFreeMode: false  // Facebook-like distraction free mode
+        })
+
+        gitalk.render('gitalk-container')
+    </script>
+</section>
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;" target="_blank" rel="noopener"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢大爷~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.jpg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.jpg" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+            <span>博客内容遵循 <a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+        <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=0 height=0 src="http://music.163.com/song/media/outer/url?id=1369798757&auto=1"></iframe>
+
+    </div>
+    <div class="bottom">
+        <p><span>赵家富 &copy; 2019</span>
+            <span>
+                
+
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" target="_blank" rel="noopener" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://zhaojiafu.github.io/2019/12/02/cc5a14390d75b02017bddc833115adf1/&title=《FutureWarning_ Passing (type, 1) or '1type' as a synonym of type is deprecated; in a future version》 — 赵家富的博客&pic=https://zhaojiafu.github.io/img/zhao.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" target="_blank" rel="noopener" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://zhaojiafu.github.io/2019/12/02/cc5a14390d75b02017bddc833115adf1/&title=《FutureWarning_ Passing (type, 1) or '1type' as a synonym of type is deprecated; in a future version》 — 赵家富的博客&source=感觉无从下手的时候，问自己“不难，要你干啥？”" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://zhaojiafu.github.io/2019/12/02/cc5a14390d75b02017bddc833115adf1/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《FutureWarning_ Passing (type, 1) or '1type' as a synonym of type is deprecated; in a future version》 — 赵家富的博客&url=https://zhaojiafu.github.io/2019/12/02/cc5a14390d75b02017bddc833115adf1/&via=https://zhaojiafu.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://zhaojiafu.github.io/2019/12/02/cc5a14390d75b02017bddc833115adf1/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;" target="_blank" rel="noopener"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACu0lEQVR42u3awW7rMAwEwPz/T6eXd3hF4GSXkgKjGJ+KRrY1CiAxJB+P+Hq+XO8//X/MM7jy5zxOXHh4eHjLU2+n+Pq017uuPr0aeTXDdj54eHh453hXD0025fcj14+N/JDAw8PDuzMveWVybOTLh4eHh/c3eO+D4zyYbpcADw8P7w68PITNg+P3m/vKpn8k14KHh4cX8/Iq0n3+PlLfw8PDw1uuqrcb/a5i/3qq99+9eHh4eAd4+SRmAffKf5JwPBqJh4eHt5WXpwDawn/edJW0GuQHxq+34OHh4R3gtdtu3iLQpjaSVGxeVBueKnh4eHgBry19tYvShsJ5U0J0zODh4eEd4OVtASfKabPWq6jRCg8PD+/rvPY1s+JZG14vJSPw8PDwtqZxZ+0CeRFrtkDtAVD/YsDDw8M7xqt//JcLNxsTpTzw8PDwDvPadGrygnyjXz9UoqYBPDw8vE28WaKhTarmgXuSaIi+GDw8PLwDvLwAlqce8vH50/LDY1jfw8PDwyt57abclspmJbFZwB1R8fDw8BZ4Q/2orWrGXllKPDw8vBO8lYOhTVjkCeK2VJbnbPHw8PDWeXkqoS1K5emJfOuvUxV4eHh4x3izzbdN2q6nd+svAw8PD+8Ary3qryRbk7fk7OKgwsPDwzvMy29ukwt5OJ4vYnLw4OHh4X2Hl//4nzVF7W3hKkJqPDw8vK289jDYVsgv51OnevHw8PCO8WZb82xa+Xvb5fgQUuPh4eEt857l1Ya5exOy+Xzw8PDwzvHazTc5NtbLZnl5rG38wsPDw9vFmxX1Z2mCWXtBu4h4eHh43+F9J8CdNWC1aV88PDy8e/JWqO2TVxoX8PDw8O7GmyV/83vz0HxzSI2Hh4e3KRkxa35qt/42CfKh9IWHh4d3gLfet5UfDHmoPRu5VN/Dw8PD+8z7AaKZsYbVaz47AAAAAElFTkSuQmCC" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '死鬼去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+<script src="/node_modules/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"node_modules/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/node_modules/assets/shizuku.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"react":{"opacity":0.7},"log":false});</script></body>
+</html>

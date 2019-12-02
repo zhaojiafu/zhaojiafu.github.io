@@ -1,0 +1,748 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <link rel="canonical" href="https://zhaojiafu.github.io/2019/10/09/daa6e3f15670a5ed21506fc4edf51d1e/">
+    
+    
+    <title>python爬虫之scrapy 框架学习复习整理三--CrawlSpider（自动提取翻页） | 赵家富的博客 | 保持好奇心</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="scrapy">
+    <meta name="description" content="@[toc] 说明：这次是接着上一次的爬虫：python爬虫之scrapy 框架学习复习整理二进行补充，上一次是自己对响应的页面，进行分析，查找出下一页的地址，使用requests发送请求，解析方法还是parse函数。 这次使用自动从响应页面提取出需要爬取的地址，然后接着再次爬取，直至，提取的地址都爬取完毕。 自动提取下一页：Scrapy中CrawlSpider1、再建立一个爬虫程序：1scra">
+<meta name="keywords" content="scrapy">
+<meta property="og:type" content="article">
+<meta property="og:title" content="python爬虫之scrapy 框架学习复习整理三--CrawlSpider（自动提取翻页）">
+<meta property="og:url" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;2019&#x2F;10&#x2F;09&#x2F;daa6e3f15670a5ed21506fc4edf51d1e&#x2F;index.html">
+<meta property="og:site_name" content="赵家富的博客">
+<meta property="og:description" content="@[toc] 说明：这次是接着上一次的爬虫：python爬虫之scrapy 框架学习复习整理二进行补充，上一次是自己对响应的页面，进行分析，查找出下一页的地址，使用requests发送请求，解析方法还是parse函数。 这次使用自动从响应页面提取出需要爬取的地址，然后接着再次爬取，直至，提取的地址都爬取完毕。 自动提取下一页：Scrapy中CrawlSpider1、再建立一个爬虫程序：1scra">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;2019100918040328.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20191009180819547.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20191009181215127.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20191009182930608.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;2019100918141412.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20191009183024258.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20191009181522329.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20191009182430708.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20191009185303370.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20191009185315373.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20191009184316720.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20191009184531998.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20191009184546733.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20191009184849327.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20191009184910989.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20191009190256116.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20191009190537709.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20191009190421708.png">
+<meta property="og:updated_time" content="2019-12-02T07:26:18.078Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;2019100918040328.png">
+    
+    <link rel="shortcut icon" href="/img/cb2nm-5l9w0-001.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" target="_blank" rel="noopener" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/zhao.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">赵家富</h5>
+          <a href="mailto:530519174@qq.com" target="_blank" rel="noopener" title="530519174@qq.com" class="mail">530519174@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                archives(所有)
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags/"  >
+                <i class="icon icon-lg icon-tags"></i>
+                tag(标签)
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories/"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories(分类)
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/zhaojiafu" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://blog.csdn.net/weixin_42081389" target="_blank" >
+                <i class="icon icon-lg icon-csdn"></i>
+                Csdn
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" target="_blank" rel="noopener" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+
+        <div class="flex-col header-title ellipsis">python爬虫之scrapy 框架学习复习整理三--CrawlSpider（自动提取翻页）</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" target="_blank" rel="noopener" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" target="_blank" rel="noopener" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" target="_blank" rel="noopener" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+
+        <h1 class="title">python爬虫之scrapy 框架学习复习整理三--CrawlSpider（自动提取翻页）
+        </h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2019-10-09T03:34:32.000Z" itemprop="datePublished" class="page-time">
+  2019-10-09
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/scrapy/">scrapy</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#说明："><span class="post-toc-number">1.</span> <span class="post-toc-text">说明：</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#自动提取下一页：Scrapy中CrawlSpider"><span class="post-toc-number">2.</span> <span class="post-toc-text">自动提取下一页：Scrapy中CrawlSpider</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#1、再建立一个爬虫程序："><span class="post-toc-number">2.1.</span> <span class="post-toc-text">1、再建立一个爬虫程序：</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#2、Scrapy中CrawlSpider的几个点："><span class="post-toc-number">2.2.</span> <span class="post-toc-text">2、Scrapy中CrawlSpider的几个点：</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#①、CrawlSpider注意点："><span class="post-toc-number">2.2.1.</span> <span class="post-toc-text">①、CrawlSpider注意点：</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#②、LinkExtractor参数"><span class="post-toc-number">2.2.2.</span> <span class="post-toc-text">②、LinkExtractor参数</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#③、Rule参数"><span class="post-toc-number">2.2.3.</span> <span class="post-toc-text">③、Rule参数</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#3、简单修改下爬虫程序scrapyd2-py"><span class="post-toc-number">2.3.</span> <span class="post-toc-text">3、简单修改下爬虫程序scrapyd2.py</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#1、正则匹配需要提取的地址："><span class="post-toc-number">2.3.1.</span> <span class="post-toc-text">1、正则匹配需要提取的地址：</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#测试如果正则匹配为空会怎样："><span class="post-toc-number">2.3.1.1.</span> <span class="post-toc-text">测试如果正则匹配为空会怎样：</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#2、xpath匹配需求提取的地址："><span class="post-toc-number">2.3.2.</span> <span class="post-toc-text">2、xpath匹配需求提取的地址：</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#3、结论："><span class="post-toc-number">2.3.3.</span> <span class="post-toc-text">3、结论：</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#4、修改parse-item"><span class="post-toc-number">2.4.</span> <span class="post-toc-text">4、修改parse_item</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#5、修改下管道储存的数据名称（防止和之前的混淆）："><span class="post-toc-number">2.5.</span> <span class="post-toc-text">5、修改下管道储存的数据名称（防止和之前的混淆）：</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#6、运行：scrapy-crawl-scrayd2："><span class="post-toc-number">2.6.</span> <span class="post-toc-text">6、运行：scrapy crawl scrayd2：</span></a></li></ol></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-daa6e3f15670a5ed21506fc4edf51d1e"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">python爬虫之scrapy 框架学习复习整理三--CrawlSpider（自动提取翻页）</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2019-10-09 11:34:32" datetime="2019-10-09T03:34:32.000Z"  itemprop="datePublished">2019-10-09</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/scrapy/">scrapy</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p>﻿<br>@[toc]</p>
+<h1 id="说明："><a href="#说明：" class="headerlink" title="说明："></a>说明：</h1><p>这次是接着上一次的爬虫：<a href="https://blog.csdn.net/weixin_42081389/article/details/102455273" target="_blank" rel="noopener">python爬虫之scrapy 框架学习复习整理二</a><br>进行补充，上一次是自己对响应的页面，进行分析，查找出下一页的地址，使用requests发送请求，解析方法还是parse函数。</p>
+<p>这次使用自动从响应页面提取出需要爬取的地址，然后接着再次爬取，直至，提取的地址都爬取完毕。</p>
+<h1 id="自动提取下一页：Scrapy中CrawlSpider"><a href="#自动提取下一页：Scrapy中CrawlSpider" class="headerlink" title="自动提取下一页：Scrapy中CrawlSpider"></a>自动提取下一页：Scrapy中CrawlSpider</h1><h2 id="1、再建立一个爬虫程序："><a href="#1、再建立一个爬虫程序：" class="headerlink" title="1、再建立一个爬虫程序："></a>1、再建立一个爬虫程序：</h2><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">scrapy genspide -t crawl scrapyd2 lab.scrapyd.cn</span></pre></td></tr></table></figure>
+<p>解释下：<strong>scrapy genspide -t crawl</strong> 是固定格式，后面跟的scrapyd2是程序名字name,后面是允许爬取的域名，后续可以自己增加需要爬取的域名。</p>
+<p>执行之后会生成一个scrapyd2.py文件。</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/2019100918040328.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+<p>scrapyd2.py文件模板自动生成格式为：</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/20191009180819547.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+
+<h2 id="2、Scrapy中CrawlSpider的几个点："><a href="#2、Scrapy中CrawlSpider的几个点：" class="headerlink" title="2、Scrapy中CrawlSpider的几个点："></a>2、Scrapy中CrawlSpider的几个点：</h2><h3 id="①、CrawlSpider注意点："><a href="#①、CrawlSpider注意点：" class="headerlink" title="①、CrawlSpider注意点："></a>①、CrawlSpider注意点：</h3><p><img src="/imgs/20191009181215127.png" alt="在这里插入图片描述"></p>
+<h3 id="②、LinkExtractor参数"><a href="#②、LinkExtractor参数" class="headerlink" title="②、LinkExtractor参数"></a>②、LinkExtractor参数</h3><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/20191009182930608.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/2019100918141412.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+
+<h3 id="③、Rule参数"><a href="#③、Rule参数" class="headerlink" title="③、Rule参数"></a>③、Rule参数</h3><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/20191009183024258.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/20191009181522329.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+
+
+<h2 id="3、简单修改下爬虫程序scrapyd2-py"><a href="#3、简单修改下爬虫程序scrapyd2-py" class="headerlink" title="3、简单修改下爬虫程序scrapyd2.py"></a>3、简单修改下爬虫程序scrapyd2.py</h2><h3 id="1、正则匹配需要提取的地址："><a href="#1、正则匹配需要提取的地址：" class="headerlink" title="1、正则匹配需要提取的地址："></a>1、正则匹配需要提取的地址：</h3><p>初步修改的完整代码：</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="comment"># -*- coding: utf-8 -*-</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">import scrapy</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">from scrapy.linkextractors import LinkExtractor</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">from scrapy.spiders import CrawlSpider, Rule</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">class Scrapyd2Spider(CrawlSpider):</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">    name = <span class="string">'scrapyd2'</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">    allowed_domains = [<span class="string">'lab.scrapyd.cn'</span>]</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">    start_urls = [<span class="string">'http://lab.scrapyd.cn/'</span>]</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">    rules = (</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">        Rule(LinkExtractor(allow=r<span class="string">'http://lab.scrapyd.cn/page/\d+/'</span>,), callback=<span class="string">'parse_item'</span>, follow=True),</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line">    )</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><span class="line">    def parse_item(self, response):</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">17</span></pre></td><td class="code"><pre><span class="line">        print(<span class="string">"进来了"</span>,response.url)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">18</span></pre></td><td class="code"><pre><span class="line">        item = &#123;&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">19</span></pre></td><td class="code"><pre><span class="line">        <span class="comment">#item['domain_id'] = response.xpath('//input[@id="sid"]/@value').get()</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">20</span></pre></td><td class="code"><pre><span class="line">        <span class="comment">#item['name'] = response.xpath('//div[@id="name"]').get()</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">21</span></pre></td><td class="code"><pre><span class="line">        <span class="comment">#item['description'] = response.xpath('//div[@id="description"]').get()</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">22</span></pre></td><td class="code"><pre><span class="line">        <span class="keyword">return</span> item</span></pre></td></tr></table></figure>
+
+<p>可以看到我只是修改可，rule和parse_item方法中的打印输出测试：<br>allow修改的是一个正则匹配，可以使用正则方法。<br>然后可以，执行：</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">scrapy crawl scrayd2</span></pre></td></tr></table></figure>
+
+<p>然后打印出来：</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/20191009182430708.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+
+<p>从结果我们可以看出，已经可以提取出翻页的url，并且爬取了翻页的地址。从打印出的翻页地址，可以充分体验出scrapy的爬取是一个异步的，因为我们就这几页的情况下，顺序还是乱序，如果翻页更多的情况下，那么顺序估计更乱。</p>
+<h4 id="测试如果正则匹配为空会怎样："><a href="#测试如果正则匹配为空会怎样：" class="headerlink" title="测试如果正则匹配为空会怎样："></a>测试如果正则匹配为空会怎样：</h4><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/20191009185303370.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+
+<p>结果把所有的都给我匹配到了，只要是允许域名下的地址：</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/20191009185315373.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+
+
+
+
+<h3 id="2、xpath匹配需求提取的地址："><a href="#2、xpath匹配需求提取的地址：" class="headerlink" title="2、xpath匹配需求提取的地址："></a>2、xpath匹配需求提取的地址：</h3><p>只是修改了Rule：<br>经过我测试之后，发现使用xpath提取发现，’//<em>[@id=”main”]//li[@class=”next”]/a’和’//</em>[@id=”main”]//li[@class=”next”]’提取的结果是一样的，也就证实了，rule的规则，会把匹配到的HTML页面里面的所有地址，只要是<strong>allowed_domains</strong> 域名下的所有地址都会提取出来，作为下一个爬取url,放到url队列进行继续爬取。</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">rules = (</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">       Rule(LinkExtractor(restrict_xpaths=(<span class="string">'//*[@id="main"]//li[@class="next"]/a'</span>,), ), callback=<span class="string">'parse_item'</span>, follow=True),</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">       <span class="comment"># Rule(LinkExtractor(restrict_xpaths=('//*[@id="main"]//li[@class="next"]',), ), callback='parse_item', follow=True),</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">       <span class="comment"># Rule(LinkExtractor(restrict_xpaths=('//*[@id="main"]',), ), callback='parse_item', follow=True),</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">   )</span></pre></td></tr></table></figure>
+<p>定位到li和a标签，的结果和正则匹配是一样的。</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/20191009184316720.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+
+<p>处于好奇，我就测试了下，如果定位到href,会怎样，结果报错了。<br>‘//*[@id=”main”]//li[@class=”next”]/a/@href’</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/20191009184531998.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+<p>报错内容：看了使用xpath最多定位的url的a标签，着上一级的li</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/20191009184546733.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+
+<p>然后我又尝试了，如果定位到所有li的div会怎样，结果：<br><strong>‘//*[@id=”main”]’</strong><br>结果：</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/20191009184849327.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+<p>把div下所有是allowed_domains域名下的url都匹配过来了，所以，这个不精确的提取不建议使用，这些还是只有自己测试之后才会记得牢（当然时间长了也会忘，没事抽时间复习一下还是很有必要的）。</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/20191009184910989.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+
+<h3 id="3、结论："><a href="#3、结论：" class="headerlink" title="3、结论："></a>3、结论：</h3><p>通过使用正则和xpath匹配尝试，得到：</p>
+<ol>
+<li>如果使用正则，尽量匹配地址精确点，这样才不会出现页面混乱，不然解析页面是会出问题。</li>
+<li>如果使用xpath匹配，进行精确到a标签，或者a标签的父级（如果父级有很多a标签，其他的a标签有些不符合，还是精确到a标签吧）</li>
+<li>如果使用xpath匹配，不要匹配到href属性，不然还会报错</li>
+</ol>
+<h2 id="4、修改parse-item"><a href="#4、修改parse-item" class="headerlink" title="4、修改parse_item"></a>4、修改parse_item</h2><p>直接把之前的代码复制过来了，只不过翻页步骤不要了：</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">def parse_item(self, response):</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">       print(<span class="string">"进来了"</span>,response.url)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">       <span class="comment"># item = &#123;&#125;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">       <span class="comment"># #item['domain_id'] = response.xpath('//input[@id="sid"]/@value').get()</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">       <span class="comment"># #item['name'] = response.xpath('//div[@id="name"]').get()</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">       <span class="comment"># #item['description'] = response.xpath('//div[@id="description"]').get()</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">       <span class="comment"># return item</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">       <span class="comment"># 1、提取每一页的数据</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">       div_list = response.xpath(<span class="string">'//*[@id="main"]/div[@class="quote post"]'</span>)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">       <span class="keyword">for</span> div <span class="keyword">in</span> div_list:</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">           <span class="comment"># extract_first() 和 get() 返回的结果是一样的。</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">           text = div.xpath(<span class="string">'./span[@class="text"]/text()'</span>).get()</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line">           <span class="comment"># author = div.xpath('.//*[@class="author"]/text()').extract_first()</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line">           author = div.xpath(<span class="string">'.//*[@class="author"]/text()'</span>).get()</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><span class="line">           url = div.xpath(<span class="string">'.//a[contains(text(),"详情")]/@href'</span>).get()</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">17</span></pre></td><td class="code"><pre><span class="line">           <span class="comment"># print("div", text, author, url)</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">18</span></pre></td><td class="code"><pre><span class="line">           item = ScrapydCnItem()</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">19</span></pre></td><td class="code"><pre><span class="line">           <span class="comment"># item = &#123;&#125;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">20</span></pre></td><td class="code"><pre><span class="line">           item[<span class="string">'text'</span>] = text</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">21</span></pre></td><td class="code"><pre><span class="line">           item[<span class="string">'author'</span>] = author</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">22</span></pre></td><td class="code"><pre><span class="line">           item[<span class="string">'url'</span>] = url</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">23</span></pre></td><td class="code"><pre><span class="line">           yield item</span></pre></td></tr></table></figure>
+
+
+<h2 id="5、修改下管道储存的数据名称（防止和之前的混淆）："><a href="#5、修改下管道储存的数据名称（防止和之前的混淆）：" class="headerlink" title="5、修改下管道储存的数据名称（防止和之前的混淆）："></a>5、修改下管道储存的数据名称（防止和之前的混淆）：</h2><p>和之前相比：多加了一个2</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/20191009190256116.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+
+
+<h2 id="6、运行：scrapy-crawl-scrayd2："><a href="#6、运行：scrapy-crawl-scrayd2：" class="headerlink" title="6、运行：scrapy crawl scrayd2："></a>6、运行：scrapy crawl scrayd2：</h2><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">scrapy crawl scrayd2</span></pre></td></tr></table></figure>
+
+<p>打印出来的数据：</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/20191009190537709.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+
+
+<p>MongoDB保存的数据：</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/20191009190421708.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2019-12-02T07:26:18.078Z" itemprop="dateUpdated">2019-12-02 15:26:18</time>
+</span><br>
+
+
+        
+        这里可以写作者留言，标签和 hexo 中所有变量及辅助函数等均可调用，示例：<a href="/2019/10/09/daa6e3f15670a5ed21506fc4edf51d1e/" target="_blank" rel="external">https://zhaojiafu.github.io/2019/10/09/daa6e3f15670a5ed21506fc4edf51d1e/</a>
+        
+    </div>
+    
+    <footer>
+        <a href="https://zhaojiafu.github.io">
+            <img src="/img/zhao.jpg" alt="赵家富">
+            赵家富
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" target="_blank" rel="noopener" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/scrapy/" rel="tag">scrapy</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://zhaojiafu.github.io/2019/10/09/daa6e3f15670a5ed21506fc4edf51d1e/&title=《python爬虫之scrapy 框架学习复习整理三--CrawlSpider（自动提取翻页）》 — 赵家富的博客&pic=https://zhaojiafu.github.io/img/zhao.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" target="_blank" rel="noopener" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://zhaojiafu.github.io/2019/10/09/daa6e3f15670a5ed21506fc4edf51d1e/&title=《python爬虫之scrapy 框架学习复习整理三--CrawlSpider（自动提取翻页）》 — 赵家富的博客&source=感觉无从下手的时候，问自己“不难，要你干啥？”" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://zhaojiafu.github.io/2019/10/09/daa6e3f15670a5ed21506fc4edf51d1e/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《python爬虫之scrapy 框架学习复习整理三--CrawlSpider（自动提取翻页）》 — 赵家富的博客&url=https://zhaojiafu.github.io/2019/10/09/daa6e3f15670a5ed21506fc4edf51d1e/&via=https://zhaojiafu.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://zhaojiafu.github.io/2019/10/09/daa6e3f15670a5ed21506fc4edf51d1e/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" target="_blank" rel="noopener" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2019/10/10/b06dadf2dcd5da45e4c9d7f1359d8005/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">python爬虫之scrapy 框架学习复习整理四--验证发送请求时携带cookies的4种有效性方法</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2019/10/09/b6288208a9fabc0a558dbcfc23223334/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">python爬虫之scrapy 框架学习复习整理二--scrapy.Request（自己提取url再发送请求）</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<section class="comments" id="comments">
+    <div id="gitalk-container"></div>
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+        var id = location.pathname
+        if (location.pathname.length > 50) {
+          id = location.pathname.replace(/\/\d+\/\d+\/\d+\//, '').replace('/', '').substring(0, 50)
+        }
+        const gitalk = new Gitalk({
+          clientID: '388d0a78cda30f118f86',
+          clientSecret: '2c64b34cc20f23d768dffff64acb8c2ee02c3bee',
+          repo: 'https://zhaojiafu.github.io/',
+          owner: 'zjf',
+          admin: ['zjf'],
+          id: id,      // Ensure uniqueness and length less than 50
+          title: document.title.split('|')[0],
+          distractionFreeMode: false  // Facebook-like distraction free mode
+        })
+
+        gitalk.render('gitalk-container')
+    </script>
+</section>
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;" target="_blank" rel="noopener"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢大爷~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.jpg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.jpg" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+            <span>博客内容遵循 <a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+        <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=0 height=0 src="http://music.163.com/song/media/outer/url?id=1369798757&auto=1"></iframe>
+
+    </div>
+    <div class="bottom">
+        <p><span>赵家富 &copy; 2019</span>
+            <span>
+                
+
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" target="_blank" rel="noopener" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://zhaojiafu.github.io/2019/10/09/daa6e3f15670a5ed21506fc4edf51d1e/&title=《python爬虫之scrapy 框架学习复习整理三--CrawlSpider（自动提取翻页）》 — 赵家富的博客&pic=https://zhaojiafu.github.io/img/zhao.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" target="_blank" rel="noopener" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://zhaojiafu.github.io/2019/10/09/daa6e3f15670a5ed21506fc4edf51d1e/&title=《python爬虫之scrapy 框架学习复习整理三--CrawlSpider（自动提取翻页）》 — 赵家富的博客&source=感觉无从下手的时候，问自己“不难，要你干啥？”" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://zhaojiafu.github.io/2019/10/09/daa6e3f15670a5ed21506fc4edf51d1e/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《python爬虫之scrapy 框架学习复习整理三--CrawlSpider（自动提取翻页）》 — 赵家富的博客&url=https://zhaojiafu.github.io/2019/10/09/daa6e3f15670a5ed21506fc4edf51d1e/&via=https://zhaojiafu.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://zhaojiafu.github.io/2019/10/09/daa6e3f15670a5ed21506fc4edf51d1e/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;" target="_blank" rel="noopener"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACqklEQVR42u3aQY7jMAwEwPn/p2cfsBunm5SCLFA+DWLHo9JBUpr8+Ymv3xfX893kevW/Xr3558aFh4eHd2joOeDvZ54/eWY8jzMfDx4eHt5tXvK6s0NpB/pqPG8seHh4eF/Ay8+x7ZQlp2I8PDy8/5HXhgjt22bfwsPDw/s8Lzn4tsHu8+KeRxgfylrw8PDwuqpTcUT+hr+v1Pfw8PDw1lX1JFS90bNwqjUBDw8P7wYvX3A34H2TwWyceHh4eJ/htdFAHhnkLQht28GbwzceHh7eBd5s8W03jNkUtHHzsKMBDw8PL+blP/vbbSO5mz+/iiHw8PDwjvJm7VD5npOzk83jYu0ODw8Pb11qypfj/D35hM62pX+8Ew8PD+8Cr20CmKUdbdAwC0reHKnx8PDwjvJmX0g+bzeVaKHfw/Dw8PDWW8I+wtiHvPlkFRsGHh4e3gXebHBt68CsyeDwRoKHh4d3iNc2PM2K/bOodxaX1HU2PDw8vFHosBnWpkafB8TtRoKHh4d3jzdbpvPpOHscb5sP8PDw8G7w2li2jQnyASXg9i4eHh7ePd7zUGbFrXzJ3rdb1VU+PDw8vEO8tnh/tkFqdtSOnsfDw8M7yssPwW0kkUe0w+W+3RLw8PDwDvHyRXlzFM4j19/RVYQReHh4eBd4mxW1LV/l0UY7TUW/GB4eHt6atylcDfu8kurcIibGw8PD+wxv1vzUxgQzUo3Ew8PDO8o79bM/jxiSw3fb7PVyc8LDw8O7wGsX381xOW8dyAOIAzA8PDy8EW8T0bYT0S76UYmr7Y/Aw8PDO8Q7Wzlqj+P7lq83GwMeHh7eF/Da6DZf+vdtDXh4eHjfzNtj8sbTPGjGw8PD+wxvVtbaB77FQMvYFw8PD+8eb9PYlCNnsCuNAnh4eHhz3h96ZJxxSvKsmwAAAABJRU5ErkJggg==" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '死鬼去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+<script src="/node_modules/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"node_modules/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/node_modules/assets/shizuku.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"react":{"opacity":0.7},"log":false});</script></body>
+</html>

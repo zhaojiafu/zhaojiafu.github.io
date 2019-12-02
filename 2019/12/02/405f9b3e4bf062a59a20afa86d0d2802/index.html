@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <link rel="canonical" href="https://zhaojiafu.github.io/2019/12/02/405f9b3e4bf062a59a20afa86d0d2802/">
+    
+    
+    <title>window系统下python 与MySQL交互的增删改查 | 赵家富的博客 | 保持好奇心</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="MySQL">
+    <meta name="description" content="前提、sql命令–基本的增删改查MySQL的一些常用命令可以参考我之前的博客：https:&#x2F;&#x2F;blog.csdn.net&#x2F;weixin_42081389&#x2F;article&#x2F;details&#x2F;93788977 1、创建表create table student(     id int auto_increment primary key,     name varchar(100) not null,">
+<meta name="keywords" content="MySQL">
+<meta property="og:type" content="article">
+<meta property="og:title" content="window系统下python 与MySQL交互的增删改查">
+<meta property="og:url" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;2019&#x2F;12&#x2F;02&#x2F;405f9b3e4bf062a59a20afa86d0d2802&#x2F;index.html">
+<meta property="og:site_name" content="赵家富的博客">
+<meta property="og:description" content="前提、sql命令–基本的增删改查MySQL的一些常用命令可以参考我之前的博客：https:&#x2F;&#x2F;blog.csdn.net&#x2F;weixin_42081389&#x2F;article&#x2F;details&#x2F;93788977 1、创建表create table student(     id int auto_increment primary key,     name varchar(100) not null,">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-12-02T06:45:47.840Z">
+<meta name="twitter:card" content="summary">
+    
+    <link rel="shortcut icon" href="/img/cb2nm-5l9w0-001.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" target="_blank" rel="noopener" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/zhao.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">赵家富</h5>
+          <a href="mailto:530519174@qq.com" target="_blank" rel="noopener" title="530519174@qq.com" class="mail">530519174@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                archives(所有)
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags/"  >
+                <i class="icon icon-lg icon-tags"></i>
+                tag(标签)
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories/"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories(分类)
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/zhaojiafu" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://blog.csdn.net/weixin_42081389" target="_blank" >
+                <i class="icon icon-lg icon-csdn"></i>
+                Csdn
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" target="_blank" rel="noopener" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+
+        <div class="flex-col header-title ellipsis">window系统下python 与MySQL交互的增删改查</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" target="_blank" rel="noopener" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" target="_blank" rel="noopener" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" target="_blank" rel="noopener" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+
+        <h1 class="title">window系统下python 与MySQL交互的增删改查
+        </h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2019-12-02T03:34:32.000Z" itemprop="datePublished" class="page-time">
+  2019-12-02
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/MySQL/">MySQL</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#前提、sql命令–基本的增删改查"><span class="post-toc-number">1.</span> <span class="post-toc-text">前提、sql命令–基本的增删改查</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#1、创建表"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">1、创建表</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#2、插入（增）"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">2、插入（增）</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#3、删除（删）"><span class="post-toc-number">1.3.</span> <span class="post-toc-text">3、删除（删）</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#4、更新（改）"><span class="post-toc-number">1.4.</span> <span class="post-toc-text">4、更新（改）</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#5、查找（查）"><span class="post-toc-number">1.5.</span> <span class="post-toc-text">5、查找（查）</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#1、安装pymysql"><span class="post-toc-number">2.</span> <span class="post-toc-text">1、安装pymysql</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#2、python与MySQL交互连接"><span class="post-toc-number">3.</span> <span class="post-toc-text">2、python与MySQL交互连接</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#3、python与MySQL交互–（增）"><span class="post-toc-number">4.</span> <span class="post-toc-text">3、python与MySQL交互–（增）</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#4、python与MySQL交互–（删）"><span class="post-toc-number">5.</span> <span class="post-toc-text">4、python与MySQL交互–（删）</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#5、python与MySQL交互–（改）"><span class="post-toc-number">6.</span> <span class="post-toc-text">5、python与MySQL交互–（改）</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#6、python与MySQL交互–（查）"><span class="post-toc-number">7.</span> <span class="post-toc-text">6、python与MySQL交互–（查）</span></a></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-405f9b3e4bf062a59a20afa86d0d2802"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">window系统下python 与MySQL交互的增删改查</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2019-12-02 11:34:32" datetime="2019-12-02T03:34:32.000Z"  itemprop="datePublished">2019-12-02</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/MySQL/">MySQL</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h1 id="前提、sql命令–基本的增删改查"><a href="#前提、sql命令–基本的增删改查" class="headerlink" title="前提、sql命令–基本的增删改查"></a>前提、sql命令–基本的增删改查</h1><p>MySQL的一些常用命令可以参考我之前的博客：<br><a href="https://blog.csdn.net/weixin_42081389/article/details/93788977" target="_blank" rel="noopener">https://blog.csdn.net/weixin_42081389/article/details/93788977</a></p>
+<h2 id="1、创建表"><a href="#1、创建表" class="headerlink" title="1、创建表"></a>1、创建表</h2><pre><code>create table student(
+    id int auto_increment primary key,
+    name varchar(100) not null,
+    sex char(1) not null,
+    address varchar(100) default &apos;郑州&apos;,
+    phone varchar(11),
+    birthday date
+);</code></pre><h2 id="2、插入（增）"><a href="#2、插入（增）" class="headerlink" title="2、插入（增）"></a>2、插入（增）</h2><pre><code>insert into student(name,sex,address,phone,birthday) values(&apos;老王&apos;,&apos;男&apos;,&apos;开封&apos;,&apos;11111111111&apos;,&apos;1998-2-2&apos;);</code></pre><h2 id="3、删除（删）"><a href="#3、删除（删）" class="headerlink" title="3、删除（删）"></a>3、删除（删）</h2><p>delete from student where id = 3;</p>
+<h2 id="4、更新（改）"><a href="#4、更新（改）" class="headerlink" title="4、更新（改）"></a>4、更新（改）</h2><pre><code>update student set address=&apos;开封&apos; where id = 5;
+update student set sex=&apos;女&apos;,address=&apos;曼谷&apos; where id = 5;
+
+UPDATE 
+    student 
+SET 
+    sex=&apos;女&apos;,address=&apos;曼谷&apos; 
+WHERE 
+    id = 5;</code></pre><h2 id="5、查找（查）"><a href="#5、查找（查）" class="headerlink" title="5、查找（查）"></a>5、查找（查）</h2><pre><code>select * from student;
+select name,phone from student;
+select name 姓名,phone 电话 from student;</code></pre><h1 id="1、安装pymysql"><a href="#1、安装pymysql" class="headerlink" title="1、安装pymysql"></a>1、安装pymysql</h1><pre><code>pip install pymysql</code></pre><h1 id="2、python与MySQL交互连接"><a href="#2、python与MySQL交互连接" class="headerlink" title="2、python与MySQL交互连接"></a>2、python与MySQL交互连接</h1><pre><code># !/usr/bin/python3
+import pymysql
+
+# 打开数据库连接
+db = pymysql.connect(
+    host=&apos;127.0.0.1&apos;,  # ip地址
+    # host=&apos;localhost&apos;,  # ip地址
+    port=3306,  # 端口号
+    user=&apos;root&apos;,  # 用户名
+    passwd=&apos;123456&apos;,  # 密码
+    db=&apos;demo&apos;,  # 库名
+    charset=&apos;utf8&apos;)  # 链接字符集
+
+# 使用 cursor() 方法创建一个游标对象 cursor
+cursor = db.cursor()
+
+# 使用 execute() 方法执行 SQL，如果表存在则删除
+cursor.execute(&quot;drop table if exists student&quot;)
+
+# 使用预处理语句创建表
+sql = &apos;&apos;&apos; create table student(
+    id int auto_increment primary key,
+    name varchar(100) not null,
+    passward varchar(100) not null
+    );&apos;&apos;&apos;
+
+cursor.execute(sql)
+
+# 关闭数据库连接
+db.close()</code></pre><h1 id="3、python与MySQL交互–（增）"><a href="#3、python与MySQL交互–（增）" class="headerlink" title="3、python与MySQL交互–（增）"></a>3、python与MySQL交互–（增）</h1><pre><code>import pymysql
+
+# 1.插入操作
+db = pymysql.connect(host=&quot;localhost&quot;, user=&quot;root&quot;, password=&quot;123456&quot;, db=&quot;demo&quot;, port=3306)
+
+# 创建表命令
+&apos;&apos;&apos; create table student(
+    id int auto_increment primary key,
+    name varchar(100) not null,
+    passward varchar(100) not null
+    );&apos;&apos;&apos;
+
+# 使用cursor()方法获取操作游标
+cur = db.cursor()
+sql_insert = &quot;&quot;&quot;insert into student(name,passward) values(&apos;小王&apos;,&apos;123456&apos;)&quot;&quot;&quot;
+
+try:
+    cur.execute(sql_insert)
+    # 提交
+    db.commit()
+except Exception as e:
+    # 错误回滚
+    print(&quot;异常&quot;,e)
+    db.rollback()
+finally:
+    db.close()</code></pre><h1 id="4、python与MySQL交互–（删）"><a href="#4、python与MySQL交互–（删）" class="headerlink" title="4、python与MySQL交互–（删）"></a>4、python与MySQL交互–（删）</h1><pre><code>import pymysql
+
+# 2.删除操作
+db = pymysql.connect(host=&quot;localhost&quot;, user=&quot;root&quot;, password=&quot;123456&quot;, db=&quot;demo&quot;, port=3306)
+
+# 使用cursor()方法获取操作游标
+cur = db.cursor()
+
+sql_delete = &quot;delete from student where id = {}&quot;
+
+try:
+    cur.execute(sql_delete.format(3))  # 像sql语句传递参数
+    # 提交
+    db.commit()
+except Exception as e:
+    # 错误回滚
+    print(&quot;异常&quot;, e)
+    db.rollback()
+finally:
+    db.close()</code></pre><h1 id="5、python与MySQL交互–（改）"><a href="#5、python与MySQL交互–（改）" class="headerlink" title="5、python与MySQL交互–（改）"></a>5、python与MySQL交互–（改）</h1><pre><code>import pymysql
+
+# 3.更新操作
+db = pymysql.connect(host=&quot;localhost&quot;, user=&quot;root&quot;,password=&quot;123456&quot;, db=&quot;demo&quot;, port=3306)
+
+# 使用cursor()方法获取操作游标
+cur = db.cursor()
+
+# 俩种字符串拼接方法
+# sql_update = &quot;update student set name = &apos;%s&apos; where id = %d&quot;
+sql_update = &quot;update student set name = &apos;{}&apos; where id = {}&quot;
+
+try:
+    # sql_str = sql_update % (&quot;小红&quot;, 2)
+    sql_str = sql_update.format(&quot;王姐&quot;, 2)
+    print(&apos;sql_str&apos;,sql_str)
+    cur.execute(sql_str)  # 像sql语句传递参数
+    # cur.execute(sql_update.format(&quot;小红&quot;, 2))  # 像sql语句传递参数
+    # 提交
+    db.commit()
+except Exception as e:
+    # 错误回滚
+    print(&quot;异常&quot;, e)
+    db.rollback()
+finally:
+    db.close()</code></pre><h1 id="6、python与MySQL交互–（查）"><a href="#6、python与MySQL交互–（查）" class="headerlink" title="6、python与MySQL交互–（查）"></a>6、python与MySQL交互–（查）</h1><pre><code>import pymysql  # 导入 pymysql
+
+# 打开数据库连接
+db = pymysql.connect(host=&quot;localhost&quot;, user=&quot;root&quot;, password=&quot;123456&quot;, db=&quot;demo&quot;, port=3306)
+
+# 使用cursor()方法获取操作游标
+cur = db.cursor()
+
+# 4.查询操作
+# 编写sql 查询语句  user 对应我的表名
+sql = &quot;select * from student&quot;
+try:
+    cur.execute(sql)  # 执行sql语句
+
+    results = cur.fetchall()  # 获取查询的所有记录
+    print(&quot;id&quot;, &quot;name&quot;, &quot;password&quot;)
+    # 遍历结果
+    for row in results:
+        id = row[0]
+        name = row[1]
+        password = row[2]
+        print(id, name, password)
+except Exception as e:
+    print(&quot;异常&quot;, e)
+finally:
+    db.close()  # 关闭连接</code></pre>
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2019-12-02T06:45:47.840Z" itemprop="dateUpdated">2019-12-02 14:45:47</time>
+</span><br>
+
+
+        
+        这里可以写作者留言，标签和 hexo 中所有变量及辅助函数等均可调用，示例：<a href="/2019/12/02/405f9b3e4bf062a59a20afa86d0d2802/" target="_blank" rel="external">https://zhaojiafu.github.io/2019/12/02/405f9b3e4bf062a59a20afa86d0d2802/</a>
+        
+    </div>
+    
+    <footer>
+        <a href="https://zhaojiafu.github.io">
+            <img src="/img/zhao.jpg" alt="赵家富">
+            赵家富
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" target="_blank" rel="noopener" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MySQL/" rel="tag">MySQL</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://zhaojiafu.github.io/2019/12/02/405f9b3e4bf062a59a20afa86d0d2802/&title=《window系统下python 与MySQL交互的增删改查》 — 赵家富的博客&pic=https://zhaojiafu.github.io/img/zhao.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" target="_blank" rel="noopener" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://zhaojiafu.github.io/2019/12/02/405f9b3e4bf062a59a20afa86d0d2802/&title=《window系统下python 与MySQL交互的增删改查》 — 赵家富的博客&source=感觉无从下手的时候，问自己“不难，要你干啥？”" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://zhaojiafu.github.io/2019/12/02/405f9b3e4bf062a59a20afa86d0d2802/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《window系统下python 与MySQL交互的增删改查》 — 赵家富的博客&url=https://zhaojiafu.github.io/2019/12/02/405f9b3e4bf062a59a20afa86d0d2802/&via=https://zhaojiafu.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://zhaojiafu.github.io/2019/12/02/405f9b3e4bf062a59a20afa86d0d2802/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" target="_blank" rel="noopener" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2019/12/02/43414575f515f46bf5612a7ab783aa6f/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">推荐几个测试能接受邮件的临时邮箱</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2019/12/02/40dd91b5f260e23fd6e0b5f36e72304e/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">python之 requests下载大文件</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<section class="comments" id="comments">
+    <div id="gitalk-container"></div>
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+        var id = location.pathname
+        if (location.pathname.length > 50) {
+          id = location.pathname.replace(/\/\d+\/\d+\/\d+\//, '').replace('/', '').substring(0, 50)
+        }
+        const gitalk = new Gitalk({
+          clientID: '388d0a78cda30f118f86',
+          clientSecret: '2c64b34cc20f23d768dffff64acb8c2ee02c3bee',
+          repo: 'https://zhaojiafu.github.io/',
+          owner: 'zjf',
+          admin: ['zjf'],
+          id: id,      // Ensure uniqueness and length less than 50
+          title: document.title.split('|')[0],
+          distractionFreeMode: false  // Facebook-like distraction free mode
+        })
+
+        gitalk.render('gitalk-container')
+    </script>
+</section>
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;" target="_blank" rel="noopener"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢大爷~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.jpg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.jpg" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+            <span>博客内容遵循 <a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+        <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=0 height=0 src="http://music.163.com/song/media/outer/url?id=1369798757&auto=1"></iframe>
+
+    </div>
+    <div class="bottom">
+        <p><span>赵家富 &copy; 2019</span>
+            <span>
+                
+
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" target="_blank" rel="noopener" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://zhaojiafu.github.io/2019/12/02/405f9b3e4bf062a59a20afa86d0d2802/&title=《window系统下python 与MySQL交互的增删改查》 — 赵家富的博客&pic=https://zhaojiafu.github.io/img/zhao.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" target="_blank" rel="noopener" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://zhaojiafu.github.io/2019/12/02/405f9b3e4bf062a59a20afa86d0d2802/&title=《window系统下python 与MySQL交互的增删改查》 — 赵家富的博客&source=感觉无从下手的时候，问自己“不难，要你干啥？”" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://zhaojiafu.github.io/2019/12/02/405f9b3e4bf062a59a20afa86d0d2802/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《window系统下python 与MySQL交互的增删改查》 — 赵家富的博客&url=https://zhaojiafu.github.io/2019/12/02/405f9b3e4bf062a59a20afa86d0d2802/&via=https://zhaojiafu.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://zhaojiafu.github.io/2019/12/02/405f9b3e4bf062a59a20afa86d0d2802/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;" target="_blank" rel="noopener"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACu0lEQVR42u3aQZLiMAwFUO5/aXozi+7qSfiSLIapellREIKfF5b58uMRX89vV35ncl094eppj40LDw8PbzD0q8fdv381Bcn9v18nk1uYMjw8PLw1XrJAJ8O6eiefuHy678eMh4eH9zm8++V7PmV5YcDDw8P7X3j5RrkHm2zB8fDw8N7Jq25hJ/FBEnAk7MNZCx4eHl6t6xR1kT7n9Up/Dw8PD2/cVc8X3GrYmse+vXH++S4eHh7eAq86iGTjO2n8Vyci+S08PDy8DV7v7/0EVj1k0Dv+hYeHh7fHm7evqjFB3k5L8M0cBQ8PD+8or1oeep/mU1wtGHh4eHjbvHyxziPXyVa72voalQc8PDy8Iu/scaskMkgChXzpH/X38PDw8A7xemVgUjZ6hxWi8oCHh4e3wMsDhV6Y22to5YWkEEPg4eHhLfCq1DwmmDS0qocY/nInHh4e3gKvGiUkm+N5478XZLz494CHh4d3iFduwwcDykPYXtus8F08PDy8t/B6C3HyaTW26IUdeHh4eHu8eegweb/Kzp//4+gAHh4e3gIvCQWqBwjyDXTv0FX0fDw8PLwFXq+VNd9YFxr/p+7Bw8PDO8q737BWA9k8iu2VmQORBB4eHt6AVz1ElQ8o+fnehr7QPMPDw8Nb4OVDz0OE3tPyiaiGIHh4eHgbvMRdHWIvCE5W9Xxy8fDw8LZ5p4KAavzauz8/mIWHh4e3x5uUh96VRxLVgvFiS42Hh4c34D2LVx495AekemUm+hQPDw9vgTdfxKthRC+crQYix2oUHh4eXjz0nJEPpdrESp4THXrAw8PDW+P1Gk5nm/29ahYVBjw8PLyP4SU/MGHkY4v6e3h4eHj/iNeLbvNhzTffeHh4eO/hTSKDatSbHJ+qvn5RGPDw8PCO8np/+O8fl/xY9UhBIYDAw8PD2+J9AXFR2k/iyydLAAAAAElFTkSuQmCC" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '死鬼去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+<script src="/node_modules/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"node_modules/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/node_modules/assets/shizuku.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"react":{"opacity":0.7},"log":false});</script></body>
+</html>

@@ -1,0 +1,684 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <link rel="canonical" href="https://zhaojiafu.github.io/2019/04/09/06b384cda368c2fc7e95c3ef2be8b33e/">
+    
+    
+    <title>scikit-learn 关于svm进行人脸识别使用报错的问题 | 赵家富的博客 | 保持好奇心</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="scikit_learn">
+    <meta name="description" content="# 问题1、ModuleNotFoundError: No module named ‘sklearn.cross_validation’ 这个错是导入 from sklearn.cross_validation import train_test_split报的错。主要是因为这个模块有更改，将这一句改为下面即可： from sklearn.model_selection import trai">
+<meta name="keywords" content="scikit_learn">
+<meta property="og:type" content="article">
+<meta property="og:title" content="scikit-learn 关于svm进行人脸识别使用报错的问题">
+<meta property="og:url" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;2019&#x2F;04&#x2F;09&#x2F;06b384cda368c2fc7e95c3ef2be8b33e&#x2F;index.html">
+<meta property="og:site_name" content="赵家富的博客">
+<meta property="og:description" content="# 问题1、ModuleNotFoundError: No module named ‘sklearn.cross_validation’ 这个错是导入 from sklearn.cross_validation import train_test_split报的错。主要是因为这个模块有更改，将这一句改为下面即可： from sklearn.model_selection import trai">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-12-02T07:40:53.057Z">
+<meta name="twitter:card" content="summary">
+    
+    <link rel="shortcut icon" href="/img/cb2nm-5l9w0-001.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" target="_blank" rel="noopener" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/zhao.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">赵家富</h5>
+          <a href="mailto:530519174@qq.com" target="_blank" rel="noopener" title="530519174@qq.com" class="mail">530519174@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                archives(所有)
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags/"  >
+                <i class="icon icon-lg icon-tags"></i>
+                tag(标签)
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories/"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories(分类)
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/zhaojiafu" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://blog.csdn.net/weixin_42081389" target="_blank" >
+                <i class="icon icon-lg icon-csdn"></i>
+                Csdn
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" target="_blank" rel="noopener" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+
+        <div class="flex-col header-title ellipsis">scikit-learn 关于svm进行人脸识别使用报错的问题</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" target="_blank" rel="noopener" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" target="_blank" rel="noopener" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" target="_blank" rel="noopener" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+
+        <h1 class="title">scikit-learn 关于svm进行人脸识别使用报错的问题
+        </h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2019-04-09T03:34:32.000Z" itemprop="datePublished" class="page-time">
+  2019-04-09
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/python%E6%A8%A1%E5%9D%97/">python模块</a><ul class="article-category-list-child"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/python%E6%A8%A1%E5%9D%97/scikit-learn/">scikit_learn</a></li></ul></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#问题2、"><span class="post-toc-number">1.</span> <span class="post-toc-text">问题2、</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#问题3、"><span class="post-toc-number">2.</span> <span class="post-toc-text">问题3、</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#问题4、"><span class="post-toc-number">3.</span> <span class="post-toc-text">问题4、</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#问题5、"><span class="post-toc-number">4.</span> <span class="post-toc-text">问题5、</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#问题6、"><span class="post-toc-number">5.</span> <span class="post-toc-text">问题6、</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#完整代码："><span class="post-toc-number">6.</span> <span class="post-toc-text">完整代码：</span></a></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-06b384cda368c2fc7e95c3ef2be8b33e"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">scikit-learn 关于svm进行人脸识别使用报错的问题</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2019-04-09 11:34:32" datetime="2019-04-09T03:34:32.000Z"  itemprop="datePublished">2019-04-09</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/python%E6%A8%A1%E5%9D%97/">python模块</a><ul class="article-category-list-child"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/python%E6%A8%A1%E5%9D%97/scikit-learn/">scikit_learn</a></li></ul></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p>﻿# 问题1、<br><strong>ModuleNotFoundError: No module named ‘sklearn.cross_validation’</strong></p>
+<p>这个错是导入</p>
+<pre><code>from sklearn.cross_validation import train_test_split</code></pre><p>报的错。主要是因为这个模块有更改，将这一句改为下面即可：</p>
+<pre><code>from sklearn.model_selection import train_test_split</code></pre><h1 id="问题2、"><a href="#问题2、" class="headerlink" title="问题2、"></a>问题2、</h1><p><strong>ModuleNotFoundError: No module named ‘sklearn.grid_search’</strong><br>这个是由于导入</p>
+<pre><code>from sklearn.grid_search import GridSearchCV</code></pre><p>报的错，需要将此句改为：</p>
+<pre><code>from sklearn.model_selection import GridSearchCV</code></pre><h1 id="问题3、"><a href="#问题3、" class="headerlink" title="问题3、"></a>问题3、</h1><p><strong>ImportError: cannot import name ‘RandomizedPCA’</strong><br>需要将此句改为下面这句即可：</p>
+<pre><code>from sklearn.decomposition import PCA as RandomizedPCA</code></pre><h1 id="问题4、"><a href="#问题4、" class="headerlink" title="问题4、"></a>问题4、</h1><p><strong>ValueError: min_faces_per_person=70 is too restrictive</strong></p>
+<p>这个是因为有数据没有下载完整而报的错误，下载到的目录（我的是window系统，在）下载好复制到这个目录就行，必须先将lfw_home目录下所有内容删除，再运行即可。</p>
+<pre><code>C:\Users\自己的用户名字\scikit_learn_data\lfw_home</code></pre><p>可以手动下载下面这几个，将不完整的删除。<br><a href="https://ndownloader.figshare.com/files/5976018" target="_blank" rel="noopener">https://ndownloader.figshare.com/files/5976018</a> #lfw.tgz<br><a href="https://ndownloader.figshare.com/files/5976015" target="_blank" rel="noopener">https://ndownloader.figshare.com/files/5976015</a> #lfw-funneled.tgz<br><a href="https://ndownloader.figshare.com/files/5976012" target="_blank" rel="noopener">https://ndownloader.figshare.com/files/5976012</a> #pairsDevTrain.txt<br><a href="https://ndownloader.figshare.com/files/5976009" target="_blank" rel="noopener">https://ndownloader.figshare.com/files/5976009</a> #pairsDevTest.txt<br><a href="https://ndownloader.figshare.com/files/5976006" target="_blank" rel="noopener">https://ndownloader.figshare.com/files/5976006</a> #pairs.txt</p>
+<h1 id="问题5、"><a href="#问题5、" class="headerlink" title="问题5、"></a>问题5、</h1><p><strong>ValueError: class_weight must be dict, ‘balanced’, or None, got: ‘auto’</strong></p>
+<p>定位到是这一句：</p>
+<pre><code>clf = GridSearchCV(SVC(kernel=&apos;rbf&apos;, class_weight=&apos;auto&apos;), param_grid)</code></pre><p>意思是需要的需要是个字典，字典必须是 ‘balanced’, or None，却得到了‘auto’，所以需要改为：</p>
+<pre><code>clf = GridSearchCV(SVC(kernel=&apos;rbf&apos;, class_weight=&apos;balanced&apos;), param_grid)</code></pre><p>或者</p>
+<pre><code>clf = GridSearchCV(SVC(kernel=&apos;rbf&apos;, class_weight=None), param_grid)</code></pre><p>到此结束了。</p>
+<h1 id="问题6、"><a href="#问题6、" class="headerlink" title="问题6、"></a>问题6、</h1><p><strong>FutureWarning: You should specify a value for ‘cv’ instead of relying on the default value. The default value will change from 3 to 5 in version 0.22.<br>  warnings.warn(CV_WARNING, FutureWarning)</strong><br>  能够运行，但是却有这个警告，The default value will change from 3 to 5 in version 0.22.这个意思默认cv改为3至5，经过测试，cv为3，4，5都可以。</p>
+<pre><code>clf = GridSearchCV(SVC(kernel=&apos;rbf&apos;, class_weight=&apos;balanced&apos;), param_grid)</code></pre><p>这一句，加个参数即可，</p>
+<pre><code>clf = GridSearchCV(SVC(kernel=&apos;rbf&apos;, class_weight=&apos;balanced&apos;), param_grid,cv=4)</code></pre><p>下面是默认的cv=’warn’.</p>
+{% image /imgs/20190409101355250.png '在这里插入图片描述' '' %}
+
+
+<h1 id="完整代码："><a href="#完整代码：" class="headerlink" title="完整代码："></a>完整代码：</h1><p>官方完整代码：<br><a href="https://scikit-learn.org/stable/auto_examples/applications/plot_face_recognition.html#sphx-glr-auto-examples-applications-plot-face-recognition-py" target="_blank" rel="noopener">https://scikit-learn.org/stable/auto_examples/applications/plot_face_recognition.html#sphx-glr-auto-examples-applications-plot-face-recognition-py</a></p>
+<pre><code>from __future__ import print_function
+
+from time import time
+import logging
+import matplotlib.pyplot as plt
+
+# from sklearn.cross_validation import train_test_split
+from sklearn.model_selection import train_test_split
+from sklearn.datasets import fetch_lfw_people
+# from sklearn.grid_search import GridSearchCV
+from sklearn.model_selection import GridSearchCV
+from sklearn.metrics import classification_report
+from sklearn.metrics import confusion_matrix
+# from sklearn.decomposition import RandomizedPCA
+from sklearn.decomposition import PCA as RandomizedPCA
+from sklearn.svm import SVC
+
+
+print(__doc__)
+
+# Display progress logs on stdout
+logging.basicConfig(level=logging.INFO, format=&apos;%(asctime)s %(message)s&apos;)
+
+
+###############################################################################
+# Download the data, if not already on disk and load it as numpy arrays
+
+lfw_people = fetch_lfw_people(min_faces_per_person=70, resize=0.4)
+
+# introspect the images arrays to find the shapes (for plotting)
+n_samples, h, w = lfw_people.images.shape
+
+# for machine learning we use the 2 data directly (as relative pixel
+# positions info is ignored by this model)
+X = lfw_people.data
+n_features = X.shape[1]
+
+# the label to predict is the id of the person
+y = lfw_people.target
+target_names = lfw_people.target_names
+n_classes = target_names.shape[0]
+
+print(&quot;Total dataset size:&quot;)
+print(&quot;n_samples: %d&quot; % n_samples)
+print(&quot;n_features: %d&quot; % n_features)
+print(&quot;n_classes: %d&quot; % n_classes)
+
+
+###############################################################################
+# Split into a training set and a test set using a stratified k fold
+
+# split into a training and testing set
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y, test_size=0.25)
+
+
+###############################################################################
+# Compute a PCA (eigenfaces) on the face dataset (treated as unlabeled
+# dataset): unsupervised feature extraction / dimensionality reduction
+n_components = 150
+
+print(&quot;Extracting the top %d eigenfaces from %d faces&quot;
+      % (n_components, X_train.shape[0]))
+t0 = time()
+pca = RandomizedPCA(n_components=n_components, whiten=True).fit(X_train)
+print(&quot;done in %0.3fs&quot; % (time() - t0))
+
+eigenfaces = pca.components_.reshape((n_components, h, w))
+
+print(&quot;Projecting the input data on the eigenfaces orthonormal basis&quot;)
+t0 = time()
+X_train_pca = pca.transform(X_train)
+X_test_pca = pca.transform(X_test)
+print(&quot;done in %0.3fs&quot; % (time() - t0))
+
+
+###############################################################################
+# Train a SVM classification model
+
+print(&quot;Fitting the classifier to the training set&quot;)
+t0 = time()
+param_grid = {&apos;C&apos;: [1e3, 5e3, 1e4, 5e4, 1e5],
+              &apos;gamma&apos;: [0.0001, 0.0005, 0.001, 0.005, 0.01, 0.1], }
+# clf = GridSearchCV(SVC(kernel=&apos;rbf&apos;, class_weight=&apos;auto&apos;), param_grid)
+clf = GridSearchCV(SVC(kernel=&apos;rbf&apos;, class_weight=&apos;balanced&apos;), param_grid)
+clf = GridSearchCV(SVC(kernel=&apos;rbf&apos;, class_weight=None), param_grid)
+clf = clf.fit(X_train_pca, y_train)
+print(&quot;done in %0.3fs&quot; % (time() - t0))
+print(&quot;Best estimator found by grid search:&quot;)
+print(clf.best_estimator_)
+
+
+###############################################################################
+# Quantitative evaluation of the model quality on the test set
+
+print(&quot;Predicting people&apos;s names on the test set&quot;)
+t0 = time()
+y_pred = clf.predict(X_test_pca)
+print(&quot;done in %0.3fs&quot; % (time() - t0))
+
+print(classification_report(y_test, y_pred, target_names=target_names))
+print(confusion_matrix(y_test, y_pred, labels=range(n_classes)))
+
+
+###############################################################################
+# Qualitative evaluation of the predictions using matplotlib
+
+def plot_gallery(images, titles, h, w, n_row=3, n_col=4):
+    &quot;&quot;&quot;Helper function to plot a gallery of portraits&quot;&quot;&quot;
+    plt.figure(figsize=(1.8 * n_col, 2.4 * n_row))
+    plt.subplots_adjust(bottom=0, left=.01, right=.99, top=.90, hspace=.35)
+    for i in range(n_row * n_col):
+        plt.subplot(n_row, n_col, i + 1)
+        plt.imshow(images[i].reshape((h, w)), cmap=plt.cm.gray)
+        plt.title(titles[i], size=12)
+        plt.xticks(())
+        plt.yticks(())
+
+
+# plot the result of the prediction on a portion of the test set
+
+def title(y_pred, y_test, target_names, i):
+    pred_name = target_names[y_pred[i]].rsplit(&apos; &apos;, 1)[-1]
+    true_name = target_names[y_test[i]].rsplit(&apos; &apos;, 1)[-1]
+    return r&apos;predicted: %s\ntrue:      %s&apos; % (pred_name, true_name)
+
+prediction_titles = [title(y_pred, y_test, target_names, i)
+                     for i in range(y_pred.shape[0])]
+
+plot_gallery(X_test, prediction_titles, h, w)
+
+# plot the gallery of the most significative eigenfaces
+
+eigenface_titles = [&quot;eigenface %d&quot; % i for i in range(eigenfaces.shape[0])]
+plot_gallery(eigenfaces, eigenface_titles, h, w)
+
+plt.show()</code></pre>
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2019-12-02T07:40:53.057Z" itemprop="dateUpdated">2019-12-02 15:40:53</time>
+</span><br>
+
+
+        
+        这里可以写作者留言，标签和 hexo 中所有变量及辅助函数等均可调用，示例：<a href="/2019/04/09/06b384cda368c2fc7e95c3ef2be8b33e/" target="_blank" rel="external">https://zhaojiafu.github.io/2019/04/09/06b384cda368c2fc7e95c3ef2be8b33e/</a>
+        
+    </div>
+    
+    <footer>
+        <a href="https://zhaojiafu.github.io">
+            <img src="/img/zhao.jpg" alt="赵家富">
+            赵家富
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" target="_blank" rel="noopener" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/scikit-learn/" rel="tag">scikit_learn</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://zhaojiafu.github.io/2019/04/09/06b384cda368c2fc7e95c3ef2be8b33e/&title=《scikit-learn 关于svm进行人脸识别使用报错的问题》 — 赵家富的博客&pic=https://zhaojiafu.github.io/img/zhao.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" target="_blank" rel="noopener" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://zhaojiafu.github.io/2019/04/09/06b384cda368c2fc7e95c3ef2be8b33e/&title=《scikit-learn 关于svm进行人脸识别使用报错的问题》 — 赵家富的博客&source=感觉无从下手的时候，问自己“不难，要你干啥？”" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://zhaojiafu.github.io/2019/04/09/06b384cda368c2fc7e95c3ef2be8b33e/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《scikit-learn 关于svm进行人脸识别使用报错的问题》 — 赵家富的博客&url=https://zhaojiafu.github.io/2019/04/09/06b384cda368c2fc7e95c3ef2be8b33e/&via=https://zhaojiafu.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://zhaojiafu.github.io/2019/04/09/06b384cda368c2fc7e95c3ef2be8b33e/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" target="_blank" rel="noopener" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2019/04/15/18b88a12e31488c53cc9e3ee4ad039ae/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">windows安装MySQL</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2019/03/29/8969134a197b60df2a0bf6c28be1d3b1/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">Linux 一个目录下对文件批量重命名</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<section class="comments" id="comments">
+    <div id="gitalk-container"></div>
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+        var id = location.pathname
+        if (location.pathname.length > 50) {
+          id = location.pathname.replace(/\/\d+\/\d+\/\d+\//, '').replace('/', '').substring(0, 50)
+        }
+        const gitalk = new Gitalk({
+          clientID: '388d0a78cda30f118f86',
+          clientSecret: '2c64b34cc20f23d768dffff64acb8c2ee02c3bee',
+          repo: 'https://zhaojiafu.github.io/',
+          owner: 'zjf',
+          admin: ['zjf'],
+          id: id,      // Ensure uniqueness and length less than 50
+          title: document.title.split('|')[0],
+          distractionFreeMode: false  // Facebook-like distraction free mode
+        })
+
+        gitalk.render('gitalk-container')
+    </script>
+</section>
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;" target="_blank" rel="noopener"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢大爷~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.jpg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.jpg" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+            <span>博客内容遵循 <a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+        <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=0 height=0 src="http://music.163.com/song/media/outer/url?id=1369798757&auto=1"></iframe>
+
+    </div>
+    <div class="bottom">
+        <p><span>赵家富 &copy; 2019</span>
+            <span>
+                
+
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" target="_blank" rel="noopener" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://zhaojiafu.github.io/2019/04/09/06b384cda368c2fc7e95c3ef2be8b33e/&title=《scikit-learn 关于svm进行人脸识别使用报错的问题》 — 赵家富的博客&pic=https://zhaojiafu.github.io/img/zhao.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" target="_blank" rel="noopener" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://zhaojiafu.github.io/2019/04/09/06b384cda368c2fc7e95c3ef2be8b33e/&title=《scikit-learn 关于svm进行人脸识别使用报错的问题》 — 赵家富的博客&source=感觉无从下手的时候，问自己“不难，要你干啥？”" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://zhaojiafu.github.io/2019/04/09/06b384cda368c2fc7e95c3ef2be8b33e/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《scikit-learn 关于svm进行人脸识别使用报错的问题》 — 赵家富的博客&url=https://zhaojiafu.github.io/2019/04/09/06b384cda368c2fc7e95c3ef2be8b33e/&via=https://zhaojiafu.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://zhaojiafu.github.io/2019/04/09/06b384cda368c2fc7e95c3ef2be8b33e/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;" target="_blank" rel="noopener"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACuklEQVR42u3a0U7DQAwEQP7/p0HiCQm17Np3UKTJU9SW5CZIZ8f221t8vH8eX8+/H4/+KvlNcv7oCgcOPDw8vNHSny86/zaBPf/k+V3yNePh4eHd5uXBIF/oLEgk90rWjIeHh/cKvDYMbIJNnnDj4eHh/RdesqHnDyVZKB4eHt6r8ZJNPL9ZQk2S9V+tteDh4eHFvFkD7G/Pr/f38PDw8EZd9baJNSvdboq8P6wWDw8P7wIvLyU8v1mSCie/36TIxRsDHh4e3prXFmdnW3YbVJLrF0VePDw8vEO8tvmUp9F1mypufRVhCQ8PD+8Cry0NtLzZ5+0ndeDBw8PDW/PyrbwdPM2f62awIPpf4eHh4R3lJcFgE2fypW+aZFGtBQ8PD+8Qr335T4JH8u3moRRpPR4eHt5R3n7oajMo0IaZupyBh4eHd43XNsCSLbtN0BNwW6TAw8PDu8HLX/vz228GrfLEfZOs4+Hh4W14bUKcb9Zt8NiMFzx8uHh4eHjXePvRq30xIi+F5Ik1Hh4e3g3ebENvB62S5lZbRC6KFHh4eHgXeLMCQT5wsCngJiXautaCh4eHt+C1bft9y79NzfMBguiNAQ8PD2/Ny0NCvuhNO20WwQ5EPDw8PLx4JW2Dv21uzQoEs/YbHh4e3u/wZgWIPPFNFrG/Wjv0gIeHh7fhtcnuPl1uS8Ob9B0PDw/vNq9Nhduk+dQDSgYL8PDw8O7xNq/6edqdlDOSK+dlXDw8PLx7vPfymG3rN8a2ohIJHh4e3gVefsw27rYAcarBhoeHh3eblwSDfYk2f9KzKxfdPDw8PLxDvLzt1JYJ8pZVnsoXFjw8PLw/5W3Gp5Ig0eb70ePAw8PDezFemyjnv8lT8x/WiYeHh3eN1xYjzibEM3aUWOPh4eFd4M1e8tuEOx+xysewagYeHh7elvcBqCuccXJj3gEAAAAASUVORK5CYII=" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '死鬼去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+<script src="/node_modules/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"node_modules/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/node_modules/assets/shizuku.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"react":{"opacity":0.7},"log":false});</script></body>
+</html>

@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <link rel="canonical" href="https://zhaojiafu.github.io/2019/12/02/5337277cfc36984fcaa62344ecf3e10b/">
+    
+    
+    <title>JavaScript 实现的几种加密方式（后续持续更新中。。。） | 赵家富的博客 | 保持好奇心</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="JavaScript">
+    <meta name="description" content="@[toc] 说明：这个是我js破解时遇到的，然后把代码抠出来了，现在整理一下，日后遇到其他加密，也会更新保留在博客里面。如果有需要可以参考，如果有转载，请标明作者和链接，违者必究。如果觉得不错，可以给我点个赞，如果有更好的加密方法，欢迎评论分享哈，Thanks♪(･ω･)ﾉ 1、JavaScript实现md5加密这个我直接上代码吧，可以运行出来，我这个是之前弄的，具体网站忘了，需要的可以直接测">
+<meta name="keywords" content="JavaScript">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JavaScript 实现的几种加密方式（后续持续更新中。。。）">
+<meta property="og:url" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;2019&#x2F;12&#x2F;02&#x2F;5337277cfc36984fcaa62344ecf3e10b&#x2F;index.html">
+<meta property="og:site_name" content="赵家富的博客">
+<meta property="og:description" content="@[toc] 说明：这个是我js破解时遇到的，然后把代码抠出来了，现在整理一下，日后遇到其他加密，也会更新保留在博客里面。如果有需要可以参考，如果有转载，请标明作者和链接，违者必究。如果觉得不错，可以给我点个赞，如果有更好的加密方法，欢迎评论分享哈，Thanks♪(･ω･)ﾉ 1、JavaScript实现md5加密这个我直接上代码吧，可以运行出来，我这个是之前弄的，具体网站忘了，需要的可以直接测">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-12-02T06:45:48.125Z">
+<meta name="twitter:card" content="summary">
+    
+    <link rel="shortcut icon" href="/img/cb2nm-5l9w0-001.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" target="_blank" rel="noopener" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/zhao.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">赵家富</h5>
+          <a href="mailto:530519174@qq.com" target="_blank" rel="noopener" title="530519174@qq.com" class="mail">530519174@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                archives(所有)
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags/"  >
+                <i class="icon icon-lg icon-tags"></i>
+                tag(标签)
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories/"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories(分类)
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/zhaojiafu" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://blog.csdn.net/weixin_42081389" target="_blank" >
+                <i class="icon icon-lg icon-csdn"></i>
+                Csdn
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" target="_blank" rel="noopener" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+
+        <div class="flex-col header-title ellipsis">JavaScript 实现的几种加密方式（后续持续更新中。。。）</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" target="_blank" rel="noopener" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" target="_blank" rel="noopener" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" target="_blank" rel="noopener" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+
+        <h1 class="title">JavaScript 实现的几种加密方式（后续持续更新中。。。）
+        </h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2019-12-02T03:34:32.000Z" itemprop="datePublished" class="page-time">
+  2019-12-02
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/JavaScript/">JavaScript</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#说明："><span class="post-toc-number">1.</span> <span class="post-toc-text">说明：</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#1、JavaScript实现md5加密"><span class="post-toc-number">2.</span> <span class="post-toc-text">1、JavaScript实现md5加密</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#2、base64"><span class="post-toc-number">3.</span> <span class="post-toc-text">2、base64</span></a></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-5337277cfc36984fcaa62344ecf3e10b"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">JavaScript 实现的几种加密方式（后续持续更新中。。。）</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2019-12-02 11:34:32" datetime="2019-12-02T03:34:32.000Z"  itemprop="datePublished">2019-12-02</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/JavaScript/">JavaScript</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p>﻿<br>@[toc]</p>
+<h1 id="说明："><a href="#说明：" class="headerlink" title="说明："></a>说明：</h1><p>这个是我js破解时遇到的，然后把代码抠出来了，现在整理一下，日后遇到其他加密，也会更新保留在博客里面。如果有需要可以参考，如果有转载，请标明作者和链接，违者必究。如果觉得不错，可以给我点个赞，如果有更好的加密方法，欢迎评论分享哈，Thanks♪(･ω･)ﾉ</p>
+<h1 id="1、JavaScript实现md5加密"><a href="#1、JavaScript实现md5加密" class="headerlink" title="1、JavaScript实现md5加密"></a>1、JavaScript实现md5加密</h1><p>这个我直接上代码吧，可以运行出来，我这个是之前弄的，具体网站忘了，需要的可以直接测试。</p>
+<pre><code>function v(n) {
+        return function(n) {
+            return h(a(d(n), 8 * n.length))
+        }(l(n))
+    }
+
+function h(n) {
+        var r, t = &quot;&quot;
+        for (r = 0; r &lt; 32 * n.length; r += 8)
+            t += String.fromCharCode(n[r &gt;&gt; 5] &gt;&gt;&gt; r % 32 &amp; 255)
+        return t
+    }
+
+function l(n) {
+        return unescape(encodeURIComponent(n))
+    }
+function d(n) {
+        var r, t = []
+        for (t[(n.length &gt;&gt; 2) - 1] = void 0,
+        r = 0; r &lt; t.length; r += 1)
+            t[r] = 0
+        for (r = 0; r &lt; 8 * n.length; r += 8)
+            t[r &gt;&gt; 5] |= (255 &amp; n.charCodeAt(r / 8)) &lt;&lt; r % 32
+        return t
+    }
+function a(n, r) {
+        n[r &gt;&gt; 5] |= 128 &lt;&lt; r % 32,
+        n[14 + (r + 64 &gt;&gt;&gt; 9 &lt;&lt; 4)] = r
+        var t, u, a, h, d, g = 1732584193, l = -271733879, v = -1732584194, s = 271733878
+        for (t = 0; t &lt; n.length; t += 16)
+            u = g,
+            a = l,
+            h = v,
+            d = s,
+            l = i(l = i(l = i(l = i(l = f(l = f(l = f(l = f(l = c(l = c(l = c(l = c(l = o(l = o(l = o(l = o(l, v = o(v, s = o(s, g = o(g, l, v, s, n[t], 7, -680876936), l, v, n[t + 1], 12, -389564586), g, l, n[t + 2], 17, 606105819), s, g, n[t + 3], 22, -1044525330), v = o(v, s = o(s, g = o(g, l, v, s, n[t + 4], 7, -176418897), l, v, n[t + 5], 12, 1200080426), g, l, n[t + 6], 17, -1473231341), s, g, n[t + 7], 22, -45705983), v = o(v, s = o(s, g = o(g, l, v, s, n[t + 8], 7, 1770035416), l, v, n[t + 9], 12, -1958414417), g, l, n[t + 10], 17, -42063), s, g, n[t + 11], 22, -1990404162), v = o(v, s = o(s, g = o(g, l, v, s, n[t + 12], 7, 1804603682), l, v, n[t + 13], 12, -40341101), g, l, n[t + 14], 17, -1502002290), s, g, n[t + 15], 22, 1236535329), v = c(v, s = c(s, g = c(g, l, v, s, n[t + 1], 5, -165796510), l, v, n[t + 6], 9, -1069501632), g, l, n[t + 11], 14, 643717713), s, g, n[t], 20, -373897302), v = c(v, s = c(s, g = c(g, l, v, s, n[t + 5], 5, -701558691), l, v, n[t + 10], 9, 38016083), g, l, n[t + 15], 14, -660478335), s, g, n[t + 4], 20, -405537848), v = c(v, s = c(s, g = c(g, l, v, s, n[t + 9], 5, 568446438), l, v, n[t + 14], 9, -1019803690), g, l, n[t + 3], 14, -187363961), s, g, n[t + 8], 20, 1163531501), v = c(v, s = c(s, g = c(g, l, v, s, n[t + 13], 5, -1444681467), l, v, n[t + 2], 9, -51403784), g, l, n[t + 7], 14, 1735328473), s, g, n[t + 12], 20, -1926607734), v = f(v, s = f(s, g = f(g, l, v, s, n[t + 5], 4, -378558), l, v, n[t + 8], 11, -2022574463), g, l, n[t + 11], 16, 1839030562), s, g, n[t + 14], 23, -35309556), v = f(v, s = f(s, g = f(g, l, v, s, n[t + 1], 4, -1530992060), l, v, n[t + 4], 11, 1272893353), g, l, n[t + 7], 16, -155497632), s, g, n[t + 10], 23, -1094730640), v = f(v, s = f(s, g = f(g, l, v, s, n[t + 13], 4, 681279174), l, v, n[t], 11, -358537222), g, l, n[t + 3], 16, -722521979), s, g, n[t + 6], 23, 76029189), v = f(v, s = f(s, g = f(g, l, v, s, n[t + 9], 4, -640364487), l, v, n[t + 12], 11, -421815835), g, l, n[t + 15], 16, 530742520), s, g, n[t + 2], 23, -995338651), v = i(v, s = i(s, g = i(g, l, v, s, n[t], 6, -198630844), l, v, n[t + 7], 10, 1126891415), g, l, n[t + 14], 15, -1416354905), s, g, n[t + 5], 21, -57434055), v = i(v, s = i(s, g = i(g, l, v, s, n[t + 12], 6, 1700485571), l, v, n[t + 3], 10, -1894986606), g, l, n[t + 10], 15, -1051523), s, g, n[t + 1], 21, -2054922799), v = i(v, s = i(s, g = i(g, l, v, s, n[t + 8], 6, 1873313359), l, v, n[t + 15], 10, -30611744), g, l, n[t + 6], 15, -1560198380), s, g, n[t + 13], 21, 1309151649), v = i(v, s = i(s, g = i(g, l, v, s, n[t + 4], 6, -145523070), l, v, n[t + 11], 10, -1120210379), g, l, n[t + 2], 15, 718787259), s, g, n[t + 9], 21, -343485551),
+            g = e(g, u),
+            l = e(l, a),
+            v = e(v, h),
+            s = e(s, d)
+        return [g, l, v, s]
+    }
+
+ function u(n, r, t, u, o, c) {
+        return e(function(n, r) {
+            return n &lt;&lt; r | n &gt;&gt;&gt; 32 - r
+        }(e(e(r, n), e(u, c)), o), t)
+}
+function o(n, r, t, e, o, c, f) {
+    return u(r &amp; t | ~r &amp; e, n, r, o, c, f)
+}
+
+function e(n, r) {
+        var t = (65535 &amp; n) + (65535 &amp; r)
+        return (n &gt;&gt; 16) + (r &gt;&gt; 16) + (t &gt;&gt; 16) &lt;&lt; 16 | 65535 &amp; t
+    }
+function c(n, r, t, e, o, c, f) {
+        return u(r &amp; e | t &amp; ~e, n, r, o, c, f)
+    }
+function f(n, r, t, e, o, c, f) {
+        return u(r ^ t ^ e, n, r, o, c, f)
+}
+function i(n, r, t, e, o, c, f) {
+    return u(t ^ (r | ~e), n, r, o, c, f)
+}
+
+// console.log(v(&quot;wen字加密&quot;))
+
+// var new_pwd = 
+
+function g(n) {
+    var r, t, e = &quot;&quot;
+    for (t = 0; t &lt; n.length; t += 1)
+        r = n.charCodeAt(t),
+        e += &quot;0123456789abcdef&quot;.charAt(r &gt;&gt;&gt; 4 &amp; 15) + &quot;0123456789abcdef&quot;.charAt(15 &amp; r)
+    return e
+}
+
+console.log(g(v(&quot;wen字加密&quot;)))</code></pre><h1 id="2、base64"><a href="#2、base64" class="headerlink" title="2、base64"></a>2、base64</h1><p>我另一个博客中有相关base64 的。<a href="https://blog.csdn.net/weixin_42081389/article/details/93884080" target="_blank" rel="noopener">https://blog.csdn.net/weixin_42081389/article/details/93884080</a></p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2019-12-02T06:45:48.125Z" itemprop="dateUpdated">2019-12-02 14:45:48</time>
+</span><br>
+
+
+        
+        这里可以写作者留言，标签和 hexo 中所有变量及辅助函数等均可调用，示例：<a href="/2019/12/02/5337277cfc36984fcaa62344ecf3e10b/" target="_blank" rel="external">https://zhaojiafu.github.io/2019/12/02/5337277cfc36984fcaa62344ecf3e10b/</a>
+        
+    </div>
+    
+    <footer>
+        <a href="https://zhaojiafu.github.io">
+            <img src="/img/zhao.jpg" alt="赵家富">
+            赵家富
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" target="_blank" rel="noopener" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/" rel="tag">JavaScript</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://zhaojiafu.github.io/2019/12/02/5337277cfc36984fcaa62344ecf3e10b/&title=《JavaScript 实现的几种加密方式（后续持续更新中。。。）》 — 赵家富的博客&pic=https://zhaojiafu.github.io/img/zhao.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" target="_blank" rel="noopener" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://zhaojiafu.github.io/2019/12/02/5337277cfc36984fcaa62344ecf3e10b/&title=《JavaScript 实现的几种加密方式（后续持续更新中。。。）》 — 赵家富的博客&source=感觉无从下手的时候，问自己“不难，要你干啥？”" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://zhaojiafu.github.io/2019/12/02/5337277cfc36984fcaa62344ecf3e10b/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《JavaScript 实现的几种加密方式（后续持续更新中。。。）》 — 赵家富的博客&url=https://zhaojiafu.github.io/2019/12/02/5337277cfc36984fcaa62344ecf3e10b/&via=https://zhaojiafu.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://zhaojiafu.github.io/2019/12/02/5337277cfc36984fcaa62344ecf3e10b/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" target="_blank" rel="noopener" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2019/12/02/d26c548ac16e7588a2796d7917ca1a2c/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">使用python发送QQ邮件</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2019/12/02/d2e12be46ca671b5b6ec3669ab3b118e/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">Windows下安装和使用scrapy-redis</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<section class="comments" id="comments">
+    <div id="gitalk-container"></div>
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+        var id = location.pathname
+        if (location.pathname.length > 50) {
+          id = location.pathname.replace(/\/\d+\/\d+\/\d+\//, '').replace('/', '').substring(0, 50)
+        }
+        const gitalk = new Gitalk({
+          clientID: '388d0a78cda30f118f86',
+          clientSecret: '2c64b34cc20f23d768dffff64acb8c2ee02c3bee',
+          repo: 'https://zhaojiafu.github.io/',
+          owner: 'zjf',
+          admin: ['zjf'],
+          id: id,      // Ensure uniqueness and length less than 50
+          title: document.title.split('|')[0],
+          distractionFreeMode: false  // Facebook-like distraction free mode
+        })
+
+        gitalk.render('gitalk-container')
+    </script>
+</section>
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;" target="_blank" rel="noopener"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢大爷~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.jpg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.jpg" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+            <span>博客内容遵循 <a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+        <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=0 height=0 src="http://music.163.com/song/media/outer/url?id=1369798757&auto=1"></iframe>
+
+    </div>
+    <div class="bottom">
+        <p><span>赵家富 &copy; 2019</span>
+            <span>
+                
+
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" target="_blank" rel="noopener" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://zhaojiafu.github.io/2019/12/02/5337277cfc36984fcaa62344ecf3e10b/&title=《JavaScript 实现的几种加密方式（后续持续更新中。。。）》 — 赵家富的博客&pic=https://zhaojiafu.github.io/img/zhao.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" target="_blank" rel="noopener" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://zhaojiafu.github.io/2019/12/02/5337277cfc36984fcaa62344ecf3e10b/&title=《JavaScript 实现的几种加密方式（后续持续更新中。。。）》 — 赵家富的博客&source=感觉无从下手的时候，问自己“不难，要你干啥？”" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://zhaojiafu.github.io/2019/12/02/5337277cfc36984fcaa62344ecf3e10b/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《JavaScript 实现的几种加密方式（后续持续更新中。。。）》 — 赵家富的博客&url=https://zhaojiafu.github.io/2019/12/02/5337277cfc36984fcaa62344ecf3e10b/&via=https://zhaojiafu.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://zhaojiafu.github.io/2019/12/02/5337277cfc36984fcaa62344ecf3e10b/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;" target="_blank" rel="noopener"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACtklEQVR42u3awW7rMAwEwP7/T/ddH9DW2SWloAXGpyCNbY4OIkvx4yO+Pr9c/3+f/Ob5+vrL52cevvDw8PDWobch/hTcT0vwvDTPcebx4OHh4d3mJY+7tyf/dNfzN88x4+Hh4f0eXltGt898XiY8PDy8v8h73vRnC7S/Cw8PD+/9vLbw3ZTXUVjv77Xg4eHhxbw8uN/z+cr5Hh4eHt66zZpsuHlBvEkhn6MLDw8P7wavLWeT1sNslCof56oLdzw8PLyjvOdtfX/4lAR9qn38zV14eHh413gtMj/0ahuyCbtoMePh4eFd4OUNhbwszg+92uUelt14eHh4R3mz7X5/YJ9s7vnWH+U9PDw8vEO8vIBuGwHtYiX3Ju/6RoSHh4f3Rt6mobBpy+ZN4eiveHh4eNd47Xa8H5BqYxiONeDh4eEd5bXt1/b1+VbegqPEg4eHh/dGXh5E3lSdjR3MhhheJAY8PDy8BS8JKG+25qV2285oR8SK9cbDw8MreTdK3tmR2GzrL7oseHh4eId47QBT25DNj83yuzbtDzw8PLyzvPbgqi1/88+zBPMiNjw8PLyjvPaGlro5bMtbyUVKwMPDw1vzZgf2RZ84SBh5qmiTEB4eHt5ZXrvJbhoQp5q5xeLi4eHhXeC1DdNZA6ItzZ/fmLcq8PDw8O7xkuOlTXmdPG3TaKjHBfDw8PAu8GbjAsPWatxKHpbpeHh4eNd4s1Dasnvz3lmbGA8PD+8s77O88gOq2cBWkn7yUQM8PDy8G7zZhtseaCXsfNgr/4yHh4d3j3cqGbSkfOFWiQEPDw/vGi8JcZYq2sQwa2q8SAx4eHh4v4CXBzEroNvY6vM9PDw8vLfzZmNSsxZwPsRQDF3h4eHhrXl5KXwqqWyCrhMDHh4e3lFe+w9/ngD2sHb4YDWrhYeHh/ea9w+fpZKXgd6uFwAAAABJRU5ErkJggg==" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '死鬼去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+<script src="/node_modules/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"node_modules/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/node_modules/assets/shizuku.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"react":{"opacity":0.7},"log":false});</script></body>
+</html>

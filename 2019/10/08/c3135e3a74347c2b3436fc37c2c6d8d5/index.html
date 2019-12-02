@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <link rel="canonical" href="https://zhaojiafu.github.io/2019/10/08/c3135e3a74347c2b3436fc37c2c6d8d5/">
+    
+    
+    <title>Linux下vim_vi 编辑器 命令总结 | 赵家富的博客 | 保持好奇心</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="Linux">
+    <meta name="description" content="一、vi简介vi是“Visual interface”的简称，它在Linux上的地位就仿佛Edit程序在DOS上一样。它可以执行输出、删除、查找、替换、块操作等众多文本操作，而且用户可以根据自己的需要对其进行定制。Vi不是一个排版程序，它不象Word或WPS那样可以对字体、格式、段落等其他属性进行编排，它只是一个文本编辑程序。 vi没有菜单，只有命令，且命令繁多。 ①、Vi有三种基本工作模式： 命">
+<meta name="keywords" content="Linux">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linux下vim_vi 编辑器 命令总结">
+<meta property="og:url" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;2019&#x2F;10&#x2F;08&#x2F;c3135e3a74347c2b3436fc37c2c6d8d5&#x2F;index.html">
+<meta property="og:site_name" content="赵家富的博客">
+<meta property="og:description" content="一、vi简介vi是“Visual interface”的简称，它在Linux上的地位就仿佛Edit程序在DOS上一样。它可以执行输出、删除、查找、替换、块操作等众多文本操作，而且用户可以根据自己的需要对其进行定制。Vi不是一个排版程序，它不象Word或WPS那样可以对字体、格式、段落等其他属性进行编排，它只是一个文本编辑程序。 vi没有菜单，只有命令，且命令繁多。 ①、Vi有三种基本工作模式： 命">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20191008091627450.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20191008092352839.gif">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20191008092412175.gif">
+<meta property="og:updated_time" content="2019-12-02T07:00:37.300Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20191008091627450.png">
+    
+    <link rel="shortcut icon" href="/img/cb2nm-5l9w0-001.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" target="_blank" rel="noopener" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/zhao.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">赵家富</h5>
+          <a href="mailto:530519174@qq.com" target="_blank" rel="noopener" title="530519174@qq.com" class="mail">530519174@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                archives(所有)
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags/"  >
+                <i class="icon icon-lg icon-tags"></i>
+                tag(标签)
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories/"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories(分类)
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/zhaojiafu" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://blog.csdn.net/weixin_42081389" target="_blank" >
+                <i class="icon icon-lg icon-csdn"></i>
+                Csdn
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" target="_blank" rel="noopener" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+
+        <div class="flex-col header-title ellipsis">Linux下vim_vi 编辑器 命令总结</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" target="_blank" rel="noopener" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" target="_blank" rel="noopener" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" target="_blank" rel="noopener" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+
+        <h1 class="title">Linux下vim_vi 编辑器 命令总结
+        </h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2019-10-08T03:34:32.000Z" itemprop="datePublished" class="page-time">
+  2019-10-08
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Linux/">Linux</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#一、vi简介"><span class="post-toc-number">1.</span> <span class="post-toc-text">一、vi简介</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#①、Vi有三种基本工作模式："><span class="post-toc-number">1.1.</span> <span class="post-toc-text">①、Vi有三种基本工作模式：</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#1、文本输入模式"><span class="post-toc-number">1.1.1.</span> <span class="post-toc-text">1、文本输入模式</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#2、命令行模式"><span class="post-toc-number">1.1.2.</span> <span class="post-toc-text">2、命令行模式</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#3、末行模式"><span class="post-toc-number">1.1.3.</span> <span class="post-toc-text">3、末行模式</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#②、vim简图"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">②、vim简图</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#1、英文简图："><span class="post-toc-number">1.2.1.</span> <span class="post-toc-text">1、英文简图：</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#2、中文简图"><span class="post-toc-number">1.2.2.</span> <span class="post-toc-text">2、中文简图</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#二、vim基础操作"><span class="post-toc-number">2.</span> <span class="post-toc-text">二、vim基础操作</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#1、进入插入模式命令（在命令模式下操作）"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">1、进入插入模式命令（在命令模式下操作）:</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#2、进入命令模式（在文本模式或者末行模式下）"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">2、进入命令模式（在文本模式或者末行模式下）:</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#3、移动光标（在命令模式下操作）"><span class="post-toc-number">2.3.</span> <span class="post-toc-text">3、移动光标（在命令模式下操作）:</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#4、删除命令（在命令模式下操作）"><span class="post-toc-number">2.4.</span> <span class="post-toc-text">4、删除命令（在命令模式下操作）:</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#5、撤销命令（在命令模式下操作）"><span class="post-toc-number">2.5.</span> <span class="post-toc-text">5、撤销命令（在命令模式下操作）:</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#6、重复命令（在命令模式下操作）"><span class="post-toc-number">2.6.</span> <span class="post-toc-text">6、重复命令（在命令模式下操作）:</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#7、文本行移动（在命令模式下操作）"><span class="post-toc-number">2.7.</span> <span class="post-toc-text">7、文本行移动（在命令模式下操作）:</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#8、复制粘贴（在命令模式下操作）"><span class="post-toc-number">2.8.</span> <span class="post-toc-text">8、复制粘贴（在命令模式下操作）:</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#9、可视模式（在命令模式下操作，可整块删除、复制、移动）"><span class="post-toc-number">2.9.</span> <span class="post-toc-text">9、可视模式（在命令模式下操作，可整块删除、复制、移动）:</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#10、替换操作（在命令模式下操作）"><span class="post-toc-number">2.10.</span> <span class="post-toc-text">10、替换操作（在命令模式下操作）:</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#11、查找命令（在末行模式下）"><span class="post-toc-number">2.11.</span> <span class="post-toc-text">11、查找命令（在末行模式下）:</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#12、替换命令（在末行模式下）："><span class="post-toc-number">2.12.</span> <span class="post-toc-text">12、替换命令（在末行模式下）：</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#13、vim里执行-shell-下命令（末行模式下）"><span class="post-toc-number">2.13.</span> <span class="post-toc-text">13、vim里执行 shell 下命令（末行模式下）:</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#放大缩写"><span class="post-toc-number">2.13.1.</span> <span class="post-toc-text">放大缩写</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#ubuntu-vim-tab-4个空格"><span class="post-toc-number">2.13.2.</span> <span class="post-toc-text">ubuntu vim tab 4个空格</span></a></li></ol></li></ol></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-c3135e3a74347c2b3436fc37c2c6d8d5"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">Linux下vim_vi 编辑器 命令总结</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2019-10-08 11:34:32" datetime="2019-10-08T03:34:32.000Z"  itemprop="datePublished">2019-10-08</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Linux/">Linux</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h1 id="一、vi简介"><a href="#一、vi简介" class="headerlink" title="一、vi简介"></a>一、vi简介</h1><p>vi是“Visual interface”的简称，它在Linux上的地位就仿佛Edit程序在DOS上一样。它可以执行输出、删除、查找、替换、块操作等众多文本操作，而且用户可以根据自己的需要对其进行定制。Vi不是一个排版程序，它不象Word或WPS那样可以对字体、格式、段落等其他属性进行编排，它只是一个文本编辑程序。 vi没有菜单，只有命令，且命令繁多。</p>
+<h2 id="①、Vi有三种基本工作模式："><a href="#①、Vi有三种基本工作模式：" class="headerlink" title="①、Vi有三种基本工作模式："></a>①、Vi有三种基本工作模式：</h2><ol>
+<li>命令模式（esc按键切换文本模式为命令模式）</li>
+<li>文本输入模式（在命令模式下按i切换为文本模式）</li>
+<li>末行模式（在命令模式下按<strong>shift+：</strong>切换为末行模式）</li>
+</ol>
+<p>工作模式图：</p>
+<p><img src="/imgs/20191008091627450.png" alt="在这里插入图片描述"></p>
+<h3 id="1、文本输入模式"><a href="#1、文本输入模式" class="headerlink" title="1、文本输入模式"></a>1、文本输入模式</h3><p>在命令模式下输入插入命令i、附加命令a 、打开命令o、修改命令c、取代命令r或替换命令s都可以进入文本输入模式。在该模式下，用户输入的任何字符都被Vi当做文件内容保存起来，并将其显示在屏幕上。在文本输入过程中，若想回到命令模式下，按键ESC即可。</p>
+<h3 id="2、命令行模式"><a href="#2、命令行模式" class="headerlink" title="2、命令行模式"></a>2、命令行模式</h3><p>任何时候，不管用户处于何种模式，只要按一下ESC键，即可使Vi进入命令模式；我们在shell环境(提示符为$)下输入启动Vi命令，进入编辑器时，也是处于该模式下。在该模式下，用户可以输入各种合法的Vi命令，用于管理自己的文档。此时从键盘上输入的任何字符都被当做编辑命令来解释，若输入的字符是合法的Vi命令，则Vi在接受用户命令之后完成相应的动作。但需注意的是，所输入的命令并不在屏幕上显示出来。若输入的字符不是Vi的合法命令，Vi会响铃报警。</p>
+<h3 id="3、末行模式"><a href="#3、末行模式" class="headerlink" title="3、末行模式"></a>3、末行模式</h3><p>末行模式也称ex转义模式。在命令模式下，用户按“:”键即可进入末行模式下，此时Vi会在显示窗口的最后一行(通常也是屏幕的最后一行)显示一个“:”作为末行模式的提示符，等待用户输入命令。多数文件管理命令都是在此模式下执行的(如把编辑缓冲区的内容写到文件中等)。末行命令执行完后，Vi自动回到命令模式。例如：<br>:set number          显示行号<br>:set nonumber        去掉行号<br>:set encoding           显示编码<br>:set encoding=utf-8       设置编码<br>如果要从命令模式转换到编辑模式，可以键入命令a或者i；如果需要从文本模式返回，则按Esc键即可。在命令模式下输入“:”即可切换到末行模式，然后输入命令。</p>
+<h2 id="②、vim简图"><a href="#②、vim简图" class="headerlink" title="②、vim简图"></a>②、vim简图</h2><h3 id="1、英文简图："><a href="#1、英文简图：" class="headerlink" title="1、英文简图："></a>1、英文简图：</h3><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/20191008092352839.gif" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+<h3 id="2、中文简图"><a href="#2、中文简图" class="headerlink" title="2、中文简图"></a>2、中文简图</h3><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/20191008092412175.gif" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+
+<h1 id="二、vim基础操作"><a href="#二、vim基础操作" class="headerlink" title="二、vim基础操作"></a>二、vim基础操作</h1><p>vim是从 vi 发展出来的一个文本编辑器 。代码补完、编译及错误跳转等方便编程的功能特别丰富</p>
+<h2 id="1、进入插入模式命令（在命令模式下操作）"><a href="#1、进入插入模式命令（在命令模式下操作）" class="headerlink" title="1、进入插入模式命令（在命令模式下操作）:"></a>1、进入插入模式命令（在命令模式下操作）:</h2><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">i: 插入光标前一个字符 </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">I: 插入行首 </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">a: 插入光标后一个字符 </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">A: 插入行未 </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">o: 向下新开一行,插入行首 </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">O: 向上新开一行,插入行首</span></pre></td></tr></table></figure>
+
+<h2 id="2、进入命令模式（在文本模式或者末行模式下）"><a href="#2、进入命令模式（在文本模式或者末行模式下）" class="headerlink" title="2、进入命令模式（在文本模式或者末行模式下）:"></a>2、进入命令模式（在文本模式或者末行模式下）:</h2><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">ESC:从插入模式或末行模式进入命令模式</span></pre></td></tr></table></figure>
+
+<h2 id="3、移动光标（在命令模式下操作）"><a href="#3、移动光标（在命令模式下操作）" class="headerlink" title="3、移动光标（在命令模式下操作）:"></a>3、移动光标（在命令模式下操作）:</h2><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">h: 左移 </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">j: 下移 </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">k: 上移 </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">l: 右移</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">M: 光标移动到屏幕中间行 </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">L: 光标移动到屏幕最后一行行首 </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">G: 移动到指定行,行号 G（比如移动到<span class="number">22</span>行：<span class="number">22</span>G）</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line">w: 向后一次移动一个字 </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">17</span></pre></td><td class="code"><pre><span class="line">b: 向前一次移动一个字</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">18</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">19</span></pre></td><td class="code"><pre><span class="line">&#123;: 按段移动,上移 </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">20</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">21</span></pre></td><td class="code"><pre><span class="line">&#125;: 按段移动,下移</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">22</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">23</span></pre></td><td class="code"><pre><span class="line">Ctrl+d: 向下翻半屏 </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">24</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">25</span></pre></td><td class="code"><pre><span class="line">Ctrl+u: 向上翻半屏</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">26</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">27</span></pre></td><td class="code"><pre><span class="line">Ctrl+f: 向下翻一屏 </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">28</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">29</span></pre></td><td class="code"><pre><span class="line">Ctrl+b: 向上翻一屏</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">30</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">31</span></pre></td><td class="code"><pre><span class="line">gg: 光标移动文件开头 </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">32</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">33</span></pre></td><td class="code"><pre><span class="line">G: 光标移动到文件末尾</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">34</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">35</span></pre></td><td class="code"><pre><span class="line">shift+<span class="number">6</span>  光标到当前行的行首</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">36</span></pre></td><td class="code"><pre><span class="line">shift+<span class="number">4</span>  光标到当前行的行末</span></pre></td></tr></table></figure>
+
+<h2 id="4、删除命令（在命令模式下操作）"><a href="#4、删除命令（在命令模式下操作）" class="headerlink" title="4、删除命令（在命令模式下操作）:"></a>4、删除命令（在命令模式下操作）:</h2><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">x: 删除当前光标一个字符,相当于 Del </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">X: 删除光标前一个字符,相当于 Backspace</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">dd: 删除光标所在行,n dd 删除指定的行数（光标所在的行和之后的n行） D: 删除光标后本行所有内容,包含光标所在字符 </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">d0: 删除光标前本行所有内容,不包含光标所在字符</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">dw: 删除光标开始位置的字,包含光标所在字符,如果是中文，则会删除光标和光标所在的句子</span></pre></td></tr></table></figure>
+
+<h2 id="5、撤销命令（在命令模式下操作）"><a href="#5、撤销命令（在命令模式下操作）" class="headerlink" title="5、撤销命令（在命令模式下操作）:"></a>5、撤销命令（在命令模式下操作）:</h2><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">u: 一步一步撤销 </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">Ctrl+r: 反撤销</span></pre></td></tr></table></figure>
+
+<h2 id="6、重复命令（在命令模式下操作）"><a href="#6、重复命令（在命令模式下操作）" class="headerlink" title="6、重复命令（在命令模式下操作）:"></a>6、重复命令（在命令模式下操作）:</h2><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">.: 重复上一次操作的命令</span></pre></td></tr></table></figure>
+
+<h2 id="7、文本行移动（在命令模式下操作）"><a href="#7、文本行移动（在命令模式下操作）" class="headerlink" title="7、文本行移动（在命令模式下操作）:"></a>7、文本行移动（在命令模式下操作）:</h2><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">&gt;&gt;: 文本行右移 </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">&lt;&lt;: 文本行左移</span></pre></td></tr></table></figure>
+
+<h2 id="8、复制粘贴（在命令模式下操作）"><a href="#8、复制粘贴（在命令模式下操作）" class="headerlink" title="8、复制粘贴（在命令模式下操作）:"></a>8、复制粘贴（在命令模式下操作）:</h2><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">yy: 复制当前行,n yy 复制 n 行【光标之后的n行（含光标所在行）】</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">p: 在光标所在位置向下新开辟一行,粘贴</span></pre></td></tr></table></figure>
+<h2 id="9、可视模式（在命令模式下操作，可整块删除、复制、移动）"><a href="#9、可视模式（在命令模式下操作，可整块删除、复制、移动）" class="headerlink" title="9、可视模式（在命令模式下操作，可整块删除、复制、移动）:"></a>9、可视模式（在命令模式下操作，可整块删除、复制、移动）:</h2><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">v: 按字符移动,选中文本 </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">V: 按行移动,选中文本可视模式可以配合 d（删除）, y（复制）, &gt;&gt;（右移）, &lt;&lt;（左移） 实现对文本块的删除,复制,左右移动</span></pre></td></tr></table></figure>
+
+<h2 id="10、替换操作（在命令模式下操作）"><a href="#10、替换操作（在命令模式下操作）" class="headerlink" title="10、替换操作（在命令模式下操作）:"></a>10、替换操作（在命令模式下操作）:</h2><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">r: 替换当前字符 </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">R: 替换当前行光标后的字符</span></pre></td></tr></table></figure>
+<h2 id="11、查找命令（在末行模式下）"><a href="#11、查找命令（在末行模式下）" class="headerlink" title="11、查找命令（在末行模式下）:"></a>11、查找命令（在末行模式下）:</h2><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">/: str查找（在shift+:进入末行模式下，然后<span class="string">"/fe"</span>,意思就是查找fe字符串）</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">n: 下一个（这个下查找情况下，很多结果情况下进行往下查找）</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">N：上一个（这个下查找情况下，很多结果情况下进行往下查找）</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">:set hls 打开高亮</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">:set nohls 关闭高亮</span></pre></td></tr></table></figure>
+
+<h2 id="12、替换命令（在末行模式下）："><a href="#12、替换命令（在末行模式下）：" class="headerlink" title="12、替换命令（在末行模式下）："></a>12、替换命令（在末行模式下）：</h2><p>例如：把abc全部替换成123<br>末行模式下，将所以提议的abc替换成123</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">:%s/abc/<span class="number">123</span>/g</span></pre></td></tr></table></figure>
+
+<p>末行模式下，将第一行至第10行之间的abc替换成123</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">:<span class="number">1</span>, <span class="number">10</span>s/abc/<span class="number">123</span>/g</span></pre></td></tr></table></figure>
+
+<h2 id="13、vim里执行-shell-下命令（末行模式下）"><a href="#13、vim里执行-shell-下命令（末行模式下）" class="headerlink" title="13、vim里执行 shell 下命令（末行模式下）:"></a>13、vim里执行 shell 下命令（末行模式下）:</h2><p><strong>末行模式里输入!,后面跟命令</strong></p>
+<h3 id="放大缩写"><a href="#放大缩写" class="headerlink" title="放大缩写"></a>放大缩写</h3><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">ctrl -  			缩小</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">ctrl shift +  		放大</span></pre></td></tr></table></figure>
+
+<h3 id="ubuntu-vim-tab-4个空格"><a href="#ubuntu-vim-tab-4个空格" class="headerlink" title="ubuntu vim tab 4个空格"></a>ubuntu vim tab 4个空格</h3><p>编辑文件</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">sudo vim /etc/vim/vimrc</span></pre></td></tr></table></figure>
+
+<p>在最后加上</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">set ts=<span class="number">4</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">set expandtab</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">set autoindent   如果报错，将这句话换成 %retab!</span></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2019-12-02T07:00:37.300Z" itemprop="dateUpdated">2019-12-02 15:00:37</time>
+</span><br>
+
+
+        
+        这里可以写作者留言，标签和 hexo 中所有变量及辅助函数等均可调用，示例：<a href="/2019/10/08/c3135e3a74347c2b3436fc37c2c6d8d5/" target="_blank" rel="external">https://zhaojiafu.github.io/2019/10/08/c3135e3a74347c2b3436fc37c2c6d8d5/</a>
+        
+    </div>
+    
+    <footer>
+        <a href="https://zhaojiafu.github.io">
+            <img src="/img/zhao.jpg" alt="赵家富">
+            赵家富
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" target="_blank" rel="noopener" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://zhaojiafu.github.io/2019/10/08/c3135e3a74347c2b3436fc37c2c6d8d5/&title=《Linux下vim_vi 编辑器 命令总结》 — 赵家富的博客&pic=https://zhaojiafu.github.io/img/zhao.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" target="_blank" rel="noopener" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://zhaojiafu.github.io/2019/10/08/c3135e3a74347c2b3436fc37c2c6d8d5/&title=《Linux下vim_vi 编辑器 命令总结》 — 赵家富的博客&source=感觉无从下手的时候，问自己“不难，要你干啥？”" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://zhaojiafu.github.io/2019/10/08/c3135e3a74347c2b3436fc37c2c6d8d5/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Linux下vim_vi 编辑器 命令总结》 — 赵家富的博客&url=https://zhaojiafu.github.io/2019/10/08/c3135e3a74347c2b3436fc37c2c6d8d5/&via=https://zhaojiafu.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://zhaojiafu.github.io/2019/10/08/c3135e3a74347c2b3436fc37c2c6d8d5/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" target="_blank" rel="noopener" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2019/10/09/526b19c90f74051ef7d7d2d6a7e4e2fb/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">python爬虫之scrapy 框架学习复习整理一--最基本入门的知识点</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2019/10/01/6f83dcf3dfd382e33d53f60571f7481f/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">Windows 10系统使用vmware 安装Ubuntu18.04双系统 + Ubuntu 18.04 安装 Docker-ce</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<section class="comments" id="comments">
+    <div id="gitalk-container"></div>
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+        var id = location.pathname
+        if (location.pathname.length > 50) {
+          id = location.pathname.replace(/\/\d+\/\d+\/\d+\//, '').replace('/', '').substring(0, 50)
+        }
+        const gitalk = new Gitalk({
+          clientID: '388d0a78cda30f118f86',
+          clientSecret: '2c64b34cc20f23d768dffff64acb8c2ee02c3bee',
+          repo: 'https://zhaojiafu.github.io/',
+          owner: 'zjf',
+          admin: ['zjf'],
+          id: id,      // Ensure uniqueness and length less than 50
+          title: document.title.split('|')[0],
+          distractionFreeMode: false  // Facebook-like distraction free mode
+        })
+
+        gitalk.render('gitalk-container')
+    </script>
+</section>
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;" target="_blank" rel="noopener"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢大爷~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.jpg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.jpg" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+            <span>博客内容遵循 <a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+        <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=0 height=0 src="http://music.163.com/song/media/outer/url?id=1369798757&auto=1"></iframe>
+
+    </div>
+    <div class="bottom">
+        <p><span>赵家富 &copy; 2019</span>
+            <span>
+                
+
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" target="_blank" rel="noopener" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://zhaojiafu.github.io/2019/10/08/c3135e3a74347c2b3436fc37c2c6d8d5/&title=《Linux下vim_vi 编辑器 命令总结》 — 赵家富的博客&pic=https://zhaojiafu.github.io/img/zhao.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" target="_blank" rel="noopener" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://zhaojiafu.github.io/2019/10/08/c3135e3a74347c2b3436fc37c2c6d8d5/&title=《Linux下vim_vi 编辑器 命令总结》 — 赵家富的博客&source=感觉无从下手的时候，问自己“不难，要你干啥？”" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://zhaojiafu.github.io/2019/10/08/c3135e3a74347c2b3436fc37c2c6d8d5/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Linux下vim_vi 编辑器 命令总结》 — 赵家富的博客&url=https://zhaojiafu.github.io/2019/10/08/c3135e3a74347c2b3436fc37c2c6d8d5/&via=https://zhaojiafu.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://zhaojiafu.github.io/2019/10/08/c3135e3a74347c2b3436fc37c2c6d8d5/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;" target="_blank" rel="noopener"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACsklEQVR42u3awU7EMAwE0P3/n4YrB7aasROxSK8nBKWb10OcHfv1iq+vH9e732+ud5/y7s7DFx4eHt5i6ckHP9/5/FKSn5/Xma8ZDw8P7zYvedxs701eXPsSkzXj4eHhfTLvmZo8M399eHh4eP+Rl4QI7dPaO/Hw8PA+gTc7wiZRb/7XP85a8PDw8LrE9dU++m9/vtLfw8PDw1t31fMWV14AZk8YxsR4eHh4F3j3jsvtKFUbZxTrxMPDwzvKy1v4s4/Mh66Sk3AdneDh4eFd4G1i3LwBlv/v88DB7NCPh4eHd4O3CXDbw/Qsnpgd3PHw8PDu8Z437tmdbbSRj17VIQUeHh7eBV4StuYb/eyI3MYQdRyMh4eHd4i32Y5n9+TUTarw2lcbPDw8vMeV7DfxPJzdN7TqMS88PDy8o7z8S34+WDBrjOXxR10S8PDw8I7ynhcx29zbkGJTWqLigYeHh3eBlxeDWfHIj+BtD6tuwuHh4eEd5SVf8vPItR1InZWQ4sl4eHh4h3j5xp23r9oAov2vpFD9MjqAh4eHd4g329bzspEcoGdDV6sDOh4eHt5RXhvUntqyN420uiTg4eHhLXj7GtIGFpvhrTY0wcPDw7vB2ze38ibZZnRgtk48PDy8e7xTPfe8bLTLbcOR4awEHh4eXsxrW/Vt62t2sG4P7kV0i4eHh3eIlx9/8/GCugqVT4juxMPDw7vGm23us6P26ozfIvHw8PCO8r7Kqy0nm/Di+fUl68HDw8O7wWs336Q8zA6+bZmZDTrg4eHhneJtmvr5R842/Xaca5VS4+Hh4ZW8dpgpP0afapvlhQcPDw/vM3l5vDsrJ7PBLDw8PLxP5rVl49SYQjFuhYeHh3eZN2tinRogmI1YJUEzHh4e3g3e5gt/G9fmccYsYh5eeHh4eCnvG1N6kpfcxGsZAAAAAElFTkSuQmCC" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '死鬼去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+<script src="/node_modules/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"node_modules/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/node_modules/assets/shizuku.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"react":{"opacity":0.7},"log":false});</script></body>
+</html>

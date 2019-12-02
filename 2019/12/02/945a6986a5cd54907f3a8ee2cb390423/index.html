@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <link rel="canonical" href="https://zhaojiafu.github.io/2019/12/02/945a6986a5cd54907f3a8ee2cb390423/">
+    
+    
+    <title>ffmpeg 的命令总结 | 赵家富的博客 | 保持好奇心</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="ffmpeg">
+    <meta name="description" content="# 官网http:&#x2F;&#x2F;ffmpeg.org&#x2F;doxygen&#x2F;3.1&#x2F;structAVOutputFormat.html 参考别人的 格式转换 (将file.avi 转换成output.flv) ffmpeg -i  file.avi   output.flv    -i 表示输入文件  :现在有个视频video.avi，有个音频 audio.mp3，将其合并成output.avi 两个命令">
+<meta name="keywords" content="ffmpeg">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ffmpeg 的命令总结">
+<meta property="og:url" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;2019&#x2F;12&#x2F;02&#x2F;945a6986a5cd54907f3a8ee2cb390423&#x2F;index.html">
+<meta property="og:site_name" content="赵家富的博客">
+<meta property="og:description" content="# 官网http:&#x2F;&#x2F;ffmpeg.org&#x2F;doxygen&#x2F;3.1&#x2F;structAVOutputFormat.html 参考别人的 格式转换 (将file.avi 转换成output.flv) ffmpeg -i  file.avi   output.flv    -i 表示输入文件  :现在有个视频video.avi，有个音频 audio.mp3，将其合并成output.avi 两个命令">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-12-02T06:45:47.441Z">
+<meta name="twitter:card" content="summary">
+    
+    <link rel="shortcut icon" href="/img/cb2nm-5l9w0-001.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" target="_blank" rel="noopener" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/zhao.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">赵家富</h5>
+          <a href="mailto:530519174@qq.com" target="_blank" rel="noopener" title="530519174@qq.com" class="mail">530519174@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                archives(所有)
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags/"  >
+                <i class="icon icon-lg icon-tags"></i>
+                tag(标签)
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories/"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories(分类)
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/zhaojiafu" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://blog.csdn.net/weixin_42081389" target="_blank" >
+                <i class="icon icon-lg icon-csdn"></i>
+                Csdn
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" target="_blank" rel="noopener" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+
+        <div class="flex-col header-title ellipsis">ffmpeg 的命令总结</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" target="_blank" rel="noopener" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" target="_blank" rel="noopener" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" target="_blank" rel="noopener" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+
+        <h1 class="title">ffmpeg 的命令总结
+        </h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2019-12-02T03:34:32.000Z" itemprop="datePublished" class="page-time">
+  2019-12-02
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/ffmpeg/">ffmpeg</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#参考别人的"><span class="post-toc-number">1.</span> <span class="post-toc-text">参考别人的</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#a-通用选项"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">a) 通用选项</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#b-视频选项"><span class="post-toc-number">2.</span> <span class="post-toc-text">b) 视频选项</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#c-高级视频选项"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">c)高级视频选项</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#D-音频选项"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">D)音频选项</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#E-音频-视频捕获选项"><span class="post-toc-number">2.3.</span> <span class="post-toc-text">E)音频/视频捕获选项</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#F-高级选项"><span class="post-toc-number">2.4.</span> <span class="post-toc-text">F)高级选项</span></a></li></ol></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-945a6986a5cd54907f3a8ee2cb390423"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">ffmpeg 的命令总结</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2019-12-02 11:34:32" datetime="2019-12-02T03:34:32.000Z"  itemprop="datePublished">2019-12-02</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/ffmpeg/">ffmpeg</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p>﻿# 官网<br><a href="http://ffmpeg.org/doxygen/3.1/structAVOutputFormat.html" target="_blank" rel="noopener">http://ffmpeg.org/doxygen/3.1/structAVOutputFormat.html</a></p>
+<h1 id="参考别人的"><a href="#参考别人的" class="headerlink" title="参考别人的"></a>参考别人的</h1><p> 格式转换 (将file.avi 转换成output.flv)</p>
+<pre><code>ffmpeg -i  file.avi   output.flv
+
+  -i 表示输入文件 </code></pre><p> :现在有个视频video.avi，有个音频 audio.mp3，将其合并成output.avi</p>
+<p>两个命令                     （ video2.avi 是中间文件 ，用完可删）</p>
+<p>ffmpeg -i video.avi -vcodec copy -an video2.avi<br>ffmpeg -i video2.avi -i audio.mp3 -vcodec copy -acodec copy output.avi</p>
+<p> -i 表示输入文件</p>
+<p>  -vcodec copy 表示 force video codec (‘copy’ to copy stream) 这个不知怎么译 ，估计是直接copy </p>
+<p>  -acodec copy   这个说的应该是音频了   跟上面一样</p>
+<p>-an : 表示  disable audio  估计是audio no 之类的缩写   表示去掉video.avi 原有的音频</p>
+<p>方法2 好像可以直接指定两个输入文件 ，</p>
+<p>ffmpeg -i /tmp/a.wav  -i /tmp/a.avi /tmp/a.avi   两个文件 的顺序很重</p>
+<p>从视频里提取声音（声音与视频的分离）</p>
+<p> ffmpeg  -i 人生若只如初见.flv  -vn r.mp3  从flv 文件 中提取声音并保存为mp3 格式  </p>
+<pre><code>-vn : 表示忽略视频 估计是video no 之类的缩写</code></pre><p> ffmpeg  -i 人生若只如初见.flv  -an  r.flv   只留视频不留声音 </p>
+<pre><code>-an : 表示 忽略 声音 估计是audio no 之类的缩写</code></pre><p>从视频里提取图片（ ）</p>
+<p>ffmpeg -i test.avi -y -f image2 -ss 8 -t 0.001 -s 350x240 test.jpg       </p>
+<p> -ss 第8秒处 截一图</p>
+<p>压缩mp3 文件</p>
+<p>如果你觉得mp3 文件 有点大，想变小一点那么可以通过-ab 选项改变音频的比特率 （bitrate）</p>
+<p>ffmpeg -i input.mp3 -ab 128 output.mp3    //这里将比特率设为128</p>
+<p>你可以用file 命令查看一下源文件 的信息</p>
+<p>z.mp3: Audio file with ID3 version 2.3.0, contains: MPEG ADTS, layer III, v1, 192 kbps, 44.1 kHz, Stereo</p>
+<p>其中的192 kbps 就是这个东西</p>
+<p>mp3中比特率的含义是：在压缩音频文件至mp3时，由压缩软件所确定数码文件在播放时每秒传 送给播放器大小，其单位是：千位/秒；英文的含义是：kbps - = kilobits per second。现在mp3文件的最高数位率是320 kbps。这样的文件体积很大，每分钟的音乐超过两兆字节。如果采用可变比特率（VBR）编码来生成mp3文件，获得与320 kbps相当音质，文件的体积会缩小25~50%。请注意：播放时间相同，而歌曲不同，所获的压缩mp3文件的一般不相同，这是因为VBR编码所生成的 mp3文件的大小不仅仅取决于播放时间的长度，还取决于源音频文件的其它因素。</p>
+<p>录音（要有可用的麦克风，并且如果用alsa 的话，好像得安alsa-oss，重启） </p>
+<p> ffmpeg  -f oss -i /dev/dsp   out.avi  (should  hava oss or alsa-oss)</p>
+<p> ffmpeg   -f  alsa -ac 2 -i hw:0, 0  out.avi   (should )</p>
+<p> ffmpeg   -f alsa -ac 2 -i pulse  (should hava PulseAudio)</p>
+<p>   oss 是linux 下的声音相关的东西，与alsa 一样，不过oss 是商业的， 而/dev/dsp 是oss 用到的麦克的设备吧，可以这样理解</p>
+<p>屏幕录像</p>
+<p>ffmpeg -f x11grab -s xga -r 10 -i :0.0+0+0 wheer.avi </p>
+<p>ffmpeg -f x11grab  -s 320x240  -r 10 -i :0.0+100+200 wheer.avi</p>
+<p>:0:0 表示屏幕（个人理解，因为系统变量$DISPLAY值就是:0.0）  而100,表示距左端100象素，200表示距上端200</p>
+<p>-s 设置窗口大小</p>
+<p>  -r 10 好像是设置频率，不懂</p>
+<p>ffmpeg -f x11grab -s xga    -qscale 5    -r 10 -i :0.0+0+0 wheer.avi </p>
+<p>-qscale 8 设定画面质量，值 越小越好</p>
+<p>屏幕录像，同时录音</p>
+<p>ffmpeg -f oss -i /dev/dsp        -f x11grab -r 30 -s 1024x768 -i :0.0  output.mkv</p>
+<p>ffmpeg   -ac 2 -f oss  -i  /dev/dsp   -f x11grab -r 30 -s 1024x768 -i :0.0 -acodec pcm_s16le -vcodec libx264 -vpre lossless_ultrafast -threads 0 output.mkv</p>
+<p>看到这，你会发现这个命令有多强大，</p>
+<p>如果我屏幕上打开了一个窗口，我只想录这个窗口的内容，如何确定这个窗口的坐标位置呢</p>
+<p>可以用另外一个命令</p>
+<p>xwininfo 输入这个命令后，用鼠标点选目标窗口，</p>
+<p>就会出现目标窗口的坐标，宽高等一系列信息</p>
+<p>Absolute upper-left X:  276<br>  Absolute upper-left Y:  57<br>  Relative upper-left X:  2<br>  Relative upper-left Y:  23<br>  Width: 742<br>  Height: 499<br>  Depth: 24<br>  Visual: 0x21<br>  Visual Class: TrueColor<br>  Border width: 0<br>  Class: InputOutput<br>  Colormap: 0x20 (installed)<br>  Bit Gravity State: NorthWestGravity<br>  Window Gravity State: NorthWestGravity<br>  Backing Store State: NotUseful<br>  Save Under State: no<br>  Map State: IsViewable<br>  Override Redirect State: no<br>  Corners:  +276+57  -262+57  -262-244  +276-244<br>  -geometry 80x24+274+34 看到这一行了没 (）</p>
+<p>比如根据上面的信息</p>
+<p>ffmpeg -f oss  -i  /dev/dsp      -f  x11grab -r 30  -s 1280x752 -i :0.0+0+23  output.avi<br>Another thing you can change is the video frame rate (FPS). In the example above we used -r 30 which means capture at 30 FPS. You can change this value to whatever frame rate you want.</p>
+<p>这个 -r 30 应该是每秒钟取样几次，估计是一秒截三十次屏，</p>
+<p>切头去尾</p>
+<p> ffmpeg -ss 00:00:10 -t 00:01:22 -i 五月天-突然好想你.mp3  output.mp3 </p>
+<p>只要 从第10秒开始截取，共截取1：22时长的内容</p>
+<p>视频文件的连接，如两个flv 文件 连接成一</p>
+<p>好像必须先将文件 转成mpg ，dv 等格式的文件后才能进行连接</p>
+<p>连接复数的AVI影片档之范例（在此范例中须一度暂时将AVI档转换成MPEG-1档(MPEG-1, MPEG-2 PS, DV格式亦可连接)）<br>ffmpeg -i input1.avi -sameq inputfile_01.mpg -r 20</p>
+<p>ffmpeg -i input2.avi -sameq inputfile_02.mpg  -r 20</p>
+<p>cat inputfile_01.mpg inputfile_02.mpg &gt; inputfile_all.mpg</p>
+<p>ffmpeg -i inputfile_all.mpg -sameq outputfile.avi</p>
+<p>上面将  input1.avi    input2.avi 合并成outputfile.avi</p>
+<p>-sameq  表示  相同的质量（可能指的是画面，不太清楚）</p>
+<p> -r 指频率</p>
+<p>=====================================================================下面是wiki 上给的几个例子<br>参数<br>FFmpeg可使用众多参数，参数内容会根据ffmpeg版本而有差异，使用前建议先参考参数及编解码器的叙述。此外，参数明细可用 ffmpeg -h 显示；编解码器名称等明细可用 ffmpeg -formats 显示。</p>
+<p>下列为较常使用的参数。</p>
+<p>[编辑 ] 主要参数<br>-i 设定输入档名。<br>-f 设定输出格式。<br>-y 若输出档案已存在时则覆盖档案。<br>-fs 超过指定的档案大小时则结束转换。<br>-ss 从指定时间开始转换。<br>-title 设定标题。<br>-timestamp 设定时间戳。<br>-vsync 增减Frame使影音同步。<br>[编辑 ] 影像参数<br>-b 设定影像流量，默认为200Kbit/秒。（ 单位请参照下方注意事项 ）<br>-r 设定FrameRate值，默认为25。<br>-s 设定画面的宽与高。<br>-aspect 设定画面的比例。<br>-vn 不处理影像，于仅针对声音做处理时使用。<br>-vcodec 设定影像影像编解码器，未设定时则使用与输入档案相同之编解码器。<br>[编辑 ] 声音参数<br>-ab 设定每Channel （最近的SVN 版为所有Channel的总合）的流量。（ 单位 请参照下方注意事项 ）<br>-ar 设定采样率。<br>-ac 设定声音的Channel数。<br>-acodec 设定声音编解码器，未设定时与影像相同，使用与输入档案相同之编解码器。<br>-an 不处理声音，于仅针对影像做处理时使用。<br>-vol 设定音量大小，256为标准音量。(要设定成两倍音量时则输入512，依此类推。)<br>[编辑 ] 注意事项<br>以-b及ab参数设定流量时，根据使用的ffmpeg版本，须注意单位会有kbits/sec与bits/sec的不同。（可用ffmpeg -h显示说明来确认单位。）<br>例如，单位为bits/sec的情况时，欲指定流量64kbps时需输入‘ -ab 64k ’；单位为kbits/sec的情况时则需输入‘ -ab 64 ’。<br>以-acodec及-vcodec所指定的编解码器名称，会根据使用的ffmpeg版本而有所不同。例如使用AAC编解码器时，会有输入aac与 libfaac的情况。此外，编解码器有分为仅供解码时使用与仅供编码时使用，因此一定要利用ffmpeg -formats 确 认输入的编解码器是否能运作。<br>[编辑 ] 范例<br>将MPEG-1影片转换成MPEG-4格式之范例<br>ffmpeg -i inputfile.mpg -f mp4 -acodec libfaac -vcodec mpeg4 -b 256k -ab 64k outputfile.mp4</p>
+<p>将MP3声音转换成MPEG-4格式之范例<br>ffmpeg -i inputfile.mp3 -f mp4 -acodec libaac -vn -ab 64k outputfile.mp4</p>
+<p>将DVD的VOB档转换成VideoCD格式的MPEG-1档之范例<br>ffmpeg -i inputfile.vob -f mpeg -acodec mp2 -vcodec mpeg1video -s 352x240 -b 1152k -ab 128k outputfile.mpg<br>将AVI影片转换成H.264格式的M4V档之范例<br>ffmpeg -i inputfile.avi -f mp4　-acodec libfaac -vcodec libx264 -b 512k -ab 320k outputfile.m4v<br>将任何影片转换成东芝REGZA可辨识的MPEG2格式之范例<br>ffmpeg -i inputfile -target ntsc-svcd -ab 128k -aspect 4:3 -s 720x480 outputfile.mpg<br>连接复数的AVI影片档之范例（在此范例中须一度暂时将AVI档转换成MPEG-1档(MPEG-1, MPEG-2 PSDV格式亦可连接)、<br>ffmpeg -i input1.avi -sameq inputfile_01.mpg</p>
+<p>ffmpeg -i input2.avi -sameq inputfile_02.mpg</p>
+<p>cat inputfile_01.mpg inputfile_02.mpg &gt; inputfile_all.mpg</p>
+<p>ffmpeg -i inputfile_all.mpg -sameq outputfile.avi</p>
+<p>=============================================================================<br><a href="http://ffmpeg.org/ffmpeg-doc.html" target="_blank" rel="noopener">http://ffmpeg.org/ffmpeg-doc.html</a></p>
+<p><a href="http://ubuntuforums.org/showthread.php?t=1392026" target="_blank" rel="noopener">http://ubuntuforums.org/showthread.php?t=1392026</a><br>同时搞明白的一些问题在alsa 体系中声卡（也可能是麦克风，）叫hw:0,0 而在oss 体系中叫/dev/dsp (用词可能不太专业)  Linux在安装了声卡后，会有一些设备文件生成。采集数字样本的/dev/dsp文件，针对混音器的/dev/mixer文件，用于音序器的/dev/sequencer，/dev/audio文件一个基于兼容性考虑的声音设备文件。只要向dev/audio中输入wav文件就能发出声音。而对/dev/dsp文件读取就能得到WAV文件格式的声音文件。</p>
+<h2 id="a-通用选项"><a href="#a-通用选项" class="headerlink" title="a) 通用选项"></a>a) 通用选项</h2><p>-L license<br>-h 帮助<br>-fromats 显示可用的格式，编解码的，协议的…<br>-f fmt 强迫采用格式fmt<br>-I filename 输入文件<br>-y 覆盖输出文件<br>-t duration 设置纪录时间 hh:mm:ss[.xxx]格式的记录时间也支持<br>-ss position 搜索到指定的时间 [-]hh:mm:ss[.xxx]的格式也支持<br>-title string 设置标题<br>-author string 设置作者<br>-copyright string 设置版权<br>-comment string 设置评论<br>-target type 设置目标文件类型(vcd,svcd,dvd) 所有的格式选项（比特率，编解码以及缓冲区大小）自动设置，只需要输入如下的就可以了：ffmpeg -i myfile.avi -target vcd /tmp/vcd.mpg<br>-hq 激活高质量设置<br>-itsoffset offset 设置以秒为基准的时间偏移，该选项影响所有后面的输入文件。该偏移被加到输入文件的时戳，定义一个正偏移意味着相应的流被延迟了 offset秒。 [-]hh:mm:ss[.xxx]的格式也支持</p>
+<h1 id="b-视频选项"><a href="#b-视频选项" class="headerlink" title="b) 视频选项"></a>b) 视频选项</h1><p>-b bitrate 设置比特率，缺省200kb/s<br>-r fps 设置帧频 缺省25<br>-s size 设置帧大小 格式为WXH 缺省160X128.下面的简写也可以直接使用：<br>Sqcif 128X96 qcif 176X144 cif 252X288 4cif 704X576<br>-aspect aspect 设置横纵比 4:3 16:9 或 1.3333 1.7777<br>-croptop size 设置顶部切除带大小 像素单位<br>-cropbottom size –cropleft size –cropright size<br>-padtop size 设置顶部补齐的大小 像素单位<br>-padbottom size –padleft size –padright size –padcolor color 设置补齐条颜色(hex,6个16进制的数，红:绿:兰排列，比如 000000代表黑色)<br>-vn 不做视频记录<br>-bt tolerance 设置视频码率容忍度kbit/s<br>-maxrate bitrate设置最大视频码率容忍度<br>-minrate bitreate 设置最小视频码率容忍度<br>-bufsize size 设置码率控制缓冲区大小<br>-vcodec codec 强制使用codec编解码方式。如果用copy表示原始编解码数据必须被拷贝。<br>-sameq 使用同样视频质量作为源（VBR）<br>-pass n 选择处理遍数（1或者2）。两遍编码非常有用。第一遍生成统计信息，第二遍生成精确的请求的码率<br>-passlogfile file 选择两遍的纪录文件名为file</p>
+<h2 id="c-高级视频选项"><a href="#c-高级视频选项" class="headerlink" title="c)高级视频选项"></a>c)高级视频选项</h2><p>-g gop_size 设置图像组大小<br>-intra 仅适用帧内编码<br>-qscale q 使用固定的视频量化标度(VBR)<br>-qmin q 最小视频量化标度(VBR)<br>-qmax q 最大视频量化标度(VBR)<br>-qdiff q 量化标度间最大偏差 (VBR)<br>-qblur blur 视频量化标度柔化(VBR)<br>-qcomp compression 视频量化标度压缩(VBR)<br>-rc_init_cplx complexity 一遍编码的初始复杂度<br>-b_qfactor factor 在p和b帧间的qp因子<br>-i_qfactor factor 在p和i帧间的qp因子<br>-b_qoffset offset 在p和b帧间的qp偏差<br>-i_qoffset offset 在p和i帧间的qp偏差<br>-rc_eq equation 设置码率控制方程 默认tex^qComp<br>-rc_override override 特定间隔下的速率控制重载<br>-me method 设置运动估计的方法 可用方法有 zero phods log x1 epzs(缺省) full<br>-dct_algo algo 设置dct的算法 可用的有 0 FF_DCT_AUTO 缺省的DCT 1 FF_DCT_FASTINT 2 FF_DCT_INT 3 FF_DCT_MMX 4 FF_DCT_MLIB 5 FF_DCT_ALTIVEC<br>-idct_algo algo 设置idct算法。可用的有 0 FF_IDCT_AUTO 缺省的IDCT 1 FF_IDCT_INT 2 FF_IDCT_SIMPLE 3 FF_IDCT_SIMPLEMMX 4 FF_IDCT_LIBMPEG2MMX 5 FF_IDCT_PS2 6 FF_IDCT_MLIB 7 FF_IDCT_ARM 8 FF_IDCT_ALTIVEC 9 FF_IDCT_SH4 10 FF_IDCT_SIMPLEARM<br>-er n 设置错误残留为n 1 FF_ER_CAREFULL 缺省 2 FF_ER_COMPLIANT 3 FF_ER_AGGRESSIVE 4 FF_ER_VERY_AGGRESSIVE<br>-ec bit_mask 设置错误掩蔽为bit_mask,该值为如下值的位掩码 1 FF_EC_GUESS_MVS (default=enabled) 2 FF_EC_DEBLOCK (default=enabled)<br>-bf frames 使用frames B 帧，支持mpeg1,mpeg2,mpeg4<br>-mbd mode 宏块决策 0 FF_MB_DECISION_SIMPLE 使用mb_cmp 1 FF_MB_DECISION_BITS 2 FF_MB_DECISION_RD<br>-4mv 使用4个运动矢量 仅用于mpeg4<br>-part 使用数据划分 仅用于mpeg4<br>-bug param 绕过没有被自动监测到编码器的问题<br>-strict strictness 跟标准的严格性<br>-aic 使能高级帧内编码 h263+<br>-umv 使能无限运动矢量 h263+<br>-deinterlace 不采用交织方法<br>-interlace 强迫交织法编码仅对mpeg2和mpeg4有效。当你的输入是交织的并且你想要保持交织以最小图像损失的时候采用该选项。可选的方法是不交织，但是损失更大<br>-psnr 计算压缩帧的psnr<br>-vstats 输出视频编码统计到vstats_hhmmss.log<br>-vhook module 插入视频处理模块 module 包括了模块名和参数，用空格分开</p>
+<h2 id="D-音频选项"><a href="#D-音频选项" class="headerlink" title="D)音频选项"></a>D)音频选项</h2><p>-ab bitrate 设置音频码率<br>-ar freq 设置音频采样率<br>-ac channels 设置通道 缺省为1<br>-an 不使能音频纪录<br>-acodec codec 使用codec编解码</p>
+<h2 id="E-音频-视频捕获选项"><a href="#E-音频-视频捕获选项" class="headerlink" title="E)音频/视频捕获选项"></a>E)音频/视频捕获选项</h2><p>-vd device 设置视频捕获设备。比如/dev/video0<br>-vc channel 设置视频捕获通道 DV1394专用<br>-tvstd standard 设置电视标准 NTSC PAL(SECAM)<br>-dv1394 设置DV1394捕获<br>-av device 设置音频设备 比如/dev/dsp</p>
+<h2 id="F-高级选项"><a href="#F-高级选项" class="headerlink" title="F)高级选项"></a>F)高级选项</h2><p>-map file:stream 设置输入流映射<br>-debug 打印特定调试信息<br>-benchmark 为基准测试加入时间<br>-hex 倾倒每一个输入包<br>-bitexact 仅使用位精确算法 用于编解码测试<br>-ps size 设置包大小，以bits为单位<br>-re 以本地帧频读数据，主要用于模拟捕获设备<br>-loop 循环输入流（只工作于图像流，用于ffserver测试）</p>
+<p>转载来自：<br><a href="https://blog.csdn.net/doublefi123/article/details/24324957" target="_blank" rel="noopener">https://blog.csdn.net/doublefi123/article/details/24324957</a><br><a href="https://blog.csdn.net/leixiaohua1020/article/details/12751349" target="_blank" rel="noopener">https://blog.csdn.net/leixiaohua1020/article/details/12751349</a></p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2019-12-02T06:45:47.441Z" itemprop="dateUpdated">2019-12-02 14:45:47</time>
+</span><br>
+
+
+        
+        这里可以写作者留言，标签和 hexo 中所有变量及辅助函数等均可调用，示例：<a href="/2019/12/02/945a6986a5cd54907f3a8ee2cb390423/" target="_blank" rel="external">https://zhaojiafu.github.io/2019/12/02/945a6986a5cd54907f3a8ee2cb390423/</a>
+        
+    </div>
+    
+    <footer>
+        <a href="https://zhaojiafu.github.io">
+            <img src="/img/zhao.jpg" alt="赵家富">
+            赵家富
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" target="_blank" rel="noopener" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ffmpeg/" rel="tag">ffmpeg</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://zhaojiafu.github.io/2019/12/02/945a6986a5cd54907f3a8ee2cb390423/&title=《ffmpeg 的命令总结》 — 赵家富的博客&pic=https://zhaojiafu.github.io/img/zhao.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" target="_blank" rel="noopener" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://zhaojiafu.github.io/2019/12/02/945a6986a5cd54907f3a8ee2cb390423/&title=《ffmpeg 的命令总结》 — 赵家富的博客&source=感觉无从下手的时候，问自己“不难，要你干啥？”" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://zhaojiafu.github.io/2019/12/02/945a6986a5cd54907f3a8ee2cb390423/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《ffmpeg 的命令总结》 — 赵家富的博客&url=https://zhaojiafu.github.io/2019/12/02/945a6986a5cd54907f3a8ee2cb390423/&via=https://zhaojiafu.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://zhaojiafu.github.io/2019/12/02/945a6986a5cd54907f3a8ee2cb390423/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" target="_blank" rel="noopener" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2019/12/02/71bb575e4de932962c74aa877e9745bd/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">分享一下我收藏很久的一些代替百度的搜索引擎网站</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2019/12/02/7385a1df18ec0db0e8a6d08efca90303/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">python SyntaxError_ Non-UTF-8 code starting with &#39;_xb9&#39;</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<section class="comments" id="comments">
+    <div id="gitalk-container"></div>
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+        var id = location.pathname
+        if (location.pathname.length > 50) {
+          id = location.pathname.replace(/\/\d+\/\d+\/\d+\//, '').replace('/', '').substring(0, 50)
+        }
+        const gitalk = new Gitalk({
+          clientID: '388d0a78cda30f118f86',
+          clientSecret: '2c64b34cc20f23d768dffff64acb8c2ee02c3bee',
+          repo: 'https://zhaojiafu.github.io/',
+          owner: 'zjf',
+          admin: ['zjf'],
+          id: id,      // Ensure uniqueness and length less than 50
+          title: document.title.split('|')[0],
+          distractionFreeMode: false  // Facebook-like distraction free mode
+        })
+
+        gitalk.render('gitalk-container')
+    </script>
+</section>
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;" target="_blank" rel="noopener"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢大爷~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.jpg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.jpg" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+            <span>博客内容遵循 <a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+        <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=0 height=0 src="http://music.163.com/song/media/outer/url?id=1369798757&auto=1"></iframe>
+
+    </div>
+    <div class="bottom">
+        <p><span>赵家富 &copy; 2019</span>
+            <span>
+                
+
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" target="_blank" rel="noopener" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://zhaojiafu.github.io/2019/12/02/945a6986a5cd54907f3a8ee2cb390423/&title=《ffmpeg 的命令总结》 — 赵家富的博客&pic=https://zhaojiafu.github.io/img/zhao.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" target="_blank" rel="noopener" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://zhaojiafu.github.io/2019/12/02/945a6986a5cd54907f3a8ee2cb390423/&title=《ffmpeg 的命令总结》 — 赵家富的博客&source=感觉无从下手的时候，问自己“不难，要你干啥？”" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://zhaojiafu.github.io/2019/12/02/945a6986a5cd54907f3a8ee2cb390423/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《ffmpeg 的命令总结》 — 赵家富的博客&url=https://zhaojiafu.github.io/2019/12/02/945a6986a5cd54907f3a8ee2cb390423/&via=https://zhaojiafu.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://zhaojiafu.github.io/2019/12/02/945a6986a5cd54907f3a8ee2cb390423/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;" target="_blank" rel="noopener"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACwUlEQVR42u3aQW7jQAwEwPz/0841wEZyN6nJ+lBzMpJYmlIAk27O11e8Xj/Wz59c/eXVe/9d9/dK7vjAwsPDw1ts/f7SybY2r+8B9/u5vAIeHh7eMd5mu20xuL9C/q6kLOHh4eF9Du+KNLvmuYYeDw8P73N4+bbaq83ehYeHh/f3vFkL2/Lum++28DycteDh4eF1U6eHP+JPvz4y38PDw8NbT9XzIrF5rsnVXqOFh4eHd4KXb242vnp2xNXuEw8PD+8ELz82er+t2eAqj4+Hx7/w8PDwDvNmQ6n8lm0gO2upi2qGh4eHN+LNgtpkiHX/801k3O4NDw8P7wRvlmG0bW5+tXb0VZQEPDw8vAO8JFrNQ9j8+FQbQxRfCfDw8PAe5e1DgU0TnMQNsxNWj2UeeHh4eBe8NjzNh1X7YpO31L+8Fw8PD+8Ar12zQwCbYtCWotXCw8PDC3izkfzffHy3QUZ06AoPDw9vzWtHWfngKg9hN0O4aAyGh4eHd5g3iw/yMLctCZvxGB4eHt4JXvsh3jbQmxNQyT/gDRsPDw/vAG9zlCrf+uygVT4qe9Og4+Hh4T3KywdXzw742zh4GFXg4eHhHeMlDWtLTWKOvITkRxCGMzQ8PDy8EW8TB+Sp6SzSnb3Gw8PDO8FrI9HNqCzZStu4R48MDw8P7xgvjxXyYf+msW5b/yKlwMPDw3uUlwcTyeNImuZZ+158JcDDw8M7zMu31cYK7Sf2bBUtNR4eHt6I9ypXDpsdMmiv+ea3eHh4eAd4m3rSRg+boLYeeu3LJR4eHt4tr71lG7DOCkkehbxB4uHh4R3j5QeeNkFDfvQqv2NUGPDw8PA+kjcbUyXHsPIh2eUADA8PD++/8tqod3YQoS0qj7XUeHh4eDFvNvTaBBl57NsOwPDw8PBO89ov/G3B2B/byh/Bar6Hh4eH9573DfCNac6TW3VnAAAAAElFTkSuQmCC" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '死鬼去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+<script src="/node_modules/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"node_modules/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/node_modules/assets/shizuku.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"react":{"opacity":0.7},"log":false});</script></body>
+</html>

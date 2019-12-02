@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <link rel="canonical" href="https://zhaojiafu.github.io/2019/12/02/be2ac9bdaed28635983f7e1d18f7ea11/">
+    
+    
+    <title>selenium之常见异常 | 赵家富的博客 | 保持好奇心</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="selenium">
+    <meta name="description" content="# selenium的常见异常 Exceptions（异常）Python 自带的异常，所有异常的基类。 异常：　 selenium.common.exceptions.ElementNotSelectableException(msg&#x3D;None, screen&#x3D;None, stacktrace&#x3D;None) 依据：     selenium.common.exceptions.InvalidEle">
+<meta name="keywords" content="selenium">
+<meta property="og:type" content="article">
+<meta property="og:title" content="selenium之常见异常">
+<meta property="og:url" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;2019&#x2F;12&#x2F;02&#x2F;be2ac9bdaed28635983f7e1d18f7ea11&#x2F;index.html">
+<meta property="og:site_name" content="赵家富的博客">
+<meta property="og:description" content="# selenium的常见异常 Exceptions（异常）Python 自带的异常，所有异常的基类。 异常：　 selenium.common.exceptions.ElementNotSelectableException(msg&#x3D;None, screen&#x3D;None, stacktrace&#x3D;None) 依据：     selenium.common.exceptions.InvalidEle">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-12-02T07:00:36.823Z">
+<meta name="twitter:card" content="summary">
+    
+    <link rel="shortcut icon" href="/img/cb2nm-5l9w0-001.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" target="_blank" rel="noopener" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/zhao.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">赵家富</h5>
+          <a href="mailto:530519174@qq.com" target="_blank" rel="noopener" title="530519174@qq.com" class="mail">530519174@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                archives(所有)
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags/"  >
+                <i class="icon icon-lg icon-tags"></i>
+                tag(标签)
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories/"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories(分类)
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/zhaojiafu" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://blog.csdn.net/weixin_42081389" target="_blank" >
+                <i class="icon icon-lg icon-csdn"></i>
+                Csdn
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" target="_blank" rel="noopener" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+
+        <div class="flex-col header-title ellipsis">selenium之常见异常</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" target="_blank" rel="noopener" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" target="_blank" rel="noopener" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" target="_blank" rel="noopener" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+
+        <h1 class="title">selenium之常见异常
+        </h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2019-12-02T03:34:32.000Z" itemprop="datePublished" class="page-time">
+  2019-12-02
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/selenium/">selenium</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+
+<article id="post-be2ac9bdaed28635983f7e1d18f7ea11"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">selenium之常见异常</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2019-12-02 11:34:32" datetime="2019-12-02T03:34:32.000Z"  itemprop="datePublished">2019-12-02</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/selenium/">selenium</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p>﻿# selenium的常见异常</p>
+<p>Exceptions（异常）<br>Python 自带的异常，所有异常的基类。</p>
+<p>异常：　 selenium.common.exceptions.ElementNotSelectableException(msg=None, screen=None, stacktrace=None)</p>
+<p>依据：     selenium.common.exceptions.InvalidElementStateException<br>　　<br>　　      当尝试选择一个未能选中的元素时，异常会抛出</p>
+<p>异常：      selenium.common.exceptions.ElementNotVisibleException(msg=None, screen=None, stacktrace=None)<br>依据:        selenium.common.exceptions.InvalidElementStateException</p>
+<p>  　　　　  虽然当一个元素呈现在DOM，但它是不可见的，因此不能够以进行交互，异常将抛出</p>
+<p>异常： 　    selenium.common.exceptions.ErrorInResponseException(response, msg)<br>依据:　　    selenium.common.exceptions.WebDriverException</p>
+<p>　　　　　　服务器端有错误时，异常将抛出（这个原因可能是因为Firefox插件或者远程server）</p>
+<p>异常： 　　selenium.common.exceptions.ImeActivationFailedException(msg=None, screen=None, stacktrace=None)<br>依据:　　   selenium.common.exceptions.WebDriverException</p>
+<pre><code>激活输入法失败时异常会抛出。</code></pre><p>异常：　　 selenium.common.exceptions.ImeNotAvailableException(msg=None, screen=None, stacktrace=None)<br>依据:         selenium.common.exceptions.WebDriverException</p>
+<pre><code>当输入法不支持的时候异常将抛出。</code></pre><p>异常：　　 selenium.common.exceptions.InvalidCookieDomainException(msg=None, screen=None, stacktrace=None)<br>依据:　　   selenium.common.exceptions.WebDriverException</p>
+<pre><code>试图在不同的domain而不是目前的URL中添加一个cookie时抛出异常</code></pre><p>异常：　　 selenium.common.exceptions.InvalidElementStateException(msg=None, screen=None, stacktrace=None)<br>依据: 　　  selenium.common.exceptions.WebDriverException</p>
+<pre><code>无效的元素状态</code></pre><p>异常：　　 selenium.common.exceptions.InvalidSelectorException(msg=None, screen=None, stacktrace=None)<br>依据:         selenium.common.exceptions.NoSuchElementException</p>
+<pre><code>当选择器没有返回一个web元素时，异常抛出。</code></pre><p>异常：　　 selenium.common.exceptions.InvalidSwitchToTargetException(msg=None, screen=None, stacktrace=None)<br>依据: 　　  selenium.common.exceptions.WebDriverException</p>
+<pre><code>当切换的窗口或者框架不存在的时候，异常将抛出。</code></pre><p>异常：　　 selenium.common.exceptions.MoveTargetOutOfBoundsException(msg=None, screen=None, stacktrace=None)<br>依据:　　   selenium.common.exceptions.WebDriverException</p>
+<pre><code>提供给ActionChainsmovable()方法的目标无效时，异常将抛出，例如：超出文件外</code></pre><p>异常：　　 selenium.common.exceptions.NoAlertPresentException(msg=None, screen=None, stacktrace=None)<br>依据:　　   selenium.common.exceptions.WebDriverException</p>
+<p>　　　　　 切换到没有呈现的警示时抛出异常</p>
+<p>异常：　　 selenium.common.exceptions.NoSuchAttributeException(msg=None, screen=None, stacktrace=None)<br>依据： 　　selenium.common.exceptions.WebDriverException</p>
+<p>　　　　　　当元素的属性不能被发现时异常抛出</p>
+<p>异常：　　 selenium.common.exceptions.NoSuchElementException(msg=None, screen=None, stacktrace=None)<br>依据: 　　   selenium.common.exceptions.WebDriverException</p>
+<pre><code>元素不能被找到时异常抛出</code></pre><p>异常：　　 selenium.common.exceptions.NoSuchFrameException(msg=None, screen=None, stacktrace=None)<br>依据: 　　  selenium.common.exceptions.InvalidSwitchToTargetException</p>
+<pre><code>需要切换的目标框架不存在时，异常抛出</code></pre><p>异常： 　　selenium.common.exceptions.NoSuchWindowException(msg=None, screen=None, stacktrace=None)<br>依据:　　   selenium.common.exceptions.InvalidSwitchToTargetException</p>
+<pre><code>需要切换的目标窗口不存在时，异常抛出</code></pre><p>异常： 　　selenium.common.exceptions.RemoteDriverServerException(msg=None, screen=None, stacktrace=None)<br>依据:　　  selenium.common.exceptions.WebDriverException</p>
+<p>异常：　　 selenium.common.exceptions.StaleElementReferenceException(msg=None, screen=None, stacktrace=None)<br>依据: 　　  selenium.common.exceptions.WebDriverException</p>
+<pre><code>一个参考的元素现在是“过时”时抛出异常。 
+“过时”是指这个元素不再出现在页面的Dom中。</code></pre><p>异常：　　 selenium.common.exceptions.TimeoutException(msg=None, screen=None, stacktrace=None)<br>依据:　　   selenium.common.exceptions.WebDriverException</p>
+<pre><code>一条命令在足够的时间内没有完成则会抛出异常</code></pre><p>异常： 　　selenium.common.exceptions.UnableToSetCookieException(msg=None, screen=None, stacktrace=None)<br>依据: 　　  selenium.common.exceptions.WebDriverException</p>
+<p>　　　　　　当一个驱动程序无法设置cookie时抛出异常。</p>
+<p>异常：　　selenium.common.exceptions.UnexpectedAlertPresentException(msg=None, screen=None, stacktrace=None)<br>依据：　　selenium.common.exceptions.WebDriverException<br>               当一个意外的警告出现时将抛出异常。</p>
+<p>异常：　　selenium.common.exceptions.UnexpectedTagNameException(msg=None, screen=None, stacktrace=None)<br>依据：　　selenium.common.exceptions.WebDriverException<br>              辅助类没有获取到期待的web元素时，会抛出异常</p>
+<p>异常：        selenium.common.exceptions.WebDriverException(msg=None, screen=None, stacktrace=None)<br>依据：        exceptions.Exception<br>                WebDriver基础的异常类</p>
+<p>参考：<br><a href="https://blog.csdn.net/u010983763/article/details/77196619" target="_blank" rel="noopener">https://blog.csdn.net/u010983763/article/details/77196619</a><br><a href="https://www.cnblogs.com/z-x-y/p/9197339.html" target="_blank" rel="noopener">https://www.cnblogs.com/z-x-y/p/9197339.html</a></p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2019-12-02T07:00:36.823Z" itemprop="dateUpdated">2019-12-02 15:00:36</time>
+</span><br>
+
+
+        
+        这里可以写作者留言，标签和 hexo 中所有变量及辅助函数等均可调用，示例：<a href="/2019/12/02/be2ac9bdaed28635983f7e1d18f7ea11/" target="_blank" rel="external">https://zhaojiafu.github.io/2019/12/02/be2ac9bdaed28635983f7e1d18f7ea11/</a>
+        
+    </div>
+    
+    <footer>
+        <a href="https://zhaojiafu.github.io">
+            <img src="/img/zhao.jpg" alt="赵家富">
+            赵家富
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" target="_blank" rel="noopener" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/selenium/" rel="tag">selenium</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://zhaojiafu.github.io/2019/12/02/be2ac9bdaed28635983f7e1d18f7ea11/&title=《selenium之常见异常》 — 赵家富的博客&pic=https://zhaojiafu.github.io/img/zhao.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" target="_blank" rel="noopener" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://zhaojiafu.github.io/2019/12/02/be2ac9bdaed28635983f7e1d18f7ea11/&title=《selenium之常见异常》 — 赵家富的博客&source=感觉无从下手的时候，问自己“不难，要你干啥？”" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://zhaojiafu.github.io/2019/12/02/be2ac9bdaed28635983f7e1d18f7ea11/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《selenium之常见异常》 — 赵家富的博客&url=https://zhaojiafu.github.io/2019/12/02/be2ac9bdaed28635983f7e1d18f7ea11/&via=https://zhaojiafu.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://zhaojiafu.github.io/2019/12/02/be2ac9bdaed28635983f7e1d18f7ea11/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" target="_blank" rel="noopener" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2019/12/02/65149ac30601414fbd3123171a7b1221/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">shutil实现对文件或者文件夹的复制，移动</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2019/12/02/c242e7787d33334b21d5d4f05be6b4a8/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">python之查询window系统文件夹下的文件数量</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<section class="comments" id="comments">
+    <div id="gitalk-container"></div>
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+        var id = location.pathname
+        if (location.pathname.length > 50) {
+          id = location.pathname.replace(/\/\d+\/\d+\/\d+\//, '').replace('/', '').substring(0, 50)
+        }
+        const gitalk = new Gitalk({
+          clientID: '388d0a78cda30f118f86',
+          clientSecret: '2c64b34cc20f23d768dffff64acb8c2ee02c3bee',
+          repo: 'https://zhaojiafu.github.io/',
+          owner: 'zjf',
+          admin: ['zjf'],
+          id: id,      // Ensure uniqueness and length less than 50
+          title: document.title.split('|')[0],
+          distractionFreeMode: false  // Facebook-like distraction free mode
+        })
+
+        gitalk.render('gitalk-container')
+    </script>
+</section>
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;" target="_blank" rel="noopener"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢大爷~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.jpg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.jpg" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+            <span>博客内容遵循 <a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+        <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=0 height=0 src="http://music.163.com/song/media/outer/url?id=1369798757&auto=1"></iframe>
+
+    </div>
+    <div class="bottom">
+        <p><span>赵家富 &copy; 2019</span>
+            <span>
+                
+
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" target="_blank" rel="noopener" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://zhaojiafu.github.io/2019/12/02/be2ac9bdaed28635983f7e1d18f7ea11/&title=《selenium之常见异常》 — 赵家富的博客&pic=https://zhaojiafu.github.io/img/zhao.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" target="_blank" rel="noopener" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://zhaojiafu.github.io/2019/12/02/be2ac9bdaed28635983f7e1d18f7ea11/&title=《selenium之常见异常》 — 赵家富的博客&source=感觉无从下手的时候，问自己“不难，要你干啥？”" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://zhaojiafu.github.io/2019/12/02/be2ac9bdaed28635983f7e1d18f7ea11/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《selenium之常见异常》 — 赵家富的博客&url=https://zhaojiafu.github.io/2019/12/02/be2ac9bdaed28635983f7e1d18f7ea11/&via=https://zhaojiafu.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://zhaojiafu.github.io/2019/12/02/be2ac9bdaed28635983f7e1d18f7ea11/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;" target="_blank" rel="noopener"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACqUlEQVR42u3a0WojMQwF0P7/T7evCyXJvZKdZuHMU8kMEx8XLEXS11d8ff9z/f7k0d3nT27eefjCw8PDWyw9/+IW/4j96A2P1pmvGQ8PD+82L3lde/beDiHP14yHh4f3ObwkSOSHe7t9eHh4eP8jL092Z7A8BcfDw8P7W16bwuZ3k3JDUqK9XmvBw8PDi3l5F+lz/r7S38PDw8Nbd9XbptfsuN+MKbxYLR4eHt4FXpvOJslrO1iQF2rbdeLh4eG9k3fqp34+KJAXhestxsPDwzvKO7A3o9R5FhKSoa46N8fDw8Nb8zZN+uKL84R4U4/Fw8PDu8DL09yz4WEWDI717vDw8PAO8c4e60nz7PnmtsXfh5uFh4eHd5TXNv6j3QoCzywAJCWSorOHh4eHt+blP/Lbxlg7wtUOeEWBAQ8PD+8orz3i8+Q7X1ZSLK6fwcPDw7vAa5tPs2S3DQ/5Vj4vauDh4eHd4xVt+AW43u/RBq2qy3h4eHhlz31ThtgXL/JG1xCMh4eHd4i3Dwab55NSyOp78fDw8K7x2uGnfEAqH7Rqh66iIgUeHh7eBV6ylORAz8etkqM/DwPRM3h4eHhv4W1GpmbttFMhCg8PD+8272wpdtZ7SmBtUo6Hh4d3jzdbXB5aZuMCLfLwSAEeHh5ewGsBs8AwS8HbEsmB/w8eHh5eybtRYpgVfDfJOh4eHt57eLMFbRpXwxy/XBUeHh7eWd53ec0S3GQjEnB9Fw8PD+8C72yfKGfnn1xpeuHh4eGteZum/ub5ZPsS9ou7eHh4eNd4bWl1lo63iXvbYHtRxsXDw8P7I167oDyE5M2zotmGh4eH9wG8WdEh36bDQQUPDw/vGi9PhdtyQztA0JZuXyDx8PDwLvBmP/jbY72FtSHnQH8PDw8P7zXvB9Y3kpd4CSdjAAAAAElFTkSuQmCC" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '死鬼去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+<script src="/node_modules/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"node_modules/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/node_modules/assets/shizuku.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"react":{"opacity":0.7},"log":false});</script></body>
+</html>

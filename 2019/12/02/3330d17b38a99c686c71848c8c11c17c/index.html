@@ -1,0 +1,760 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <link rel="canonical" href="https://zhaojiafu.github.io/2019/12/02/3330d17b38a99c686c71848c8c11c17c/">
+    
+    
+    <title>python selenium Chrome 添加代理ip最全俩种方式(无密码+有秘密) | 赵家富的博客 | 保持好奇心</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="selenium,代理ip">
+    <meta name="description" content="说明：今天需要使用selenium测试一下携带含有账号+密码的代理ip，以为和无密码一样简单，但是弄了好久（将近3个小时吧。。。）最后看了很多博客，谷歌百度什么都搜索，最终找到了比较好用的方法，所以呀，有时间遇到问题真的是需要耐心的去找资源，不会就学嘛，肯定有人会，不会搜索，慢慢搜，肯定能找到，如果你正好需要，并且看到我的这个，恭喜你，不用再折磨自己了，我找的都快看了二三十个博客了。。。。 1、无">
+<meta name="keywords" content="selenium,代理ip">
+<meta property="og:type" content="article">
+<meta property="og:title" content="python selenium Chrome 添加代理ip最全俩种方式(无密码+有秘密)">
+<meta property="og:url" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;2019&#x2F;12&#x2F;02&#x2F;3330d17b38a99c686c71848c8c11c17c&#x2F;index.html">
+<meta property="og:site_name" content="赵家富的博客">
+<meta property="og:description" content="说明：今天需要使用selenium测试一下携带含有账号+密码的代理ip，以为和无密码一样简单，但是弄了好久（将近3个小时吧。。。）最后看了很多博客，谷歌百度什么都搜索，最终找到了比较好用的方法，所以呀，有时间遇到问题真的是需要耐心的去找资源，不会就学嘛，肯定有人会，不会搜索，慢慢搜，肯定能找到，如果你正好需要，并且看到我的这个，恭喜你，不用再折磨自己了，我找的都快看了二三十个博客了。。。。 1、无">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-12-02T06:45:49.897Z">
+<meta name="twitter:card" content="summary">
+    
+    <link rel="shortcut icon" href="/img/cb2nm-5l9w0-001.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" target="_blank" rel="noopener" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/zhao.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">赵家富</h5>
+          <a href="mailto:530519174@qq.com" target="_blank" rel="noopener" title="530519174@qq.com" class="mail">530519174@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                archives(所有)
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags/"  >
+                <i class="icon icon-lg icon-tags"></i>
+                tag(标签)
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories/"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories(分类)
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/zhaojiafu" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://blog.csdn.net/weixin_42081389" target="_blank" >
+                <i class="icon icon-lg icon-csdn"></i>
+                Csdn
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" target="_blank" rel="noopener" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+
+        <div class="flex-col header-title ellipsis">python selenium Chrome 添加代理ip最全俩种方式(无密码+有秘密)</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" target="_blank" rel="noopener" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" target="_blank" rel="noopener" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" target="_blank" rel="noopener" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+
+        <h1 class="title">python selenium Chrome 添加代理ip最全俩种方式(无密码+有秘密)
+        </h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2019-12-02T03:34:32.000Z" itemprop="datePublished" class="page-time">
+  2019-12-02
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/selenium/">selenium</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#说明："><span class="post-toc-number">1.</span> <span class="post-toc-text">说明：</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#1、无密码（ip-port）："><span class="post-toc-number">2.</span> <span class="post-toc-text">1、无密码（ip+port）：</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#2、有账号和密码的代理ip-这个就是我花了几个小时找到一个不错的"><span class="post-toc-number">3.</span> <span class="post-toc-text">2、有账号和密码的代理ip(这个就是我花了几个小时找到一个不错的)</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#注意："><span class="post-toc-number">3.1.</span> <span class="post-toc-text">注意：</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#3、对2需要进行了小小的优化（推荐直接使用）："><span class="post-toc-number">4.</span> <span class="post-toc-text">3、对2需要进行了小小的优化（推荐直接使用）：</span></a></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-3330d17b38a99c686c71848c8c11c17c"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">python selenium Chrome 添加代理ip最全俩种方式(无密码+有秘密)</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2019-12-02 11:34:32" datetime="2019-12-02T03:34:32.000Z"  itemprop="datePublished">2019-12-02</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/selenium/">selenium</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h1 id="说明："><a href="#说明：" class="headerlink" title="说明："></a>说明：</h1><p>今天需要使用selenium测试一下携带含有账号+密码的代理ip，以为和无密码一样简单，但是弄了好久（将近3个小时吧。。。）最后看了很多博客，谷歌百度什么都搜索，最终找到了比较好用的方法，所以呀，有时间遇到问题真的是需要耐心的去找资源，不会就学嘛，肯定有人会，不会搜索，慢慢搜，肯定能找到，如果你正好需要，并且看到我的这个，恭喜你，不用再折磨自己了，我找的都快看了二三十个博客了。。。。</p>
+<h1 id="1、无密码（ip-port）："><a href="#1、无密码（ip-port）：" class="headerlink" title="1、无密码（ip+port）："></a>1、无密码（ip+port）：</h1><p>这个是我很久之前看到的，这个添加代理ip,比较简单，一起整理写出来吧，直接把代码复制过来，需要的可以直接复制，改下代理ip就可以用了。</p>
+<pre><code>import time
+
+from selenium import webdriver
+
+chromeOptions = webdriver.ChromeOptions()
+
+# 设置代理
+chromeOptions.add_argument(&quot;--proxy-server=http://ip:port&quot;)
+# 一定要注意，=两边不能有空格，不能是这样--proxy-server = http://202.20.16.82:10152
+browser = webdriver.Chrome(chrome_options=chromeOptions)
+
+# 查看本机ip，查看代理是否起作用
+browser.get(&quot;https://www.baidu.com/&quot;)
+time.sleep(20)
+print(browser.page_source)
+
+# 退出，清除浏览器缓存
+browser.quit()</code></pre><h1 id="2、有账号和密码的代理ip-这个就是我花了几个小时找到一个不错的"><a href="#2、有账号和密码的代理ip-这个就是我花了几个小时找到一个不错的" class="headerlink" title="2、有账号和密码的代理ip(这个就是我花了几个小时找到一个不错的)"></a>2、有账号和密码的代理ip(这个就是我花了几个小时找到一个不错的)</h1><p>直接把代理复制过来吧，需要的自己拿去用吧</p>
+<pre><code>import string
+import zipfile
+from selenium import webdriver
+
+# 代理服务器（ip+port）
+proxyHost = &quot;ip&quot;
+proxyPort = &quot;port&quot;
+# 代理隧道验证信息（账号+密码）
+proxyUser = &quot;user&quot;
+proxyPass = &quot;password&quot;
+
+
+def create_proxy_auth_extension(proxy_host, proxy_port, proxy_username, proxy_password, scheme=&apos;http&apos;, plugin_path=None):
+    if plugin_path is None:
+        plugin_path = r&apos;{}_{}@http-dyn.dobel.com_9020.zip&apos;.format(proxy_username, proxy_password)
+
+    manifest_json = &quot;&quot;&quot;
+    {
+        &quot;version&quot;: &quot;1.0.0&quot;,
+        &quot;manifest_version&quot;: 2,
+        &quot;name&quot;: &quot;Dobel Proxy&quot;,
+        &quot;permissions&quot;: [
+            &quot;proxy&quot;,
+            &quot;tabs&quot;,
+            &quot;unlimitedStorage&quot;,
+            &quot;storage&quot;,
+            &quot;&lt;all_urls&gt;&quot;,
+            &quot;webRequest&quot;,
+            &quot;webRequestBlocking&quot;
+        ],
+        &quot;background&quot;: {
+            &quot;scripts&quot;: [&quot;background.js&quot;]
+        },
+        &quot;minimum_chrome_version&quot;:&quot;22.0.0&quot;
+    }
+    &quot;&quot;&quot;
+
+    background_js = string.Template(
+        &quot;&quot;&quot;
+        var config = {
+            mode: &quot;fixed_servers&quot;,
+            rules: {
+                singleProxy: {
+                    scheme: &quot;${scheme}&quot;,
+                    host: &quot;${host}&quot;,
+                    port: parseInt(${port})
+                },
+                bypassList: [&quot;foobar.com&quot;]
+            }
+          };
+
+        chrome.proxy.settings.set({value: config, scope: &quot;regular&quot;}, function() {});
+
+        function callbackFn(details) {
+            return {
+                authCredentials: {
+                    username: &quot;${username}&quot;,
+                    password: &quot;${password}&quot;
+                }
+            };
+        }
+
+        chrome.webRequest.onAuthRequired.addListener(
+            callbackFn,
+            {urls: [&quot;&lt;all_urls&gt;&quot;]},
+            [&apos;blocking&apos;]
+        );
+        &quot;&quot;&quot;
+    ).substitute(
+        host=proxy_host,
+        port=proxy_port,
+        username=proxy_username,
+        password=proxy_password,
+        scheme=scheme,
+    )
+
+    with zipfile.ZipFile(plugin_path, &apos;w&apos;) as zp:
+        zp.writestr(&quot;manifest.json&quot;, manifest_json)
+        zp.writestr(&quot;background.js&quot;, background_js)
+
+    return plugin_path
+
+
+proxy_auth_plugin_path = create_proxy_auth_extension(
+    proxy_host=proxyHost,
+    proxy_port=proxyPort,
+    proxy_username=proxyUser,
+    proxy_password=proxyPass)
+
+option = webdriver.ChromeOptions()
+# option.add_argument(&apos;--no-sandbox&apos;)
+# option.add_argument(&apos;--disable-gpu&apos;)
+# option.add_argument(&quot;--start-maximized&quot;)
+option.add_extension(proxy_auth_plugin_path)
+
+# drive = webdriver.Chrome(executable_path=&quot;../../config/chromedriver_mac&quot;,chrome_options=option)
+drive = webdriver.Chrome(chrome_options=option)
+
+# drive.get(&quot;http://httpbin.org/ip&quot;)
+drive.get(&quot;https://www.baidu.com/&quot;)
+
+
+
+print(drive.page_source)
+
+# drive.close()</code></pre><h2 id="注意："><a href="#注意：" class="headerlink" title="注意："></a>注意：</h2><p>substitute方法其实就是字符串拼接的方法，甚至你换成format方法拼接都可以的。</p>
+<h1 id="3、对2需要进行了小小的优化（推荐直接使用）："><a href="#3、对2需要进行了小小的优化（推荐直接使用）：" class="headerlink" title="3、对2需要进行了小小的优化（推荐直接使用）："></a>3、对2需要进行了小小的优化（推荐直接使用）：</h1><pre><code>import string
+import zipfile
+
+from selenium import webdriver
+
+
+def create_proxy_auth_extension(proxy_host, proxy_port, proxy_username, proxy_password, scheme=&apos;http&apos;,
+                                plugin_path=None):
+    if plugin_path is None:
+        plugin_path = r&apos;{}_{}@http-dyn.dobel.com_9020.zip&apos;.format(proxy_username, proxy_password)
+
+    manifest_json = &quot;&quot;&quot;
+    {
+        &quot;version&quot;: &quot;1.0.0&quot;,
+        &quot;manifest_version&quot;: 2,
+        &quot;name&quot;: &quot;Dobel Proxy&quot;,
+        &quot;permissions&quot;: [
+            &quot;proxy&quot;,
+            &quot;tabs&quot;,
+            &quot;unlimitedStorage&quot;,
+            &quot;storage&quot;,
+            &quot;&lt;all_urls&gt;&quot;,
+            &quot;webRequest&quot;,
+            &quot;webRequestBlocking&quot;
+        ],
+        &quot;background&quot;: {
+            &quot;scripts&quot;: [&quot;background.js&quot;]
+        },
+        &quot;minimum_chrome_version&quot;:&quot;22.0.0&quot;
+    }
+    &quot;&quot;&quot;
+
+    background_js = string.Template(
+        &quot;&quot;&quot;
+        var config = {
+            mode: &quot;fixed_servers&quot;,
+            rules: {
+                singleProxy: {
+                    scheme: &quot;${scheme}&quot;,
+                    host: &quot;${host}&quot;,
+                    port: parseInt(${port})
+                },
+                bypassList: [&quot;foobar.com&quot;]
+            }
+          };
+
+        chrome.proxy.settings.set({value: config, scope: &quot;regular&quot;}, function() {});
+
+        function callbackFn(details) {
+            return {
+                authCredentials: {
+                    username: &quot;${username}&quot;,
+                    password: &quot;${password}&quot;
+                }
+            };
+        }
+
+        chrome.webRequest.onAuthRequired.addListener(
+            callbackFn,
+            {urls: [&quot;&lt;all_urls&gt;&quot;]},
+            [&apos;blocking&apos;]
+        );
+        &quot;&quot;&quot;
+    ).substitute(
+        host=proxy_host,
+        port=proxy_port,
+        username=proxy_username,
+        password=proxy_password,
+        scheme=scheme,
+    )
+
+    with zipfile.ZipFile(plugin_path, &apos;w&apos;) as zp:
+        zp.writestr(&quot;manifest.json&quot;, manifest_json)
+        zp.writestr(&quot;background.js&quot;, background_js)
+
+    return plugin_path
+
+
+def from_proxy_get_daili(proxy):
+    # proxy是这种格式 user:pass@ip:port
+    user_pass_str, ip_port_str = proxy.split(&apos;@&apos;)
+    proxyHost, proxyPort = ip_port_str.split(&apos;:&apos;)
+    proxyUser, proxyPass = user_pass_str.split(&apos;:&apos;)
+    return proxyHost, proxyPort, proxyUser, proxyPass
+
+
+def get_driver(proxy):
+    proxyHost, proxyPort, proxyUser, proxyPass = from_proxy_get_daili(proxy)
+    proxy_auth_plugin_path = create_proxy_auth_extension(
+        proxy_host=proxyHost,
+        proxy_port=proxyPort,
+        proxy_username=proxyUser,
+        proxy_password=proxyPass)
+    option = webdriver.ChromeOptions()
+    option.add_extension(proxy_auth_plugin_path)
+    drive = webdriver.Chrome(chrome_options=option)
+    return drive
+
+
+if __name__ == &apos;__main__&apos;:
+    # 代理服务器
+    proxy = &apos;user:pass@ip:port&apos;
+
+    drive = get_driver(proxy)
+    # drive.get(&quot;http://httpbin.org/ip&quot;)
+    print(drive.page_source)</code></pre><p>改进之后，直接传入一个正常的有密码的代理proxy （格式： ‘user:pass@ip:port’），这个样返回一个浏览器对象driver，直接使用即可，不用再把代理一个一个进行分开复制使用。</p>
+<p>找资源真的很累人，感觉这个博主。<br>有秘密的原博客：<a href="https://blog.csdn.net/ywdhzxf/article/details/83211631" target="_blank" rel="noopener">https://blog.csdn.net/ywdhzxf/article/details/83211631</a></p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2019-12-02T06:45:49.897Z" itemprop="dateUpdated">2019-12-02 14:45:49</time>
+</span><br>
+
+
+        
+        这里可以写作者留言，标签和 hexo 中所有变量及辅助函数等均可调用，示例：<a href="/2019/12/02/3330d17b38a99c686c71848c8c11c17c/" target="_blank" rel="external">https://zhaojiafu.github.io/2019/12/02/3330d17b38a99c686c71848c8c11c17c/</a>
+        
+    </div>
+    
+    <footer>
+        <a href="https://zhaojiafu.github.io">
+            <img src="/img/zhao.jpg" alt="赵家富">
+            赵家富
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" target="_blank" rel="noopener" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/selenium/" rel="tag">selenium</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E4%BB%A3%E7%90%86ip/" rel="tag">代理ip</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://zhaojiafu.github.io/2019/12/02/3330d17b38a99c686c71848c8c11c17c/&title=《python selenium Chrome 添加代理ip最全俩种方式(无密码+有秘密)》 — 赵家富的博客&pic=https://zhaojiafu.github.io/img/zhao.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" target="_blank" rel="noopener" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://zhaojiafu.github.io/2019/12/02/3330d17b38a99c686c71848c8c11c17c/&title=《python selenium Chrome 添加代理ip最全俩种方式(无密码+有秘密)》 — 赵家富的博客&source=感觉无从下手的时候，问自己“不难，要你干啥？”" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://zhaojiafu.github.io/2019/12/02/3330d17b38a99c686c71848c8c11c17c/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《python selenium Chrome 添加代理ip最全俩种方式(无密码+有秘密)》 — 赵家富的博客&url=https://zhaojiafu.github.io/2019/12/02/3330d17b38a99c686c71848c8c11c17c/&via=https://zhaojiafu.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://zhaojiafu.github.io/2019/12/02/3330d17b38a99c686c71848c8c11c17c/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" target="_blank" rel="noopener" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2019/12/02/0d1f86f5ce40e09c3799ab5dede44444/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">Python+Selenium之鼠标悬浮在指定元素上方和对指定元素块进行截图、拼接图片</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2019/12/02/0aa94ee4a5bb7ff44d0492b85a1ecdc2/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">爬虫之请求头处理小工具模块copyheaders</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<section class="comments" id="comments">
+    <div id="gitalk-container"></div>
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+        var id = location.pathname
+        if (location.pathname.length > 50) {
+          id = location.pathname.replace(/\/\d+\/\d+\/\d+\//, '').replace('/', '').substring(0, 50)
+        }
+        const gitalk = new Gitalk({
+          clientID: '388d0a78cda30f118f86',
+          clientSecret: '2c64b34cc20f23d768dffff64acb8c2ee02c3bee',
+          repo: 'https://zhaojiafu.github.io/',
+          owner: 'zjf',
+          admin: ['zjf'],
+          id: id,      // Ensure uniqueness and length less than 50
+          title: document.title.split('|')[0],
+          distractionFreeMode: false  // Facebook-like distraction free mode
+        })
+
+        gitalk.render('gitalk-container')
+    </script>
+</section>
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;" target="_blank" rel="noopener"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢大爷~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.jpg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.jpg" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+            <span>博客内容遵循 <a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+        <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=0 height=0 src="http://music.163.com/song/media/outer/url?id=1369798757&auto=1"></iframe>
+
+    </div>
+    <div class="bottom">
+        <p><span>赵家富 &copy; 2019</span>
+            <span>
+                
+
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" target="_blank" rel="noopener" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://zhaojiafu.github.io/2019/12/02/3330d17b38a99c686c71848c8c11c17c/&title=《python selenium Chrome 添加代理ip最全俩种方式(无密码+有秘密)》 — 赵家富的博客&pic=https://zhaojiafu.github.io/img/zhao.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" target="_blank" rel="noopener" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://zhaojiafu.github.io/2019/12/02/3330d17b38a99c686c71848c8c11c17c/&title=《python selenium Chrome 添加代理ip最全俩种方式(无密码+有秘密)》 — 赵家富的博客&source=感觉无从下手的时候，问自己“不难，要你干啥？”" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://zhaojiafu.github.io/2019/12/02/3330d17b38a99c686c71848c8c11c17c/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《python selenium Chrome 添加代理ip最全俩种方式(无密码+有秘密)》 — 赵家富的博客&url=https://zhaojiafu.github.io/2019/12/02/3330d17b38a99c686c71848c8c11c17c/&via=https://zhaojiafu.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://zhaojiafu.github.io/2019/12/02/3330d17b38a99c686c71848c8c11c17c/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;" target="_blank" rel="noopener"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACuklEQVR42u3aMXLjMBAEQP3/03ZygQNLN7MLyAqakYslkmgEwHoWj0d8ff24Xt9/fefZlT/7uHHh4eHhLYaefPj1J589m/z9GjAbDx4eHt49XvK65Kl8KO1m8Ho8T+/j4eHhfQBvU+C2w002Gzw8PLzP5+XgtrDePIWHh4f3fl5S+LYZ6aZ0zif0WNaCh4eHF/NOlcLv/PtKfw8PDw9v3VXPm2H3pnI2zn9vwMPDw7vAyxfclro5hjVruT0tx/Hw8PAu82YRQLKgz6LYAwcL8PDw8C7wZs37ZNvIo43kDaviHg8PD+8Qr13Wc2ryyzwmTqZgWEzj4eHhlbx8Fa0jgPL3+dGrdkvDw8PDO8tLotJ2A8gX8XxLGAYTeHh4eBd4Zxtdsy3nVNFcJC54eHh4C95scZ81yfKht5MYHbfCw8PDu8DLy+g2nM3fNuvdFWEEHh4e3iHebFmfFdY3Dhn8J2vBw8PDO8prm/1tQZyEsLMtpM5X8PDw8A7x2mbVbAraLSFZ7qOYAw8PD+8aL2/b58HE5sDB7PTULyPHw8PDu8ZrW/Xt4j47aNVuML/cx8PDw7vAyweUxwdtqd0ezKrbYHh4eHhHeZsjAvvAd1ZqF8U9Hh4e3jVe+8lNQDALc9uiHA8PD+8eL2/MF68rhzi7k2wneHh4eO/hJYdHZ0t8G3zkxxEe+aDx8PDwjvJmhXIb3Z4aQxH14uHh4b2F1x6BijpsI/xsap5m1Xh4eHhr3ld55Qt628RqDxAkoTMeHh7eDd5sEW8nImFv4uMVDA8PD+9Qb709KLA5RLVn1+cj8PDw8A7xZkFt0qDKN4bZrhVtDHh4eHh/ymtD3k0wMfsKHh4e3mfyZgt9+2wbZBQ9NDw8PLw1bxMEJOV1PrltqyzaGPDw8PCO8tp/+PNQNZ+IpIBui3I8PDy8C7xvMwHaT1CWZBcAAAAASUVORK5CYII=" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '死鬼去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+<script src="/node_modules/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"node_modules/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/node_modules/assets/shizuku.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"react":{"opacity":0.7},"log":false});</script></body>
+</html>

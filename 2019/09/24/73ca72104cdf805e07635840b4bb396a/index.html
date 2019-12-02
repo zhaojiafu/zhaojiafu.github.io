@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <link rel="canonical" href="https://zhaojiafu.github.io/2019/09/24/73ca72104cdf805e07635840b4bb396a/">
+    
+    
+    <title>Linux学习整理（持续更新中。。。） | 赵家富的博客 | 保持好奇心</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="Linux">
+    <meta name="description" content="一、获取Linux系统信息：①、查看Linux内核版本命令方法1、登陆Linux，在终端输入  cat &#x2F;proc&#x2F;version  方法2、登陆Linux，在终端输入  uname -a  方法3、登陆Linux，在终端输入  uname -r  ②、查看Linux系统版本的命令1、lsb_release -a，即可列出所有版本信息 lsb_release -a 2、cat &#x2F;etc&#x2F;redha">
+<meta name="keywords" content="Linux">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linux学习整理（持续更新中。。。）">
+<meta property="og:url" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;2019&#x2F;09&#x2F;24&#x2F;73ca72104cdf805e07635840b4bb396a&#x2F;index.html">
+<meta property="og:site_name" content="赵家富的博客">
+<meta property="og:description" content="一、获取Linux系统信息：①、查看Linux内核版本命令方法1、登陆Linux，在终端输入  cat &#x2F;proc&#x2F;version  方法2、登陆Linux，在终端输入  uname -a  方法3、登陆Linux，在终端输入  uname -r  ②、查看Linux系统版本的命令1、lsb_release -a，即可列出所有版本信息 lsb_release -a 2、cat &#x2F;etc&#x2F;redha">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20190924165115651.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20190924165302905.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20190924165844496.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20190924165952859.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20190924222955342.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20190930175055507.png">
+<meta property="og:updated_time" content="2019-12-02T06:45:48.236Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20190924165115651.png">
+    
+    <link rel="shortcut icon" href="/img/cb2nm-5l9w0-001.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" target="_blank" rel="noopener" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/zhao.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">赵家富</h5>
+          <a href="mailto:530519174@qq.com" target="_blank" rel="noopener" title="530519174@qq.com" class="mail">530519174@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                archives(所有)
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags/"  >
+                <i class="icon icon-lg icon-tags"></i>
+                tag(标签)
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories/"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories(分类)
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/zhaojiafu" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://blog.csdn.net/weixin_42081389" target="_blank" >
+                <i class="icon icon-lg icon-csdn"></i>
+                Csdn
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" target="_blank" rel="noopener" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+
+        <div class="flex-col header-title ellipsis">Linux学习整理（持续更新中。。。）</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" target="_blank" rel="noopener" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" target="_blank" rel="noopener" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" target="_blank" rel="noopener" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+
+        <h1 class="title">Linux学习整理（持续更新中。。。）
+        </h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2019-09-24T03:34:32.000Z" itemprop="datePublished" class="page-time">
+  2019-09-24
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Linux/">Linux</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#一、获取Linux系统信息："><span class="post-toc-number">1.</span> <span class="post-toc-text">一、获取Linux系统信息：</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#①、查看Linux内核版本命令"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">①、查看Linux内核版本命令</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#方法1、"><span class="post-toc-number">1.1.1.</span> <span class="post-toc-text">方法1、</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#方法2、"><span class="post-toc-number">1.1.2.</span> <span class="post-toc-text">方法2、</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#方法3、"><span class="post-toc-number">1.1.3.</span> <span class="post-toc-text">方法3、</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#②、查看Linux系统版本的命令"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">②、查看Linux系统版本的命令</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#1、lsb-release-a，即可列出所有版本信息"><span class="post-toc-number">1.2.1.</span> <span class="post-toc-text">1、lsb_release -a，即可列出所有版本信息</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#2、cat-etc-redhat-release，这种方法只适合Redhat系的Linux："><span class="post-toc-number">1.2.2.</span> <span class="post-toc-text">2、cat /etc/redhat-release，这种方法只适合Redhat系的Linux：</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#3、cat-etc-issue，此命令也适用于所有的Linux发行版。"><span class="post-toc-number">1.2.3.</span> <span class="post-toc-text">3、cat /etc/issue，此命令也适用于所有的Linux发行版。</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#③、当前系统相关信息"><span class="post-toc-number">1.3.</span> <span class="post-toc-text">③、当前系统相关信息</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#二、Linux-中配置python的虚拟环境"><span class="post-toc-number">2.</span> <span class="post-toc-text">二、Linux 中配置python的虚拟环境</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#1、安装virtualenv"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">1、安装virtualenv</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#2、安装管理虚拟环境包vrtaulenvwrapper（和window上名字不一样）"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">2、安装管理虚拟环境包vrtaulenvwrapper（和window上名字不一样）</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#3、创建虚拟环境"><span class="post-toc-number">2.3.</span> <span class="post-toc-text">3、创建虚拟环境</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#4、管理虚拟环境命令："><span class="post-toc-number">2.4.</span> <span class="post-toc-text">4、管理虚拟环境命令：</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#三、Linux下安装docker"><span class="post-toc-number">3.</span> <span class="post-toc-text">三、Linux下安装docker</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#1、安装一些必要的系统工具"><span class="post-toc-number">3.1.</span> <span class="post-toc-text">1、安装一些必要的系统工具</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#2、添加软件源信息："><span class="post-toc-number">3.2.</span> <span class="post-toc-text">2、添加软件源信息：</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#3、更新-yum-缓存："><span class="post-toc-number">3.3.</span> <span class="post-toc-text">3、更新 yum 缓存：</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#四、Ubuntu-16-04sudo-apt-get-update更新报错"><span class="post-toc-number">4.</span> <span class="post-toc-text">四、Ubuntu 16.04sudo apt-get update更新报错</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#1、报错内容"><span class="post-toc-number">4.1.</span> <span class="post-toc-text">1、报错内容</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#2、解决："><span class="post-toc-number">4.2.</span> <span class="post-toc-text">2、解决：</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#五、Linux安装yum命令"><span class="post-toc-number">5.</span> <span class="post-toc-text">五、Linux安装yum命令</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#第一步，国内的yum仓库"><span class="post-toc-number">5.1.</span> <span class="post-toc-text">第一步，国内的yum仓库</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#第二步：下载软件，文件版本可能有变化，根据列表里面进行下载"><span class="post-toc-number">5.2.</span> <span class="post-toc-text">第二步：下载软件，文件版本可能有变化，根据列表里面进行下载</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#第三步：安装-python-iniparse"><span class="post-toc-number">5.3.</span> <span class="post-toc-text">第三步：安装 python-iniparse</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#第四步：安装-yum（记得要一起安装三个yum-不然可能会报错）"><span class="post-toc-number">5.4.</span> <span class="post-toc-text">第四步：安装 yum（记得要一起安装三个yum,不然可能会报错）</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#六、rpm-RPM软件包管理器-命令"><span class="post-toc-number">6.</span> <span class="post-toc-text">六、rpm(RPM软件包管理器)命令</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#①、一般安装命令："><span class="post-toc-number">6.1.</span> <span class="post-toc-text">①、一般安装命令：</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#②、其他一些命令整理："><span class="post-toc-number">6.2.</span> <span class="post-toc-text">②、其他一些命令整理：</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#七、Ubuntu下apt-get的一些命令汇总"><span class="post-toc-number">7.</span> <span class="post-toc-text">七、Ubuntu下apt-get的一些命令汇总</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#1、apt-get命令"><span class="post-toc-number">7.1.</span> <span class="post-toc-text">1、apt-get命令</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#2、无法获得锁解决方法"><span class="post-toc-number">7.2.</span> <span class="post-toc-text">2、无法获得锁解决方法</span></a></li></ol></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-73ca72104cdf805e07635840b4bb396a"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">Linux学习整理（持续更新中。。。）</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2019-09-24 11:34:32" datetime="2019-09-24T03:34:32.000Z"  itemprop="datePublished">2019-09-24</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Linux/">Linux</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h1 id="一、获取Linux系统信息："><a href="#一、获取Linux系统信息：" class="headerlink" title="一、获取Linux系统信息："></a>一、获取Linux系统信息：</h1><h2 id="①、查看Linux内核版本命令"><a href="#①、查看Linux内核版本命令" class="headerlink" title="①、查看Linux内核版本命令"></a>①、查看Linux内核版本命令</h2><h3 id="方法1、"><a href="#方法1、" class="headerlink" title="方法1、"></a>方法1、</h3><p>登陆Linux，在终端输入</p>
+<blockquote>
+<p><code>cat /proc/version</code></p>
+</blockquote>
+<h3 id="方法2、"><a href="#方法2、" class="headerlink" title="方法2、"></a>方法2、</h3><p>登陆Linux，在终端输入</p>
+<blockquote>
+<p><code>uname -a</code></p>
+</blockquote>
+<h3 id="方法3、"><a href="#方法3、" class="headerlink" title="方法3、"></a>方法3、</h3><p>登陆Linux，在终端输入</p>
+<blockquote>
+<p><code>uname -r</code></p>
+</blockquote>
+<h2 id="②、查看Linux系统版本的命令"><a href="#②、查看Linux系统版本的命令" class="headerlink" title="②、查看Linux系统版本的命令"></a>②、查看Linux系统版本的命令</h2><h3 id="1、lsb-release-a，即可列出所有版本信息"><a href="#1、lsb-release-a，即可列出所有版本信息" class="headerlink" title="1、lsb_release -a，即可列出所有版本信息"></a>1、lsb_release -a，即可列出所有版本信息</h3><blockquote>
+<pre><code>lsb_release -a</code></pre></blockquote>
+<h3 id="2、cat-etc-redhat-release，这种方法只适合Redhat系的Linux："><a href="#2、cat-etc-redhat-release，这种方法只适合Redhat系的Linux：" class="headerlink" title="2、cat /etc/redhat-release，这种方法只适合Redhat系的Linux："></a>2、cat /etc/redhat-release，这种方法只适合Redhat系的Linux：</h3><blockquote>
+<p><code>cat /etc/redhat-release</code></p>
+</blockquote>
+<h3 id="3、cat-etc-issue，此命令也适用于所有的Linux发行版。"><a href="#3、cat-etc-issue，此命令也适用于所有的Linux发行版。" class="headerlink" title="3、cat /etc/issue，此命令也适用于所有的Linux发行版。"></a>3、cat /etc/issue，此命令也适用于所有的Linux发行版。</h3><blockquote>
+<p><code>cat /etc/issue</code></p>
+</blockquote>
+<h2 id="③、当前系统相关信息"><a href="#③、当前系统相关信息" class="headerlink" title="③、当前系统相关信息"></a>③、当前系统相关信息</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">$ uname -a　　&#x2F;&#x2F;显示所有信息</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">Linux BigManing 4.4.0-83-generic #106-Ubuntu SMP Mon Jun 26 17:54:43 UTC 2017 x86_64 x86_64 x86_64 GNU&#x2F;Linux</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">$ uname -s　　&#x2F;&#x2F;显示内核名称</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">Linux</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">$ uname -n　　&#x2F;&#x2F;显示网络节点上的主机名</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">BigManing</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">$ uname -r　　&#x2F;&#x2F;显示内核发行号</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">4.4.0-83-generic</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">$ uname -v　　　&#x2F;&#x2F;显示内核版本号</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line">#106-Ubuntu SMP Mon Jun 26 17:54:43 UTC 2017</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><span class="line">$ uname -m　　　&#x2F;&#x2F;显示机器硬件名称　显示i686说明你安装了32位操作系统　　　显示 x86_64说明你安装了64位操作系统</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">17</span></pre></td><td class="code"><pre><span class="line">x86_64</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">18</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">19</span></pre></td><td class="code"><pre><span class="line">$ uname -p　　　&#x2F;&#x2F;显示处理器类型</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">20</span></pre></td><td class="code"><pre><span class="line">x86_64</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">21</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">22</span></pre></td><td class="code"><pre><span class="line">$ uname -i　　　&#x2F;&#x2F;显示硬件平台</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">23</span></pre></td><td class="code"><pre><span class="line">x86_64</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">24</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">25</span></pre></td><td class="code"><pre><span class="line">$ uname -o　　　&#x2F;&#x2F;操作系统</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">26</span></pre></td><td class="code"><pre><span class="line">GNU&#x2F;Linux</span></pre></td></tr></table></figure>
+
+<h1 id="二、Linux-中配置python的虚拟环境"><a href="#二、Linux-中配置python的虚拟环境" class="headerlink" title="二、Linux 中配置python的虚拟环境"></a>二、Linux 中配置python的虚拟环境</h1><h2 id="1、安装virtualenv"><a href="#1、安装virtualenv" class="headerlink" title="1、安装virtualenv"></a>1、安装virtualenv</h2><p>安装<br>这里只介绍 Linux 系统下的安装。在 Linux 下的安装方法多种多样，可以通过源码源码安装，也可以用 Python 的包管理工具 easy_install 和 pip 安装，例如：</p>
+<blockquote>
+<p><code>sudo easy_install virtualenv</code></p>
+</blockquote>
+<p>或者：</p>
+<blockquote>
+<p><code>sudo pip install virtualenv</code></p>
+</blockquote>
+<p>如果你使用的是 Ubuntu 及其衍生版本，还可以通过如下方式安装：</p>
+<blockquote>
+<p> <code>sudo apt-get install python-virtualenv</code></p>
+</blockquote>
+<h2 id="2、安装管理虚拟环境包vrtaulenvwrapper（和window上名字不一样）"><a href="#2、安装管理虚拟环境包vrtaulenvwrapper（和window上名字不一样）" class="headerlink" title="2、安装管理虚拟环境包vrtaulenvwrapper（和window上名字不一样）"></a>2、安装管理虚拟环境包vrtaulenvwrapper（和window上名字不一样）</h2><blockquote>
+<p> <code>sudo easy_install vrtaulenvwrapper</code></p>
+</blockquote>
+<p>或者：</p>
+<blockquote>
+<p> <code>sudo pip install vrtaulenvwrapper</code></p>
+</blockquote>
+<p>如果你使用的是 Ubuntu 及其衍生版本，还可以通过如下方式安装：</p>
+<blockquote>
+<p>  <code>sudo apt-get install virtualenvwrapper</code></p>
+</blockquote>
+<h2 id="3、创建虚拟环境"><a href="#3、创建虚拟环境" class="headerlink" title="3、创建虚拟环境"></a>3、创建虚拟环境</h2><p>俩都都安装成功之后就可以特意创建一个虚拟环境目录，用来存贮多个虚拟环境，</p>
+<p>在当前目录下创建一个虚拟环境目录：</p>
+<blockquote>
+<pre><code>virtualenv env1</code></pre></blockquote>
+<p>其中env1就是虚拟环境的名字，会在当前目录下创建一个env1的目录，里面有python版本和pip。</p>
+<h2 id="4、管理虚拟环境命令："><a href="#4、管理虚拟环境命令：" class="headerlink" title="4、管理虚拟环境命令："></a>4、管理虚拟环境命令：</h2><p>配置好virtualenvwrapper，就可以使用它的功能，方便管理虚拟环境</p>
+<blockquote>
+<pre><code>workon:                    列出虚拟环境列表
+lsvirtualenv:            列出虚拟环境列表
+mkvirtualenv:            新建虚拟环境
+workon [虚拟环境名称]:    切换/进入虚拟环境
+rmvirtualenv :            删除虚拟环境
+deactivate:             离开虚拟环境</code></pre></blockquote>
+<h1 id="三、Linux下安装docker"><a href="#三、Linux下安装docker" class="headerlink" title="三、Linux下安装docker"></a>三、Linux下安装docker</h1><h2 id="1、安装一些必要的系统工具"><a href="#1、安装一些必要的系统工具" class="headerlink" title="1、安装一些必要的系统工具"></a>1、安装一些必要的系统工具</h2><blockquote>
+<p>sudo yum install -y yum-utils device-mapper-persistent-data lvm2</p>
+</blockquote>
+<p>然后我的提醒：</p>
+<pre><code>(try to add &apos;--allowerasing&apos; to command line to replace conflicting packages or &apos;--skip-broken&apos; to skip uninstallable packages)</code></pre><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/20190924165115651.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+<p>然后我加上了 –allowerasing</p>
+<blockquote>
+<p>sudo yum install -y yum-utils device-mapper-persistent-data lvm2<br>–allowerasing</p>
+</blockquote>
+<p>安装成功：</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/20190924165302905.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+
+<h2 id="2、添加软件源信息："><a href="#2、添加软件源信息：" class="headerlink" title="2、添加软件源信息："></a>2、添加软件源信息：</h2><blockquote>
+<p>sudo yum-config-manager –add-repo<br><a href="http://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo" target="_blank" rel="noopener">http://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo</a></p>
+</blockquote>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/20190924165844496.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+
+<h2 id="3、更新-yum-缓存："><a href="#3、更新-yum-缓存：" class="headerlink" title="3、更新 yum 缓存："></a>3、更新 yum 缓存：</h2><blockquote>
+<p>sudo yum makecache fast</p>
+</blockquote>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/20190924165952859.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+
+<h1 id="四、Ubuntu-16-04sudo-apt-get-update更新报错"><a href="#四、Ubuntu-16-04sudo-apt-get-update更新报错" class="headerlink" title="四、Ubuntu 16.04sudo apt-get update更新报错"></a>四、Ubuntu 16.04sudo apt-get update更新报错</h1><h2 id="1、报错内容"><a href="#1、报错内容" class="headerlink" title="1、报错内容"></a>1、报错内容</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">E: Problem executing scripts APT::Update::Post-Invoke-Success &#39;if &#x2F;usr&#x2F;bin&#x2F;test -w &#x2F;var&#x2F;cache&#x2F;app-info -a -e &#x2F;usr&#x2F;bin&#x2F;appstreamcli; then appstreamcli refresh &gt; &#x2F;dev&#x2F;null; fi&#39;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">E: Sub-process returned an error code</span></pre></td></tr></table></figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/20190924222955342.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+<h2 id="2、解决："><a href="#2、解决：" class="headerlink" title="2、解决："></a>2、解决：</h2><p>依次下面三行命令执行完毕就可以了。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">sudo pkill -KILL appstreamcli</span></pre></td></tr></table></figure>
+
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">wget -P &#x2F;tmp https:&#x2F;&#x2F;launchpad.net&#x2F;ubuntu&#x2F;+archive&#x2F;primary&#x2F;+files&#x2F;appstream_0.9.4-1ubuntu1_amd64.deb https:&#x2F;&#x2F;launchpad.net&#x2F;ubuntu&#x2F;+archive&#x2F;primary&#x2F;+files&#x2F;libappstream3_0.9.4-1ubuntu1_amd64.deb</span></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">sudo dpkg -i &#x2F;tmp&#x2F;appstream_0.9.4-1ubuntu1_amd64.deb &#x2F;tmp&#x2F;libappstream3_0.9.4-1ubuntu1_amd64.deb</span></pre></td></tr></table></figure>
+
+<p>执行完上述命令之后再次运行sudo apt-get update就不会再出现上面的错误。</p>
+<h1 id="五、Linux安装yum命令"><a href="#五、Linux安装yum命令" class="headerlink" title="五、Linux安装yum命令"></a>五、Linux安装yum命令</h1><p>Linux yum被删除或者命令失效，我的是我安装docker时出了问题，跟着其他博客步骤，结果把yum弄的不能用了，找了一下午，找到一个好的解决方法，原博客放到下面的参考链接里面了。</p>
+<h2 id="第一步，国内的yum仓库"><a href="#第一步，国内的yum仓库" class="headerlink" title="第一步，国内的yum仓库"></a>第一步，国内的yum仓库</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">http:&#x2F;&#x2F;mirrors.163.com&#x2F;centos&#x2F;7&#x2F;os&#x2F;x86_64&#x2F;Packages&#x2F;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">http:&#x2F;&#x2F;mirrors.aliyun.com&#x2F;centos&#x2F;7&#x2F;os&#x2F;x86_64&#x2F;Packages&#x2F;</span></pre></td></tr></table></figure>
+
+<h2 id="第二步：下载软件，文件版本可能有变化，根据列表里面进行下载"><a href="#第二步：下载软件，文件版本可能有变化，根据列表里面进行下载" class="headerlink" title="第二步：下载软件，文件版本可能有变化，根据列表里面进行下载"></a>第二步：下载软件，文件版本可能有变化，根据列表里面进行下载</h2><blockquote>
+<p>yum-plugin-fastestmirror-1.1.31-34.el7.noarch.rpm</p>
+<p>yum-metadata-parser-1.1.4-10.el7.x86_64.rpm</p>
+<p>yum-3.4.3-132.el7.centos.0.1.noarch.rpm</p>
+<p>python-iniparse-0.4-9.el7.noarch.rpm</p>
+</blockquote>
+<h2 id="第三步：安装-python-iniparse"><a href="#第三步：安装-python-iniparse" class="headerlink" title="第三步：安装 python-iniparse"></a>第三步：安装 python-iniparse</h2><p>rpm -ivh python-iniparse-0.4-9.el7.noarch.rpm</p>
+<h2 id="第四步：安装-yum（记得要一起安装三个yum-不然可能会报错）"><a href="#第四步：安装-yum（记得要一起安装三个yum-不然可能会报错）" class="headerlink" title="第四步：安装 yum（记得要一起安装三个yum,不然可能会报错）"></a>第四步：安装 yum（记得要一起安装三个yum,不然可能会报错）</h2><p>rpm -ivh –force yum-3.4.3-132.el7.centos.0.1.noarch.rpm yum-metadata-parser-1.1.4-10.el7.x86_64.rpm yum-plugin-fastestmirror-1.1.31-34.el7.noarch.rpm</p>
+<p>安装完成后，yum命令可以正常使用。我的安装几个就完成了。我的这个是服务器Linux系统。我是先下载好的四个安装包，然后使用winscp（window软件）传输到服务器的。</p>
+<h1 id="六、rpm-RPM软件包管理器-命令"><a href="#六、rpm-RPM软件包管理器-命令" class="headerlink" title="六、rpm(RPM软件包管理器)命令"></a>六、rpm(RPM软件包管理器)命令</h1><p>RPM软件包管理器<br>注解：一种用于互联网下载包的打包及安装工具，它包含在某些Linux分发版中。它生成具有.RPM扩展名的文件。与Dpkg类似。<br>作为一个软件包管理工具，RPM管理着系统已安装的所有RPM程序组件的资料。我们也可以使用RPM来卸载相关的应用程序。</p>
+<h2 id="①、一般安装命令："><a href="#①、一般安装命令：" class="headerlink" title="①、一般安装命令："></a>①、一般安装命令：</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">rpm -ivh  安装包地址</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">例如（这个是在当前目录下安装dejagnu-1.4.2-10.noarch.rpm）：</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">rpm -hvi dejagnu-1.4.2-10.noarch.rpm</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">警告：dejagnu-1.4.2-10.noarch.rpm: V3 DSA 签名：NOKEY, key ID db42a60e</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">准备...</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">########################################### [100%]</span></pre></td></tr></table></figure>
+
+<h2 id="②、其他一些命令整理："><a href="#②、其他一些命令整理：" class="headerlink" title="②、其他一些命令整理："></a>②、其他一些命令整理：</h2><p>rpm 命令：遵循GPL协议且功能强大的包管理，它可以建立、安装、请求、确认、和卸载软件包，间接的提升了Linux 的易用性。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">-e 卸载rpm包</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">-q 查询已安装的软件信息</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">-i 安装rpm包</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">-u 升级rpm包</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">--replacepkgs 重新安装rpm包</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">--justdb 升级数据库，不修改文件系统</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">--percent 在软件包安装时输出百分比</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">--help 帮助</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">--version 显示版本信息</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">-c 显示所有配置文件</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">-d 显示所有文档文件</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">-h 显示安装进度</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">-l 列出软件包中的文件</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line">-a 显示出文件状态</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line">-p 查询&#x2F;校验一个软件包文件</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><span class="line">-v 显示详细的处理信息</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">17</span></pre></td><td class="code"><pre><span class="line">--dump 显示基本文件信息</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">18</span></pre></td><td class="code"><pre><span class="line">--nomd5 不验证文件的md5支持</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">19</span></pre></td><td class="code"><pre><span class="line">--nofiles 不验证软件包中的文件</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">20</span></pre></td><td class="code"><pre><span class="line">--nodeps 不验证软件包的依赖关系</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">21</span></pre></td><td class="code"><pre><span class="line">--whatrequires 查询&#x2F;验证需要一个依赖性的软件包</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">22</span></pre></td><td class="code"><pre><span class="line">--whatprovides 查询&#x2F;验证提供一个依赖性的软件包</span></pre></td></tr></table></figure>
+
+<h1 id="七、Ubuntu下apt-get的一些命令汇总"><a href="#七、Ubuntu下apt-get的一些命令汇总" class="headerlink" title="七、Ubuntu下apt-get的一些命令汇总"></a>七、Ubuntu下apt-get的一些命令汇总</h1><h2 id="1、apt-get命令"><a href="#1、apt-get命令" class="headerlink" title="1、apt-get命令"></a>1、apt-get命令</h2><p>在Ubuntu下，apt-get近乎是最常用的shell命令之一了，因为他是Ubuntu通过新立得安装软件的常用工具命令。</p>
+<p>本文列举了常用的APT命令参数：</p>
+<p>apt-cache search package 搜索软件包</p>
+<p>apt-cache show package  获取包的相关信息，如说明、大小、版本等</p>
+<p>sudo apt-get install package 安装包</p>
+<p>sudo apt-get install package –reinstall   重新安装包</p>
+<p>sudo apt-get -f install   修复安装</p>
+<p>sudo apt-get remove package 删除包</p>
+<p>sudo apt-get remove package –purge 删除包，包括配置文件等</p>
+<p>sudo apt-get update  更新源</p>
+<p>sudo apt-get upgrade 更新已安装的包</p>
+<p>sudo apt-get dist-upgrade 升级系统</p>
+<p>apt-cache depends package 了解使用该包依赖那些包</p>
+<p>apt-cache rdepends package 查看该包被哪些包依赖</p>
+<p>sudo apt-get build-dep package 安装相关的编译环境</p>
+<p>apt-get source package  下载该包的源代码</p>
+<p>sudo apt-get clean &amp;&amp; sudo apt-get autoclean 清理无用的包</p>
+<p>sudo apt-get check 检查是否有损坏的依赖</p>
+<h2 id="2、无法获得锁解决方法"><a href="#2、无法获得锁解决方法" class="headerlink" title="2、无法获得锁解决方法"></a>2、无法获得锁解决方法</h2><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/20190930175055507.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+
+
+
+
+
+
+
+
+
+<p>参考：</p>
+<p><a href="https://blog.csdn.net/m1585761297/article/details/80488617" target="_blank" rel="noopener">https://blog.csdn.net/m1585761297/article/details/80488617</a><br><a href="https://www.jianshu.com/p/c2e5b752c68e" target="_blank" rel="noopener">https://www.jianshu.com/p/c2e5b752c68e</a><br><a href="https://blog.csdn.net/qq_27818541/article/details/75207986" target="_blank" rel="noopener">https://blog.csdn.net/qq_27818541/article/details/75207986</a><br><a href="https://www.runoob.com/docker/ubuntu-docker-install.html" target="_blank" rel="noopener">https://www.runoob.com/docker/ubuntu-docker-install.html</a><br><a href="https://blog.csdn.net/hfmbook/article/details/52065639" target="_blank" rel="noopener">https://blog.csdn.net/hfmbook/article/details/52065639</a><br><a href="https://baike.baidu.com/item/RPM/3794648?fr=aladdin" target="_blank" rel="noopener">https://baike.baidu.com/item/RPM/3794648?fr=aladdin</a></p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2019-12-02T06:45:48.236Z" itemprop="dateUpdated">2019-12-02 14:45:48</time>
+</span><br>
+
+
+        
+        这里可以写作者留言，标签和 hexo 中所有变量及辅助函数等均可调用，示例：<a href="/2019/09/24/73ca72104cdf805e07635840b4bb396a/" target="_blank" rel="external">https://zhaojiafu.github.io/2019/09/24/73ca72104cdf805e07635840b4bb396a/</a>
+        
+    </div>
+    
+    <footer>
+        <a href="https://zhaojiafu.github.io">
+            <img src="/img/zhao.jpg" alt="赵家富">
+            赵家富
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" target="_blank" rel="noopener" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://zhaojiafu.github.io/2019/09/24/73ca72104cdf805e07635840b4bb396a/&title=《Linux学习整理（持续更新中。。。）》 — 赵家富的博客&pic=https://zhaojiafu.github.io/img/zhao.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" target="_blank" rel="noopener" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://zhaojiafu.github.io/2019/09/24/73ca72104cdf805e07635840b4bb396a/&title=《Linux学习整理（持续更新中。。。）》 — 赵家富的博客&source=感觉无从下手的时候，问自己“不难，要你干啥？”" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://zhaojiafu.github.io/2019/09/24/73ca72104cdf805e07635840b4bb396a/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Linux学习整理（持续更新中。。。）》 — 赵家富的博客&url=https://zhaojiafu.github.io/2019/09/24/73ca72104cdf805e07635840b4bb396a/&via=https://zhaojiafu.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://zhaojiafu.github.io/2019/09/24/73ca72104cdf805e07635840b4bb396a/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" target="_blank" rel="noopener" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2019/09/26/b5e5ca9375e5c49bad2e7c6ea2d38d48/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">记录一下Ubuntu18.04安装python2.7和python3.6版本</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2019/09/24/53a2c58674441af1214063d4db878ac3/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">Linux 执行  apt install 时报错： Could not get lock _var_lib_dpkg_lock - open</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<section class="comments" id="comments">
+    <div id="gitalk-container"></div>
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+        var id = location.pathname
+        if (location.pathname.length > 50) {
+          id = location.pathname.replace(/\/\d+\/\d+\/\d+\//, '').replace('/', '').substring(0, 50)
+        }
+        const gitalk = new Gitalk({
+          clientID: '388d0a78cda30f118f86',
+          clientSecret: '2c64b34cc20f23d768dffff64acb8c2ee02c3bee',
+          repo: 'https://zhaojiafu.github.io/',
+          owner: 'zjf',
+          admin: ['zjf'],
+          id: id,      // Ensure uniqueness and length less than 50
+          title: document.title.split('|')[0],
+          distractionFreeMode: false  // Facebook-like distraction free mode
+        })
+
+        gitalk.render('gitalk-container')
+    </script>
+</section>
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;" target="_blank" rel="noopener"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢大爷~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.jpg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.jpg" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+            <span>博客内容遵循 <a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+        <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=0 height=0 src="http://music.163.com/song/media/outer/url?id=1369798757&auto=1"></iframe>
+
+    </div>
+    <div class="bottom">
+        <p><span>赵家富 &copy; 2019</span>
+            <span>
+                
+
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" target="_blank" rel="noopener" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://zhaojiafu.github.io/2019/09/24/73ca72104cdf805e07635840b4bb396a/&title=《Linux学习整理（持续更新中。。。）》 — 赵家富的博客&pic=https://zhaojiafu.github.io/img/zhao.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" target="_blank" rel="noopener" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://zhaojiafu.github.io/2019/09/24/73ca72104cdf805e07635840b4bb396a/&title=《Linux学习整理（持续更新中。。。）》 — 赵家富的博客&source=感觉无从下手的时候，问自己“不难，要你干啥？”" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://zhaojiafu.github.io/2019/09/24/73ca72104cdf805e07635840b4bb396a/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Linux学习整理（持续更新中。。。）》 — 赵家富的博客&url=https://zhaojiafu.github.io/2019/09/24/73ca72104cdf805e07635840b4bb396a/&via=https://zhaojiafu.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://zhaojiafu.github.io/2019/09/24/73ca72104cdf805e07635840b4bb396a/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;" target="_blank" rel="noopener"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACoUlEQVR42u3aUW4bMQwEUN//0u0BEjszpLRNgeevoPFu9FRAIoZ8veLPn4+fr99pn/36/XfPvm588PDw8B5Z+rufk+XO3vCZ/XYL8PDw8K7x8mW14HybPl8GyXbg4eHh/WZee/TfuBjw8PDw/i9eGw2c3QI8PDy838BLwoj84M6L6eTZJN49kLXg4eHhdV2nA8f6kz9f6e/h4eHhrbvq+YG7L7iTt9WrxcPDw7vAy5eyb1wlBfF+y/Dw8PCe5CUxwSyk2I8j5Gv75s14eHh4j/OSQLZtSs22bBjX4uHh4R3l7Uvb5Nl2v2ejrj8U03h4eHjXeLODPi+a22hjVrjj4eHh/VveLJDdB74Hggk8PDy8C7z8kG0vj1l0+7n43vwWDw8P7wZv1gDbjEltqt+2QMfDw8M7xdu0rGaNtH1WUEQVeHh4eJd5p0asckx7weTIby4GPDw8vAu8ttGVFOJt47+dnvohwsDDw8O7xmsf3g9mtWFucpEUM2V4eHh4C16+3HzRSWE9a30l4cjb/0M8PDy8Q7w2XJgtvQ4RygGvVRiBh4eHV/JmMWt+fG8C2Xxbi6ErPDw8vEO8NiAYhqplm23zTjw8PLx7vLYdVSQc8TbdK8rx8PDwbvA2A0+nxgXOIus2GB4eHt6Id6ogTiKD2SDsakQMDw8P73FeHubO4teWUf8tPDw8vGu8dkHtZXDjDfVMGR4eHt6ad6OhNbtsEnD9Wzw8PLwLvNkh3ibE7UDVsaYXHh4e3jVechkkmPzf2wGv2Sbi4eHh3eblI1b5snLq5+W2YUSUCuPh4eE9yGsb/+2VM1tbMU2Gh4eH9zivbeTvS/BNNIyHh4d3j5cvZX/c5wFxOy7w9mLAw8PDO8o7MLcVx7Xt9/dRBR4eHt5R3l9eYkrfwYhR4QAAAABJRU5ErkJggg==" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '死鬼去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+<script src="/node_modules/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"node_modules/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/node_modules/assets/shizuku.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"react":{"opacity":0.7},"log":false});</script></body>
+</html>

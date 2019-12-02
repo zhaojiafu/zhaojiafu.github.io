@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <link rel="canonical" href="https://zhaojiafu.github.io/2019/12/02/0051363feac8bb4fe4ea63c8aa44d13c/">
+    
+    
+    <title>Linux系统tar、rar、7z、zip压缩解压缩命令使用 | 赵家富的博客 | 保持好奇心</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="Linux">
+    <meta name="description" content="# 1.tar压缩解压缩 tar命令常见参数：必须的参数：（3个参数不能共存）-c ：创建压缩文件c代表create。-x ：解压缩文件-t ：查看压缩包里面的文件辅助参数：-z ：用 gzip 压缩&#x2F;解压缩-j ：用 bzip2 压缩&#x2F;解压缩-v ：显示压缩&#x2F;解压缩的进度条-f ：使用档名（注意：f后面不要接参数，也就是说-zxfv是不对的，要写成-zxvf） 打包：tar -cvf [目标文">
+<meta name="keywords" content="Linux">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linux系统tar、rar、7z、zip压缩解压缩命令使用">
+<meta property="og:url" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;2019&#x2F;12&#x2F;02&#x2F;0051363feac8bb4fe4ea63c8aa44d13c&#x2F;index.html">
+<meta property="og:site_name" content="赵家富的博客">
+<meta property="og:description" content="# 1.tar压缩解压缩 tar命令常见参数：必须的参数：（3个参数不能共存）-c ：创建压缩文件c代表create。-x ：解压缩文件-t ：查看压缩包里面的文件辅助参数：-z ：用 gzip 压缩&#x2F;解压缩-j ：用 bzip2 压缩&#x2F;解压缩-v ：显示压缩&#x2F;解压缩的进度条-f ：使用档名（注意：f后面不要接参数，也就是说-zxfv是不对的，要写成-zxvf） 打包：tar -cvf [目标文">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-12-02T06:45:48.466Z">
+<meta name="twitter:card" content="summary">
+    
+    <link rel="shortcut icon" href="/img/cb2nm-5l9w0-001.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" target="_blank" rel="noopener" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/zhao.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">赵家富</h5>
+          <a href="mailto:530519174@qq.com" target="_blank" rel="noopener" title="530519174@qq.com" class="mail">530519174@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                archives(所有)
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags/"  >
+                <i class="icon icon-lg icon-tags"></i>
+                tag(标签)
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories/"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories(分类)
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/zhaojiafu" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://blog.csdn.net/weixin_42081389" target="_blank" >
+                <i class="icon icon-lg icon-csdn"></i>
+                Csdn
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" target="_blank" rel="noopener" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+
+        <div class="flex-col header-title ellipsis">Linux系统tar、rar、7z、zip压缩解压缩命令使用</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" target="_blank" rel="noopener" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" target="_blank" rel="noopener" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" target="_blank" rel="noopener" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+
+        <h1 class="title">Linux系统tar、rar、7z、zip压缩解压缩命令使用
+        </h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2019-12-02T03:34:32.000Z" itemprop="datePublished" class="page-time">
+  2019-12-02
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Linux/">Linux</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#2-rar压缩解压缩"><span class="post-toc-number">1.</span> <span class="post-toc-text">2.rar压缩解压缩</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#3-7z压缩解压缩"><span class="post-toc-number">2.</span> <span class="post-toc-text">3.7z压缩解压缩</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#4-zip压缩解压缩"><span class="post-toc-number">3.</span> <span class="post-toc-text">4.zip压缩解压缩</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#5、7za"><span class="post-toc-number">4.</span> <span class="post-toc-text">5、7za</span></a></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-0051363feac8bb4fe4ea63c8aa44d13c"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">Linux系统tar、rar、7z、zip压缩解压缩命令使用</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2019-12-02 11:34:32" datetime="2019-12-02T03:34:32.000Z"  itemprop="datePublished">2019-12-02</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Linux/">Linux</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p>﻿# 1.tar压缩解压缩</p>
+<p>tar命令常见参数：<br>必须的参数：（3个参数不能共存）<br>-c ：创建压缩文件c代表create。<br>-x ：解压缩文件<br>-t ：查看压缩包里面的文件<br>辅助参数：<br>-z ：用 gzip 压缩/解压缩<br>-j ：用 bzip2 压缩/解压缩<br>-v ：显示压缩/解压缩的进度条<br>-f ：使用档名（注意：f后面不要接参数，也就是说-zxfv是不对的，要写成-zxvf）</p>
+<p><strong>打包：tar -cvf [目标文件名].tar [原文件名/目录名]<br>解包：tar -xvf [原文件名].tar</strong></p>
+<p>实例：<br>解压一个文件：tar -zxvf filename.tar.bz2<br>（解压缩filename.tar.bz2）<br>创建压缩文件：tar -zcvf filename.tar.bz2 file1.txt file2.txt<br>（把file1.txt和file2.txt压缩成filename.tar.bz2）<br>———————————————————————————————</p>
+<h1 id="2-rar压缩解压缩"><a href="#2-rar压缩解压缩" class="headerlink" title="2.rar压缩解压缩"></a>2.rar压缩解压缩</h1><p>安装： sudo apt-get install rar unrar</p>
+<p>或者可从<a href="http://www.rarsoft.com/download.htm下载" target="_blank" rel="noopener">http://www.rarsoft.com/download.htm下载</a> RAR for Linux 编译安装<br>    # tar -xzpvf rarlinux-3.8.0.tar.gz<br>    # cd rar<br>    # make<br>这样就安装好了，安装之后就有了rar和unrar这两个程序，rar是压缩程序，unrar是解压程序。它们的参数选项很多，可用命令rar -help和unrar -help查看。</p>
+<p><strong>压缩：rar a [目标文件名].rar [原文件名/目录名]<br>解压：unrar e [原文件名].rar</strong><br>实例：<br>将test.jpg和test.png压缩成一个rar包：rar a test.rar test.jpg test.png<br>将所有.jpg的文件压缩成一个rar包：rar a test.rar *.jpg<br>将文件夹test压缩成一个rar包：rar a test.rar test<br>将test.rar中的所有文件解压出来：unrar e test.rar</p>
+<p>——————————————————————————————————–</p>
+<h1 id="3-7z压缩解压缩"><a href="#3-7z压缩解压缩" class="headerlink" title="3.7z压缩解压缩"></a>3.7z压缩解压缩</h1><p>参数含义：<br>x  代表解压缩文件，并且是按原始目录树解压<br>-r 表示递归解压缩所有的子文件夹<br>-o 是指定解压到的目录，-o后是没有空格的，直接接目录。这一点需要注意。<br>a  代表添加文件／文件夹到压缩包<br>-t 是指定压缩类型，这里定为7z，可不指定，因为7za默认压缩类型就是7z。<br>-r 表示递归所有的子文件夹</p>
+<p><strong>压缩：7z a [目标文件名].7z [原文件名/目录名]<br>解压：7z x [原文件名].7z</strong><br>实例：<br>指定当前目录文件夹demo下<br>7za x chrysanthemum_test_images.7z -r -o./demo<br>将filename.7z解压到当前目录：7z x filename.7z -r -o./<br>将当前目录下的所有文件压缩成test.7z文件：7z a -t7z -r test.7z ./*<br>————————————————————————————</p>
+<h1 id="4-zip压缩解压缩"><a href="#4-zip压缩解压缩" class="headerlink" title="4.zip压缩解压缩"></a>4.zip压缩解压缩</h1><p>linux下提供了zip和unzip程序，zip是压缩程序，unzip是解压程序。它们的参数选项很多，可用命令zip -help和unzip -help查看，这里只做简单介绍。</p>
+<p><strong>压缩： zip -r [目标文件名].zip [原文件/目录名]<br>解压： unzip [原文件名].zip</strong></p>
+<p>实例：<br>实例：<br>将test.jpg和test.png压缩成一个zip包：zip test.zip test.jpg test.png<br>将所有.jpg的文件压缩成一个zip包：zip test.zip *.jpg<br>将文件夹test压缩成一个zip包：zip -r test.zip test<br>将test.zip中的所有文件解压出来：unzip test.zip<br>将/home目录下面的mydata目录压缩为mydata.zip：zip -r mydata.zip mydata? #压缩mydata目录<br>将/home目录下面的mydata.zip解压到mydatabak目录里面：unzip mydata.zip -d mydatabak</p>
+<h1 id="5、7za"><a href="#5、7za" class="headerlink" title="5、7za"></a>5、7za</h1><p>2016-01-09 11:50:30<br>7z，全称7-Zip，是一款开源软件，目前公认压缩比例最大的压缩解压软件。</p>
+<p>centos安装，yum -y install p7zip</p>
+<p>或者编译安装：</p>
+<p>wget <a href="http://nchc.dl.sourceforge.net/sourceforge/p7zip/p7zip_4.65_src_all.tar.bz2" target="_blank" rel="noopener">http://nchc.dl.sourceforge.net/sourceforge/p7zip/p7zip_4.65_src_all.tar.bz2</a><br>tar -xjvf p7zip_4.65_src_all.tar.bz2<br>cd p7zip_4.65<br>make<br>make install</p>
+<p>主要特征：</p>
+<p>全新的LZMA算法，加大7z压缩比</p>
+<p>支持格式：压缩：7z，XZ,BZIP2,GZIP,TAR,ZIP</p>
+<p>   解压：ARJ,CAB,CHM,CPIO,DEB,DMG,FAT,HFS,ISO,LZH,LZMA,MBR,MSI,NAIS,NTFS,RAR,RPM,UDF,VHD,WIM,XAR,Z</p>
+<p>退出代码：</p>
+<p>0    正常</p>
+<p>1    告警，没有致命错误。例如某些文件正在被使用，没有被压缩</p>
+<p>2    致命问题</p>
+<p>7    命令行错误</p>
+<p>8    没有足够内存</p>
+<p>255  用户停止操作</p>
+<p>使用：</p>
+<p>然后说命令  最简单实用的</p>
+<p><strong>7za a /home/web.7z /home/wwwroot</strong><br>将/home/wwwroot 打包压缩为 web.7z 放在home目录里面</p>
+<p>解压缩的话</p>
+<p><strong>7za e src_file</strong></p>
+<p>command操作命令：</p>
+<p>a 添加到压缩文件<br>b 基准测试，测试7z当前性能<br>d 从压缩文件中删除<br>e 从压缩文件中解压缩，但不包含目录结构（即所有各级文件都解压到一个目录里）<br>l 列出压缩文件的内容<br>t 测试压缩文件<br>u 更新文件到压缩文件<br>x 从压缩文件中解压缩，包含目录结构</p>
+<p>可见，最常用的指令是a, l和x.</p>
+<p>压缩a.txt和b.txt到c.7z:<br><strong>7za a c.7z a.txt b.txt</strong> （命令a后的第一个为目标压缩文档名，然后是文件列表）<br>压缩a.txt和b.txt到/home/www/c.7z:<br><strong>7za a /home/www/c.7z a.txt b.txt</strong> （目录名包含空格，用引号）<br>列出c.7z的内容：<br><strong>7za l c.7z</strong><br>解压缩c.7z到/home/www:<br><strong>7za x c.7z -o/home/www”</strong> （-o表示输出目录，其与目录路径之间没有空格）<br>这样解压包含下级目录名，但不会在/home/www下新建一个c文件夹，如果需要，就把输出目录设为/home/www/c，这样会自动创建文件夹c。<br>如果要生成zip压缩包，可以直接将目标压缩包名设为c.zip，则它会自动使用zip算法压缩。</p>
+<p>原文：<a href="https://blog.csdn.net/gengkui9897/article/details/83956507" target="_blank" rel="noopener">https://blog.csdn.net/gengkui9897/article/details/83956507</a> </p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2019-12-02T06:45:48.466Z" itemprop="dateUpdated">2019-12-02 14:45:48</time>
+</span><br>
+
+
+        
+        这里可以写作者留言，标签和 hexo 中所有变量及辅助函数等均可调用，示例：<a href="/2019/12/02/0051363feac8bb4fe4ea63c8aa44d13c/" target="_blank" rel="external">https://zhaojiafu.github.io/2019/12/02/0051363feac8bb4fe4ea63c8aa44d13c/</a>
+        
+    </div>
+    
+    <footer>
+        <a href="https://zhaojiafu.github.io">
+            <img src="/img/zhao.jpg" alt="赵家富">
+            赵家富
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" target="_blank" rel="noopener" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://zhaojiafu.github.io/2019/12/02/0051363feac8bb4fe4ea63c8aa44d13c/&title=《Linux系统tar、rar、7z、zip压缩解压缩命令使用》 — 赵家富的博客&pic=https://zhaojiafu.github.io/img/zhao.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" target="_blank" rel="noopener" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://zhaojiafu.github.io/2019/12/02/0051363feac8bb4fe4ea63c8aa44d13c/&title=《Linux系统tar、rar、7z、zip压缩解压缩命令使用》 — 赵家富的博客&source=感觉无从下手的时候，问自己“不难，要你干啥？”" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://zhaojiafu.github.io/2019/12/02/0051363feac8bb4fe4ea63c8aa44d13c/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Linux系统tar、rar、7z、zip压缩解压缩命令使用》 — 赵家富的博客&url=https://zhaojiafu.github.io/2019/12/02/0051363feac8bb4fe4ea63c8aa44d13c/&via=https://zhaojiafu.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://zhaojiafu.github.io/2019/12/02/0051363feac8bb4fe4ea63c8aa44d13c/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" target="_blank" rel="noopener" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between flex-row-reverse">
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2019/12/02/33d8d9afe3d414e1db1477175c984faf/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">shell编程学习笔记之一--学习第六天Linux下使用tar 进行全备份和增量备份）</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<section class="comments" id="comments">
+    <div id="gitalk-container"></div>
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+        var id = location.pathname
+        if (location.pathname.length > 50) {
+          id = location.pathname.replace(/\/\d+\/\d+\/\d+\//, '').replace('/', '').substring(0, 50)
+        }
+        const gitalk = new Gitalk({
+          clientID: '388d0a78cda30f118f86',
+          clientSecret: '2c64b34cc20f23d768dffff64acb8c2ee02c3bee',
+          repo: 'https://zhaojiafu.github.io/',
+          owner: 'zjf',
+          admin: ['zjf'],
+          id: id,      // Ensure uniqueness and length less than 50
+          title: document.title.split('|')[0],
+          distractionFreeMode: false  // Facebook-like distraction free mode
+        })
+
+        gitalk.render('gitalk-container')
+    </script>
+</section>
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;" target="_blank" rel="noopener"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢大爷~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.jpg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.jpg" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+            <span>博客内容遵循 <a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+        <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=0 height=0 src="http://music.163.com/song/media/outer/url?id=1369798757&auto=1"></iframe>
+
+    </div>
+    <div class="bottom">
+        <p><span>赵家富 &copy; 2019</span>
+            <span>
+                
+
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" target="_blank" rel="noopener" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://zhaojiafu.github.io/2019/12/02/0051363feac8bb4fe4ea63c8aa44d13c/&title=《Linux系统tar、rar、7z、zip压缩解压缩命令使用》 — 赵家富的博客&pic=https://zhaojiafu.github.io/img/zhao.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" target="_blank" rel="noopener" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://zhaojiafu.github.io/2019/12/02/0051363feac8bb4fe4ea63c8aa44d13c/&title=《Linux系统tar、rar、7z、zip压缩解压缩命令使用》 — 赵家富的博客&source=感觉无从下手的时候，问自己“不难，要你干啥？”" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://zhaojiafu.github.io/2019/12/02/0051363feac8bb4fe4ea63c8aa44d13c/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Linux系统tar、rar、7z、zip压缩解压缩命令使用》 — 赵家富的博客&url=https://zhaojiafu.github.io/2019/12/02/0051363feac8bb4fe4ea63c8aa44d13c/&via=https://zhaojiafu.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://zhaojiafu.github.io/2019/12/02/0051363feac8bb4fe4ea63c8aa44d13c/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;" target="_blank" rel="noopener"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACvklEQVR42u3ay67iQAwE0Pv/P81sR7oDVNndiJFOVohHkpNF25T75yc+Hn8dv9959v6zbya/ffbpz40DDw8Pb3Hr+YV/n+HZ69ef5reePzI8PDy8z/CS0yU3faoY5A/xjQUPDw/va3jthTeFIW+v8fDw8P5H3r6Z3rTgeHh4eJ/k5RHqJm7IH2XCPpy14OHh4cW8fIr0Pa+vzPfw8PDw1lP1fIS/WaDbBr24Wzw8PLwLvHZs346pZtuw2nb89bXw8PDwzvJeX7hduNvB1aktC0+vgoeHh/cRXr64R8OnONrYbOFqiiAeHh7eed5sId48lOTM+dX/8V8BDw8P7wJvP9pvR1Nt4z4sSHh4eHgXeLPycLaEJPHuMIzAw8PDu8abhRT56zZomBWAYssCHh4e3pqXX362jWDzzVkM8SaSwMPDw1vwHsHRNsF5LWob6HycFj1dPDw8vBGv3TjVttrtefJf1du58PDw8I7yimcQD8byELbd1JVsWYjqBh4eHt6a1y7om7a7Hafl53xa8fDw8PCO8vbLdD68b9nJlqzhGAwPDw9vwZvFqW37uy8hqzACDw8P7xrvXqQ72xCwjyrw8PDwzvLyn7XBRL6F61SQUacseHh4eGtejmyD1DpyDe5w+F8BDw8Pb807y8jb6LzJvjgGw8PDw1vwZjfarr1J/NFO7ZL7wcPDw7vHm42+Xrezs4eyCZSLSAIPDw/vEG+2OaCIA0Ypa34UYzA8PDy8Ee9RHm2I0D6CNg5+U1rw8PDwLvBW9WQURszGZnnbPSwweHh4eCWvXcrzJb4da+UDs+IPAB4eHt413ixaTdruTWHIi9aB+R4eHh7eZd6sOc5Lzqbw4OHh4X0bbx/F3igqx1pqPDw8vJiXD7028WsSELdhcbHpCg8PD+8Qr/3D324m2MDazQervVp4eHh473l/AOu4QQXuJXZsAAAAAElFTkSuQmCC" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '死鬼去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+<script src="/node_modules/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"node_modules/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/node_modules/assets/shizuku.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"react":{"opacity":0.7},"log":false});</script></body>
+</html>

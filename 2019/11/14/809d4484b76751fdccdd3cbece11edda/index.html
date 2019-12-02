@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <link rel="canonical" href="https://zhaojiafu.github.io/2019/11/14/809d4484b76751fdccdd3cbece11edda/">
+    
+    
+    <title>python 谷歌翻译模块和js解密的一次学习记录 | 赵家富的博客 | 保持好奇心</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="爬虫,JS反反爬,谷歌翻译">
+    <meta name="description" content="一、说明：本文是基于谷歌翻译的一次爬虫学习，开始是基于模块的学习使用，然后自己尝试了js逆向的使用。 二、 googletrans模块的学习使用：模块官网： 1、安装：1pip install googletrans  2、简单使用：1、基本翻译的用法（也是常用的用法）：这个区别什么的我放到代码中解释了，一看就懂了，我就不过多解释了。 1from googletrans import Transl">
+<meta name="keywords" content="爬虫,JS反反爬,谷歌翻译">
+<meta property="og:type" content="article">
+<meta property="og:title" content="python 谷歌翻译模块和js解密的一次学习记录">
+<meta property="og:url" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;2019&#x2F;11&#x2F;14&#x2F;809d4484b76751fdccdd3cbece11edda&#x2F;index.html">
+<meta property="og:site_name" content="赵家富的博客">
+<meta property="og:description" content="一、说明：本文是基于谷歌翻译的一次爬虫学习，开始是基于模块的学习使用，然后自己尝试了js逆向的使用。 二、 googletrans模块的学习使用：模块官网： 1、安装：1pip install googletrans  2、简单使用：1、基本翻译的用法（也是常用的用法）：这个区别什么的我放到代码中解释了，一看就懂了，我就不过多解释了。 1from googletrans import Transl">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20191114171719973.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20191114172040910.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20191114172504355.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20191114173010188.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20191114173832705.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20191114174029780.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;2019111417434573.png">
+<meta property="og:updated_time" content="2019-12-02T06:45:49.434Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20191114171719973.png">
+    
+    <link rel="shortcut icon" href="/img/cb2nm-5l9w0-001.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" target="_blank" rel="noopener" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/zhao.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">赵家富</h5>
+          <a href="mailto:530519174@qq.com" target="_blank" rel="noopener" title="530519174@qq.com" class="mail">530519174@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                archives(所有)
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags/"  >
+                <i class="icon icon-lg icon-tags"></i>
+                tag(标签)
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories/"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories(分类)
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/zhaojiafu" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://blog.csdn.net/weixin_42081389" target="_blank" >
+                <i class="icon icon-lg icon-csdn"></i>
+                Csdn
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" target="_blank" rel="noopener" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+
+        <div class="flex-col header-title ellipsis">python 谷歌翻译模块和js解密的一次学习记录</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" target="_blank" rel="noopener" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" target="_blank" rel="noopener" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" target="_blank" rel="noopener" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+
+        <h1 class="title">python 谷歌翻译模块和js解密的一次学习记录
+        </h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2019-11-14T03:34:32.000Z" itemprop="datePublished" class="page-time">
+  2019-11-14
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/python%E7%88%AC%E8%99%AB/">python爬虫</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#一、说明："><span class="post-toc-number">1.</span> <span class="post-toc-text">一、说明：</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#二、-googletrans模块的学习使用："><span class="post-toc-number">2.</span> <span class="post-toc-text">二、 googletrans模块的学习使用：</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#1、安装："><span class="post-toc-number">2.1.</span> <span class="post-toc-text">1、安装：</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#2、简单使用："><span class="post-toc-number">2.2.</span> <span class="post-toc-text">2、简单使用：</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#1、基本翻译的用法（也是常用的用法）："><span class="post-toc-number">2.2.1.</span> <span class="post-toc-text">1、基本翻译的用法（也是常用的用法）：</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#2、检测文本语言："><span class="post-toc-number">2.2.2.</span> <span class="post-toc-text">2、检测文本语言：</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#3、英文翻译成中文（其他语言类似）："><span class="post-toc-number">2.2.3.</span> <span class="post-toc-text">3、英文翻译成中文（其他语言类似）：</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#4、多个句子翻译："><span class="post-toc-number">2.2.4.</span> <span class="post-toc-text">4、多个句子翻译：</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#三、JS解密翻译："><span class="post-toc-number">3.</span> <span class="post-toc-text">三、JS解密翻译：</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#1、参考博主解密的："><span class="post-toc-number">3.1.</span> <span class="post-toc-text">1、参考博主解密的：</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#2、自己扣得js解密："><span class="post-toc-number">3.2.</span> <span class="post-toc-text">2、自己扣得js解密：</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#3、对比，有个疑惑："><span class="post-toc-number">3.3.</span> <span class="post-toc-text">3、对比，有个疑惑：</span></a></li></ol></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-809d4484b76751fdccdd3cbece11edda"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">python 谷歌翻译模块和js解密的一次学习记录</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2019-11-14 11:34:32" datetime="2019-11-14T03:34:32.000Z"  itemprop="datePublished">2019-11-14</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/python%E7%88%AC%E8%99%AB/">python爬虫</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h1 id="一、说明："><a href="#一、说明：" class="headerlink" title="一、说明："></a>一、说明：</h1><p>本文是基于谷歌翻译的一次爬虫学习，开始是基于模块的学习使用，然后自己尝试了js逆向的使用。</p>
+<h1 id="二、-googletrans模块的学习使用："><a href="#二、-googletrans模块的学习使用：" class="headerlink" title="二、 googletrans模块的学习使用："></a>二、 googletrans模块的学习使用：</h1><p><a href="https://pypi.org/project/googletrans/" target="_blank" rel="noopener">模块官网：</a></p>
+<h2 id="1、安装："><a href="#1、安装：" class="headerlink" title="1、安装："></a>1、安装：</h2><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">pip install googletrans</span></pre></td></tr></table></figure>
+
+<h2 id="2、简单使用："><a href="#2、简单使用：" class="headerlink" title="2、简单使用："></a>2、简单使用：</h2><h3 id="1、基本翻译的用法（也是常用的用法）："><a href="#1、基本翻译的用法（也是常用的用法）：" class="headerlink" title="1、基本翻译的用法（也是常用的用法）："></a>1、基本翻译的用法（也是常用的用法）：</h3><p>这个区别什么的我放到代码中解释了，一看就懂了，我就不过多解释了。</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">from googletrans import Translator</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">translator = Translator()</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"><span class="comment"># 1、不定位输入语言，不指定输出语言（会自动默认输出为英文，然后翻译成英文）</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">result1 = translator.translate(<span class="string">'你好，我是中国人'</span>)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">print(<span class="string">"result1"</span>,result1)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">print(<span class="string">"result1"</span>,result1.text)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line"><span class="comment"># 2、不定位输入语言，指定输出语言</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">result2 = translator.translate(<span class="string">'你好，我是中国人'</span>, dest=<span class="string">'en'</span>)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">print(<span class="string">"result2"</span>,result2)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">print(<span class="string">"result2"</span>,result2.text)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line"><span class="comment"># 3、指定输入语言，不指定输出（默认输出为英语）</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line"><span class="comment"># result3 = translator.translate('你好，我是中国人', src='la')</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line">result3 = translator.translate(<span class="string">'veritas lux mea'</span>, src=<span class="string">'la'</span>)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line">print(<span class="string">"result3"</span>, result3)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><span class="line">print(<span class="string">"result3"</span>, result3.text)</span></pre></td></tr></table></figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/20191114171719973.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+
+<h3 id="2、检测文本语言："><a href="#2、检测文本语言：" class="headerlink" title="2、检测文本语言："></a>2、检测文本语言：</h3><p>这个我感觉不错，比如，刚开始我使用时我就不知道如果使用英文翻译成中文，然后就使用检测出来的。</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">from googletrans import Translator</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">translator = Translator()</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">print(translator.detect(<span class="string">'일요일'</span>))</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">print(translator.detect(<span class="string">'你好'</span>))</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line"><span class="comment"># Detected(lang=ko, confidence=1.0)</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line"><span class="comment"># Detected(lang=zh-CN, confidence=1.0)</span></span></pre></td></tr></table></figure>
+<p>这个结果正好把中文给我返回处来。也知道英文如何翻译成中文了。</p>
+<p>然后我看下源码，也知道为什么不写输出语言，给我返回英文了。其实人家都写好了，不知道就按英文来翻译。</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/20191114172040910.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+
+
+<h3 id="3、英文翻译成中文（其他语言类似）："><a href="#3、英文翻译成中文（其他语言类似）：" class="headerlink" title="3、英文翻译成中文（其他语言类似）："></a>3、英文翻译成中文（其他语言类似）：</h3><p>(其他语言类似，先随意输入目标语言，检测出谷歌翻译参数dest的固定字符串，然后更改目标语言dest即可)</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">from googletrans import Translator</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">translator = Translator()</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">text = <span class="string">'You can use another google translate domain for translation. If multiple URLs are provided it then randomly chooses a domain.'</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">print(translator.translate(text, dest=<span class="string">'zh-CN'</span>).text)</span></pre></td></tr></table></figure>
+<p>翻译结果：</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/20191114172504355.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+
+<h3 id="4、多个句子翻译："><a href="#4、多个句子翻译：" class="headerlink" title="4、多个句子翻译："></a>4、多个句子翻译：</h3><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">from googletrans import Translator</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">translator = Translator()</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line"><span class="comment"># 这个是官方的方法，可以一次性翻译好几个，但是实际中，如果句子比较长，我还是建议下面循环翻译</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">translations = translator.translate([<span class="string">'The quick brown fox'</span>, <span class="string">'jumps over'</span>, <span class="string">'the lazy dog'</span>], dest=<span class="string">'zh-CN'</span>)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> translation <span class="keyword">in</span> translations:</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">    print(translation.origin, <span class="string">' -&gt; '</span>, translation.text)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">print(<span class="string">"*"</span> * <span class="number">100</span>)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line"><span class="comment"># 我建议寻找一个一个翻译比较好，这样如果我要翻译的有很多条，每个也比较长，这种效率快一点。</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">text_list = [<span class="string">'The quick brown fox'</span>, <span class="string">'jumps over'</span>, <span class="string">'the lazy dog'</span>]</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> text <span class="keyword">in</span> text_list:</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line">    translation = translator.translate(text,dest=<span class="string">'zh-CN'</span>)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line">    print(translation.origin,<span class="string">"--&gt;&gt;"</span>,translation.text)</span></pre></td></tr></table></figure>
+
+<p>翻译结果：</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/20191114173010188.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+
+
+<h1 id="三、JS解密翻译："><a href="#三、JS解密翻译：" class="headerlink" title="三、JS解密翻译："></a>三、JS解密翻译：</h1><p>这个我是先参考了一个博客，然后又自己动手找到一个加密位置，但是我也有个好奇，我找到的和人家的不一样，最后的tk不一样，结果竟然获取的结果都可以使用，不知道什么原因，如果有大佬看到，欢迎给我讲讲哈。</p>
+<h2 id="1、参考博主解密的："><a href="#1、参考博主解密的：" class="headerlink" title="1、参考博主解密的："></a>1、参考博主解密的：</h2><p>js直接复制参考博主的，简单翻译一下。</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">import json</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">from urllib import parse</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">import execjs</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">import requests</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">def get_tk(text):</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">    ctx = execjs.compile(<span class="string">""</span><span class="string">" </span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line"><span class="string">            function TL(a) &#123; </span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line"><span class="string">            var k = "</span><span class="string">"; </span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line"><span class="string">            var b = 406644; </span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line"><span class="string">            var b1 = 3293161072;       </span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line"><span class="string">            var jd = "</span>.<span class="string">"; </span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line"><span class="string">            var <span class="variable">$b</span> = "</span>+-a^+<span class="number">6</span><span class="string">"; </span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><span class="line"><span class="string">            var Zb = "</span>+-<span class="number">3</span>^+b+-f<span class="string">";    </span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">17</span></pre></td><td class="code"><pre><span class="line"><span class="string">            for (var e = [], f = 0, g = 0; g &lt; a.length; g++) &#123; </span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">18</span></pre></td><td class="code"><pre><span class="line"><span class="string">                var m = a.charCodeAt(g); </span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">19</span></pre></td><td class="code"><pre><span class="line"><span class="string">                128 &gt; m ? e[f++] = m : (2048 &gt; m ? e[f++] = m &gt;&gt; 6 | 192 : (55296 == (m &amp; 64512) &amp;&amp; g + 1 &lt; a.length &amp;&amp; 56320 == (a.charCodeAt(g + 1) &amp; 64512) ? (m = 65536 + ((m &amp; 1023) &lt;&lt; 10) + (a.charCodeAt(++g) &amp; 1023), </span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">20</span></pre></td><td class="code"><pre><span class="line"><span class="string">                e[f++] = m &gt;&gt; 18 | 240, </span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">21</span></pre></td><td class="code"><pre><span class="line"><span class="string">                e[f++] = m &gt;&gt; 12 &amp; 63 | 128) : e[f++] = m &gt;&gt; 12 | 224, </span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">22</span></pre></td><td class="code"><pre><span class="line"><span class="string">                e[f++] = m &gt;&gt; 6 &amp; 63 | 128), </span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">23</span></pre></td><td class="code"><pre><span class="line"><span class="string">                e[f++] = m &amp; 63 | 128) </span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">24</span></pre></td><td class="code"><pre><span class="line"><span class="string">            &#125; </span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">25</span></pre></td><td class="code"><pre><span class="line"><span class="string">            a = b; </span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">26</span></pre></td><td class="code"><pre><span class="line"><span class="string">            for (f = 0; f &lt; e.length; f++) a += e[f], </span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">27</span></pre></td><td class="code"><pre><span class="line"><span class="string">            a = RL(a, <span class="variable">$b</span>); </span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">28</span></pre></td><td class="code"><pre><span class="line"><span class="string">            a = RL(a, Zb); </span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">29</span></pre></td><td class="code"><pre><span class="line"><span class="string">            a ^= b1 || 0; </span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">30</span></pre></td><td class="code"><pre><span class="line"><span class="string">            0 &gt; a &amp;&amp; (a = (a &amp; 2147483647) + 2147483648); </span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">31</span></pre></td><td class="code"><pre><span class="line"><span class="string">            a %= 1E6; </span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">32</span></pre></td><td class="code"><pre><span class="line"><span class="string">            return a.toString() + jd + (a ^ b) </span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">33</span></pre></td><td class="code"><pre><span class="line"><span class="string">          &#125;;      </span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">34</span></pre></td><td class="code"><pre><span class="line"><span class="string">          function RL(a, b) &#123; </span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">35</span></pre></td><td class="code"><pre><span class="line"><span class="string">            var t = "</span>a<span class="string">"; </span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">36</span></pre></td><td class="code"><pre><span class="line"><span class="string">            var Yb = "</span>+<span class="string">"; </span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">37</span></pre></td><td class="code"><pre><span class="line"><span class="string">            for (var c = 0; c &lt; b.length - 2; c += 3) &#123; </span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">38</span></pre></td><td class="code"><pre><span class="line"><span class="string">                var d = b.charAt(c + 2), </span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">39</span></pre></td><td class="code"><pre><span class="line"><span class="string">                d = d &gt;= t ? d.charCodeAt(0) - 87 : Number(d), </span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">40</span></pre></td><td class="code"><pre><span class="line"><span class="string">                d = b.charAt(c + 1) == Yb ? a &gt;&gt;&gt; d: a &lt;&lt; d; </span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">41</span></pre></td><td class="code"><pre><span class="line"><span class="string">                a = b.charAt(c) == Yb ? a + d &amp; 4294967295 : a ^ d </span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">42</span></pre></td><td class="code"><pre><span class="line"><span class="string">            &#125; </span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">43</span></pre></td><td class="code"><pre><span class="line"><span class="string">            return a </span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">44</span></pre></td><td class="code"><pre><span class="line"><span class="string">          &#125; </span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">45</span></pre></td><td class="code"><pre><span class="line"><span class="string">         "</span><span class="string">""</span>)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">46</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">47</span></pre></td><td class="code"><pre><span class="line">    <span class="comment"># text = '北京欢乐谷是国家AAAA级旅游景区、新北京十六景、北京文化创意产业基地'</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">48</span></pre></td><td class="code"><pre><span class="line">    tk = ctx.call(<span class="string">"TL"</span>, text)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">49</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">return</span> tk</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">50</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">51</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">52</span></pre></td><td class="code"><pre><span class="line">def get_translate(text):</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">53</span></pre></td><td class="code"><pre><span class="line">    tk = get_tk(text)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">54</span></pre></td><td class="code"><pre><span class="line">    url = <span class="string">'https://translate.google.com/translate_a/single?client=webapp&amp;sl=auto&amp;tl=en&amp;hl=zh-TW&amp;dt=at&amp;dt=bd&amp;dt=ex&amp;dt=ld&amp;dt=md&amp;dt=qca&amp;dt=rw&amp;dt=rm&amp;dt=ss&amp;dt=t&amp;dt=gt&amp;ssel=3&amp;tsel=3&amp;kc=0&amp;'</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">55</span></pre></td><td class="code"><pre><span class="line">    headers = &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">56</span></pre></td><td class="code"><pre><span class="line">        <span class="string">"cookie"</span>: <span class="string">'1P_JAR=2019-11-13-9;_gid=GA1.3.73678266.1573636802;_ga=GA1.3.640150160.1573636802;NID=191=ItRAUI4OCeQtUgD3QoKbIxx0ny7FA29sz5mf86s9OWsierCx8kk1aIBAGSpKZ_Rn3QxzPseewMmG1b97DL6fFA_JCjsZxMrMAhLjv3EHyRvIkd0Y5ah0tkfAMvxyhSNX6VNZncmReWyjxdk4cbJQR57c4MDlNOs0lTraa-Ten1s'</span>,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">57</span></pre></td><td class="code"><pre><span class="line">        <span class="string">"user-agent"</span>: <span class="string">"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.97 Safari/537.36"</span>,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">58</span></pre></td><td class="code"><pre><span class="line">    &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">59</span></pre></td><td class="code"><pre><span class="line">    params = &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">60</span></pre></td><td class="code"><pre><span class="line">        <span class="string">"tk"</span>: tk,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">61</span></pre></td><td class="code"><pre><span class="line">        <span class="string">"q"</span>: text</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">62</span></pre></td><td class="code"><pre><span class="line">    &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">63</span></pre></td><td class="code"><pre><span class="line">    url_encode_params = parse.urlencode(params)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">64</span></pre></td><td class="code"><pre><span class="line">    url_params = url + url_encode_params</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">65</span></pre></td><td class="code"><pre><span class="line">    <span class="comment"># print('url_params', url_params)</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">66</span></pre></td><td class="code"><pre><span class="line">    resp2 = requests.get(url_params, headers=headers)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">67</span></pre></td><td class="code"><pre><span class="line">    <span class="comment"># print('resp2', resp2.status_code, resp2.text)</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">68</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">data</span> = json.loads(resp2.text)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">69</span></pre></td><td class="code"><pre><span class="line">    translate_en_text = data[<span class="number">0</span>][<span class="number">0</span>][<span class="number">0</span>]</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">70</span></pre></td><td class="code"><pre><span class="line">    print(<span class="string">"tk1"</span>,tk)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">71</span></pre></td><td class="code"><pre><span class="line">    print(<span class="string">"translate_en_text"</span>, translate_en_text)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">72</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">return</span> translate_en_text</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">73</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">74</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">75</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">76</span></pre></td><td class="code"><pre><span class="line">    text = <span class="string">'前面介绍了有道翻译接口 破解，接下来试一试谷歌翻译（Github项目地址）同样，查看首页元素'</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">77</span></pre></td><td class="code"><pre><span class="line">    translate_en_text = get_translate(text)</span></pre></td></tr></table></figure>
+
+<p>翻译结果：</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/20191114173832705.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+
+
+<h2 id="2、自己扣得js解密："><a href="#2、自己扣得js解密：" class="headerlink" title="2、自己扣得js解密："></a>2、自己扣得js解密：</h2><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">import json</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">from urllib import parse</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">import execjs</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">import requests</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">def get_tk(text):</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">    ctx = execjs.compile(<span class="string">""</span><span class="string">" </span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line"><span class="string"></span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line"><span class="string">var vo = function(a) &#123;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line"><span class="string">    return function() &#123;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line"><span class="string">        return a</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line"><span class="string">    &#125;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line"><span class="string">&#125;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><span class="line"><span class="string">var xo = "</span><span class="number">437117.4102146620</span><span class="string">"</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">17</span></pre></td><td class="code"><pre><span class="line"><span class="string">var wo = function(a, b) &#123;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">18</span></pre></td><td class="code"><pre><span class="line"><span class="string">    for (var c = 0; c &lt; b.length - 2; c += 3) &#123;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">19</span></pre></td><td class="code"><pre><span class="line"><span class="string">        var d = b.charAt(c + 2);</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">20</span></pre></td><td class="code"><pre><span class="line"><span class="string">        d = "</span>a<span class="string">" &lt;= d ? d.charCodeAt(0) - 87 : Number(d);</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">21</span></pre></td><td class="code"><pre><span class="line"><span class="string">        d = "</span>+<span class="string">" == b.charAt(c + 1) ? a &gt;&gt;&gt; d : a &lt;&lt; d;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">22</span></pre></td><td class="code"><pre><span class="line"><span class="string">        a = "</span>+<span class="string">" == b.charAt(c) ? a + d &amp; 4294967295 : a ^ d</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">23</span></pre></td><td class="code"><pre><span class="line"><span class="string">    &#125;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">24</span></pre></td><td class="code"><pre><span class="line"><span class="string">    return a</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">25</span></pre></td><td class="code"><pre><span class="line"><span class="string">&#125;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">26</span></pre></td><td class="code"><pre><span class="line"><span class="string"></span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">27</span></pre></td><td class="code"><pre><span class="line"><span class="string"></span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">28</span></pre></td><td class="code"><pre><span class="line"><span class="string">function get_tk(a) &#123;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">29</span></pre></td><td class="code"><pre><span class="line"><span class="string">    if (null !== xo)</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">30</span></pre></td><td class="code"><pre><span class="line"><span class="string">        var b = xo;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">31</span></pre></td><td class="code"><pre><span class="line"><span class="string">    else &#123;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">32</span></pre></td><td class="code"><pre><span class="line"><span class="string">        b = vo(String.fromCharCode(84));</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">33</span></pre></td><td class="code"><pre><span class="line"><span class="string">        var c = vo(String.fromCharCode(75));</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">34</span></pre></td><td class="code"><pre><span class="line"><span class="string">        b = [b(), b()];</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">35</span></pre></td><td class="code"><pre><span class="line"><span class="string">        b[1] = c();</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">36</span></pre></td><td class="code"><pre><span class="line"><span class="string">        b = (xo = window[b.join(c())] || "</span><span class="string">") || "</span><span class="string">"</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">37</span></pre></td><td class="code"><pre><span class="line"><span class="string">    &#125;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">38</span></pre></td><td class="code"><pre><span class="line"><span class="string">    var d = vo(String.fromCharCode(116));</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">39</span></pre></td><td class="code"><pre><span class="line"><span class="string">    c = vo(String.fromCharCode(107));</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">40</span></pre></td><td class="code"><pre><span class="line"><span class="string">    d = [d(), d()];</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">41</span></pre></td><td class="code"><pre><span class="line"><span class="string">    d[1] = c();</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">42</span></pre></td><td class="code"><pre><span class="line"><span class="string">    c = "</span>&amp;<span class="string">" + d.join("</span><span class="string">") + "</span>=<span class="string">";</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">43</span></pre></td><td class="code"><pre><span class="line"><span class="string">    d = b.split("</span>.<span class="string">");</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">44</span></pre></td><td class="code"><pre><span class="line"><span class="string">    b = Number(d[0]) || 0;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">45</span></pre></td><td class="code"><pre><span class="line"><span class="string">    for (var e = [], f = 0, g = 0; g &lt; a.length; g++) &#123;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">46</span></pre></td><td class="code"><pre><span class="line"><span class="string">        var k = a.charCodeAt(g);</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">47</span></pre></td><td class="code"><pre><span class="line"><span class="string">        128 &gt; k ? e[f++] = k : (2048 &gt; k ? e[f++] = k &gt;&gt; 6 | 192 : (55296 == (k &amp; 64512) &amp;&amp; g + 1 &lt; a.length &amp;&amp; 56320 == (a.charCodeAt(g + 1) &amp; 64512) ? (k = 65536 + ((k &amp; 1023) &lt;&lt; 10) + (a.charCodeAt(++g) &amp; 1023),</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">48</span></pre></td><td class="code"><pre><span class="line"><span class="string">        e[f++] = k &gt;&gt; 18 | 240,</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">49</span></pre></td><td class="code"><pre><span class="line"><span class="string">        e[f++] = k &gt;&gt; 12 &amp; 63 | 128) : e[f++] = k &gt;&gt; 12 | 224,</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">50</span></pre></td><td class="code"><pre><span class="line"><span class="string">        e[f++] = k &gt;&gt; 6 &amp; 63 | 128),</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">51</span></pre></td><td class="code"><pre><span class="line"><span class="string">        e[f++] = k &amp; 63 | 128)</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">52</span></pre></td><td class="code"><pre><span class="line"><span class="string">    &#125;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">53</span></pre></td><td class="code"><pre><span class="line"><span class="string">    a = b;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">54</span></pre></td><td class="code"><pre><span class="line"><span class="string">    for (f = 0; f &lt; e.length; f++)</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">55</span></pre></td><td class="code"><pre><span class="line"><span class="string">        a += e[f],</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">56</span></pre></td><td class="code"><pre><span class="line"><span class="string">        a = wo(a, "</span>+-a^+<span class="number">6</span><span class="string">");</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">57</span></pre></td><td class="code"><pre><span class="line"><span class="string">    a = wo(a, "</span>+-<span class="number">3</span>^+b+-f<span class="string">");</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">58</span></pre></td><td class="code"><pre><span class="line"><span class="string">    a ^= Number(d[1]) || 0;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">59</span></pre></td><td class="code"><pre><span class="line"><span class="string">    0 &gt; a &amp;&amp; (a = (a &amp; 2147483647) + 2147483648);</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">60</span></pre></td><td class="code"><pre><span class="line"><span class="string">    a %= 1E6;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">61</span></pre></td><td class="code"><pre><span class="line"><span class="string">    return (a.toString() + "</span>.<span class="string">" + (a ^ b))</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">62</span></pre></td><td class="code"><pre><span class="line"><span class="string">&#125;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">63</span></pre></td><td class="code"><pre><span class="line"><span class="string">     "</span><span class="string">""</span>)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">64</span></pre></td><td class="code"><pre><span class="line">    <span class="comment"># text = '北京欢乐谷是国家AAAA级旅游景区、新北京十六景、北京文化创意产业基地'</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">65</span></pre></td><td class="code"><pre><span class="line">    tk = ctx.call(<span class="string">"get_tk"</span>, text)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">66</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">return</span> tk</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">67</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">68</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">69</span></pre></td><td class="code"><pre><span class="line">def get_translate(text):</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">70</span></pre></td><td class="code"><pre><span class="line">    tk = get_tk(text)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">71</span></pre></td><td class="code"><pre><span class="line">    url = <span class="string">'https://translate.google.com/translate_a/single?client=webapp&amp;sl=auto&amp;tl=en&amp;hl=zh-TW&amp;dt=at&amp;dt=bd&amp;dt=ex&amp;dt=ld&amp;dt=md&amp;dt=qca&amp;dt=rw&amp;dt=rm&amp;dt=ss&amp;dt=t&amp;dt=gt&amp;ssel=3&amp;tsel=3&amp;kc=0&amp;'</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">72</span></pre></td><td class="code"><pre><span class="line">    headers = &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">73</span></pre></td><td class="code"><pre><span class="line">        <span class="string">"cookie"</span>: <span class="string">"HSID=A9q8G-FPNx6QwfqlY; SSID=AyWKCt0aKhDNPLqW6; APISID=52CYB7USRLRyBkFl/AhucACQCyF5bkzMIM; SAPISID=7sAQYqTKCyubismp/A6GCzfKGnLisIiTpM; CONSENT=YES+US.zh-CN+; SID=pwdbenXUSnGz056YdylCL-ZDrCLJaIvqrUBKGvbe-HJ3s48yPBi9Mk7RYGFZ_o-kZZQ8Rg.; SEARCH_SAMESITE=CgQIoI4B; NID=191=WdhY3hdbpEdpGhDLxFUrnkFmgSrStymg9kBM-9FHyoaLOVIqx9Z7KtAtA_dtCNJj4d8xyJ_9WlkJ0sCFlzavlyYl-tUoIy4hdz2E5j6p3Nbc1uoyEOb_9AmNmdHMngO-yPxj5Mxb8ervFTzp4drfWUogmwuY3HAGldxDJYBlvzoHJb8Rzr4OtPhbP0TGO_mmh9UChE5WPSHLfX-3KUwUb5pm1tixJYNMec-WULuOaLUIQD0EPnnbRY9CXhEfLA; 1P_JAR=2019-11-13-5; _ga=GA1.3.658002031.1573624431; _gid=GA1.3.1337733321.1573624431; SIDCC=AN0-TYvUIyqWcavZaG_swbs9zSM1oMD8nXPSQVzxV5ndURyHBY2CueYI1jCM3Wm7XIaoA-57ag"</span>,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">74</span></pre></td><td class="code"><pre><span class="line">        <span class="string">"user-agent"</span>: <span class="string">"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.97 Safari/537.36"</span>,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">75</span></pre></td><td class="code"><pre><span class="line">    &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">76</span></pre></td><td class="code"><pre><span class="line">    params = &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">77</span></pre></td><td class="code"><pre><span class="line">        <span class="string">"tk"</span>: tk,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">78</span></pre></td><td class="code"><pre><span class="line">        <span class="string">"q"</span>: text</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">79</span></pre></td><td class="code"><pre><span class="line">    &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">80</span></pre></td><td class="code"><pre><span class="line">    url_encode_params = parse.urlencode(params)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">81</span></pre></td><td class="code"><pre><span class="line">    url_params = url + url_encode_params</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">82</span></pre></td><td class="code"><pre><span class="line">    <span class="comment"># print('url_params', url_params)</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">83</span></pre></td><td class="code"><pre><span class="line">    resp2 = requests.get(url_params, headers=headers)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">84</span></pre></td><td class="code"><pre><span class="line">    <span class="comment"># print('resp2', resp2.text)</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">85</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">data</span> = json.loads(resp2.text)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">86</span></pre></td><td class="code"><pre><span class="line">    translate_en_text = data[<span class="number">0</span>][<span class="number">0</span>][<span class="number">0</span>]</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">87</span></pre></td><td class="code"><pre><span class="line">    print(<span class="string">"translate_en_text"</span>, translate_en_text)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">88</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">return</span> translate_en_text</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">89</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">90</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">91</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">92</span></pre></td><td class="code"><pre><span class="line">    text = <span class="string">'前面介绍了有道翻译接口 破解，接下来试一试谷歌翻译（Github项目地址）同样，查看首页元素'</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">93</span></pre></td><td class="code"><pre><span class="line">    translate_en_text = get_translate(text)</span></pre></td></tr></table></figure>
+<p>翻译结果：<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/20191114174029780.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure></p>
+<h2 id="3、对比，有个疑惑："><a href="#3、对比，有个疑惑：" class="headerlink" title="3、对比，有个疑惑："></a>3、对比，有个疑惑：</h2><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/2019111417434573.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+
+<p>通过俩个相同的句子，得到的加密的tk不一样，却能获取到结果，不知道为什么，而且我第一次以为每次加密的结果是随机数生成呐，我的和参考博主的，各自的加密tk结果多次运行是一样的，如果有懂的大佬，欢迎给我解解疑惑，指点一下哈。</p>
+<p>参考js解密博主：<br><a href="https://www.jianshu.com/p/95cf6e73d6ee" target="_blank" rel="noopener">https://www.jianshu.com/p/95cf6e73d6ee</a></p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2019-12-02T06:45:49.434Z" itemprop="dateUpdated">2019-12-02 14:45:49</time>
+</span><br>
+
+
+        
+        这里可以写作者留言，标签和 hexo 中所有变量及辅助函数等均可调用，示例：<a href="/2019/11/14/809d4484b76751fdccdd3cbece11edda/" target="_blank" rel="external">https://zhaojiafu.github.io/2019/11/14/809d4484b76751fdccdd3cbece11edda/</a>
+        
+    </div>
+    
+    <footer>
+        <a href="https://zhaojiafu.github.io">
+            <img src="/img/zhao.jpg" alt="赵家富">
+            赵家富
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" target="_blank" rel="noopener" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JS%E5%8F%8D%E5%8F%8D%E7%88%AC/" rel="tag">JS反反爬</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%88%AC%E8%99%AB/" rel="tag">爬虫</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%B0%B7%E6%AD%8C%E7%BF%BB%E8%AF%91/" rel="tag">谷歌翻译</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://zhaojiafu.github.io/2019/11/14/809d4484b76751fdccdd3cbece11edda/&title=《python 谷歌翻译模块和js解密的一次学习记录》 — 赵家富的博客&pic=https://zhaojiafu.github.io/img/zhao.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" target="_blank" rel="noopener" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://zhaojiafu.github.io/2019/11/14/809d4484b76751fdccdd3cbece11edda/&title=《python 谷歌翻译模块和js解密的一次学习记录》 — 赵家富的博客&source=感觉无从下手的时候，问自己“不难，要你干啥？”" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://zhaojiafu.github.io/2019/11/14/809d4484b76751fdccdd3cbece11edda/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《python 谷歌翻译模块和js解密的一次学习记录》 — 赵家富的博客&url=https://zhaojiafu.github.io/2019/11/14/809d4484b76751fdccdd3cbece11edda/&via=https://zhaojiafu.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://zhaojiafu.github.io/2019/11/14/809d4484b76751fdccdd3cbece11edda/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" target="_blank" rel="noopener" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2019/11/17/4a473d39e271debadf157952092027ca/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">selenium报错之---Message_ session not created_ Chrome version must be between 71 and 75</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2019/11/05/f88a557f964ad60ccd4fb832b87c7361/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">python汉字转成拼音、英文的一个学习随笔</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<section class="comments" id="comments">
+    <div id="gitalk-container"></div>
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+        var id = location.pathname
+        if (location.pathname.length > 50) {
+          id = location.pathname.replace(/\/\d+\/\d+\/\d+\//, '').replace('/', '').substring(0, 50)
+        }
+        const gitalk = new Gitalk({
+          clientID: '388d0a78cda30f118f86',
+          clientSecret: '2c64b34cc20f23d768dffff64acb8c2ee02c3bee',
+          repo: 'https://zhaojiafu.github.io/',
+          owner: 'zjf',
+          admin: ['zjf'],
+          id: id,      // Ensure uniqueness and length less than 50
+          title: document.title.split('|')[0],
+          distractionFreeMode: false  // Facebook-like distraction free mode
+        })
+
+        gitalk.render('gitalk-container')
+    </script>
+</section>
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;" target="_blank" rel="noopener"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢大爷~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.jpg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.jpg" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+            <span>博客内容遵循 <a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+        <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=0 height=0 src="http://music.163.com/song/media/outer/url?id=1369798757&auto=1"></iframe>
+
+    </div>
+    <div class="bottom">
+        <p><span>赵家富 &copy; 2019</span>
+            <span>
+                
+
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" target="_blank" rel="noopener" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://zhaojiafu.github.io/2019/11/14/809d4484b76751fdccdd3cbece11edda/&title=《python 谷歌翻译模块和js解密的一次学习记录》 — 赵家富的博客&pic=https://zhaojiafu.github.io/img/zhao.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" target="_blank" rel="noopener" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://zhaojiafu.github.io/2019/11/14/809d4484b76751fdccdd3cbece11edda/&title=《python 谷歌翻译模块和js解密的一次学习记录》 — 赵家富的博客&source=感觉无从下手的时候，问自己“不难，要你干啥？”" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://zhaojiafu.github.io/2019/11/14/809d4484b76751fdccdd3cbece11edda/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《python 谷歌翻译模块和js解密的一次学习记录》 — 赵家富的博客&url=https://zhaojiafu.github.io/2019/11/14/809d4484b76751fdccdd3cbece11edda/&via=https://zhaojiafu.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://zhaojiafu.github.io/2019/11/14/809d4484b76751fdccdd3cbece11edda/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;" target="_blank" rel="noopener"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACtUlEQVR42u3bQXLbQAwEQP//0841VY6oGWDX0aF5YlkscZsHAhqsv77i4/uv4/nvP8+T4/n6n998+MDDw8NbLD25cQLL8c+PL7n7qzXj4eHh3ea9+tLn89nt2weXrOHl3/Hw8PA+jNc2vvkjywsMHh4e3ufzNsXj1JV4eHh4n8BrI9Q8OMjjhvZRHs5a8PDw8GJePkX6nPMr8z08PDy89VT9+YWbvIhnz3sWCv9jtXh4eHgXePki9oOrzUaEvF3Gw8PD+01esrh2nD9bdP6dUXSCh4eHd5Q3G0o93yZprJN2OQ+Io8keHh4e3iFe3grvm+nNZqykvkXzPTw8PLxDvM0wrA12k1a7HX0dnvvh4eHhlbxN67yPMJIy8Hx91F7j4eHhHeK11WPW5uZFZbOeA8URDw8PLwgjZj/+Zy/6NsZNWmo8PDy8/8XLX98tL4luZ0HwmxKCh4eHd4G3CRTaEdd+o8AxMB4eHt6at5mSzbYXtIP/TduNh4eHd4q3eTUnA7M2bkiOoinHw8PDu8Cb3T6JMNoAom2RiwKDh4eHd403C1jzN/BmYLb5fjw8PLyzvM2AarP02as/jyq+2lvi4eHhlbxZAZhFq78a7+Lh4eFd5rXDsDa2aLcatLziAzw8PLwFb9PanmrE92FE8eDw8PDwDvHyYLTdNLBprA9XPzw8PLxrjXUbBLSbA2Z9bx5DvNx0hYeHh3eNl28LKG7Qxq+Lo950hYeHh1fyZj/vZ4HCczuej9OKT/Hw8PAu8Fb1ZLT5II8hZtu8zpVLPDw8vO+3/5DfFoP2vH2tJyVnmFLj4eHhHeLlk6M8sDi7AasNjvHw8PA+h9cOyTYlJ1nbm+vx8PDwPoDX3mxWJI4N2/Dw8PCu8fZL2TyadtF1YcDDw8M7ymt/8G/GWi1ssxEBDw8P7wLvD0bS5CkQS71zAAAAAElFTkSuQmCC" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '死鬼去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+<script src="/node_modules/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"node_modules/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/node_modules/assets/shizuku.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"react":{"opacity":0.7},"log":false});</script></body>
+</html>

@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <link rel="canonical" href="https://zhaojiafu.github.io/2019/07/24/078fdd0d3c7b63124fe6048eebe05ec2/">
+    
+    
+    <title>window安装MySQL5.7 的压缩包安装过程（实测有效）（中间报错：_mysql.connector.errors.NotSupportedError和由于找不到msvcr120.dll无法继续 | 赵家富的博客 | 保持好奇心</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="MySQL">
+    <meta name="description" content="说明：今天有个python程序，找到网上一个获取代理ip的，然后我的电脑（widow系统），程序运行一直报错，报错类似于，然后网上查找解决方法，意思是我的MySQL版本过高，然后开始寻找安装低版本5.7的方法，但是就是安装不成功，经过多次，安装过成又报了一个错，所以觉得下来了，既方便下载需要，也能给他人一个参考。 mysql.connector.errors.NotSupportedError:">
+<meta name="keywords" content="MySQL">
+<meta property="og:type" content="article">
+<meta property="og:title" content="window安装MySQL5.7 的压缩包安装过程（实测有效）（中间报错：_mysql.connector.errors.NotSupportedError和由于找不到msvcr120.dll无法继续">
+<meta property="og:url" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;2019&#x2F;07&#x2F;24&#x2F;078fdd0d3c7b63124fe6048eebe05ec2&#x2F;index.html">
+<meta property="og:site_name" content="赵家富的博客">
+<meta property="og:description" content="说明：今天有个python程序，找到网上一个获取代理ip的，然后我的电脑（widow系统），程序运行一直报错，报错类似于，然后网上查找解决方法，意思是我的MySQL版本过高，然后开始寻找安装低版本5.7的方法，但是就是安装不成功，经过多次，安装过成又报了一个错，所以觉得下来了，既方便下载需要，也能给他人一个参考。 mysql.connector.errors.NotSupportedError:">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20190724153323329.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20190724155256743.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20190724155545863.png">
+<meta property="og:updated_time" content="2019-12-02T07:40:52.909Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20190724153323329.png">
+    
+    <link rel="shortcut icon" href="/img/cb2nm-5l9w0-001.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" target="_blank" rel="noopener" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/zhao.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">赵家富</h5>
+          <a href="mailto:530519174@qq.com" target="_blank" rel="noopener" title="530519174@qq.com" class="mail">530519174@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                archives(所有)
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags/"  >
+                <i class="icon icon-lg icon-tags"></i>
+                tag(标签)
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories/"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories(分类)
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/zhaojiafu" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://blog.csdn.net/weixin_42081389" target="_blank" >
+                <i class="icon icon-lg icon-csdn"></i>
+                Csdn
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" target="_blank" rel="noopener" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+
+        <div class="flex-col header-title ellipsis">window安装MySQL5.7 的压缩包安装过程（实测有效）（中间报错：_mysql.connector.errors.NotSupportedError和由于找不到msvcr120.dll无法继续</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" target="_blank" rel="noopener" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" target="_blank" rel="noopener" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" target="_blank" rel="noopener" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+
+        <h1 class="title">window安装MySQL5.7 的压缩包安装过程（实测有效）（中间报错：_mysql.connector.errors.NotSupportedError和由于找不到msvcr120.dll无法继续
+        </h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2019-07-24T03:34:32.000Z" itemprop="datePublished" class="page-time">
+  2019-07-24
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/MySQL/">MySQL</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#说明："><span class="post-toc-number">1.</span> <span class="post-toc-text">说明：</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#1、下载mysql5-7的-zip包"><span class="post-toc-number">2.</span> <span class="post-toc-text">1、下载mysql5.7的 zip包</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#2、配置安装"><span class="post-toc-number">3.</span> <span class="post-toc-text">2、配置安装</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#报错-1、找不到msvcr120-dll"><span class="post-toc-number">3.1.</span> <span class="post-toc-text">报错 1、找不到msvcr120.dll</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#报错-2、mysqld-install（这个时候我已经添加环境变量了）"><span class="post-toc-number">3.2.</span> <span class="post-toc-text">报错 2、mysqld -install（这个时候我已经添加环境变量了）</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#3、一些配置命令"><span class="post-toc-number">4.</span> <span class="post-toc-text">3、一些配置命令</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#3-1-、初始化命令"><span class="post-toc-number">4.1.</span> <span class="post-toc-text">3.1 、初始化命令</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#3-2、安装命令mysqld-–install"><span class="post-toc-number">4.2.</span> <span class="post-toc-text">3.2、安装命令mysqld –install</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#3-3、启动服务-net-start-mysql"><span class="post-toc-number">4.3.</span> <span class="post-toc-text">3.3、启动服务 net start mysql</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#3-4、登陆mysql，"><span class="post-toc-number">4.4.</span> <span class="post-toc-text">3.4、登陆mysql，</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#3-5、肯定需要先修改密码"><span class="post-toc-number">4.5.</span> <span class="post-toc-text">3.5、肯定需要先修改密码</span></a></li></ol></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-078fdd0d3c7b63124fe6048eebe05ec2"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">window安装MySQL5.7 的压缩包安装过程（实测有效）（中间报错：_mysql.connector.errors.NotSupportedError和由于找不到msvcr120.dll无法继续</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2019-07-24 11:34:32" datetime="2019-07-24T03:34:32.000Z"  itemprop="datePublished">2019-07-24</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/MySQL/">MySQL</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h1 id="说明："><a href="#说明：" class="headerlink" title="说明："></a>说明：</h1><p>今天有个python程序，找到网上一个获取代理ip的，然后我的电脑（widow系统），程序运行一直报错，报错类似于，然后网上查找解决方法，意思是我的MySQL版本过高，然后开始寻找安装低版本5.7的方法，但是就是安装不成功，经过多次，安装过成又报了一个错，所以觉得下来了，既方便下载需要，也能给他人一个参考。</p>
+<pre><code>mysql.connector.errors.NotSupportedError: Authentication plugin &apos;caching_sha2_password&apos; is not supported</code></pre><h1 id="1、下载mysql5-7的-zip包"><a href="#1、下载mysql5-7的-zip包" class="headerlink" title="1、下载mysql5.7的 zip包"></a>1、下载mysql5.7的 zip包</h1><p>直接下再5.7的压缩包地址(64位的)：<br><a href="https://dev.mysql.com/downloads/file/?id=487427" target="_blank" rel="noopener">https://dev.mysql.com/downloads/file/?id=487427</a></p>
+{% image /imgs/20190724151713724.png '在这里插入图片描述' '' %}
+
+<p>如果需求其他版本，请去Windows官网<br><a href="https://dev.mysql.com/downloads/windows/" target="_blank" rel="noopener">https://dev.mysql.com/downloads/windows/</a></p>
+{% image /imgs/20190724151922125.png '在这里插入图片描述' '' %}
+
+{% image /imgs/20190724152037414.png '在这里插入图片描述' '' %}
+<p>然后其他版本进来之后，选择自己需要的下载即可</p>
+{% image /imgs/20190724152125837.png '在这里插入图片描述' '' %}
+
+<h1 id="2、配置安装"><a href="#2、配置安装" class="headerlink" title="2、配置安装"></a>2、配置安装</h1><p>压缩包，解压之后，放到想要安装的位置，我放到软件盘。其中my.ini，需要自己写的配置文件，我看了好多博客写的这个，但是就没有说放到哪个位置，我把我成功的图片截屏出来。</p>
+{% image /imgs/20190724152336687.png '在这里插入图片描述' '' %}
+
+<p>里面的内容：<strong>basedir和datadir 你要改成自己的</strong></p>
+<pre><code>[client]
+default-character-set=utf8
+[mysqld]
+#设置3306端口
+port=3306
+#设置mysql的安装目录
+basedir=D:/tools/mysql-5.7.24-winx64
+#设置mysql数据库的数据的存放目录
+datadir=D:/tools/mysql-5.7.24-winx64/data
+#允许最大连接数
+max_connections=200
+#服务端使用的字符集默认为8比特编码的latin1字符集
+character-set-server=utf8
+collation-server=utf8_general_ci
+#创建新表时将使用的默认存储引擎
+default-storage-engine=INNODB</code></pre><p><img src="/imgs/20190724153323329.png" alt="在这里插入图片描述"></p>
+<p>然后把当前的bin文件夹，加到环境变量中。<br>比如我的是</p>
+<pre><code>D:\tools\mysql-5.7.25-winx64\mysql-5.7.25-winx64\bin</code></pre><p>然后cmd中，命令安装：mysqld -install</p>
+<h2 id="报错-1、找不到msvcr120-dll"><a href="#报错-1、找不到msvcr120-dll" class="headerlink" title="报错 1、找不到msvcr120.dll"></a>报错 1、找不到msvcr120.dll</h2><p>我的这个时候保错<strong>，（由于找不到msvcr120.dll无法继续执行代码）</strong></p>
+{% image /imgs/20190724153540598.png '在这里插入图片描述' '' %}
+
+
+<p>这个时候百度找到了原因，需要安装一个软件<br>软件地址：<br><a href="https://www.microsoft.com/zh-CN/download/details.aspx?id=40784" target="_blank" rel="noopener">https://www.microsoft.com/zh-CN/download/details.aspx?id=40784</a></p>
+<p>点击下载之后，选择自己对应的版本软件，下载好安装即可解决这个问题。</p>
+{% image /imgs/20190724153726913.png '在这里插入图片描述' '' %}
+
+<p>成功之后，我重新打开进入cmd，然后再次报错：</p>
+<h2 id="报错-2、mysqld-install（这个时候我已经添加环境变量了）"><a href="#报错-2、mysqld-install（这个时候我已经添加环境变量了）" class="headerlink" title="报错 2、mysqld -install（这个时候我已经添加环境变量了）"></a>报错 2、mysqld -install（这个时候我已经添加环境变量了）</h2>{% image /imgs/20190724153934616.png '在这里插入图片描述' '' %}
+
+<p>这个时候解决办法，就是使用管理员重新进入cmd即可：</p>
+{% image /imgs/20190724154122463.png '在这里插入图片描述' '' %}
+
+<p>这个时候，显示成功了。</p>
+{% image /imgs/2019072415422861.png '在这里插入图片描述' '' %}
+
+<h1 id="3、一些配置命令"><a href="#3、一些配置命令" class="headerlink" title="3、一些配置命令"></a>3、一些配置命令</h1><h2 id="3-1-、初始化命令"><a href="#3-1-、初始化命令" class="headerlink" title="3.1 、初始化命令"></a>3.1 、初始化命令</h2><p>mysqld –initialize –user=mysql –console（注意执行命令后会出现一个password的关键字，这是一个随机密码，一定要记住一会会使用）。</p>
+{% image /imgs/20190724154447614.png '在这里插入图片描述' '' %}
+<p>其中最后一行的后面一堆字符就是随机密码，一会是使用，比如我的：<br><strong>a4P0t;hgo?kf</strong></p>
+<h2 id="3-2、安装命令mysqld-–install"><a href="#3-2、安装命令mysqld-–install" class="headerlink" title="3.2、安装命令mysqld –install"></a>3.2、安装命令mysqld –install</h2><p> 安装命令  mysqld –install<br> {% image /imgs/20190724154807222.png '在这里插入图片描述' '' %}</p>
+<h2 id="3-3、启动服务-net-start-mysql"><a href="#3-3、启动服务-net-start-mysql" class="headerlink" title="3.3、启动服务 net start mysql"></a>3.3、启动服务 net start mysql</h2>{% image /imgs/20190724154851504.png '在这里插入图片描述' '' %}
+
+<h2 id="3-4、登陆mysql，"><a href="#3-4、登陆mysql，" class="headerlink" title="3.4、登陆mysql，"></a>3.4、登陆mysql，</h2><p>命令 mysql -uroot -p ，回车后输入或粘贴上面的随机密码。<br>这个时候登陆成功：</p>
+{% image /imgs/20190724155141642.png '在这里插入图片描述' '' %}
+
+<h2 id="3-5、肯定需要先修改密码"><a href="#3-5、肯定需要先修改密码" class="headerlink" title="3.5、肯定需要先修改密码"></a>3.5、肯定需要先修改密码</h2><p>登陆成功后必须更改密码，方式很多这是一种：</p>
+<pre><code>set password = password(&apos;你的新密码&apos;);</code></pre><p>比如我的密码设置为123456，好记。</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/20190724155256743.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+<p>为了测试是否成功，这时候我们就可以退出，然后再次登陆，这时候我的新密码就可以使用了，至此安装成功。</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/20190724155545863.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+
+<p>执行到这里表示你已经成功了，可以本地使用了。</p>
+<p>参考：<br><a href="https://blog.csdn.net/zhongaiyisheng_/article/details/85924378" target="_blank" rel="noopener">https://blog.csdn.net/zhongaiyisheng_/article/details/85924378</a><br><a href="https://blog.csdn.net/qq_27868061/article/details/86923020" target="_blank" rel="noopener">https://blog.csdn.net/qq_27868061/article/details/86923020</a><br><a href="https://blog.csdn.net/tangyaliang11/article/details/86299902" target="_blank" rel="noopener">https://blog.csdn.net/tangyaliang11/article/details/86299902</a></p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2019-12-02T07:40:52.909Z" itemprop="dateUpdated">2019-12-02 15:40:52</time>
+</span><br>
+
+
+        
+        这里可以写作者留言，标签和 hexo 中所有变量及辅助函数等均可调用，示例：<a href="/2019/07/24/078fdd0d3c7b63124fe6048eebe05ec2/" target="_blank" rel="external">https://zhaojiafu.github.io/2019/07/24/078fdd0d3c7b63124fe6048eebe05ec2/</a>
+        
+    </div>
+    
+    <footer>
+        <a href="https://zhaojiafu.github.io">
+            <img src="/img/zhao.jpg" alt="赵家富">
+            赵家富
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" target="_blank" rel="noopener" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MySQL/" rel="tag">MySQL</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://zhaojiafu.github.io/2019/07/24/078fdd0d3c7b63124fe6048eebe05ec2/&title=《window安装MySQL5.7 的压缩包安装过程（实测有效）（中间报错：_mysql.connector.errors.NotSupportedError和由于找不到msvcr120.dll无法继续》 — 赵家富的博客&pic=https://zhaojiafu.github.io/img/zhao.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" target="_blank" rel="noopener" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://zhaojiafu.github.io/2019/07/24/078fdd0d3c7b63124fe6048eebe05ec2/&title=《window安装MySQL5.7 的压缩包安装过程（实测有效）（中间报错：_mysql.connector.errors.NotSupportedError和由于找不到msvcr120.dll无法继续》 — 赵家富的博客&source=感觉无从下手的时候，问自己“不难，要你干啥？”" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://zhaojiafu.github.io/2019/07/24/078fdd0d3c7b63124fe6048eebe05ec2/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《window安装MySQL5.7 的压缩包安装过程（实测有效）（中间报错：_mysql.connector.errors.NotSupportedError和由于找不到msvcr120.dll无法继续》 — 赵家富的博客&url=https://zhaojiafu.github.io/2019/07/24/078fdd0d3c7b63124fe6048eebe05ec2/&via=https://zhaojiafu.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://zhaojiafu.github.io/2019/07/24/078fdd0d3c7b63124fe6048eebe05ec2/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" target="_blank" rel="noopener" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2019/07/26/5344e71683b2b1a5dadf140ec0446fc7/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">etree.HTML 报错： ValueError_ Unicode strings with encoding declaration</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2019/07/24/ca7bf4aa92439c665eec5013d2765119/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">python Windows 下配置虚拟环境</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<section class="comments" id="comments">
+    <div id="gitalk-container"></div>
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+        var id = location.pathname
+        if (location.pathname.length > 50) {
+          id = location.pathname.replace(/\/\d+\/\d+\/\d+\//, '').replace('/', '').substring(0, 50)
+        }
+        const gitalk = new Gitalk({
+          clientID: '388d0a78cda30f118f86',
+          clientSecret: '2c64b34cc20f23d768dffff64acb8c2ee02c3bee',
+          repo: 'https://zhaojiafu.github.io/',
+          owner: 'zjf',
+          admin: ['zjf'],
+          id: id,      // Ensure uniqueness and length less than 50
+          title: document.title.split('|')[0],
+          distractionFreeMode: false  // Facebook-like distraction free mode
+        })
+
+        gitalk.render('gitalk-container')
+    </script>
+</section>
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;" target="_blank" rel="noopener"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢大爷~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.jpg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.jpg" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+            <span>博客内容遵循 <a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+        <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=0 height=0 src="http://music.163.com/song/media/outer/url?id=1369798757&auto=1"></iframe>
+
+    </div>
+    <div class="bottom">
+        <p><span>赵家富 &copy; 2019</span>
+            <span>
+                
+
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" target="_blank" rel="noopener" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://zhaojiafu.github.io/2019/07/24/078fdd0d3c7b63124fe6048eebe05ec2/&title=《window安装MySQL5.7 的压缩包安装过程（实测有效）（中间报错：_mysql.connector.errors.NotSupportedError和由于找不到msvcr120.dll无法继续》 — 赵家富的博客&pic=https://zhaojiafu.github.io/img/zhao.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" target="_blank" rel="noopener" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://zhaojiafu.github.io/2019/07/24/078fdd0d3c7b63124fe6048eebe05ec2/&title=《window安装MySQL5.7 的压缩包安装过程（实测有效）（中间报错：_mysql.connector.errors.NotSupportedError和由于找不到msvcr120.dll无法继续》 — 赵家富的博客&source=感觉无从下手的时候，问自己“不难，要你干啥？”" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://zhaojiafu.github.io/2019/07/24/078fdd0d3c7b63124fe6048eebe05ec2/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《window安装MySQL5.7 的压缩包安装过程（实测有效）（中间报错：_mysql.connector.errors.NotSupportedError和由于找不到msvcr120.dll无法继续》 — 赵家富的博客&url=https://zhaojiafu.github.io/2019/07/24/078fdd0d3c7b63124fe6048eebe05ec2/&via=https://zhaojiafu.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://zhaojiafu.github.io/2019/07/24/078fdd0d3c7b63124fe6048eebe05ec2/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;" target="_blank" rel="noopener"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACpElEQVR42u3aQW7DMAwEwPz/0+0DisS7lOm2wPgUtIqs0UFkSL1e8fP18WnHJ999N89r48HDw8NbWHrygp/jZ5/z+aMtw8PDw1vj5ctNtubdpsz+0q4HDw8P7y/z7lribH48PDy8/8VLSgazZPokBcfDw8N7kpckx7PCRPKtP1FrwcPDw+u6Tq926t/9vNLfw8PDwzvuqifF2Y1bDMnM0Wrx8PDwFnhtOjtLtU/aYHkS/3YkHh4e3iO8z0f8XY2r2fxt6QQPDw/vSV4bGGbttKQUm48pKsp4eHh4I97npeRNpnxZd6Xs0TUvPDw8vDXeeUGhLeC2Aaa9poCHh4e3zTs5pnP8eXpdbzEeHh7eAm/WACuO5viInwWYo/CAh4eHd8Cbpc5PFmrb7+Lh4eFt8/KSRN7iaueZgaOQgIeHh7fAmyFnaXdxWaos716A8fDw8G7izQq1eSE1KcLm5Yw6XOHh4eEt8NoDve3Lz0q0+RujmfHw8PBu5bWBoS3dJuNnh360uXh4eHjLvHths41r22AX78XDw8Nb4M0aWifXrdqNyAvKF8UIPDw8vAd5SQMsDypJoWHWJBsGBjw8PLyS15ZWZ1ey8iZZ3pyrW194eHh4N/ESavSDv0yj87Axu6xw0eXDw8PDO+bddvjGIxPGSjECDw8Pb63OmceTvCl1kvHOQggeHh7eNi9Jdmdts5bUPhdIPDw8vFt5X+XTpr95E6stVUT/xcPDw1vgtYdvssT84E62LykBnwQVPDw8vBlvdpTP2mCzhlYbGPDw8PCe4eUJbn6It5jFWgseHh7er/LOm1vtxrX3AY4CAx4eHt5azjkr47bJ9A1BBQ8PD2+NN5u6TcHvDRtR6wsPDw9vgXf+g7+9XpBvWXvl66i/h4eHh3fN+wap+ErfPvoijgAAAABJRU5ErkJggg==" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '死鬼去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+<script src="/node_modules/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"node_modules/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/node_modules/assets/shizuku.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"react":{"opacity":0.7},"log":false});</script></body>
+</html>

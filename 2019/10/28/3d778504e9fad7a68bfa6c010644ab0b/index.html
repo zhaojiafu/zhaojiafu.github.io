@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <link rel="canonical" href="https://zhaojiafu.github.io/2019/10/28/3d778504e9fad7a68bfa6c010644ab0b/">
+    
+    
+    <title>python 内置模块zip和enumerate的几个巧用学习随笔 | 赵家富的博客 | 保持好奇心</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="python模块">
+    <meta name="description" content="一、zip的简单介绍：zip() 函数用于将可迭代的对象作为参数，将对象中对应的元素打包成一个个元组，然后返回由这些元组组成的对象，这样做的好处是节约了不少的内存。 我们可以使用 list() 转换来输出列表。 如果各个迭代器的元素个数不一致，则返回列表长度与最短的对象相同，利用 * 号操作符，可以将元组解压为列表。 二、简单使用场景介绍：这个内置模块我还是看到一个别人写的博客中用到这个模块，然后">
+<meta name="keywords" content="python模块">
+<meta property="og:type" content="article">
+<meta property="og:title" content="python 内置模块zip和enumerate的几个巧用学习随笔">
+<meta property="og:url" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;2019&#x2F;10&#x2F;28&#x2F;3d778504e9fad7a68bfa6c010644ab0b&#x2F;index.html">
+<meta property="og:site_name" content="赵家富的博客">
+<meta property="og:description" content="一、zip的简单介绍：zip() 函数用于将可迭代的对象作为参数，将对象中对应的元素打包成一个个元组，然后返回由这些元组组成的对象，这样做的好处是节约了不少的内存。 我们可以使用 list() 转换来输出列表。 如果各个迭代器的元素个数不一致，则返回列表长度与最短的对象相同，利用 * 号操作符，可以将元组解压为列表。 二、简单使用场景介绍：这个内置模块我还是看到一个别人写的博客中用到这个模块，然后">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20191028112551973.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20191028114448512.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20191028114645303.png">
+<meta property="og:updated_time" content="2019-12-02T06:45:49.148Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20191028112551973.png">
+    
+    <link rel="shortcut icon" href="/img/cb2nm-5l9w0-001.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" target="_blank" rel="noopener" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/zhao.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">赵家富</h5>
+          <a href="mailto:530519174@qq.com" target="_blank" rel="noopener" title="530519174@qq.com" class="mail">530519174@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                archives(所有)
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags/"  >
+                <i class="icon icon-lg icon-tags"></i>
+                tag(标签)
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories/"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories(分类)
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/zhaojiafu" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://blog.csdn.net/weixin_42081389" target="_blank" >
+                <i class="icon icon-lg icon-csdn"></i>
+                Csdn
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" target="_blank" rel="noopener" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+
+        <div class="flex-col header-title ellipsis">python 内置模块zip和enumerate的几个巧用学习随笔</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" target="_blank" rel="noopener" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" target="_blank" rel="noopener" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" target="_blank" rel="noopener" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+
+        <h1 class="title">python 内置模块zip和enumerate的几个巧用学习随笔
+        </h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2019-10-28T03:34:32.000Z" itemprop="datePublished" class="page-time">
+  2019-10-28
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/python%E6%A8%A1%E5%9D%97/">python模块</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#一、zip的简单介绍："><span class="post-toc-number">1.</span> <span class="post-toc-text">一、zip的简单介绍：</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#二、简单使用场景介绍："><span class="post-toc-number">2.</span> <span class="post-toc-text">二、简单使用场景介绍：</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#1、循环一个列表（获取对应的下表和值）："><span class="post-toc-number">2.1.</span> <span class="post-toc-text">1、循环一个列表（获取对应的下表和值）：</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#2、循环俩个列表（这种我代码中用的比较多）："><span class="post-toc-number">2.2.</span> <span class="post-toc-text">2、循环俩个列表（这种我代码中用的比较多）：</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#3、zip（-）解压"><span class="post-toc-number">2.3.</span> <span class="post-toc-text">3、zip（*）解压</span></a></li></ol></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-3d778504e9fad7a68bfa6c010644ab0b"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">python 内置模块zip和enumerate的几个巧用学习随笔</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2019-10-28 11:34:32" datetime="2019-10-28T03:34:32.000Z"  itemprop="datePublished">2019-10-28</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/python%E6%A8%A1%E5%9D%97/">python模块</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h1 id="一、zip的简单介绍："><a href="#一、zip的简单介绍：" class="headerlink" title="一、zip的简单介绍："></a>一、zip的简单介绍：</h1><p>zip() 函数用于将可迭代的对象作为参数，将对象中对应的元素打包成一个个元组，然后返回由这些元组组成的对象，这样做的好处是节约了不少的内存。</p>
+<p>我们可以使用 list() 转换来输出列表。</p>
+<p>如果各个迭代器的元素个数不一致，则返回列表长度与最短的对象相同，利用 * 号操作符，可以将元组解压为列表。</p>
+<h1 id="二、简单使用场景介绍："><a href="#二、简单使用场景介绍：" class="headerlink" title="二、简单使用场景介绍："></a>二、简单使用场景介绍：</h1><p>这个内置模块我还是看到一个别人写的博客中用到这个模块，然后不太明白，就搜了下简单使用，不过感觉还不错，对于爬虫提取数据的时候，确实有用，下面我举几个我以后工作中会用到的小例子：</p>
+<h2 id="1、循环一个列表（获取对应的下表和值）："><a href="#1、循环一个列表（获取对应的下表和值）：" class="headerlink" title="1、循环一个列表（获取对应的下表和值）："></a>1、循环一个列表（获取对应的下表和值）：</h2><p>如果是之前，我会使用循环的时候，然后使用一个变量num作为一个递增当作下标。</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="comment"># 1、获取对应的列表</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="comment"># 我之前的用法</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">list_demo1 = [<span class="string">'https://mp.csdn.net/mdeditor/102776886'</span>+ str(i) <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">100000</span>)]</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">start_time = time.time()</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">num = <span class="number">0</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> list_demo1:</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">    print(num,i)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">    num += <span class="number">1</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">end_time = time.time()</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">print(end_time-start_time)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line"><span class="comment"># 0.4557325839996338</span></span></pre></td></tr></table></figure>
+<p>使用zip，因为使用的range循环模拟真实场景，所以次数要多一点，不然时间间隔看不出来效果，效率差不多，不过我感觉zip返回的是个压缩，如果过大，我感觉直接遍历就行，不用使用list转化了。</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="comment"># 我使用zip的用法</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">list_demo1 = [<span class="string">'https://mp.csdn.net/mdeditor/102776886'</span> + str(i) <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">100000</span>)]</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">start_time = time.time()</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">index_list = (i <span class="keyword">for</span> i <span class="keyword">in</span> range(len(list_demo1)))</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> num, i <span class="keyword">in</span> zip(index_list, list_demo1):</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">    print(num, i)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">end_time = time.time()</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">print(end_time - start_time)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line"><span class="comment"># 0.42674970626831055</span></span></pre></td></tr></table></figure>
+
+<p>如果想要一个列表list,里面是元组，也可以使用enumerate内置模块，自动配置下标，就是比zip上面的方法稍微满一点，不过这个如果只是需要下标，这个内存最简单。</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="comment"># # 我使用zip的用法</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">list_demo1 = [<span class="string">'https://mp.csdn.net/mdeditor/102776886'</span> + str(i) <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">100000</span>)]</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">start_time = time.time()</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">result = enumerate(list_demo1)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> result:</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">    print(i)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">end_time = time.time()</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">print(end_time - start_time)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line"><span class="comment"># 0.627619743347168</span></span></pre></td></tr></table></figure>
+
+
+<h2 id="2、循环俩个列表（这种我代码中用的比较多）："><a href="#2、循环俩个列表（这种我代码中用的比较多）：" class="headerlink" title="2、循环俩个列表（这种我代码中用的比较多）："></a>2、循环俩个列表（这种我代码中用的比较多）：</h2><p>需求：俩个list，需要对应的下标位置的元素，需要拼接成一个元素，比如以爬取的一次IP和端口号为例吧：</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">re_ip_address = [<span class="string">'115.231.5.230'</span>, <span class="string">'114.239.147.135'</span>, <span class="string">'123.163.97.18'</span>, <span class="string">'223.243.255.167'</span>, <span class="string">'121.232.148.178'</span>,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">                 <span class="string">'121.233.109.15'</span>, <span class="string">'114.239.250.93'</span>, <span class="string">'58.23.230.24'</span>, <span class="string">'220.168.52.245'</span>, <span class="string">'183.166.102.92'</span>,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">                 <span class="string">'219.159.38.209'</span>, <span class="string">'47.100.21.174'</span>, <span class="string">'163.204.245.172'</span>, <span class="string">'118.180.166.195'</span>, <span class="string">'182.35.86.221'</span>]</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">re_port = [<span class="string">'44524'</span>, <span class="string">'9999'</span>, <span class="string">'9999'</span>, <span class="string">'65309'</span>, <span class="string">'9000'</span>, <span class="string">'9999'</span>, <span class="string">'9999'</span>, <span class="string">'8118'</span>, <span class="string">'39107'</span>, <span class="string">'9999'</span>, <span class="string">'56210'</span>, <span class="string">'8021'</span>, <span class="string">'9999'</span>,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">           <span class="string">'8060'</span>, <span class="string">'9999'</span>]</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> ip, port <span class="keyword">in</span> zip(re_ip_address, re_port):</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">    print(ip + <span class="string">':'</span> + port)</span></pre></td></tr></table></figure>
+<p>打印的就是这种的。这种方法很方便，不然循环提取一个html中的a标签的text和href，之前我都是提取a标签，比如，现在就可以使用xpath提取一个a标签的list和href的list，然后使用这个，我感觉效率肯定比之前一个一个遍历再提取快的多。如果这种有时候一个项目提取次数要达到几百万甚至上千万，效率和节省的时间就体现出来了。</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/20191028112551973.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+
+
+<p>下面写下我之前用的方法：</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="comment"># 用下标方法，循环俩个list</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">re_ip_address = [<span class="string">'115.231.5.230'</span>, <span class="string">'114.239.147.135'</span>, <span class="string">'123.163.97.18'</span>, <span class="string">'223.243.255.167'</span>, <span class="string">'121.232.148.178'</span>,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">                 <span class="string">'121.233.109.15'</span>, <span class="string">'114.239.250.93'</span>, <span class="string">'58.23.230.24'</span>, <span class="string">'220.168.52.245'</span>, <span class="string">'183.166.102.92'</span>,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">                 <span class="string">'219.159.38.209'</span>, <span class="string">'47.100.21.174'</span>, <span class="string">'163.204.245.172'</span>, <span class="string">'118.180.166.195'</span>, <span class="string">'182.35.86.221'</span>]</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">re_port = [<span class="string">'44524'</span>, <span class="string">'9999'</span>, <span class="string">'9999'</span>, <span class="string">'65309'</span>, <span class="string">'9000'</span>, <span class="string">'9999'</span>, <span class="string">'9999'</span>, <span class="string">'8118'</span>, <span class="string">'39107'</span>, <span class="string">'9999'</span>, <span class="string">'56210'</span>, <span class="string">'8021'</span>, <span class="string">'9999'</span>,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">           <span class="string">'8060'</span>, <span class="string">'9999'</span>]</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(len(re_ip_address)):</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">    ip = re_ip_address[i]</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">    port = re_port[i]</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">    ip_one = ip + <span class="string">":"</span> + port</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">    print(<span class="string">'ip_one'</span>, ip_one)</span></pre></td></tr></table></figure>
+
+
+<h2 id="3、zip（-）解压"><a href="#3、zip（-）解压" class="headerlink" title="3、zip（*）解压"></a>3、zip（*）解压</h2><p>这个功能只是把之前的zip压缩的列表，返回成元组tuple类型返回，我自我感觉目前没有什么用，需要我直接tuple换就行了。</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">re_ip_address = [<span class="string">'115.231.5.230'</span>, <span class="string">'114.239.147.135'</span>]</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">re_port = [<span class="string">'44524'</span>, <span class="string">'9999'</span>]</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">result1 = zip(re_ip_address, re_port)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">result2 = zip(* result1)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">print(<span class="string">'result2'</span>,result2)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">print(<span class="string">'result2'</span>,list(result2))</span></pre></td></tr></table></figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/20191028114448512.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+
+
+<p>直接tuple我感觉更简单：</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">re_ip_address = [<span class="string">'115.231.5.230'</span>, <span class="string">'114.239.147.135'</span>]</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">re_port = [<span class="string">'44524'</span>, <span class="string">'9999'</span>]</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">result = [tuple(re_ip_address),tuple(re_port)]</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">print(<span class="string">'result2'</span>, result)</span></pre></td></tr></table></figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/20191028114645303.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2019-12-02T06:45:49.148Z" itemprop="dateUpdated">2019-12-02 14:45:49</time>
+</span><br>
+
+
+        
+        这里可以写作者留言，标签和 hexo 中所有变量及辅助函数等均可调用，示例：<a href="/2019/10/28/3d778504e9fad7a68bfa6c010644ab0b/" target="_blank" rel="external">https://zhaojiafu.github.io/2019/10/28/3d778504e9fad7a68bfa6c010644ab0b/</a>
+        
+    </div>
+    
+    <footer>
+        <a href="https://zhaojiafu.github.io">
+            <img src="/img/zhao.jpg" alt="赵家富">
+            赵家富
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" target="_blank" rel="noopener" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python%E6%A8%A1%E5%9D%97/" rel="tag">python模块</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://zhaojiafu.github.io/2019/10/28/3d778504e9fad7a68bfa6c010644ab0b/&title=《python 内置模块zip和enumerate的几个巧用学习随笔》 — 赵家富的博客&pic=https://zhaojiafu.github.io/img/zhao.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" target="_blank" rel="noopener" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://zhaojiafu.github.io/2019/10/28/3d778504e9fad7a68bfa6c010644ab0b/&title=《python 内置模块zip和enumerate的几个巧用学习随笔》 — 赵家富的博客&source=感觉无从下手的时候，问自己“不难，要你干啥？”" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://zhaojiafu.github.io/2019/10/28/3d778504e9fad7a68bfa6c010644ab0b/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《python 内置模块zip和enumerate的几个巧用学习随笔》 — 赵家富的博客&url=https://zhaojiafu.github.io/2019/10/28/3d778504e9fad7a68bfa6c010644ab0b/&via=https://zhaojiafu.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://zhaojiafu.github.io/2019/10/28/3d778504e9fad7a68bfa6c010644ab0b/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" target="_blank" rel="noopener" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2019/10/29/e1e1342c2e41ec2aa23721fee073deff/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">杭州垃圾分类简图：</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2019/10/24/5b3fe68fa6e71fd2f7fabee9a573f868/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">python执行系统命令的方法总结</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<section class="comments" id="comments">
+    <div id="gitalk-container"></div>
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+        var id = location.pathname
+        if (location.pathname.length > 50) {
+          id = location.pathname.replace(/\/\d+\/\d+\/\d+\//, '').replace('/', '').substring(0, 50)
+        }
+        const gitalk = new Gitalk({
+          clientID: '388d0a78cda30f118f86',
+          clientSecret: '2c64b34cc20f23d768dffff64acb8c2ee02c3bee',
+          repo: 'https://zhaojiafu.github.io/',
+          owner: 'zjf',
+          admin: ['zjf'],
+          id: id,      // Ensure uniqueness and length less than 50
+          title: document.title.split('|')[0],
+          distractionFreeMode: false  // Facebook-like distraction free mode
+        })
+
+        gitalk.render('gitalk-container')
+    </script>
+</section>
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;" target="_blank" rel="noopener"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢大爷~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.jpg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.jpg" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+            <span>博客内容遵循 <a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+        <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=0 height=0 src="http://music.163.com/song/media/outer/url?id=1369798757&auto=1"></iframe>
+
+    </div>
+    <div class="bottom">
+        <p><span>赵家富 &copy; 2019</span>
+            <span>
+                
+
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" target="_blank" rel="noopener" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://zhaojiafu.github.io/2019/10/28/3d778504e9fad7a68bfa6c010644ab0b/&title=《python 内置模块zip和enumerate的几个巧用学习随笔》 — 赵家富的博客&pic=https://zhaojiafu.github.io/img/zhao.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" target="_blank" rel="noopener" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://zhaojiafu.github.io/2019/10/28/3d778504e9fad7a68bfa6c010644ab0b/&title=《python 内置模块zip和enumerate的几个巧用学习随笔》 — 赵家富的博客&source=感觉无从下手的时候，问自己“不难，要你干啥？”" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://zhaojiafu.github.io/2019/10/28/3d778504e9fad7a68bfa6c010644ab0b/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《python 内置模块zip和enumerate的几个巧用学习随笔》 — 赵家富的博客&url=https://zhaojiafu.github.io/2019/10/28/3d778504e9fad7a68bfa6c010644ab0b/&via=https://zhaojiafu.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://zhaojiafu.github.io/2019/10/28/3d778504e9fad7a68bfa6c010644ab0b/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;" target="_blank" rel="noopener"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACqklEQVR42u3ay2okMQwF0Pz/T2e2A0O675XsSg+cWoVQDx8HJEfS11d8ff9z/f37n+58/ezrryS/P3bh4eHhrZeeL/E1NWfnb8jXjIeHh3eb174uWXqyiXn6STYCDw8P7zN5s2D9+tn2SI2Hh4f3P/I2+KTEkLwNDw8P73d5STFi8+HZYf3RWgseHh5ezMu7SJ/z85X+Hh4eHt66q95e7UBAXt6drRYPDw/vBq9tX7XNrX0a2BSO8fDw8O7x2hPp/vDdDhO0SWJ14MbDw8OLy7j7BtiseJEPYM02Ag8PD+8Gb5ZJklGAUwNYbclj2OXDw8PDC3ibT+ak/OCeJ62oPYaHh4d3gdcerHPqrBC8aYkd+L8BDw8PL+bNCgezgJ4H+jzNFCkBDw8P7xovaf9vruSd+UjBm3Xi4eHhHeVtwneyEadKvcNyCR4eHt413mbsqT7gjsrE+bPR3wEPDw9vzUsaUXm4T0quedDfFETw8PDwbvPOLmi26HaY4M09eHh4eBd4eXp4fdg9NRq1eU9dpcbDw8Mb8fKhgU3InqWB/Ij/4/14eHh413j7cD8L3MmAQnt8x8PDw3uetw/xs1ZWWxqOirl4eHh413j5gvJEkjerNoMCb57Fw8PDu8xLXrQvHOTb0Xb/61M/Hh4e3oiXf6ZtWe2TwYxXZD88PDy8Ea9tgO2b/fvScHG8xsPDw7vAez7ct+OqbXKqD9l4eHh4Je+7vPJCwKy4kDCSzY3mC/Dw8PBGvFOvzpteSYtrdk+eSPDw8PD2vP2yTqWTJKkkW4yHh4f3DG/Wc58VatsvtqkLDw8P73N4eSl21taabV8xQICHh4f3OO9UsJ69uT5M4+Hh4V3mJQG6vScP/e1IQbFNeHh4eBd4eYjf35O3r/Jm27HRATw8PLz3vD85vg0BqVP9AgAAAABJRU5ErkJggg==" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '死鬼去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+<script src="/node_modules/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"node_modules/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/node_modules/assets/shizuku.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"react":{"opacity":0.7},"log":false});</script></body>
+</html>

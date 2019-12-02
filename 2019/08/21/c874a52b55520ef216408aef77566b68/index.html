@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <link rel="canonical" href="https://zhaojiafu.github.io/2019/08/21/c874a52b55520ef216408aef77566b68/">
+    
+    
+    <title>python 使用execjs执行接js解密时报错execjs UnicodeDecodeError_ &#39;gbk&#39; codec can&#39;t decode byte | 赵家富的博客 | 保持好奇心</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="JS反反爬">
+    <meta name="description" content="@[toc] 需求：python使用execjs执行解密js代码时候，发现报错，然后经过俩个多小时最终找到问题所在，解决问题。                                                                                              在这里插入图片描述                一、报错内容报错内容：Unicod">
+<meta name="keywords" content="JS反反爬">
+<meta property="og:type" content="article">
+<meta property="og:title" content="python 使用execjs执行接js解密时报错execjs UnicodeDecodeError_ &#39;gbk&#39; codec can&#39;t decode byte">
+<meta property="og:url" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;2019&#x2F;08&#x2F;21&#x2F;c874a52b55520ef216408aef77566b68&#x2F;index.html">
+<meta property="og:site_name" content="赵家富的博客">
+<meta property="og:description" content="@[toc] 需求：python使用execjs执行解密js代码时候，发现报错，然后经过俩个多小时最终找到问题所在，解决问题。                                                                                              在这里插入图片描述                一、报错内容报错内容：Unicod">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;2019082118564840.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20190821185315868.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20190821185455556.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20190821185849406.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20191122092944900.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20191122093656262.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20190821190008668.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20190821190202332.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20190822162618700.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20190822163012262.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20190822163841373.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20190822163303517.png">
+<meta property="og:updated_time" content="2019-12-02T07:00:36.871Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;2019082118564840.png">
+    
+    <link rel="shortcut icon" href="/img/cb2nm-5l9w0-001.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" target="_blank" rel="noopener" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/zhao.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">赵家富</h5>
+          <a href="mailto:530519174@qq.com" target="_blank" rel="noopener" title="530519174@qq.com" class="mail">530519174@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                archives(所有)
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags/"  >
+                <i class="icon icon-lg icon-tags"></i>
+                tag(标签)
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories/"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories(分类)
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/zhaojiafu" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://blog.csdn.net/weixin_42081389" target="_blank" >
+                <i class="icon icon-lg icon-csdn"></i>
+                Csdn
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" target="_blank" rel="noopener" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+
+        <div class="flex-col header-title ellipsis">python 使用execjs执行接js解密时报错execjs UnicodeDecodeError_ &#39;gbk&#39; codec can&#39;t decode byte</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" target="_blank" rel="noopener" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" target="_blank" rel="noopener" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" target="_blank" rel="noopener" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+
+        <h1 class="title">python 使用execjs执行接js解密时报错execjs UnicodeDecodeError_ &#39;gbk&#39; codec can&#39;t decode byte
+        </h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2019-08-21T03:34:32.000Z" itemprop="datePublished" class="page-time">
+  2019-08-21
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/JS%E5%8F%8D%E5%8F%8D%E7%88%AC/">JS反反爬</a><ul class="article-category-list-child"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/JS%E5%8F%8D%E5%8F%8D%E7%88%AC/python%E7%88%AC%E8%99%AB/">python爬虫</a></li></ul></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#需求："><span class="post-toc-number">1.</span> <span class="post-toc-text">需求：</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#一、报错内容"><span class="post-toc-number">2.</span> <span class="post-toc-text">一、报错内容</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#二、解决方法1："><span class="post-toc-number">3.</span> <span class="post-toc-text">二、解决方法1：</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#将js的fromCharCode用python-chr函数处理报错地方。"><span class="post-toc-number">3.1.</span> <span class="post-toc-text">将js的fromCharCode用python chr函数处理报错地方。</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#三、解决方法2、"><span class="post-toc-number">4.</span> <span class="post-toc-text">三、解决方法2、</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#解决步骤"><span class="post-toc-number">4.1.</span> <span class="post-toc-text">解决步骤</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#1、进去错误这个D-tools-Python3-6-lib-subprocess-py文件"><span class="post-toc-number">4.1.1.</span> <span class="post-toc-text">1、进去错误这个D:\tools\Python3.6\lib\subprocess.py文件</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#2、搜索：encoding"><span class="post-toc-number">4.1.2.</span> <span class="post-toc-text">2、搜索：encoding=</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#3、修改编码格式为utf-8"><span class="post-toc-number">4.1.3.</span> <span class="post-toc-text">3、修改编码格式为utf-8</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#注意事项："><span class="post-toc-number">4.1.3.1.</span> <span class="post-toc-text">注意事项：</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#至此修改完毕，可以尝试运行了"><span class="post-toc-number">4.1.4.</span> <span class="post-toc-text">至此修改完毕，可以尝试运行了</span></a></li></ol></li></ol></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-c874a52b55520ef216408aef77566b68"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">python 使用execjs执行接js解密时报错execjs UnicodeDecodeError_ 'gbk' codec can't decode byte</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2019-08-21 11:34:32" datetime="2019-08-21T03:34:32.000Z"  itemprop="datePublished">2019-08-21</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/JS%E5%8F%8D%E5%8F%8D%E7%88%AC/">JS反反爬</a><ul class="article-category-list-child"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/JS%E5%8F%8D%E5%8F%8D%E7%88%AC/python%E7%88%AC%E8%99%AB/">python爬虫</a></li></ul></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p>﻿<br>@[toc]</p>
+<h1 id="需求："><a href="#需求：" class="headerlink" title="需求："></a>需求：</h1><p>python使用execjs执行解密js代码时候，发现报错，然后经过俩个多小时最终找到问题所在，解决问题。</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/2019082118564840.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+
+
+<h1 id="一、报错内容"><a href="#一、报错内容" class="headerlink" title="一、报错内容"></a>一、报错内容</h1><p>报错内容：<br>UnicodeDecodeError: ‘gbk’ codec can’t decode byte 0xa1 in position 26: illegal multibyte sequence</p>
+<p>具体：</p>
+<pre><code>Exception in thread Thread-1:
+Traceback (most recent call last):
+  File &quot;D:\tools\Python3.6\lib\threading.py&quot;, line 916, in _bootstrap_inner
+    self.run()
+  File &quot;D:\tools\Python3.6\lib\threading.py&quot;, line 864, in run
+    self._target(*self._args, **self._kwargs)
+  File &quot;D:\tools\Python3.6\lib\subprocess.py&quot;, line 1083, in _readerthread
+    buffer.append(fh.read())
+UnicodeDecodeError: &apos;gbk&apos; codec can&apos;t decode byte 0xa1 in position 26: illegal multibyte sequence
+
+Traceback (most recent call last):
+  File &quot;D:/zjf_workspace/003、自己测试用的/002加密和验证码破解/02-js加密破解/022、梦幻西游藏宝阁/执行.py&quot;, line 11, in &lt;module&gt;
+    result = ct.call(&apos;decode_desc&apos;, _0x1c0cdf)
+  File &quot;D:\tools\Python3.6\lib\site-packages\execjs\_abstract_runtime_context.py&quot;, line 37, in call
+    return self._call(name, *args)
+  File &quot;D:\tools\Python3.6\lib\site-packages\execjs\_external_runtime.py&quot;, line 92, in _call
+    return self._eval(&quot;{identifier}.apply(this, {args})&quot;.format(identifier=identifier, args=args))
+  File &quot;D:\tools\Python3.6\lib\site-packages\execjs\_external_runtime.py&quot;, line 78, in _eval
+    return self.exec_(code)
+  File &quot;D:\tools\Python3.6\lib\site-packages\execjs\_abstract_runtime_context.py&quot;, line 18, in exec_
+    return self._exec_(source)
+  File &quot;D:\tools\Python3.6\lib\site-packages\execjs\_external_runtime.py&quot;, line 87, in _exec_
+    output = self._exec_with_pipe(source)
+  File &quot;D:\tools\Python3.6\lib\site-packages\execjs\_external_runtime.py&quot;, line 103, in _exec_with_pipe
+    stdoutdata, stderrdata = p.communicate(input=input)
+  File &quot;D:\tools\Python3.6\lib\subprocess.py&quot;, line 863, in communicate
+    stdout, stderr = self._communicate(input, endtime, timeout)
+  File &quot;D:\tools\Python3.6\lib\subprocess.py&quot;, line 1133, in _communicate
+    stdout = stdout[0]
+IndexError: list index out of range</code></pre><h1 id="二、解决方法1："><a href="#二、解决方法1：" class="headerlink" title="二、解决方法1："></a>二、解决方法1：</h1><p><strong>用python实现内部错误的地方，主要我还是找到了。</strong></p>
+<p>问题起源，代码放在浏览器中直接执行代码和nodejs中执行也是可以的，就是python的execjs不能执行。<br> 所以，这就让我纳闷了，明明就破解出来了，然后各种谷歌搜索，寻找答案：最终结果是，python的execjs只支持一些常规的js代码，我哪里知道什么是常规，别慌，用笨方法一步一步return js函数的主要步骤，最终让我找到了原因，用python使用Unicode反编译转中文报错，可能就认为这个不是常规的语句吧，把需要编译的数组返回的python中，使用python chr()函数，自己用python实现就可以了，（这个问题弄了将近我俩个小时才找到原因。。。伤心<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/20190821185315868.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>）</p>
+<p>知道了一个python 执行execjs不能识别的问题，</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/20190821185455556.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+
+<p>错误图</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/20190821185849406.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+
+<h2 id="将js的fromCharCode用python-chr函数处理报错地方。"><a href="#将js的fromCharCode用python-chr函数处理报错地方。" class="headerlink" title="将js的fromCharCode用python chr函数处理报错地方。"></a>将js的fromCharCode用python chr函数处理报错地方。</h2><p>==主要的代码逻辑(后续补充)：==</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>(<span class="string">'result111'</span>, result)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">    <span class="comment"># result111 ['100011', '1110010', '111101101001001', '111111010100111', '100000', '110001', '110010', '110000', '100000', '100000', '100111010010100', '1000100001001100', '100000', '110110000110100', '100011', '1110010', '100011', '1110010', '100111100100100', '101101110110011', '100000', '101011', '110011', '111001', '110110', '100000', '101010001111101', '100111000101101', '100000', '101011', '110110', '111000', '110000', '100011', '1110010', '1000000000010000', '100111001000101', '101111010100110', '100000', '110010', '110000', '110111', '100000', '100000', '100111111101110', '111010000000110', '101100100110001', '1000110100100101', '100000', '110001', '110101100100001', '100011', '1110010', '1001010100111011', '111000010111100', '111101101001001', '111111010100111', '100000', '110001', '110001', '100000', '100000', '1001010101110110', '101110101001100', '101101110011101', '111011111110011', '100000', '101100100101010', '1001011000110011', '111011111110011', '11000000000001', '100000', '111111010100010', '111001110011011', '111010001011001', '100011', '1011001', '100011', '1110010', '100011', '1100011', '110100', '1000100', '1000010', '1000001', '1000110', '110100', '111001001111001', '110010101001000', '1111111100011010', '100011', '1100011', '110100', '1000100', '1000010', '1000001', '1000110', '110100', '110010111100000', '111111010100111', '101001000101011', '1001011001010000', '101001000110110', '100011', '1011001', '100011', '1110010', '100011', '1000111', '101111100000000', '1000111111010000', '101101101010100', '110010101110000', '1111111100011010', '110100', '101101101010100', '101111', '110100', '101101101010100', '100000', '101000', '101001111001100', '110100', '101101101010100', '101001', '100011', '1000111', '100011', '1110010', '111101100100110', '111011111110011', '111010', '100000', '100111101010011', '1000110100101000', '100000', '101011', '110001', '100000', '100111100100100', '101101110110011', '100000', '101011', '110001', '101110', '110101', '100011', '1101110', '100011', '1000111', '100011', '1110010', '111101100100110', '111011111110011', '111010', '100000', '101001010011011', '1001000111001111', '100000', '101011', '110001', '100000', '110110000010100', '1000100001000000', '100000', '101011', '110001', '110000', '100011', '1101110', '100011', '1000111', '100011', '1110010', '111101100100110', '111011111110011', '111010', '100000', '101001010011011', '1001000111001111', '100000', '101011', '110001', '100000', '110110000010100', '1000100001000000', '100000', '101011', '110001', '110000', '100011', '1101110', '100011', '1000111', '100011', '1110010', '111101100100110', '111011111110011', '111010', '100000', '110110000010100', '1000100001000000', '100000', '101011', '110001', '110101', '100000', '1001000000011111', '101111010100110', '100000', '101011', '110001', '101110', '110101', '100011', '1101110', '100011', '1000111', '100011', '1110010', '110011000011111', '100111101001101', '1111111100011010', '1001000000011111', '101111010100110', '100000', '101011', '110010', '100011', '1101110', '100011', '1000111', '100011', '1110010', '110011000011111', '111011011111000', '100111010010010', '101010000001000', '1111111100011010', '100111101010011', '1000110100101000', '100000', '101011', '110010', '100011', '1110010', '100011', '1100011', '1000101', '1000101', '111000', '110010', '1000101', '1000101', '111101100100110', '111011111110011', '111111011000100', '101010000001000', '111010', '100000', '101100110000010', '110000100001111', '1001000111010001', '111101110001101', '111101100100110', '111011111110011', '100011', '1110010', '1001010111101000', '110110100111110', '110011101100001', '100111011110110', '1111111100011010', '1000001010110001', '110011110011100', '101110001110001', '100000', '100011', '1110010', '1001000011101000', '100111101001101', '110011101100001', '100111011110110', '1111111100011010', '110101101100110', '101011001101000', '100000', '100011', '1110010', '101100010011110', '101001010100000', '1001010111101000', '110110100111110', '110001010000000', '1000000011111101', '101100110000010', '110000100001111', '1001000111010001', '111101110001101', '111101101001001', '111111010100111', '110100', '111111010100111', '100011', '1011001', '100011', '1110010', '100011', '1010111', '101001000110110', '1001000000100000', '1000000000000101', '1111111100011010', '11000001010000', '110001100011010', '110000011000101', '1000110100011101', '1000101111111010', '10110000', '100011', '1011001', '100000', '100000']</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">    _0x36ab38 = []</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> result:</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">        <span class="built_in">print</span>(<span class="string">'int(i, 2)'</span>,i,int(i, 2))</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">        _0x36ab38.append(chr(int(i, 2)))</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">    <span class="built_in">return</span> <span class="string">''</span>.join(_0x36ab38)</span></pre></td></tr></table></figure>
+<p>其实，int(i, 2)就是将二进制转换成十进制，然后将十进制，使用chr()函数转换为正常的中文字符或者其他字符串。</p>
+<p>下面是使用window自带的计算器，二进制转换的结果。和代码的比对。</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/20191122092944900.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+<p>为了是看到的理解的更清楚，我这里使用python的chr和js的fromCharCode函数将Unicode编码转换成汉语和汉语的标点符号再或者其他语言字符都可以的。<br>下面是我特意把对比图弄出来，方便不懂得了解下。其实这个就是我当时找到python执行execjs不支持的地方，可能有其他更简单方法，只不过我没有找到。如果帮助到你可以给我点个赞哈，加油！</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/20191122093656262.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+
+<p>python实现之后效果图</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/20190821190008668.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+
+<p>高兴，美滋滋，晚上能多吃个馒头，哈哈</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/20190821190202332.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+
+
+<h1 id="三、解决方法2、"><a href="#三、解决方法2、" class="headerlink" title="三、解决方法2、"></a>三、解决方法2、</h1><p>修改编码文件的默认编码格式为utf-8,默认window下是gbk。</p>
+<p>这个是我再次遇见错误，特意来补充一下：</p>
+<pre><code>Exception in thread Thread-1:
+Traceback (most recent call last):
+  File &quot;D:\tools\Python3.6\lib\threading.py&quot;, line 916, in _bootstrap_inner
+    self.run()
+  File &quot;D:\tools\Python3.6\lib\threading.py&quot;, line 864, in run
+    self._target(*self._args, **self._kwargs)
+  File &quot;D:\tools\Python3.6\lib\subprocess.py&quot;, line 1083, in _readerthread
+    buffer.append(fh.read())
+UnicodeDecodeError: &apos;gbk&apos; codec can&apos;t decode byte 0xb4 in position 211: illegal multibyte sequence
+
+Traceback (most recent call last):
+  File &quot;D:/zjf_workspace/003、自己测试用的/002加密和验证码破解/02-js加密破解/023、烯牛数据/执行.py&quot;, line 44, in &lt;module&gt;
+    result_decode = get_decode(data)
+  File &quot;D:/zjf_workspace/003、自己测试用的/002加密和验证码破解/02-js加密破解/023、烯牛数据/执行.py&quot;, line 34, in get_decode
+    result_decode = ct.call(&apos;decode_get_data&apos;, data)
+  File &quot;D:\tools\Python3.6\lib\site-packages\execjs\_abstract_runtime_context.py&quot;, line 37, in call
+    return self._call(name, *args)
+  File &quot;D:\tools\Python3.6\lib\site-packages\execjs\_external_runtime.py&quot;, line 92, in _call
+    return self._eval(&quot;{identifier}.apply(this, {args})&quot;.format(identifier=identifier, args=args))
+  File &quot;D:\tools\Python3.6\lib\site-packages\execjs\_external_runtime.py&quot;, line 78, in _eval
+    return self.exec_(code)
+  File &quot;D:\tools\Python3.6\lib\site-packages\execjs\_abstract_runtime_context.py&quot;, line 18, in exec_
+    return self._exec_(source)
+  File &quot;D:\tools\Python3.6\lib\site-packages\execjs\_external_runtime.py&quot;, line 87, in _exec_
+    output = self._exec_with_pipe(source)
+  File &quot;D:\tools\Python3.6\lib\site-packages\execjs\_external_runtime.py&quot;, line 103, in _exec_with_pipe
+    stdoutdata, stderrdata = p.communicate(input=input)
+  File &quot;D:\tools\Python3.6\lib\subprocess.py&quot;, line 863, in communicate
+    stdout, stderr = self._communicate(input, endtime, timeout)
+  File &quot;D:\tools\Python3.6\lib\subprocess.py&quot;, line 1133, in _communicate
+    stdout = stdout[0]
+IndexError: list index out of range</code></pre><h2 id="解决步骤"><a href="#解决步骤" class="headerlink" title="解决步骤"></a>解决步骤</h2><h3 id="1、进去错误这个D-tools-Python3-6-lib-subprocess-py文件"><a href="#1、进去错误这个D-tools-Python3-6-lib-subprocess-py文件" class="headerlink" title="1、进去错误这个D:\tools\Python3.6\lib\subprocess.py文件"></a>1、进去错误这个D:\tools\Python3.6\lib\subprocess.py文件</h3><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/20190822162618700.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+
+
+<h3 id="2、搜索：encoding"><a href="#2、搜索：encoding" class="headerlink" title="2、搜索：encoding="></a>2、搜索：encoding=</h3><p>这个搜索方式，是我找了好一会才懂，所以记录下来，大家可以参考下。</p>
+<h3 id="3、修改编码格式为utf-8"><a href="#3、修改编码格式为utf-8" class="headerlink" title="3、修改编码格式为utf-8"></a>3、修改编码格式为utf-8</h3><h4 id="注意事项："><a href="#注意事项：" class="headerlink" title="注意事项："></a>注意事项：</h4><p> <strong>建议备份一行，毕竟修改的是模块的源码，万一弄错了好改回来。敲代码最忌不懂，乱改还不保留，这样很招人烦的，尤其团队合作时。</strong></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/20190822163012262.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+<h3 id="至此修改完毕，可以尝试运行了"><a href="#至此修改完毕，可以尝试运行了" class="headerlink" title="至此修改完毕，可以尝试运行了"></a>至此修改完毕，可以尝试运行了</h3><p>看我的运行，没有错误了，当然这个不是我第一个发现的，这个方法是我觉得之前应该有人遇到过，不过第一个方法是自己当时没有搜到这个方法，自己一点一点断点调试出问题所在，然后用python重写实现的解密逻辑。这个比较简单，原博客我看到的也是一头雾水，因为我看到时，他的图片已经无法打开了，全凭感觉自己搜索的关键词修改，还好让我蒙对了，嘻嘻</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/20190822163841373.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/20190822163303517.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+
+<p>参考搜到的博客：<br><a href="https://www.twblogs.net/a/5c9fb281bd9eee5b1a06835a/zh-cn" target="_blank" rel="noopener">https://www.twblogs.net/a/5c9fb281bd9eee5b1a06835a/zh-cn</a></p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2019-12-02T07:00:36.871Z" itemprop="dateUpdated">2019-12-02 15:00:36</time>
+</span><br>
+
+
+        
+        这里可以写作者留言，标签和 hexo 中所有变量及辅助函数等均可调用，示例：<a href="/2019/08/21/c874a52b55520ef216408aef77566b68/" target="_blank" rel="external">https://zhaojiafu.github.io/2019/08/21/c874a52b55520ef216408aef77566b68/</a>
+        
+    </div>
+    
+    <footer>
+        <a href="https://zhaojiafu.github.io">
+            <img src="/img/zhao.jpg" alt="赵家富">
+            赵家富
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" target="_blank" rel="noopener" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JS%E5%8F%8D%E5%8F%8D%E7%88%AC/" rel="tag">JS反反爬</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://zhaojiafu.github.io/2019/08/21/c874a52b55520ef216408aef77566b68/&title=《python 使用execjs执行接js解密时报错execjs UnicodeDecodeError_ 'gbk' codec can't decode byte》 — 赵家富的博客&pic=https://zhaojiafu.github.io/img/zhao.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" target="_blank" rel="noopener" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://zhaojiafu.github.io/2019/08/21/c874a52b55520ef216408aef77566b68/&title=《python 使用execjs执行接js解密时报错execjs UnicodeDecodeError_ 'gbk' codec can't decode byte》 — 赵家富的博客&source=感觉无从下手的时候，问自己“不难，要你干啥？”" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://zhaojiafu.github.io/2019/08/21/c874a52b55520ef216408aef77566b68/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《python 使用execjs执行接js解密时报错execjs UnicodeDecodeError_ 'gbk' codec can't decode byte》 — 赵家富的博客&url=https://zhaojiafu.github.io/2019/08/21/c874a52b55520ef216408aef77566b68/&via=https://zhaojiafu.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://zhaojiafu.github.io/2019/08/21/c874a52b55520ef216408aef77566b68/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" target="_blank" rel="noopener" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2019/08/28/4e43a71e6cf8eb412ede54c6bd9c2c27/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">文件访问被拒绝XXX 你需要权限才能执行此操作你需要计算机管理员提供的权限才能对此文件进行更改</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2019/08/20/631ee538bd13e908439a70593365e051/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">爬虫解决--反调试之无限debugger</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<section class="comments" id="comments">
+    <div id="gitalk-container"></div>
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+        var id = location.pathname
+        if (location.pathname.length > 50) {
+          id = location.pathname.replace(/\/\d+\/\d+\/\d+\//, '').replace('/', '').substring(0, 50)
+        }
+        const gitalk = new Gitalk({
+          clientID: '388d0a78cda30f118f86',
+          clientSecret: '2c64b34cc20f23d768dffff64acb8c2ee02c3bee',
+          repo: 'https://zhaojiafu.github.io/',
+          owner: 'zjf',
+          admin: ['zjf'],
+          id: id,      // Ensure uniqueness and length less than 50
+          title: document.title.split('|')[0],
+          distractionFreeMode: false  // Facebook-like distraction free mode
+        })
+
+        gitalk.render('gitalk-container')
+    </script>
+</section>
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;" target="_blank" rel="noopener"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢大爷~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.jpg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.jpg" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+            <span>博客内容遵循 <a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+        <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=0 height=0 src="http://music.163.com/song/media/outer/url?id=1369798757&auto=1"></iframe>
+
+    </div>
+    <div class="bottom">
+        <p><span>赵家富 &copy; 2019</span>
+            <span>
+                
+
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" target="_blank" rel="noopener" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://zhaojiafu.github.io/2019/08/21/c874a52b55520ef216408aef77566b68/&title=《python 使用execjs执行接js解密时报错execjs UnicodeDecodeError_ 'gbk' codec can't decode byte》 — 赵家富的博客&pic=https://zhaojiafu.github.io/img/zhao.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" target="_blank" rel="noopener" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://zhaojiafu.github.io/2019/08/21/c874a52b55520ef216408aef77566b68/&title=《python 使用execjs执行接js解密时报错execjs UnicodeDecodeError_ 'gbk' codec can't decode byte》 — 赵家富的博客&source=感觉无从下手的时候，问自己“不难，要你干啥？”" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://zhaojiafu.github.io/2019/08/21/c874a52b55520ef216408aef77566b68/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《python 使用execjs执行接js解密时报错execjs UnicodeDecodeError_ 'gbk' codec can't decode byte》 — 赵家富的博客&url=https://zhaojiafu.github.io/2019/08/21/c874a52b55520ef216408aef77566b68/&via=https://zhaojiafu.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://zhaojiafu.github.io/2019/08/21/c874a52b55520ef216408aef77566b68/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;" target="_blank" rel="noopener"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACpklEQVR42u3aSW7DQAwEQP//0841ASynSQ4VByidBG9S6TAcN/l4xMfz21H9zPPtcfU7V999bBx4eHh4g1u/+rn8M+9vKzlPHlzhkeHh4eGt8ZIFOvlWwqg+lPxx4OHh4X0mL1/E81vsFQY8PDy8/8VLNs092GQLjoeHh3cnr3fTvTijuu3OHzEeHh7ePby8i/Q55yv9PTw8PLxxVz1f4vMwItkEV9tdl3eLh4eHt8DLF9xk85qAq6/kLbfLR4+Hh4d3lDdp4fcijEnoUI5O8PDw8NZ4ySY431hXX8lLTnmLj4eHh7fAyy+ZN7HKFw6ueACJh4eHd4jXa+f3YoKkzCQtt2jQCg8PD2+Nl2yOzy701UGBajDxAoyHh4e3wEsW4l5rqrdF7pWf8j8GPDw8vBav116qRgl5iNDLUaKUGg8PD+8QbzLeVH1MZwe5CrEFHh4e3i28ST9tgqmOdiWhBh4eHt79vPfFozpkkIe2vbZZoT+Gh4eH1+IlcW3exOoNS1VDjUKxwcPDw1vgTf72JwUjKTY5u9dyw8PDw9vg9Rb0vJXVG7Tq/T4eHh7eNq/XpJ9EG1Xk6Lp4eHh4y7xe8Fp9TNvx7ouKh4eHh3eUVx5gauUcvfb/vBTh4eHhbfN6Y1WTZn91PKuZteDh4eEt8MpTWuOjF4L0ygYeHh7eHu9sgyqPEk7FyuWKh4eHh3eI1xt+6jXMCvFrsbAVsmo8PDy8Iq/3tz9ZxOftsd67P87x8PDwFni9+KA6IFWlnjrHw8PD2+NVm/rz1lT13VFhwMPDw1vjzRtjE+okkvjlW3h4eHgfwJtEvckWfNL6utxS4+Hh4f0pbz5ekAccB4oKHh4e3hov3wrnxWA+OHVgiAEPDw9vgdcbbJpfLF/ce5tyPDw8vAXeF92Tac4CdylvAAAAAElFTkSuQmCC" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '死鬼去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+<script src="/node_modules/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"node_modules/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/node_modules/assets/shizuku.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"react":{"opacity":0.7},"log":false});</script></body>
+</html>

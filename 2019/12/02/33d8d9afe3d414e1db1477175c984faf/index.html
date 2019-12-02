@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <link rel="canonical" href="https://zhaojiafu.github.io/2019/12/02/33d8d9afe3d414e1db1477175c984faf/">
+    
+    
+    <title>shell编程学习笔记之一--学习第六天Linux下使用tar 进行全备份和增量备份） | 赵家富的博客 | 保持好奇心</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="shell编程">
+    <meta name="description" content="一、说明：打算从B站学习一下shell编程，从很多的课程视频中，挑选了一个：B站视频地址：打算开始学习着做着笔记：这个需要一些Linux基础，还有vim的，如果不太熟练，可以看下我之前的整理的俩个博客： 1、整理一些linux命令必须熟练掌握常的命令（复习+扩展学习Linux命令）整理一些linux命令必须熟练掌握常的命令（复习+扩展学习Linux命令） 2、Linux下vim&#x2F;vi 编辑器 命令">
+<meta name="keywords" content="shell编程">
+<meta property="og:type" content="article">
+<meta property="og:title" content="shell编程学习笔记之一--学习第六天Linux下使用tar 进行全备份和增量备份）">
+<meta property="og:url" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;2019&#x2F;12&#x2F;02&#x2F;33d8d9afe3d414e1db1477175c984faf&#x2F;index.html">
+<meta property="og:site_name" content="赵家富的博客">
+<meta property="og:description" content="一、说明：打算从B站学习一下shell编程，从很多的课程视频中，挑选了一个：B站视频地址：打算开始学习着做着笔记：这个需要一些Linux基础，还有vim的，如果不太熟练，可以看下我之前的整理的俩个博客： 1、整理一些linux命令必须熟练掌握常的命令（复习+扩展学习Linux命令）整理一些linux命令必须熟练掌握常的命令（复习+扩展学习Linux命令） 2、Linux下vim&#x2F;vi 编辑器 命令">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-12-02T06:45:48.416Z">
+<meta name="twitter:card" content="summary">
+    
+    <link rel="shortcut icon" href="/img/cb2nm-5l9w0-001.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" target="_blank" rel="noopener" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/zhao.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">赵家富</h5>
+          <a href="mailto:530519174@qq.com" target="_blank" rel="noopener" title="530519174@qq.com" class="mail">530519174@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                archives(所有)
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags/"  >
+                <i class="icon icon-lg icon-tags"></i>
+                tag(标签)
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories/"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories(分类)
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/zhaojiafu" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://blog.csdn.net/weixin_42081389" target="_blank" >
+                <i class="icon icon-lg icon-csdn"></i>
+                Csdn
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" target="_blank" rel="noopener" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+
+        <div class="flex-col header-title ellipsis">shell编程学习笔记之一--学习第六天Linux下使用tar 进行全备份和增量备份）</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" target="_blank" rel="noopener" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" target="_blank" rel="noopener" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" target="_blank" rel="noopener" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+
+        <h1 class="title">shell编程学习笔记之一--学习第六天Linux下使用tar 进行全备份和增量备份）
+        </h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2019-12-02T03:34:32.000Z" itemprop="datePublished" class="page-time">
+  2019-12-02
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/shell%E7%BC%96%E7%A8%8B/">shell编程</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#一、说明："><span class="post-toc-number">1.</span> <span class="post-toc-text">一、说明：</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#1、整理一些linux命令必须熟练掌握常的命令（复习-扩展学习Linux命令）"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">1、整理一些linux命令必须熟练掌握常的命令（复习+扩展学习Linux命令）</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#2、Linux下vim-vi-编辑器-命令总结"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">2、Linux下vim/vi 编辑器 命令总结</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#3、学习课件："><span class="post-toc-number">1.3.</span> <span class="post-toc-text">3、学习课件：</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#4、之前的shell学习笔记："><span class="post-toc-number">1.4.</span> <span class="post-toc-text">4、之前的shell学习笔记：</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#二、实战演练（全备份和增量备份）"><span class="post-toc-number">2.</span> <span class="post-toc-text">二、实战演练（全备份和增量备份）</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#1、全局备份："><span class="post-toc-number">2.1.</span> <span class="post-toc-text">1、全局备份：</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#第一步：生成一个测试文件"><span class="post-toc-number">2.1.1.</span> <span class="post-toc-text">第一步：生成一个测试文件</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#第二步：tar备份压缩"><span class="post-toc-number">2.1.2.</span> <span class="post-toc-text">第二步：tar备份压缩</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#第三步：查看压缩包里面的内容："><span class="post-toc-number">2.1.3.</span> <span class="post-toc-text">第三步：查看压缩包里面的内容：</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#第四步：删除test1目录（模拟数据丢失）并恢复备份："><span class="post-toc-number">2.1.4.</span> <span class="post-toc-text">第四步：删除test1目录（模拟数据丢失）并恢复备份：</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#2、增量备份（不是接着删除后恢复的步骤）："><span class="post-toc-number">2.2.</span> <span class="post-toc-text">2、增量备份（不是接着删除后恢复的步骤）：</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#第一步：新增文件-修改之前的文件，模拟正常工作情况下的数据情况："><span class="post-toc-number">2.2.1.</span> <span class="post-toc-text">第一步：新增文件+修改之前的文件，模拟正常工作情况下的数据情况：</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#第二步：增量备份（数据不丢失情况下）："><span class="post-toc-number">2.2.2.</span> <span class="post-toc-text">第二步：增量备份（数据不丢失情况下）：</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#3、如果结果第一步删除然后恢复的操作："><span class="post-toc-number">2.3.</span> <span class="post-toc-text">3、如果结果第一步删除然后恢复的操作：</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#4、数据丢失的恢复：（接着第2增量备份）"><span class="post-toc-number">2.4.</span> <span class="post-toc-text">4、数据丢失的恢复：（接着第2增量备份）</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#数据恢复一定要按时间顺序从早到后进行恢复（具体指先恢复第一次的全部备份，然后增量备份从先到后加压恢复，因为后面的修改文件可以覆盖前面的修改文件）"><span class="post-toc-number">2.4.0.1.</span> <span class="post-toc-text">数据恢复一定要按时间顺序从早到后进行恢复（具体指先恢复第一次的全部备份，然后增量备份从先到后加压恢复，因为后面的修改文件可以覆盖前面的修改文件）</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#5、总结下我的理解全部备份和增量备份："><span class="post-toc-number">2.5.</span> <span class="post-toc-text">5、总结下我的理解全部备份和增量备份：</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#第一个难点：（根据指纹信息来进行增量备份还是全部备份）"><span class="post-toc-number">2.5.1.</span> <span class="post-toc-text">第一个难点：（根据指纹信息来进行增量备份还是全部备份）</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#第二个难点：（文件丢失后，解压恢复后的文件，再次进行备份肯定是全局备份）"><span class="post-toc-number">2.5.2.</span> <span class="post-toc-text">第二个难点：（文件丢失后，解压恢复后的文件，再次进行备份肯定是全局备份）</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#6、每周日进行一个备份，每日进行一个全局备份"><span class="post-toc-number">2.6.</span> <span class="post-toc-text">6、每周日进行一个备份，每日进行一个全局备份</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#1、tar-Removing-leading-‘-from-member-names错误问题："><span class="post-toc-number">2.6.1.</span> <span class="post-toc-text">1、tar: Removing leading `/‘ from member names错误问题：</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#2、最终我修改可以的代码："><span class="post-toc-number">2.6.2.</span> <span class="post-toc-text">2、最终我修改可以的代码：</span></a></li></ol></li></ol></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-33d8d9afe3d414e1db1477175c984faf"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">shell编程学习笔记之一--学习第六天Linux下使用tar 进行全备份和增量备份）</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2019-12-02 11:34:32" datetime="2019-12-02T03:34:32.000Z"  itemprop="datePublished">2019-12-02</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/shell%E7%BC%96%E7%A8%8B/">shell编程</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h1 id="一、说明："><a href="#一、说明：" class="headerlink" title="一、说明："></a>一、说明：</h1><p>打算从B站学习一下shell编程，从很多的课程视频中，挑选了一个：<br><a href="https://www.bilibili.com/video/av8104450" target="_blank" rel="noopener">B站视频地址</a>：<br>打算开始学习着做着笔记：<br>这个需要一些Linux基础，还有vim的，如果不太熟练，可以看下我之前的整理的俩个博客：</p>
+<h2 id="1、整理一些linux命令必须熟练掌握常的命令（复习-扩展学习Linux命令）"><a href="#1、整理一些linux命令必须熟练掌握常的命令（复习-扩展学习Linux命令）" class="headerlink" title="1、整理一些linux命令必须熟练掌握常的命令（复习+扩展学习Linux命令）"></a>1、整理一些linux命令必须熟练掌握常的命令（复习+扩展学习Linux命令）</h2><p><a href="https://blog.csdn.net/weixin_42081389/article/details/101679760" target="_blank" rel="noopener">整理一些linux命令必须熟练掌握常的命令（复习+扩展学习Linux命令）</a></p>
+<h2 id="2、Linux下vim-vi-编辑器-命令总结"><a href="#2、Linux下vim-vi-编辑器-命令总结" class="headerlink" title="2、Linux下vim/vi 编辑器 命令总结"></a>2、Linux下vim/vi 编辑器 命令总结</h2><p><a href="https://blog.csdn.net/weixin_42081389/article/details/102364662" target="_blank" rel="noopener">Linux下vim/vi 编辑器 命令总结</a></p>
+<h2 id="3、学习课件："><a href="#3、学习课件：" class="headerlink" title="3、学习课件："></a>3、学习课件：</h2><p>这个地址我直接把B站中评论下方分享的弄出来了，如果失效，可以下方评论，我把我下载的分享给你。<br><a href="https://www.lanzous.com/b04a4s61e" target="_blank" rel="noopener">下载地址</a></p>
+<h2 id="4、之前的shell学习笔记："><a href="#4、之前的shell学习笔记：" class="headerlink" title="4、之前的shell学习笔记："></a>4、之前的shell学习笔记：</h2><p><a href="https://blog.csdn.net/weixin_42081389/article/details/103156765" target="_blank" rel="noopener">shell编程学习笔记之–学习第一天</a><br><a href="https://blog.csdn.net/weixin_42081389/article/details/103180406" target="_blank" rel="noopener">shell编程学习笔记之–学习第二天</a><br><a href="https://blog.csdn.net/weixin_42081389/article/details/103198955" target="_blank" rel="noopener">shell编程学习笔记之–学习第三天</a><br><a href="https://blog.csdn.net/weixin_42081389/article/details/103233739" target="_blank" rel="noopener">shell编程学习笔记之一–学习第四天</a><br><a href="https://blog.csdn.net/weixin_42081389/article/details/103242904" target="_blank" rel="noopener">shell编程学习笔记之一–学习第五天</a></p>
+<h1 id="二、实战演练（全备份和增量备份）"><a href="#二、实战演练（全备份和增量备份）" class="headerlink" title="二、实战演练（全备份和增量备份）"></a>二、实战演练（全备份和增量备份）</h1><p>这个地方我跟着视频看完了，但是有些地方没有懂，后来自己测试之后才懂，就是使用tar进行全备份和增量备份时候，-g后面跟的参数(可以理解备份文件的指纹信息)不一定放在tmp下，因为tmp和window的temp的目录差不多，就是临时文件，所以我猜想视频的讲解者也是习惯性的放在那个位置，注意后面跟的文件是这种：<br>第二行的一串数字是时间戳和一些其他的内容，应该用来对比的。而且后面跟的文件也可以随意命名，不过一个目录备份要命名一样，主要就是根据命名文件中的时间戳进行增量备份和全备份的。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">GNU tar-1.26-2</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">1574926024^@94209664^@0^@1574925940^@517187692^@64769^@2515024^@test1^@N1^@N2^@N3^@N4^@N5^@Ya^@Yb^@Yc^@Yd^@Ye^@^@^@</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">~</span></pre></td></tr></table></figure>
+
+<h2 id="1、全局备份："><a href="#1、全局备份：" class="headerlink" title="1、全局备份："></a>1、全局备份：</h2><h3 id="第一步：生成一个测试文件"><a href="#第一步：生成一个测试文件" class="headerlink" title="第一步：生成一个测试文件"></a>第一步：生成一个测试文件</h3><p>创建一个目录和一些文件：</p>
+<p>创建目录：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="variable">$mkdir</span> test1</span></pre></td></tr></table></figure>
+<p>创建5个文件</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="variable">$touch</span> test1/&#123;1,2,3,4,5&#125;</span></pre></td></tr></table></figure>
+<p>查看创建的文件：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="variable">$ll</span> test1/</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">total 0</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">-rw-r--r-- 1 wb-zjf497303 users 0 Nov 28 15:03 1</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">-rw-r--r-- 1 wb-zjf497303 users 0 Nov 28 15:03 2</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">-rw-r--r-- 1 wb-zjf497303 users 0 Nov 28 15:03 3</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">-rw-r--r-- 1 wb-zjf497303 users 0 Nov 28 15:03 4</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">-rw-r--r-- 1 wb-zjf497303 users 0 Nov 28 15:03 5</span></pre></td></tr></table></figure>
+<p>查看目前的文件：（可以看出目前只有一个test1目录）</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="variable">$ls</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">test1</span></pre></td></tr></table></figure>
+
+<h3 id="第二步：tar备份压缩"><a href="#第二步：tar备份压缩" class="headerlink" title="第二步：tar备份压缩"></a>第二步：tar备份压缩</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="variable">$tar</span> -g abcdefg -czvf backup_full.tar.gz test1/</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">tar: test1: Directory is new</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">test1/</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">test1/1</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">test1/2</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">test1/3</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">test1/4</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">test1/5</span></pre></td></tr></table></figure>
+
+<p>这个时候当前目录生成了俩个文件：<br>一个是备份的压缩文件，一个就是我前面说的-g后面的参数文件，用来储存一个时间戳和其他信息的。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="variable">$ls</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">abcdefg  backup_full.tar.gz  test1</span></pre></td></tr></table></figure>
+
+<h3 id="第三步：查看压缩包里面的内容："><a href="#第三步：查看压缩包里面的内容：" class="headerlink" title="第三步：查看压缩包里面的内容："></a>第三步：查看压缩包里面的内容：</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="variable">$tar</span> ztf backup_full.tar.gz</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">test1/</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">test1/1</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">test1/2</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">test1/3</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">test1/4</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">test1/5</span></pre></td></tr></table></figure>
+
+<h3 id="第四步：删除test1目录（模拟数据丢失）并恢复备份："><a href="#第四步：删除test1目录（模拟数据丢失）并恢复备份：" class="headerlink" title="第四步：删除test1目录（模拟数据丢失）并恢复备份："></a>第四步：删除test1目录（模拟数据丢失）并恢复备份：</h3><p>删除，查看：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="variable">$rm</span> -rf test1</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="variable">$ls</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">11backup.sh  abcdefg  backup_full.tar.gz</span></pre></td></tr></table></figure>
+
+<p>解压备份文件：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="variable">$tar</span> -zxvf backup_full.tar.gz</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">test1/</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">test1/1</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">test1/2</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">test1/3</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">test1/4</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">test1/5</span></pre></td></tr></table></figure>
+
+<p>查看恢复文件：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="variable">$ls</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">11backup.sh  abcdefg  backup_full.tar.gz  test1</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"><span class="variable">$ll</span> test1/</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">total 0</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">-rw-r--r-- 1 wb-zjf497303 users 0 Nov 28 16:19 1</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">-rw-r--r-- 1 wb-zjf497303 users 0 Nov 28 16:19 2</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">-rw-r--r-- 1 wb-zjf497303 users 0 Nov 28 16:19 3</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">-rw-r--r-- 1 wb-zjf497303 users 0 Nov 28 16:19 4</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">-rw-r--r-- 1 wb-zjf497303 users 0 Nov 28 16:19 5</span></pre></td></tr></table></figure>
+
+<h2 id="2、增量备份（不是接着删除后恢复的步骤）："><a href="#2、增量备份（不是接着删除后恢复的步骤）：" class="headerlink" title="2、增量备份（不是接着删除后恢复的步骤）："></a>2、增量备份（不是接着删除后恢复的步骤）：</h2><p>这个就是在第一个基础上对新增加或者修改的文件进行增量备份（也可以理解为对修改的文件或者新增的文件单独备份），不是接着删除恢复的步骤。<br>记得增量备份的压缩包要和全局备份不能一样，后面的每个全局备份也不能一样。</p>
+<h3 id="第一步：新增文件-修改之前的文件，模拟正常工作情况下的数据情况："><a href="#第一步：新增文件-修改之前的文件，模拟正常工作情况下的数据情况：" class="headerlink" title="第一步：新增文件+修改之前的文件，模拟正常工作情况下的数据情况："></a>第一步：新增文件+修改之前的文件，模拟正常工作情况下的数据情况：</h3><p>新增文件：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="variable">$touch</span> test1/&#123;a,b,c,d,e&#125;</span></pre></td></tr></table></figure>
+<p>查看新增成功：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="variable">$ll</span> test1/</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">total 0</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">-rw-r--r-- 1 wb-zjf497303 users 0 Nov 28 16:19 1</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">-rw-r--r-- 1 wb-zjf497303 users 0 Nov 28 16:19 2</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">-rw-r--r-- 1 wb-zjf497303 users 0 Nov 28 16:19 3</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">-rw-r--r-- 1 wb-zjf497303 users 0 Nov 28 16:19 4</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">-rw-r--r-- 1 wb-zjf497303 users 0 Nov 28 16:19 5</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">-rw-r--r-- 1 wb-zjf497303 users 0 Nov 28 16:31 a</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">-rw-r--r-- 1 wb-zjf497303 users 0 Nov 28 16:31 b</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">-rw-r--r-- 1 wb-zjf497303 users 0 Nov 28 16:31 c</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">-rw-r--r-- 1 wb-zjf497303 users 0 Nov 28 16:31 d</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">-rw-r--r-- 1 wb-zjf497303 users 0 Nov 28 16:31 e</span></pre></td></tr></table></figure>
+
+<p>修改文件：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="variable">$echo</span> zhaojiafu &gt; test1/1</span></pre></td></tr></table></figure>
+<p>查看已经修改成功：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="variable">$cat</span> test1/1</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">zhaojiafu</span></pre></td></tr></table></figure>
+
+<h3 id="第二步：增量备份（数据不丢失情况下）："><a href="#第二步：增量备份（数据不丢失情况下）：" class="headerlink" title="第二步：增量备份（数据不丢失情况下）："></a>第二步：增量备份（数据不丢失情况下）：</h3><p>这个有一点需要注意：（如果之前备份的删掉，然后进行重新解压出来的，再次进行备份，会当成全局备份，tar命令会认为没有之前备份，估计和备份目录的文件修改时间戳有关，这个只是我的猜想那个指纹快照和这个需要备份创建的所有目录和文件的最后修改时间有关，感兴趣的可以在多了解了解，如果有人知道增量备份原理，欢迎下方赐教哈）</p>
+<p>这个结果模拟数据不丢失情况下的增量备份。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="variable">$tar</span> -g abcdefg -zcvf backup_add1.tar.gz test1/</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">test1/</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">test1/1</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">test1/a</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">test1/b</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">test1/c</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">test1/d</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">test1/e</span></pre></td></tr></table></figure>
+
+<p>从结果来看，新增的备份中只有修改的1文件和新增的a-e几个文件，原来的文件没有再次备份，达到了增量备份的效果。</p>
+<h2 id="3、如果结果第一步删除然后恢复的操作："><a href="#3、如果结果第一步删除然后恢复的操作：" class="headerlink" title="3、如果结果第一步删除然后恢复的操作："></a>3、如果结果第一步删除然后恢复的操作：</h2><p>如果结果第一步删除然后恢复的操作：会把所有文件再次备份（也就是全部备份，和第一个的全局备份没有什么区别，为什么会这样?我的猜想写道刚刚增量备份里面的第二步里面了，所有我后来又重新创建新的目录和文件，测试数据不丢失的情况下的增量备份。）</p>
+<h2 id="4、数据丢失的恢复：（接着第2增量备份）"><a href="#4、数据丢失的恢复：（接着第2增量备份）" class="headerlink" title="4、数据丢失的恢复：（接着第2增量备份）"></a>4、数据丢失的恢复：（接着第2增量备份）</h2><p>查看当前数据：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="variable">$ls</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">abcdefg  backup_add1.tar.gz  backup_full.tar.gz  test1</span></pre></td></tr></table></figure>
+
+<p>删除test1目录，模拟数据丢失：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="variable">$rm</span> -rf test1/</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="variable">$ls</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">abcdefg  backup_add1.tar.gz  backup_full.tar.gz</span></pre></td></tr></table></figure>
+
+<p><strong>准备数据恢复：</strong></p>
+<h4 id="数据恢复一定要按时间顺序从早到后进行恢复（具体指先恢复第一次的全部备份，然后增量备份从先到后加压恢复，因为后面的修改文件可以覆盖前面的修改文件）"><a href="#数据恢复一定要按时间顺序从早到后进行恢复（具体指先恢复第一次的全部备份，然后增量备份从先到后加压恢复，因为后面的修改文件可以覆盖前面的修改文件）" class="headerlink" title="数据恢复一定要按时间顺序从早到后进行恢复（具体指先恢复第一次的全部备份，然后增量备份从先到后加压恢复，因为后面的修改文件可以覆盖前面的修改文件）"></a>数据恢复一定要按时间顺序从早到后进行恢复（具体指先恢复第一次的全部备份，然后增量备份从先到后加压恢复，因为后面的修改文件可以覆盖前面的修改文件）</h4><p>比如我的解压恢复顺序：</p>
+<p>解压恢复最初的全部备份</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="variable">$tar</span> -zxvf backup_full.tar.gz</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">test1/</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">test1/1</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">test1/2</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">test1/3</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">test1/4</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">test1/5</span></pre></td></tr></table></figure>
+<p>解压后面更多的增量备份</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="variable">$tar</span> -zxvf backup_add1.tar.gz</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">test1/</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">test1/1</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">test1/a</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">test1/b</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">test1/c</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">test1/d</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">test1/e</span></pre></td></tr></table></figure>
+
+<p>当然实际工作中，肯定是还有更多的<code>backup_add</code>压缩文件，需要更多的<code>tar -zxvf backup_add</code>解压恢复命令。</p>
+<p>到这里我也就理解了，为什么要用日期来进行增量备份的文件压缩名称了，这样更能方便根据顺序进行恢复，后续还需要每周或者每月的全局备份。</p>
+<h2 id="5、总结下我的理解全部备份和增量备份："><a href="#5、总结下我的理解全部备份和增量备份：" class="headerlink" title="5、总结下我的理解全部备份和增量备份："></a>5、总结下我的理解全部备份和增量备份：</h2><h3 id="第一个难点：（根据指纹信息来进行增量备份还是全部备份）"><a href="#第一个难点：（根据指纹信息来进行增量备份还是全部备份）" class="headerlink" title="第一个难点：（根据指纹信息来进行增量备份还是全部备份）"></a>第一个难点：（根据指纹信息来进行增量备份还是全部备份）</h3><p>单个周期的全部备份和增量备份，需要的指纹快照，也就是我例子中的<code>-g</code>后面跟的<br><code>abcdefg</code>文件，是否能够增量也是根据这个进行的。<br>比如：我把<code>abcdefg</code>删除进行测试我的猜想。</p>
+<p>先查看数据：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="variable">$ll</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">total 16</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">-rw-r--r-- 1 wb-zjf497303 users  111 Nov 28 16:58 abcdefg</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">-rw-r--r-- 1 wb-zjf497303 users  280 Nov 28 16:58 backup_add1.tar.gz</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">-rw-r--r-- 1 wb-zjf497303 users  231 Nov 28 16:54 backup_full.tar.gz</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">drwxr-xr-x 2 wb-zjf497303 users 4096 Nov 28 16:55 test1</span></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="variable">$ll</span> test1/</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">total 4</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">-rw-r--r-- 1 wb-zjf497303 users 10 Nov 28 16:55 1</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">-rw-r--r-- 1 wb-zjf497303 users  0 Nov 28 16:54 2</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">-rw-r--r-- 1 wb-zjf497303 users  0 Nov 28 16:54 3</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">-rw-r--r-- 1 wb-zjf497303 users  0 Nov 28 16:54 4</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">-rw-r--r-- 1 wb-zjf497303 users  0 Nov 28 16:54 5</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">-rw-r--r-- 1 wb-zjf497303 users  0 Nov 28 16:55 a</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">-rw-r--r-- 1 wb-zjf497303 users  0 Nov 28 16:55 b</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">-rw-r--r-- 1 wb-zjf497303 users  0 Nov 28 16:55 c</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">-rw-r--r-- 1 wb-zjf497303 users  0 Nov 28 16:55 d</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">-rw-r--r-- 1 wb-zjf497303 users  0 Nov 28 16:55 e</span></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="variable">$rm</span> -rf abcdefg</span></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="variable">$tar</span> -g abcdefg -zcvf backup_full2.tar.gz test1/</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">tar: test1: Directory is new</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">test1/</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">test1/1</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">test1/2</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">test1/3</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">test1/4</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">test1/5</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">test1/a</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">test1/b</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">test1/c</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">test1/d</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">test1/e</span></pre></td></tr></table></figure>
+<p>可以看出，因为之前的<code>指纹</code>（应该其他称呼，我这里就称之为<code>指纹</code>）被删除，所以这里再次进行压缩备份，就是全局备份，而不是之前的增量备份。这也就是我刚开始看到课件和视频，俩个代码不是一样么？为什么后面的命令就是变成增量备份了呐？直到我的一点点的摸索，发现就是和这个<code>指纹</code>信息有关。</p>
+<h3 id="第二个难点：（文件丢失后，解压恢复后的文件，再次进行备份肯定是全局备份）"><a href="#第二个难点：（文件丢失后，解压恢复后的文件，再次进行备份肯定是全局备份）" class="headerlink" title="第二个难点：（文件丢失后，解压恢复后的文件，再次进行备份肯定是全局备份）"></a>第二个难点：（文件丢失后，解压恢复后的文件，再次进行备份肯定是全局备份）</h3><p>模仿文件丢失，进行删除test1目录时，虽然可以恢复文件都是和原来的一样，但是这时候指纹信息已经更改，所以再次按照增量备份命令，其实这时候已经变成全局备份了，（我的猜想是和每个文件和目录创建的时间还有关，因为恢复解压的文件可是和之前的文件创建时间戳肯定不一样，所以就认为指纹信息不符合所以进行的是全部备份。）</p>
+<h2 id="6、每周日进行一个备份，每日进行一个全局备份"><a href="#6、每周日进行一个备份，每日进行一个全局备份" class="headerlink" title="6、每周日进行一个备份，每日进行一个全局备份"></a>6、每周日进行一个备份，每日进行一个全局备份</h2><h3 id="1、tar-Removing-leading-‘-from-member-names错误问题："><a href="#1、tar-Removing-leading-‘-from-member-names错误问题：" class="headerlink" title="1、tar: Removing leading `/‘ from member names错误问题："></a>1、tar: Removing leading `/‘ from member names错误问题：</h3><p>跟着视频会改好代码之后会出现这个错误，然后需要修改参数，主要是tar主要使用相对路径，如果使用绝对路径，需要加个参数<code>P</code>，这个地方很重要。</p>
+<p>这个主要问题视频中没有讲解，最终我找到了解决方法：</p>
+<h3 id="2、最终我修改可以的代码："><a href="#2、最终我修改可以的代码：" class="headerlink" title="2、最终我修改可以的代码："></a>2、最终我修改可以的代码：</h3><p>记得自己新建一个存放指纹的目录，然后修改。后续的备份也是这个目录，比如我的代码中的设置目录为：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">TARGET_DIR=/home/temp/backup</span></pre></td></tr></table></figure>
+<p>sh文件代码：我把我看懂的都讲解放到代码中了，如果有问题欢迎沟通一起讨论哈。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="comment">#Automatic Backup Linux System Files</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"><span class="comment">#by Author zhaojiafu 2019-11-28</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"><span class="comment">#Define Variable</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line"><span class="comment">#1、需要备份的目录</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">SOURCE_DIR=(</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">$*</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line"><span class="comment">#2、备份到目标地址</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">TARGET_DIR=/home/temp/backup</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line"><span class="comment">#3、年</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line">YEAR=`date +%Y`</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line"><span class="comment">#4、月</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><span class="line">MONTH=`date +%m`</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">17</span></pre></td><td class="code"><pre><span class="line"><span class="comment">#5、日</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">18</span></pre></td><td class="code"><pre><span class="line">DAY=`date +%d`</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">19</span></pre></td><td class="code"><pre><span class="line"><span class="comment">#6、周几</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">20</span></pre></td><td class="code"><pre><span class="line">WEEK=`date +%u`</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">21</span></pre></td><td class="code"><pre><span class="line"><span class="comment">#7、时分 字符串 用来创建备份名称</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">22</span></pre></td><td class="code"><pre><span class="line">A_NAME=`date +%H%M`</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">23</span></pre></td><td class="code"><pre><span class="line">FILES=system_backup.tgz</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">24</span></pre></td><td class="code"><pre><span class="line">CODE=$?</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">25</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">26</span></pre></td><td class="code"><pre><span class="line"><span class="comment">#判断是否输入需要备份的目录地址参数</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">27</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> [ -z <span class="string">"$*"</span> ];<span class="keyword">then</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">28</span></pre></td><td class="code"><pre><span class="line">        <span class="built_in">echo</span>  -e <span class="string">"\033[32mUsage:\nPlease  Enter Your Backup Files or Directories\n--------------------------------------------\n</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">29</span></pre></td><td class="code"><pre><span class="line"><span class="string">        \nUsage: &#123; <span class="variable">$0</span> /boot /etc&#125;\033[0m"</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">30</span></pre></td><td class="code"><pre><span class="line">        <span class="built_in">exit</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">31</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">fi</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">32</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">33</span></pre></td><td class="code"><pre><span class="line"><span class="comment">#判断是否含有备份 年/月/日的文件夹，没有会创建</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">34</span></pre></td><td class="code"><pre><span class="line"><span class="comment">#Determine Whether the Target Directory Exists</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">35</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> [ ! -d <span class="variable">$TARGET_DIR</span>/<span class="variable">$YEAR</span>/<span class="variable">$MONTH</span>/<span class="variable">$DAY</span> ];<span class="keyword">then</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">36</span></pre></td><td class="code"><pre><span class="line">        mkdir -p <span class="variable">$TARGET_DIR</span>/<span class="variable">$YEAR</span>/<span class="variable">$MONTH</span>/<span class="variable">$DAY</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">37</span></pre></td><td class="code"><pre><span class="line">        <span class="built_in">echo</span> -e <span class="string">"\033[32mThe <span class="variable">$TARGET_DIR</span> Created Successfully !\033[0m"</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">38</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">fi</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">39</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">40</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">41</span></pre></td><td class="code"><pre><span class="line"><span class="comment">#全部备份（每周日）</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">42</span></pre></td><td class="code"><pre><span class="line"><span class="comment">#EXEC Full_Backup Function Command</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">43</span></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="title">Full_Backup</span></span>()&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">44</span></pre></td><td class="code"><pre><span class="line">        <span class="comment"># 判断是否是周日，如果是周日，进行一个将之前的指纹信息删除，然后进入今天的目录下，创建新的全部备份</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">45</span></pre></td><td class="code"><pre><span class="line">        <span class="keyword">if</span> [ <span class="string">"<span class="variable">$WEEK</span>"</span> -eq <span class="string">"7"</span> ];<span class="keyword">then</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">46</span></pre></td><td class="code"><pre><span class="line">                rm -rf <span class="variable">$TARGET_DIR</span>/snapshot</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">47</span></pre></td><td class="code"><pre><span class="line">                <span class="built_in">cd</span> <span class="variable">$TARGET_DIR</span>/<span class="variable">$YEAR</span>/<span class="variable">$MONTH</span>/<span class="variable">$DAY</span> ;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">48</span></pre></td><td class="code"><pre><span class="line">                tar -g <span class="variable">$TARGET_DIR</span>/snapshot -czvPf <span class="variable">$FILES</span> <span class="variable">$&#123;SOURCE_DIR[@]&#125;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">49</span></pre></td><td class="code"><pre><span class="line">                [ <span class="string">"<span class="variable">$CODE</span>"</span> == <span class="string">"0"</span> ]&amp;&amp;<span class="built_in">echo</span> -e <span class="string">"--------------------------------------------\n\033[32mThese Full_Backup System Files Backup Successfully !\033[0m"</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">50</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">51</span></pre></td><td class="code"><pre><span class="line">        <span class="keyword">fi</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">52</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">53</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">54</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">55</span></pre></td><td class="code"><pre><span class="line"><span class="comment">#每天的增量备份</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">56</span></pre></td><td class="code"><pre><span class="line"><span class="comment">#Perform incremental BACKUP Function Command</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">57</span></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="title">Add_Backup</span></span>()&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">58</span></pre></td><td class="code"><pre><span class="line">        <span class="comment">#判断是否是周日，如果不是周日就直接进入今天（系统tr日期的今天）的目录，进行一个增量备份（这个没有删除指纹操作）</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">59</span></pre></td><td class="code"><pre><span class="line">        <span class="built_in">echo</span> <span class="variable">$WEEK</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">60</span></pre></td><td class="code"><pre><span class="line">        <span class="keyword">if</span> [ <span class="variable">$WEEK</span> -ne <span class="string">"7"</span> ];<span class="keyword">then</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">61</span></pre></td><td class="code"><pre><span class="line">                <span class="built_in">cd</span> <span class="variable">$TARGET_DIR</span>/<span class="variable">$YEAR</span>/<span class="variable">$MONTH</span>/<span class="variable">$DAY</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">62</span></pre></td><td class="code"><pre><span class="line">                tar -g <span class="variable">$TARGET_DIR</span>/snapshot -czvPf  <span class="variable">$A_NAME</span><span class="variable">$FILES</span>  <span class="variable">$&#123;SOURCE_DIR[@]&#125;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">63</span></pre></td><td class="code"><pre><span class="line">                [ <span class="string">"<span class="variable">$CODE</span>"</span> == <span class="string">"0"</span> ] &amp;&amp; <span class="built_in">echo</span> -e <span class="string">"-----------------------------------------\n\033[32mThese Add_Backup System Files <span class="variable">$TARGET_DIR</span>/<span class="variable">$YEAR</span>/<span class="variable">$MONTH</span>/<span class="variable">$DAY</span>/<span class="variable">$&#123;YEAR&#125;</span>_<span class="variable">$A_NAME</span><span class="variable">$FILES</span> Backup Successfully !\033[0m"</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">64</span></pre></td><td class="code"><pre><span class="line">        <span class="keyword">fi</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">65</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">66</span></pre></td><td class="code"><pre><span class="line">sleep 3</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">67</span></pre></td><td class="code"><pre><span class="line">Full_Backup;Add_Backup</span></pre></td></tr></table></figure>
+
+<p>最终运行来个简单示例：</p>
+<p><strong>比如第一次备份，全局备份</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="variable">$sh</span> 11backup.sh /home/zjf/shell_study/day01/</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">4</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">tar: /home/zjf/shell_study/day01: Directory is new</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">/home/zjf/shell_study/day01/</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">/home/zjf/shell_study/day01/first_shell.sh</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">/home/zjf/shell_study/day01/first_shell2.sh</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">/home/zjf/shell_study/day01/if_is_dir.sh</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">/home/zjf/shell_study/day01/if_text.sh</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">/home/zjf/shell_study/day01/is_file.sh</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">/home/zjf/shell_study/day01/score.sh</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">/home/zjf/shell_study/day01/test.txt</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">/home/zjf/shell_study/day01/var.sh</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">/home/zjf/shell_study/day01/var2.sh</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line">-----------------------------------------</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line">These Add_Backup System Files /home/zjf/temp/backup/2019/11/28/2019_1853system_backup.tgz Backup Successfully !</span></pre></td></tr></table></figure>
+<p><strong>新增加入几个文件</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="variable">$touch</span> ../day01/&#123;1,2,3&#125;</span></pre></td></tr></table></figure>
+<p><strong>再次备份效果</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="variable">$sh</span> 11backup.sh /home/zjf/shell_study/day01/</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">4</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">/home/zjf/shell_study/day01/</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">/home/zjf/shell_study/day01/1</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">/home/zjf/shell_study/day01/2</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">/home/zjf/shell_study/day01/3</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">-----------------------------------------</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">These Add_Backup System Files /home/zjf/temp/backup/2019/11/28/2019_1854system_backup.tgz Backup Successfully !</span></pre></td></tr></table></figure>
+
+<p>好了，完美结束，虽然今天就学习了这一个知识点，虽说学的不多，但是我觉得学会才是第一位，不聪明就多努力吧，加油！！！</p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2019-12-02T06:45:48.416Z" itemprop="dateUpdated">2019-12-02 14:45:48</time>
+</span><br>
+
+
+        
+        这里可以写作者留言，标签和 hexo 中所有变量及辅助函数等均可调用，示例：<a href="/2019/12/02/33d8d9afe3d414e1db1477175c984faf/" target="_blank" rel="external">https://zhaojiafu.github.io/2019/12/02/33d8d9afe3d414e1db1477175c984faf/</a>
+        
+    </div>
+    
+    <footer>
+        <a href="https://zhaojiafu.github.io">
+            <img src="/img/zhao.jpg" alt="赵家富">
+            赵家富
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" target="_blank" rel="noopener" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/shell%E7%BC%96%E7%A8%8B/" rel="tag">shell编程</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://zhaojiafu.github.io/2019/12/02/33d8d9afe3d414e1db1477175c984faf/&title=《shell编程学习笔记之一--学习第六天Linux下使用tar 进行全备份和增量备份）》 — 赵家富的博客&pic=https://zhaojiafu.github.io/img/zhao.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" target="_blank" rel="noopener" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://zhaojiafu.github.io/2019/12/02/33d8d9afe3d414e1db1477175c984faf/&title=《shell编程学习笔记之一--学习第六天Linux下使用tar 进行全备份和增量备份）》 — 赵家富的博客&source=感觉无从下手的时候，问自己“不难，要你干啥？”" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://zhaojiafu.github.io/2019/12/02/33d8d9afe3d414e1db1477175c984faf/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《shell编程学习笔记之一--学习第六天Linux下使用tar 进行全备份和增量备份）》 — 赵家富的博客&url=https://zhaojiafu.github.io/2019/12/02/33d8d9afe3d414e1db1477175c984faf/&via=https://zhaojiafu.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://zhaojiafu.github.io/2019/12/02/33d8d9afe3d414e1db1477175c984faf/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" target="_blank" rel="noopener" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2019/12/02/0051363feac8bb4fe4ea63c8aa44d13c/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">Linux系统tar、rar、7z、zip压缩解压缩命令使用</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2019/12/02/08225dae53de8a1230e96d820bd29537/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">统计文件目录下的文件总数和文件大小总和</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<section class="comments" id="comments">
+    <div id="gitalk-container"></div>
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+        var id = location.pathname
+        if (location.pathname.length > 50) {
+          id = location.pathname.replace(/\/\d+\/\d+\/\d+\//, '').replace('/', '').substring(0, 50)
+        }
+        const gitalk = new Gitalk({
+          clientID: '388d0a78cda30f118f86',
+          clientSecret: '2c64b34cc20f23d768dffff64acb8c2ee02c3bee',
+          repo: 'https://zhaojiafu.github.io/',
+          owner: 'zjf',
+          admin: ['zjf'],
+          id: id,      // Ensure uniqueness and length less than 50
+          title: document.title.split('|')[0],
+          distractionFreeMode: false  // Facebook-like distraction free mode
+        })
+
+        gitalk.render('gitalk-container')
+    </script>
+</section>
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;" target="_blank" rel="noopener"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢大爷~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.jpg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.jpg" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+            <span>博客内容遵循 <a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+        <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=0 height=0 src="http://music.163.com/song/media/outer/url?id=1369798757&auto=1"></iframe>
+
+    </div>
+    <div class="bottom">
+        <p><span>赵家富 &copy; 2019</span>
+            <span>
+                
+
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" target="_blank" rel="noopener" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://zhaojiafu.github.io/2019/12/02/33d8d9afe3d414e1db1477175c984faf/&title=《shell编程学习笔记之一--学习第六天Linux下使用tar 进行全备份和增量备份）》 — 赵家富的博客&pic=https://zhaojiafu.github.io/img/zhao.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" target="_blank" rel="noopener" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://zhaojiafu.github.io/2019/12/02/33d8d9afe3d414e1db1477175c984faf/&title=《shell编程学习笔记之一--学习第六天Linux下使用tar 进行全备份和增量备份）》 — 赵家富的博客&source=感觉无从下手的时候，问自己“不难，要你干啥？”" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://zhaojiafu.github.io/2019/12/02/33d8d9afe3d414e1db1477175c984faf/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《shell编程学习笔记之一--学习第六天Linux下使用tar 进行全备份和增量备份）》 — 赵家富的博客&url=https://zhaojiafu.github.io/2019/12/02/33d8d9afe3d414e1db1477175c984faf/&via=https://zhaojiafu.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://zhaojiafu.github.io/2019/12/02/33d8d9afe3d414e1db1477175c984faf/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;" target="_blank" rel="noopener"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACpUlEQVR42u3aS45jIRAEwL7/pXu2PRrZyqyC1x4p3sryBwgWgJP6+oqf7x/Pz3f+/bR9XvX1quWvGw8eHh7eYuivmnvfTfLb/PX7ceZjxsPDw7vNS5rL1+HZxLXvvO8dDw8P7/N57we0nzI8PDy8/5eXRAk5bPZNPDw8vE/gtYFCsli3k9JO9+GsBQ8PD6+7daojht99feV+Dw8PD299q74JXmcTl7RfjBYPDw/vAq+NaGdxwKkrrtk48fDw8M7y8kC2DSmSQeeBb17+9VcLeHh4eJd5+bE4D2TbIoP34OIYnTeNh4eHV/LajttotZ2yFl8j8fDw8Na8zeF4VlCVsw/c7OHh4eFd4LVh6yakOLsN5FsXHh4e3lleEgFsrrXagqp8qyhu9vDw8PAu89qodFMg1ca4CQwPDw/veV57TdVuHpsSgfrKDQ8PD+8Cbxbv7nPU/EYuiULqceLh4eEteLNrrbyz5J18C6mLrvDw8PAu8GaLeH74nlV+5ZHEEImHh4e34G26nJ3ZT8UNyRaCh4eHd5t3owQqLxpoe0w+xcPDw3uGlx9hN4FCHojk8fEqa8HDw8Mree3P8lAgx+RbRV10hYeHh3eUt1/cz+I3BWEvx4+Hh4f3CC+PbvOgdtb+LP7Aw8PDe4YX1RTEFU2zUGMfSRSVCHh4eHhHeUkRwNmJyw/Q9TEdDw8P7xovv6aaLet1/HpqQvHw8PCO8r7LJwlS8+mYbQ/FePDw8PAu8DaLeN5EUgow+86xPwB4eHh4JS/ZDPJr/mS47afttoGHh4f3DC9Z0PMNo8W0E1pcjOHh4eF9DK/tfrPlzI7peHh4eJ/DS4aYh603NhU8PDy8Z3iz4oA2cs2X+Hzqj2UteHh4eDFv9oc/X7L3l2qHCwXw8PDw5rw/cctK3wWvEY4AAAAASUVORK5CYII=" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '死鬼去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+<script src="/node_modules/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"node_modules/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/node_modules/assets/shizuku.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"react":{"opacity":0.7},"log":false});</script></body>
+</html>

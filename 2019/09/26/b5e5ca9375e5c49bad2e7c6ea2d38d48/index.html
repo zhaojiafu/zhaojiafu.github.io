@@ -1,0 +1,729 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <link rel="canonical" href="https://zhaojiafu.github.io/2019/09/26/b5e5ca9375e5c49bad2e7c6ea2d38d48/">
+    
+    
+    <title>记录一下Ubuntu18.04安装python2.7和python3.6版本 | 赵家富的博客 | 保持好奇心</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="Ubuntu">
+    <meta name="description" content="说明：在家里电脑Windows系统上装个Ubuntu18.04(其实为了装个docker，测试个项目，结果就是弄不好，然后我刚开始装的是Ubuntu16.04，结果怎么也弄不上，然后Windows系统因为是删减版的，也不支持docker，反正一言难尽。。。弄了一个周也没有最终安装一个Ubuntu18.04安装docker环境，如果周六休息一天有时能就整理个博客，今天先把我刚刚Ubuntu18.04">
+<meta name="keywords" content="Ubuntu">
+<meta property="og:type" content="article">
+<meta property="og:title" content="记录一下Ubuntu18.04安装python2.7和python3.6版本">
+<meta property="og:url" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;2019&#x2F;09&#x2F;26&#x2F;b5e5ca9375e5c49bad2e7c6ea2d38d48&#x2F;index.html">
+<meta property="og:site_name" content="赵家富的博客">
+<meta property="og:description" content="说明：在家里电脑Windows系统上装个Ubuntu18.04(其实为了装个docker，测试个项目，结果就是弄不好，然后我刚开始装的是Ubuntu16.04，结果怎么也弄不上，然后Windows系统因为是删减版的，也不支持docker，反正一言难尽。。。弄了一个周也没有最终安装一个Ubuntu18.04安装docker环境，如果周六休息一天有时能就整理个博客，今天先把我刚刚Ubuntu18.04">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20190926230850811.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20190926232651381.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20190926232921491.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20190926233216569.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;2019092623391051.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20190926234437104.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20190926234539144.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20190926234722402.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20190926235001932.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20190926235209528.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20190927000046625.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20190927000325886.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;201909270013359.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;2019092700144310.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20190927001531101.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20190927001913316.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20190927003728882.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20190927004428357.png">
+<meta property="og:updated_time" content="2019-12-02T07:00:36.955Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20190926230850811.png">
+    
+    <link rel="shortcut icon" href="/img/cb2nm-5l9w0-001.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" target="_blank" rel="noopener" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/zhao.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">赵家富</h5>
+          <a href="mailto:530519174@qq.com" target="_blank" rel="noopener" title="530519174@qq.com" class="mail">530519174@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                archives(所有)
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags/"  >
+                <i class="icon icon-lg icon-tags"></i>
+                tag(标签)
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories/"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories(分类)
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/zhaojiafu" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://blog.csdn.net/weixin_42081389" target="_blank" >
+                <i class="icon icon-lg icon-csdn"></i>
+                Csdn
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" target="_blank" rel="noopener" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+
+        <div class="flex-col header-title ellipsis">记录一下Ubuntu18.04安装python2.7和python3.6版本</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" target="_blank" rel="noopener" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" target="_blank" rel="noopener" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" target="_blank" rel="noopener" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+
+        <h1 class="title">记录一下Ubuntu18.04安装python2.7和python3.6版本
+        </h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2019-09-26T03:34:32.000Z" itemprop="datePublished" class="page-time">
+  2019-09-26
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Ubuntu/">Ubuntu</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#说明："><span class="post-toc-number">1.</span> <span class="post-toc-text">说明：</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#1、安装python2-7和python3-6"><span class="post-toc-number">2.</span> <span class="post-toc-text">1、安装python2.7和python3.6</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#1、我错误的步骤1："><span class="post-toc-number">2.1.</span> <span class="post-toc-text">1、我错误的步骤1：</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#2、正式安装python开始"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">2、正式安装python开始</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#3、安装成功测试："><span class="post-toc-number">2.3.</span> <span class="post-toc-text">3、安装成功测试：</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#二、安装虚拟环境配置："><span class="post-toc-number">3.</span> <span class="post-toc-text">二、安装虚拟环境配置：</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#1、安装虚拟环境"><span class="post-toc-number">3.1.</span> <span class="post-toc-text">1、安装虚拟环境</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#2、配置虚拟环境："><span class="post-toc-number">3.2.</span> <span class="post-toc-text">2、配置虚拟环境：</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#3、virtualenvwrapper的功能"><span class="post-toc-number">3.3.</span> <span class="post-toc-text">3、virtualenvwrapper的功能</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#4、Ubuntu指定不同的python的版本配置虚拟环境（如果你安装一个python版本可以跳过）："><span class="post-toc-number">3.4.</span> <span class="post-toc-text">4、Ubuntu指定不同的python的版本配置虚拟环境（如果你安装一个python版本可以跳过）：</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#①查找如何置顶版本"><span class="post-toc-number">3.4.1.</span> <span class="post-toc-text">①查找如何置顶版本</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#②、查找python的位置-解决方法："><span class="post-toc-number">3.4.2.</span> <span class="post-toc-text">②、查找python的位置+解决方法：</span></a></li></ol></li></ol></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-b5e5ca9375e5c49bad2e7c6ea2d38d48"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">记录一下Ubuntu18.04安装python2.7和python3.6版本</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2019-09-26 11:34:32" datetime="2019-09-26T03:34:32.000Z"  itemprop="datePublished">2019-09-26</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Ubuntu/">Ubuntu</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h1 id="说明："><a href="#说明：" class="headerlink" title="说明："></a>说明：</h1><p>在家里电脑Windows系统上装个Ubuntu18.04(其实为了装个docker，测试个项目，结果就是弄不好，然后我刚开始装的是Ubuntu16.04，结果怎么也弄不上，然后Windows系统因为是删减版的，也不支持docker，反正一言难尽。。。弄了一个周也没有最终安装一个Ubuntu18.04安装docker环境，如果周六休息一天有时能就整理个博客，今天先把我刚刚Ubuntu18.04安装python2.7和python3.6.8版本弄好，记录下我的误解和最终找到的安装方法)</p>
+<h1 id="1、安装python2-7和python3-6"><a href="#1、安装python2-7和python3-6" class="headerlink" title="1、安装python2.7和python3.6"></a>1、安装python2.7和python3.6</h1><p>刚开始我想使用下载，发现安装步骤执行不了，Ubuntu，和Linux的centos系统下安装的python步骤还真不一样。</p>
+<h2 id="1、我错误的步骤1："><a href="#1、我错误的步骤1：" class="headerlink" title="1、我错误的步骤1："></a>1、我错误的步骤1：</h2><p>我想着按安装Linux一下，下载，解压，然后安装，结果，发现下载都下载不动，后来才需要翻*一下，才可以</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/20190926230850811.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+<p>然后我就用我自己的（自己买的使用的），然后下载下来，传到Linux里面，以为这样就能安装成功了，结果。。。</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/20190926232651381.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+<p>以为马上就要安装好了，结果却执行不成功</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/20190926232921491.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/20190926233216569.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+
+<h2 id="2、正式安装python开始"><a href="#2、正式安装python开始" class="headerlink" title="2、正式安装python开始"></a>2、正式安装python开始</h2><p>然后谷歌搜索了一番，找到一个安装不不错博主，安装成功立马给人家默默的点赞，虽然没有什么，但是我感觉是给博主一个鼓励，毕竟我写博客有时候也希望能帮助别人，点赞是对博主的一个认可（我感觉是这样的，嘻嘻）</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/2019092623391051.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+<p>其实也就下面三个命令就能安装成功了，第一个命令是安装python2.7，第二个命令是按照python2.7的pip，第三个是python3和python3的pip一起安装（这个我也是看到里面安装的log才看懂的。）</p>
+<p>提醒：如果不需要python2版本，直接执行第三行命令就行了。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">sudo apt install python2.7</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">sudo apt install python-pip</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">sudo apt install python3-pip</span></pre></td></tr></table></figure>
+
+<p>下面这几张图我只截图了一点开头，因为太长了，自己测试使用就行了。</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/20190926234437104.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/20190926234539144.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/20190926234722402.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+
+<h2 id="3、安装成功测试："><a href="#3、安装成功测试：" class="headerlink" title="3、安装成功测试："></a>3、安装成功测试：</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">whereis pip</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">whereis pip3</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">whereis python2.7</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">whereis python3</span></pre></td></tr></table></figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/20190926235001932.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">pip -V</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">pip3 -V</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">python -V</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">python3 -V</span></pre></td></tr></table></figure>
+
+
+<p><img src="/imgs/20190926235209528.png" alt="在这里插入图片描述"></p>
+<p>这个时候就知道了，如果直接使用python会使用python2，所以命令要分开。下面我就再整理下虚拟环境。</p>
+<h1 id="二、安装虚拟环境配置："><a href="#二、安装虚拟环境配置：" class="headerlink" title="二、安装虚拟环境配置："></a>二、安装虚拟环境配置：</h1><h2 id="1、安装虚拟环境"><a href="#1、安装虚拟环境" class="headerlink" title="1、安装虚拟环境"></a>1、安装虚拟环境</h2><p>我这个是安装python2里面的。然后要使用一个镜像源，这样安装快一点，不然太慢了。我这里使用的是清华大学的。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">sudo pip install virtualenv -i  https:&#x2F;&#x2F;pypi.tuna.tsinghua.edu.cn&#x2F;simple&#x2F;</span></pre></td></tr></table></figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/20190927000046625.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+<p>然后想着安装管理虚拟环境的管理器virtualenvwrapper。</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/20190927000325886.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+
+<p>然后才知道需要这个在Ubuntu里面命令安装(截图的命令我在Linux的centos里面的命令可以安装。）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">sudo apt-get install virtualenvwrapper</span></pre></td></tr></table></figure>
+
+
+<h2 id="2、配置虚拟环境："><a href="#2、配置虚拟环境：" class="headerlink" title="2、配置虚拟环境："></a>2、配置虚拟环境：</h2><p>此时还不能使用virtualenvwrapper，实际上你需要运行virtualenvwrapper.sh文件才行。<br>配置步骤如下：<br>1、查看virtualenvwrapper的安装路径</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">sudo find &#x2F; -name virtualenvwrapper.sh</span></pre></td></tr></table></figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/201909270013359.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+
+<p>2、创建目录用来存放虚拟环境（我选择在home目录下创建）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">mkdir ~&#x2F;myvirtualenvs</span></pre></td></tr></table></figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/2019092700144310.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+
+<p>3、在~/.bashrc中添加行（vi ~/.bashrc）最后面加入俩行<br>    /usr/share/virtualenvwrapper/virtualenvwrapper.sh<br>    这个是第一步查到的位置。<br>     /home/zhao/myvirtualenvs/是刚刚创建的新目录。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">export WORKON_HOME&#x3D;&#x2F;home&#x2F;zhao&#x2F;myvirtualenvs&#x2F;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">source &#x2F;usr&#x2F;share&#x2F;virtualenvwrapper&#x2F;virtualenvwrapper.sh</span></pre></td></tr></table></figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/20190927001531101.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+
+<p>4、运行： source ~/.bashrc</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">source ~&#x2F;.bashrc</span></pre></td></tr></table></figure>
+
+<p>此时virtualenvwrapper就可以使用了。</p>
+<h2 id="3、virtualenvwrapper的功能"><a href="#3、virtualenvwrapper的功能" class="headerlink" title="3、virtualenvwrapper的功能"></a>3、virtualenvwrapper的功能</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">workon:			        列出虚拟环境列表</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">lsvirtualenv:			列出虚拟环境列表</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">mkvirtualenv:			新建虚拟环境</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">workon [虚拟环境名称]:	切换&#x2F;进入虚拟环境</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">rmvirtualenv :		    删除虚拟环境</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">deactivate: 			离开虚拟环境</span></pre></td></tr></table></figure>
+<p>到此，达到我想要的要求了。</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/20190927001913316.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+
+<h2 id="4、Ubuntu指定不同的python的版本配置虚拟环境（如果你安装一个python版本可以跳过）："><a href="#4、Ubuntu指定不同的python的版本配置虚拟环境（如果你安装一个python版本可以跳过）：" class="headerlink" title="4、Ubuntu指定不同的python的版本配置虚拟环境（如果你安装一个python版本可以跳过）："></a>4、Ubuntu指定不同的python的版本配置虚拟环境（如果你安装一个python版本可以跳过）：</h2><p>前提是有俩个python版本，根据上面安装的我的默认python为python2.7版本，但是如果我的其他项目需要python3了怎么创建一个新的虚拟环境呐？有思考了尝试弄了一会，找到一个解决方案：</p>
+<p>因为我们Ubuntu安装virtualenvwrapper时，不是使用pip安装，所以我就人为它是一个软件，相关Windows上面的一个文件或者软件管理软件。全局使用都可以。<br>所以先查找如何制定版本</p>
+<h3 id="①查找如何置顶版本"><a href="#①查找如何置顶版本" class="headerlink" title="①查找如何置顶版本"></a>①查找如何置顶版本</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">mkvirtualenv -h</span></pre></td></tr></table></figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/20190927003728882.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+
+<h3 id="②、查找python的位置-解决方法："><a href="#②、查找python的位置-解决方法：" class="headerlink" title="②、查找python的位置+解决方法："></a>②、查找python的位置+解决方法：</h3><p>其实，这个很简单，就是后面跟个–python=python版本的绝对路径。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">whereis python3</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">mkvirtualenv env2 --python&#x3D;&#x2F;usr&#x2F;bin&#x2F;python3.6m</span></pre></td></tr></table></figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/20190927004428357.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+
+
+
+<p>参考：<br><a href="https://blog.csdn.net/gymaisyl/article/details/86563916" target="_blank" rel="noopener">https://blog.csdn.net/gymaisyl/article/details/86563916</a></p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2019-12-02T07:00:36.955Z" itemprop="dateUpdated">2019-12-02 15:00:36</time>
+</span><br>
+
+
+        
+        这里可以写作者留言，标签和 hexo 中所有变量及辅助函数等均可调用，示例：<a href="/2019/09/26/b5e5ca9375e5c49bad2e7c6ea2d38d48/" target="_blank" rel="external">https://zhaojiafu.github.io/2019/09/26/b5e5ca9375e5c49bad2e7c6ea2d38d48/</a>
+        
+    </div>
+    
+    <footer>
+        <a href="https://zhaojiafu.github.io">
+            <img src="/img/zhao.jpg" alt="赵家富">
+            赵家富
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" target="_blank" rel="noopener" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Ubuntu/" rel="tag">Ubuntu</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://zhaojiafu.github.io/2019/09/26/b5e5ca9375e5c49bad2e7c6ea2d38d48/&title=《记录一下Ubuntu18.04安装python2.7和python3.6版本》 — 赵家富的博客&pic=https://zhaojiafu.github.io/img/zhao.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" target="_blank" rel="noopener" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://zhaojiafu.github.io/2019/09/26/b5e5ca9375e5c49bad2e7c6ea2d38d48/&title=《记录一下Ubuntu18.04安装python2.7和python3.6版本》 — 赵家富的博客&source=感觉无从下手的时候，问自己“不难，要你干啥？”" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://zhaojiafu.github.io/2019/09/26/b5e5ca9375e5c49bad2e7c6ea2d38d48/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《记录一下Ubuntu18.04安装python2.7和python3.6版本》 — 赵家富的博客&url=https://zhaojiafu.github.io/2019/09/26/b5e5ca9375e5c49bad2e7c6ea2d38d48/&via=https://zhaojiafu.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://zhaojiafu.github.io/2019/09/26/b5e5ca9375e5c49bad2e7c6ea2d38d48/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" target="_blank" rel="noopener" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2019/09/30/fa47655a0e5a0275481489ebfb9e99c8/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">整理一些linux命令必须熟练掌握常的命令（复习+扩展学习Linux命令）</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2019/09/24/73ca72104cdf805e07635840b4bb396a/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">Linux学习整理（持续更新中。。。）</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<section class="comments" id="comments">
+    <div id="gitalk-container"></div>
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+        var id = location.pathname
+        if (location.pathname.length > 50) {
+          id = location.pathname.replace(/\/\d+\/\d+\/\d+\//, '').replace('/', '').substring(0, 50)
+        }
+        const gitalk = new Gitalk({
+          clientID: '388d0a78cda30f118f86',
+          clientSecret: '2c64b34cc20f23d768dffff64acb8c2ee02c3bee',
+          repo: 'https://zhaojiafu.github.io/',
+          owner: 'zjf',
+          admin: ['zjf'],
+          id: id,      // Ensure uniqueness and length less than 50
+          title: document.title.split('|')[0],
+          distractionFreeMode: false  // Facebook-like distraction free mode
+        })
+
+        gitalk.render('gitalk-container')
+    </script>
+</section>
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;" target="_blank" rel="noopener"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢大爷~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.jpg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.jpg" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+            <span>博客内容遵循 <a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+        <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=0 height=0 src="http://music.163.com/song/media/outer/url?id=1369798757&auto=1"></iframe>
+
+    </div>
+    <div class="bottom">
+        <p><span>赵家富 &copy; 2019</span>
+            <span>
+                
+
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" target="_blank" rel="noopener" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://zhaojiafu.github.io/2019/09/26/b5e5ca9375e5c49bad2e7c6ea2d38d48/&title=《记录一下Ubuntu18.04安装python2.7和python3.6版本》 — 赵家富的博客&pic=https://zhaojiafu.github.io/img/zhao.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" target="_blank" rel="noopener" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://zhaojiafu.github.io/2019/09/26/b5e5ca9375e5c49bad2e7c6ea2d38d48/&title=《记录一下Ubuntu18.04安装python2.7和python3.6版本》 — 赵家富的博客&source=感觉无从下手的时候，问自己“不难，要你干啥？”" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://zhaojiafu.github.io/2019/09/26/b5e5ca9375e5c49bad2e7c6ea2d38d48/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《记录一下Ubuntu18.04安装python2.7和python3.6版本》 — 赵家富的博客&url=https://zhaojiafu.github.io/2019/09/26/b5e5ca9375e5c49bad2e7c6ea2d38d48/&via=https://zhaojiafu.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://zhaojiafu.github.io/2019/09/26/b5e5ca9375e5c49bad2e7c6ea2d38d48/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;" target="_blank" rel="noopener"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACoUlEQVR42u3a0WrDMAwF0P7/T3fPoyS7kqySwclTYK3r40Gs6Pr1iq/3x/X51/y7V+Pc/9b9r4wuPDw8vPHUr4ZOpng/rfv7BFxeMjw8PLw13tWgyWeqpPuR8+W+nzMeHh7ec3hJYZ1/plqU4+Hh4f1fXvJYT/C9JcDDw8N7Aq9awk7aB/OH/kqvBQ8PD6+WOkUp0nPuV/I9PDw8vHGqnoRh99tGdeF6jd3L2eLh4eEt8PKpJOF977tnlwwPDw/vO7zeI7gXa02CtN5xLjw8PLzv86rbQLVo7h3Das4KDw8Pbzyr6qGBarHbK7uroVr5XQEPDw9vzOsdHegtRK/1kCxN8/0ADw8Pr8jLW7S9JkJ16r3gLQrA8PDw8JZ5vWlNHvF52T3a/fDw8PAO8fLwaVLy5q3Y6m/lLwB4eHh4c14ydLUIzh/31dZtuSGCh4eHt8bLA/sqoDdaUuhHYDw8PLwFXnXQ3pt+HvznC1Q4moCHh4e3xqsWzfOYqseo/mPw8PDwzvJ6sf0EMP9W3hzBw8PD2+PlG0PeYsgL6L0lxsPDw9vg5c2FvPwtV/SDo1rlQ1d4eHh4Y97kIfuOr2qjYTITPDw8vG1eHv/3Ivx52V0t0PHw8PC+w0s2iWoiPzkukIxZ3kLw8PDwjvImP1lom7YOByRHB6J9Dw8PD2+BlxTNvYWoNmF7zd9ox8PDw8Nb452KqapNilfr+gOJh4eHd5T3Ll6nVjTfiqp//XWPh4eHt8A71T7Iw7NeG6J3j4eHh7fHq4b6VXAycj6HZGPAw8PD+w5vEoydwsybEXh4eHhP5uV1er7lzKOvy5IaDw8P72G8pNnaK6YPbCp4eHh4a7x86F4A1ts2evEYHh4e3jav98LfC/irsJWDAnh4eHh93g/cTrtgDdXmIAAAAABJRU5ErkJggg==" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '死鬼去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+<script src="/node_modules/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"node_modules/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/node_modules/assets/shizuku.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"react":{"opacity":0.7},"log":false});</script></body>
+</html>

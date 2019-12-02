@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <link rel="canonical" href="https://zhaojiafu.github.io/2019/03/25/6fa95cc7ff91011d15c19df9a0ca0c79/">
+    
+    
+    <title>TensorFlow的几个问题 | 赵家富的博客 | 保持好奇心</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="TensorFlow">
+    <meta name="description" content="1、Your CPU supports instructions that this TensorFlow binary was not compiled to use: AVX2问题错误提醒：2019-03-25 16:33:29.066658: I tensorflow&#x2F;core&#x2F;platform&#x2F;cpu_feature_guard.cc:141] Your CPU supports inst">
+<meta name="keywords" content="TensorFlow">
+<meta property="og:type" content="article">
+<meta property="og:title" content="TensorFlow的几个问题">
+<meta property="og:url" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;2019&#x2F;03&#x2F;25&#x2F;6fa95cc7ff91011d15c19df9a0ca0c79&#x2F;index.html">
+<meta property="og:site_name" content="赵家富的博客">
+<meta property="og:description" content="1、Your CPU supports instructions that this TensorFlow binary was not compiled to use: AVX2问题错误提醒：2019-03-25 16:33:29.066658: I tensorflow&#x2F;core&#x2F;platform&#x2F;cpu_feature_guard.cc:141] Your CPU supports inst">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20190325170630273.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;2019051009200558.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20190509174922265.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20190509174941243.png">
+<meta property="og:updated_time" content="2019-12-02T06:45:49.067Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20190325170630273.png">
+    
+    <link rel="shortcut icon" href="/img/cb2nm-5l9w0-001.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" target="_blank" rel="noopener" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/zhao.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">赵家富</h5>
+          <a href="mailto:530519174@qq.com" target="_blank" rel="noopener" title="530519174@qq.com" class="mail">530519174@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                archives(所有)
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags/"  >
+                <i class="icon icon-lg icon-tags"></i>
+                tag(标签)
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories/"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories(分类)
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/zhaojiafu" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://blog.csdn.net/weixin_42081389" target="_blank" >
+                <i class="icon icon-lg icon-csdn"></i>
+                Csdn
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" target="_blank" rel="noopener" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+
+        <div class="flex-col header-title ellipsis">TensorFlow的几个问题</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" target="_blank" rel="noopener" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" target="_blank" rel="noopener" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" target="_blank" rel="noopener" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+
+        <h1 class="title">TensorFlow的几个问题
+        </h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2019-03-25T03:34:32.000Z" itemprop="datePublished" class="page-time">
+  2019-03-25
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/TensorFlow/">TensorFlow</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#1、Your-CPU-supports-instructions-that-this-TensorFlow-binary-was-not-compiled-to-use-AVX2问题"><span class="post-toc-number">1.</span> <span class="post-toc-text">1、Your CPU supports instructions that this TensorFlow binary was not compiled to use: AVX2问题</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#错误提醒："><span class="post-toc-number">1.0.0.1.</span> <span class="post-toc-text">错误提醒：</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#问题解决："><span class="post-toc-number">1.0.0.2.</span> <span class="post-toc-text">问题解决：</span></a></li></ol></li></ol></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#2、版本警告问题"><span class="post-toc-number">2.</span> <span class="post-toc-text">2、版本警告问题</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#警告提醒："><span class="post-toc-number">2.0.0.1.</span> <span class="post-toc-text">警告提醒：</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#解决方法"><span class="post-toc-number">2.0.1.</span> <span class="post-toc-text">解决方法</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#3、ImportError-cannot-import-name-‘ops’"><span class="post-toc-number">3.</span> <span class="post-toc-text">3、ImportError: cannot import name ‘ops’</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#4、TensorFlow模块导入出现ImportError-DLL-load-failed-找不到指定的模块。"><span class="post-toc-number">4.</span> <span class="post-toc-text">4、TensorFlow模块导入出现ImportError: DLL load failed: 找不到指定的模块。</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#版本对应链接："><span class="post-toc-number">4.0.1.</span> <span class="post-toc-text">版本对应链接：</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#安装指定版本命令"><span class="post-toc-number">4.0.2.</span> <span class="post-toc-text">安装指定版本命令</span></a></li></ol></li></ol></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-6fa95cc7ff91011d15c19df9a0ca0c79"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">TensorFlow的几个问题</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2019-03-25 11:34:32" datetime="2019-03-25T03:34:32.000Z"  itemprop="datePublished">2019-03-25</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/TensorFlow/">TensorFlow</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h1 id="1、Your-CPU-supports-instructions-that-this-TensorFlow-binary-was-not-compiled-to-use-AVX2问题"><a href="#1、Your-CPU-supports-instructions-that-this-TensorFlow-binary-was-not-compiled-to-use-AVX2问题" class="headerlink" title="1、Your CPU supports instructions that this TensorFlow binary was not compiled to use: AVX2问题"></a>1、Your CPU supports instructions that this TensorFlow binary was not compiled to use: AVX2问题</h1><h4 id="错误提醒："><a href="#错误提醒：" class="headerlink" title="错误提醒："></a><strong>错误提醒：</strong></h4><pre><code>2019-03-25 16:33:29.066658: I tensorflow/core/platform/cpu_feature_guard.cc:141] Your CPU supports instructions that this TensorFlow binary was not compiled to use: AVX2</code></pre><p>第一个问题Your CPU supports instructions that this TensorFlow binary was not compiled to use: AVX2<br>可以参考：<br><a href="https://blog.csdn.net/hq86937375/article/details/79696023" target="_blank" rel="noopener">https://blog.csdn.net/hq86937375/article/details/79696023</a></p>
+<pre><code>I tensorflow/core/platform/cpu_feature_guard.cc:141] Your CPU supports instructions that this TensorFlow binary was not compiled to use: AVX2</code></pre><h4 id="问题解决："><a href="#问题解决：" class="headerlink" title="问题解决："></a>问题解决：</h4><p>对此问题可以直接在代码中加入：</p>
+<pre><code>import os
+
+os.environ[&apos;TF_CPP_MIN_LOG_LEVEL&apos;] = &apos;2&apos;</code></pre><h1 id="2、版本警告问题"><a href="#2、版本警告问题" class="headerlink" title="2、版本警告问题"></a>2、版本警告问题</h1><h4 id="警告提醒："><a href="#警告提醒：" class="headerlink" title="警告提醒："></a>警告提醒：</h4><pre><code>WARNING:tensorflow:From C:\Users\wb-zjf497303\AppData\Roaming\Python\Python36\site-packages\tensorflow\python\ops\resource_variable_ops.py:435: colocate_with (from tensorflow.python.framework.ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Colocations handled automatically by placer.</code></pre><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/20190325170630273.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+<p>意思是下一个版本TensorFlow将会将此方法删除：</p>
+<p>因此，该方法colocate_with是一个上下文管理器，用于确保您要创建的操作或张量将放置在引用操作所在的同一设备上。但是，您的警告说它将被弃用，并且从现在开始将自动处理。从tensorflow的下一个版本开始，此方法将被删除，因此您必须立即更新代码（将在当前运行）或更晚（当您将tensorflow的版本更新到下一个时，此代码将不再可运行因为该方法将被删除）</p>
+<h3 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h3><p>先进行版本卸载在重新安装指定版本的tensorflow我的python是3.6.8：<br>查找版本对应地址：<br><a href="https://www.tensorflow.org/install/source_windows#cpu" target="_blank" rel="noopener">https://www.tensorflow.org/install/source_windows#cpu</a></p>
+<pre><code>pip uninstall tensorflow
+pip install tensorflow==1.11.0</code></pre><p>问题解决结果中没有了警告：</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/2019051009200558.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+
+<h1 id="3、ImportError-cannot-import-name-‘ops’"><a href="#3、ImportError-cannot-import-name-‘ops’" class="headerlink" title="3、ImportError: cannot import name ‘ops’"></a>3、ImportError: cannot import name ‘ops’</h1><p>错误原内容：</p>
+<pre><code>Using TensorFlow backend.
+Traceback (most recent call last):
+  File &quot;D:/zjf_workspace/自己测试用的/005imageai模块/imageai_study/demo_02_photo_search/demo-1.py&quot;, line 1, in &lt;module&gt;
+    from imageai.Detection import ObjectDetection
+  File &quot;D:\tools\Python3.6\lib\site-packages\imageai\Detection\__init__.py&quot;, line 3, in &lt;module&gt;
+    from imageai.Detection.keras_retinanet.models.resnet import resnet50_retinanet
+  File &quot;D:\tools\Python3.6\lib\site-packages\imageai\Detection\keras_retinanet\models\resnet.py&quot;, line 19, in &lt;module&gt;
+    import keras
+  File &quot;D:\tools\Python3.6\lib\site-packages\keras\__init__.py&quot;, line 3, in &lt;module&gt;
+    from . import utils
+  File &quot;D:\tools\Python3.6\lib\site-packages\keras\utils\__init__.py&quot;, line 6, in &lt;module&gt;
+    from . import conv_utils
+  File &quot;D:\tools\Python3.6\lib\site-packages\keras\utils\conv_utils.py&quot;, line 9, in &lt;module&gt;
+    from .. import backend as K
+  File &quot;D:\tools\Python3.6\lib\site-packages\keras\backend\__init__.py&quot;, line 89, in &lt;module&gt;
+    from .tensorflow_backend import *
+  File &quot;D:\tools\Python3.6\lib\site-packages\keras\backend\tensorflow_backend.py&quot;, line 6, in &lt;module&gt;
+    from tensorflow.python.framework import ops as tf_ops
+ImportError: cannot import name &apos;ops&apos;</code></pre><p>问题我也是找了好久，定位到最终问题是导入下面这个模块的问题，</p>
+<pre><code>from tensorflow.python.framework import ops as tf_ops</code></pre><p>最后还是通过Google搜索到，最终解决。意思好像就是tensorflow和keras俩个模块不支持当前的python版本。</p>
+<p>我最终找到解决参考连接（好像需要翻墙）：<a href="https://stackoverflow.com/questions/51076277/cannot-import-name-ops-python" target="_blank" rel="noopener">https://stackoverflow.com/questions/51076277/cannot-import-name-ops-python</a></p>
+<p>解决方法：</p>
+<pre><code>pip install tensorflow --upgrade
+pip install keras --upgrade</code></pre><h1 id="4、TensorFlow模块导入出现ImportError-DLL-load-failed-找不到指定的模块。"><a href="#4、TensorFlow模块导入出现ImportError-DLL-load-failed-找不到指定的模块。" class="headerlink" title="4、TensorFlow模块导入出现ImportError: DLL load failed: 找不到指定的模块。"></a>4、TensorFlow模块导入出现ImportError: DLL load failed: 找不到指定的模块。</h1><p>当我使用imageai模块的时候给我报错，错误指向TensorFlow，我就很奇怪，然后进行Google搜索，前进加速TensorFlow进行搜索，可以搜到相关的，最后我只写一个import TensorFlow 也会报这个错误，最终确定是python版本和TensorFlow版本的不兼容问题。最后我找了快1个小时最终找到一个版本对应关系，所以我又把我的python3.7换成3.6.8版本的，没有找到和3.7对应版本的TensorFlow，所以和我一样老是升级的强迫症以后注意了，浪费不少精力。</p>
+<h3 id="版本对应链接："><a href="#版本对应链接：" class="headerlink" title="版本对应链接："></a>版本对应链接：</h3><p><a href="https://www.tensorflow.org/install/source_windows#cpu" target="_blank" rel="noopener">https://www.tensorflow.org/install/source_windows#cpu</a></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/20190509174922265.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/20190509174941243.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+
+<h3 id="安装指定版本命令"><a href="#安装指定版本命令" class="headerlink" title="安装指定版本命令"></a>安装指定版本命令</h3><p>然后我命令安装对应版本：</p>
+<pre><code>pip install tensorflow-gpu==1.5.0
+pip install tensorflow==1.5</code></pre><p>如果你的python有对应的，可以先卸载再安装，pip卸载命令：</p>
+<pre><code>pip uninstall tensorflow
+pip uninstall tensorflow-gpu</code></pre>
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2019-12-02T06:45:49.067Z" itemprop="dateUpdated">2019-12-02 14:45:49</time>
+</span><br>
+
+
+        
+        这里可以写作者留言，标签和 hexo 中所有变量及辅助函数等均可调用，示例：<a href="/2019/03/25/6fa95cc7ff91011d15c19df9a0ca0c79/" target="_blank" rel="external">https://zhaojiafu.github.io/2019/03/25/6fa95cc7ff91011d15c19df9a0ca0c79/</a>
+        
+    </div>
+    
+    <footer>
+        <a href="https://zhaojiafu.github.io">
+            <img src="/img/zhao.jpg" alt="赵家富">
+            赵家富
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" target="_blank" rel="noopener" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/TensorFlow/" rel="tag">TensorFlow</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://zhaojiafu.github.io/2019/03/25/6fa95cc7ff91011d15c19df9a0ca0c79/&title=《TensorFlow的几个问题》 — 赵家富的博客&pic=https://zhaojiafu.github.io/img/zhao.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" target="_blank" rel="noopener" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://zhaojiafu.github.io/2019/03/25/6fa95cc7ff91011d15c19df9a0ca0c79/&title=《TensorFlow的几个问题》 — 赵家富的博客&source=感觉无从下手的时候，问自己“不难，要你干啥？”" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://zhaojiafu.github.io/2019/03/25/6fa95cc7ff91011d15c19df9a0ca0c79/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《TensorFlow的几个问题》 — 赵家富的博客&url=https://zhaojiafu.github.io/2019/03/25/6fa95cc7ff91011d15c19df9a0ca0c79/&via=https://zhaojiafu.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://zhaojiafu.github.io/2019/03/25/6fa95cc7ff91011d15c19df9a0ca0c79/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" target="_blank" rel="noopener" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2019/03/28/bbd0d3220fda0db3ed82acc140814302/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">jupyter 学习之1-修改工作路径</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2019/03/02/22b1c8578c48cbef3f51bd55adcb0289/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">Tesseract-OCR使用报错</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<section class="comments" id="comments">
+    <div id="gitalk-container"></div>
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+        var id = location.pathname
+        if (location.pathname.length > 50) {
+          id = location.pathname.replace(/\/\d+\/\d+\/\d+\//, '').replace('/', '').substring(0, 50)
+        }
+        const gitalk = new Gitalk({
+          clientID: '388d0a78cda30f118f86',
+          clientSecret: '2c64b34cc20f23d768dffff64acb8c2ee02c3bee',
+          repo: 'https://zhaojiafu.github.io/',
+          owner: 'zjf',
+          admin: ['zjf'],
+          id: id,      // Ensure uniqueness and length less than 50
+          title: document.title.split('|')[0],
+          distractionFreeMode: false  // Facebook-like distraction free mode
+        })
+
+        gitalk.render('gitalk-container')
+    </script>
+</section>
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;" target="_blank" rel="noopener"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢大爷~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.jpg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.jpg" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+            <span>博客内容遵循 <a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+        <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=0 height=0 src="http://music.163.com/song/media/outer/url?id=1369798757&auto=1"></iframe>
+
+    </div>
+    <div class="bottom">
+        <p><span>赵家富 &copy; 2019</span>
+            <span>
+                
+
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" target="_blank" rel="noopener" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://zhaojiafu.github.io/2019/03/25/6fa95cc7ff91011d15c19df9a0ca0c79/&title=《TensorFlow的几个问题》 — 赵家富的博客&pic=https://zhaojiafu.github.io/img/zhao.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" target="_blank" rel="noopener" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://zhaojiafu.github.io/2019/03/25/6fa95cc7ff91011d15c19df9a0ca0c79/&title=《TensorFlow的几个问题》 — 赵家富的博客&source=感觉无从下手的时候，问自己“不难，要你干啥？”" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://zhaojiafu.github.io/2019/03/25/6fa95cc7ff91011d15c19df9a0ca0c79/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《TensorFlow的几个问题》 — 赵家富的博客&url=https://zhaojiafu.github.io/2019/03/25/6fa95cc7ff91011d15c19df9a0ca0c79/&via=https://zhaojiafu.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://zhaojiafu.github.io/2019/03/25/6fa95cc7ff91011d15c19df9a0ca0c79/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;" target="_blank" rel="noopener"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACsklEQVR42u3aUW7jMAwFwNz/0t0DFHHeI6UiC4y/gjSwNSog0iRfr/j6ia/Z738/6919XjcuPDw8vKNL//2b5wcn93lmPK8zXzMeHh7ebV5yu/xzsqx845636YMFDw8P7wt4z0f58zHdbs3zFuDh4eH9L7wcMIOdCkJ4eHh4t3ltEWF2lCcBJg8qh2steHh4eF3XKeoifc/nK/09PDw8vKMDAXmLK0mvn3+TFDii1eLh4eFd4LWLSMoQs6Q5T6DzdeLh4eHd47Ut/Lyw2xY1cnY+zoWHh4d3jzcbC5gVUjcJ+ixg4OHh4Z3izQqpbbO/3eOEV5ch8PDw8K7xksQ0/7494pMtW3Xt8PDw8A7x8gR6P16wCUJ5ueRtfw8PDw9vzcsP+qR42gabtqjxvMVRSQIPDw/vEC/PRe8VamdDCcNaNR4eHt4F3uwQ3ywrD06rkICHh4d3lDcbgWoXmifNSXA6NlOGh4eHF/Pal//NOFS936On1A0wPDw8vBGvPb43raw2JLSjBh9aX3h4eHhr3mwQKg8hbdI8G+eKQgUeHh7eId7m6N+PFLTg5K9vixF4eHh4h3j7llibZOfIdjhgOECAh4eHV/Lagzg/9NsBqVmqXbwl4OHh4R3izYYAZo20ZFQrT8Rnm4uHh4d3g7dPcPfjArOSRPGPwcPDw1vzNmlufSiPxqdWRVs8PDy8P+FtosoG3LavorXh4eHhXeYlBYVTrfpZ4aMNOXh4eHhneT/lNStY5Al0Ww7+sB48PDy8C7zNId6WEjZliNlnPDw8vHu8tqk/W8pmvKANDHh4eHh/w5uVVjfJ9HC57Trx8PDwvoC3afy3IadN0/Hw8PC+k/d807wc3JaP2yEGPDw8vNu8WSFg9k0+lDArduDh4eHd5h144R+NUiWwfakCDw8P7yjvH9kL2k9DQN7OAAAAAElFTkSuQmCC" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '死鬼去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+<script src="/node_modules/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"node_modules/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/node_modules/assets/shizuku.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"react":{"opacity":0.7},"log":false});</script></body>
+</html>

@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <link rel="canonical" href="https://zhaojiafu.github.io/2019/12/02/509550cc8aca4ee13dbacb4ccb58828f/">
+    
+    
+    <title>正则表达式-匹配中英文、字母和数字 | 赵家富的博客 | 保持好奇心</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="正则re">
+    <meta name="description" content="最近需要用到正则匹配，上网找了一下，发现这个博客写的不错，想着保留了下载，日后用时就省事了。转载来自：https:&#x2F;&#x2F;blog.csdn.net&#x2F;jinruoyanxu&#x2F;article&#x2F;details&#x2F;79385815 在做项目的过程中，使用正则表达式来匹配一段文本中的特定种类字符，是比较常用的一种方式，下面是对常用的正则匹配做了一个归纳整理。  匹配中文:[\u4e00-\u9fa5]  英文">
+<meta name="keywords" content="正则re">
+<meta property="og:type" content="article">
+<meta property="og:title" content="正则表达式-匹配中英文、字母和数字">
+<meta property="og:url" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;2019&#x2F;12&#x2F;02&#x2F;509550cc8aca4ee13dbacb4ccb58828f&#x2F;index.html">
+<meta property="og:site_name" content="赵家富的博客">
+<meta property="og:description" content="最近需要用到正则匹配，上网找了一下，发现这个博客写的不错，想着保留了下载，日后用时就省事了。转载来自：https:&#x2F;&#x2F;blog.csdn.net&#x2F;jinruoyanxu&#x2F;article&#x2F;details&#x2F;79385815 在做项目的过程中，使用正则表达式来匹配一段文本中的特定种类字符，是比较常用的一种方式，下面是对常用的正则匹配做了一个归纳整理。  匹配中文:[\u4e00-\u9fa5]  英文">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-12-02T07:40:53.033Z">
+<meta name="twitter:card" content="summary">
+    
+    <link rel="shortcut icon" href="/img/cb2nm-5l9w0-001.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" target="_blank" rel="noopener" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/zhao.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">赵家富</h5>
+          <a href="mailto:530519174@qq.com" target="_blank" rel="noopener" title="530519174@qq.com" class="mail">530519174@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                archives(所有)
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags/"  >
+                <i class="icon icon-lg icon-tags"></i>
+                tag(标签)
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories/"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories(分类)
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/zhaojiafu" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://blog.csdn.net/weixin_42081389" target="_blank" >
+                <i class="icon icon-lg icon-csdn"></i>
+                Csdn
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" target="_blank" rel="noopener" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+
+        <div class="flex-col header-title ellipsis">正则表达式-匹配中英文、字母和数字</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" target="_blank" rel="noopener" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" target="_blank" rel="noopener" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" target="_blank" rel="noopener" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+
+        <h1 class="title">正则表达式-匹配中英文、字母和数字
+        </h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2019-12-02T03:34:32.000Z" itemprop="datePublished" class="page-time">
+  2019-12-02
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/%E6%AD%A3%E5%88%99re/">正则re</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+
+<article id="post-509550cc8aca4ee13dbacb4ccb58828f"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">正则表达式-匹配中英文、字母和数字</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2019-12-02 11:34:32" datetime="2019-12-02T03:34:32.000Z"  itemprop="datePublished">2019-12-02</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/%E6%AD%A3%E5%88%99re/">正则re</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p>﻿最近需要用到正则匹配，上网找了一下，发现这个博客写的不错，想着保留了下载，日后用时就省事了。<br>转载来自：<br><a href="https://blog.csdn.net/jinruoyanxu/article/details/79385815" target="_blank" rel="noopener">https://blog.csdn.net/jinruoyanxu/article/details/79385815</a></p>
+<pre><code>在做项目的过程中，使用正则表达式来匹配一段文本中的特定种类字符，是比较常用的一种方式，下面是对常用的正则匹配做了一个归纳整理。
+
+匹配中文:[\u4e00-\u9fa5]
+
+英文字母:[a-zA-Z]
+数字:[0-9]
+
+匹配中文，英文字母和数字及_:
+^[\u4e00-\u9fa5_a-zA-Z0-9]+$
+
+同时判断输入长度：
+[\u4e00-\u9fa5_a-zA-Z0-9_]{4,10}
+
+^[\w\u4E00-\u9FA5\uF900-\uFA2D]*$ 1、一个正则表达式，只含有汉字、数字、字母、下划线不能以下划线开头和结尾：
+^(?!_)(?!.*?_$)[a-zA-Z0-9_\u4e00-\u9fa5]+$其中：
+^与字符串开始的地方匹配
+(?!_)　　不能以_开头
+(?!.*?_$)　　不能以_结尾
+[a-zA-Z0-9_\u4e00-\u9fa5]+　　至少一个汉字、数字、字母、下划线
+$　　与字符串结束的地方匹配
+
+放在程序里前面加@，否则需要\\进行转义 &quot;^(?!_)(?!.*?_$)[a-zA-Z0-9_\u4e00-\u9fa5]+$&quot;
+（或者：&quot;^(?!_)\w*(? 
+2、只含有汉字、数字、字母、下划线，下划线位置不限：
+^[a-zA-Z0-9_\u4e00-\u9fa5]+$
+
+3、由数字、26个英文字母或者下划线组成的字符串
+^\w+$
+
+4、2~4个汉字
+&quot;^[\u4E00-\u9FA5]{2,4}$&quot;;
+
+5、
+^[\w-]+(\.[\w-]+)*@[\w-]+(\.[\w-]+)+$
+
+用：(Abc)+ 来分析：XYZAbcAbcAbcXYZAbcAb
+
+XYZAbcAbcAbcXYZAbcAb6、
+[^\u4E00-\u9FA50-9a-zA-Z_]
+34555#5&apos; --&gt;34555#5&apos;
+
+
+publicbool RegexName(string str)
+{
+bool flag=Regex.IsMatch(str,@&quot;^[a-zA-Z0-9_\u4e00-\u9fa5]+$&quot;);
+returnflag;
+}
+
+Regex reg=new Regex(&quot;^[a-zA-Z_0-9]+$&quot;); 
+if(reg.IsMatch(s)) 
+{ 
+\\符合规则 
+} 
+else 
+{ 
+\\存在非法字符 
+}
+
+最长不得超过7个汉字，或14个字节(数字，字母和下划线)正则表达式
+^[\u4e00-\u9fa5]{1,7}$|^[\dA-Za-z_]{1,14}$
+
+常用正则表达式大全！
+
+（例如：匹配中文、匹配html）
+
+匹配中文字符的正则表达式： [u4e00-u9fa5] 
+评注：匹配中文还真是个头疼的事，有了这个表达式就好办了
+
+匹配双字节字符(包括汉字在内)：[^x00-xff]
+评注：可以用来计算字符串的长度（一个双字节字符长度计2，ASCII字符计1）
+匹配空白行的正则表达式：ns*r
+评注：可以用来删除空白行
+匹配HTML标记的正则表达式：&lt;(S*?)[^&gt;]*&gt;.*?|&lt;.*? /&gt;
+评注：网上流传的版本太糟糕，上面这个也仅仅能匹配部分，对于复杂的嵌套标记依旧无能为力
+匹配首尾空白字符的正则表达式：^s*|s*$
+评注：可以用来删除行首行尾的空白字符(包括空格、制表符、换页符等等)，非常有用的表达式
+匹配Email地址的正则表达式：^[a-zA-Z0-9][\w\.-]*[a-zA-Z0-9]@[a-zA-Z0-9][\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]$
+
+评注：表单验证时很实用
+
+手机号：^((13[0-9])|(14[0-9])|(15[0-9])|(17[0-9])|(18[0-9]))\d{8}$
+
+身份证：(^\d{15}$)|(^\d{17}([0-9]|X|x)$)
+
+匹配网址URL的正则表达式：[a-zA-z]+://[^s]*
+评注：网上流传的版本功能很有限，上面这个基本可以满足需求
+匹配帐号是否合法(字母开头，允许5-16字节，允许字母数字下划线)：^[a-zA-Z][a-zA-Z0-9_]{4,15}$
+评注：表单验证时很实用
+匹配国内电话号码：d{3}-d{8}|d{4}-d{7}
+评注：匹配形式如 0511-4405222 或 021-87888822
+匹配腾讯QQ号：[1-9][0-9]{4,}
+评注：腾讯QQ号从10000开始
+匹配中国邮政编码：[1-9]d{5}(?!d)
+评注：中国邮政编码为6位数字
+匹配身份证：d{15}|d{18}
+评注：中国的身份证为15位或18位
+匹配ip地址：d+.d+.d+.d+
+评注：提取ip地址时有用
+匹配特定数字：
+^[1-9]d*$　 　 //匹配正整数
+^-[1-9]d*$ 　 //匹配负整数
+^-?[1-9]d*$　　 //匹配整数
+^[1-9]d*|0$　 //匹配非负整数（正整数 + 0）
+^-[1-9]d*|0$　　 //匹配非正整数（负整数 + 0）
+^[1-9]d*.d*|0.d*[1-9]d*$　　 //匹配正浮点数
+^-([1-9]d*.d*|0.d*[1-9]d*)$　 //匹配负浮点数
+^-?([1-9]d*.d*|0.d*[1-9]d*|0?.0+|0)$　 //匹配浮点数
+^[1-9]d*.d*|0.d*[1-9]d*|0?.0+|0$　　 //匹配非负浮点数（正浮点数 + 0）
+^(-([1-9]d*.d*|0.d*[1-9]d*))|0?.0+|0$　　//匹配非正浮点数（负浮点数 + 0）
+评注：处理大量数据时有用，具体应用时注意修正
+匹配特定字符串：
+^[A-Za-z]+$　　//匹配由26个英文字母组成的字符串
+^[A-Z]+$　　//匹配由26个英文字母的大写组成的字符串
+^[a-z]+$　　//匹配由26个英文字母的小写组成的字符串
+^[A-Za-z0-9]+$　　//匹配由数字和26个英文字母组成的字符串
+^w+$　　//匹配由数字、26个英文字母或者下划线组成的字符串
+在使用RegularExpressionValidator验证控件时的验证功能及其验证表达式介绍如下:
+只能输入数字：“^[0-9]*$”
+只能输入n位的数字：“^d{n}$”
+只能输入至少n位数字：“^d{n,}$”
+只能输入m-n位的数字：“^d{m,n}$”
+只能输入零和非零开头的数字：“^(0|[1-9][0-9]*)$”
+只能输入有两位小数的正实数：“^[0-9]+(.[0-9]{2})?$”
+只能输入有1-3位小数的正实数：“^[0-9]+(.[0-9]{1,3})?$”
+只能输入非零的正整数：“^+?[1-9][0-9]*$”
+只能输入非零的负整数：“^-[1-9][0-9]*$”
+只能输入长度为3的字符：“^.{3}$”
+只能输入由26个英文字母组成的字符串：“^[A-Za-z]+$”
+只能输入由26个大写英文字母组成的字符串：“^[A-Z]+$”
+只能输入由26个小写英文字母组成的字符串：“^[a-z]+$”
+只能输入由数字和26个英文字母组成的字符串：“^[A-Za-z0-9]+$”
+只能输入由数字、26个英文字母或者下划线组成的字符串：“^w+$”
+验证用户密码:“^[a-zA-Z]w{5,17}$”正确格式为：以字母开头，长度在6-18之间，
+只能包含字符、数字和下划线。
+验证是否含有^%&amp;&apos;,;=?$&quot;等字符：“[^%&amp;&apos;,;=?$x22]+”
+只能输入汉字：“^[u4e00-u9fa5],{0,}$”
+验证Email地址：“^w+[-+.]w+)*@w+([-.]w+)*.w+([-.]w+)*$”
+验证InternetURL：“^http://([w-]+.)+[w-]+(/[w-./?%&amp;=]*)?$”
+验证身份证号（15位或18位数字）：“^d{15}|d{}18$”
+验证一年的12个月：“^(0?[1-9]|1[0-2])$”正确格式为：“01”-“09”和“1”“12”
+验证一个月的31天：“^((0?[1-9])|((1|2)[0-9])|30|31)$”
+正确格式为：“01”“09”和“1”“31”。
+匹配中文字符的正则表达式： [u4e00-u9fa5]
+匹配双字节字符(包括汉字在内)：[^x00-xff]
+匹配空行的正则表达式：n[s| ]*r
+匹配HTML标记的正则表达式：/&lt;(.*)&gt;.*|&lt;(.*) /&gt;/
+匹配首尾空格的正则表达式：(^s*)|(s*$)
+匹配Email地址的正则表达式：w+([-+.]w+)*@w+([-.]w+)*.w+([-.]w+)*
+匹配网址URL的正则表达式：http://([w-]+.)+[w-]+(/[w- ./?%&amp;=]*)?
+(1)应用：计算字符串的长度（一个双字节字符长度计2，ASCII字符计1）
+String.prototype.len=function(){return this.replace([^x00-xff]/g,&quot;aa&quot;).length;}
+(2)应用：javascript中没有像vbscript那样的trim函数，我们就可以利用这个表达式来实现
+String.prototype.trim = function()
+{
+return this.replace(/(^s*)|(s*$)/g, &quot;&quot;);
+}
+(3)应用：利用正则表达式分解和转换IP地址
+function IP2V(ip) //IP地址转换成对应数值
+{
+re=/(d+).(d+).(d+).(d+)/g //匹配IP地址的正则表达式
+if(re.test(ip))
+{
+return RegExp.$1*Math.pow(255,3))+RegExp.$2*Math.pow(255,2))+RegExp.$3*255+RegExp.$4*1
+}
+else
+{
+throw new Error(&quot;Not a valid IP address!&quot;)
+}
+}
+(4)应用：从URL地址中提取文件名的javascript程序
+s=&quot;http://www.juapk.com/forum.php&quot;;
+s=s.replace(/(.*/){0,}([^.]+).*/ig,&quot;$2&quot;) ;//Page1.htm
+(5)应用：利用正则表达式限制网页表单里的文本框输入内容
+用正则表达式限制只能输入中文：onkeyup=&quot;value=value.replace(/[^u4E00-u9FA5]/g,&apos;) &quot;onbeforepaste=&quot;clipboardData.setData(&apos;text&apos;,clipboardData.getData(&apos;text&apos;).replace(/[^u4E00-u9FA5]/g,&apos;))&quot;
+用正则表达式限制只能输入全角字符：onbeforepaste=&quot;clipboardData.setData(&apos;text&apos;,clipboardData.getData(&apos;text&apos;).replace(/[^uFF00-uFFFF]/g,&apos;))&quot;
+用正则表达式限制只能输入数字：onkeyup=&quot;value=value.replace(/[^d]/g,&apos;) &quot;onbeforepaste= &quot;clipboardData.setData(&apos;text&apos;,clipboardData.getData(&apos;text&apos;).replace(/[^d]/g,&apos;))&quot;
+用正则表达式限制只能输入数字和英文：onkeyup=&quot;value=value.replace(/[W]/g,&apos;) &quot;onbeforepaste=&quot;clipboardData.setData(&apos;text&apos;,clipboardData.getData(&apos;text&apos;).replace(/[^d]/g,&apos;</code></pre>
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2019-12-02T07:40:53.033Z" itemprop="dateUpdated">2019-12-02 15:40:53</time>
+</span><br>
+
+
+        
+        这里可以写作者留言，标签和 hexo 中所有变量及辅助函数等均可调用，示例：<a href="/2019/12/02/509550cc8aca4ee13dbacb4ccb58828f/" target="_blank" rel="external">https://zhaojiafu.github.io/2019/12/02/509550cc8aca4ee13dbacb4ccb58828f/</a>
+        
+    </div>
+    
+    <footer>
+        <a href="https://zhaojiafu.github.io">
+            <img src="/img/zhao.jpg" alt="赵家富">
+            赵家富
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" target="_blank" rel="noopener" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%AD%A3%E5%88%99re/" rel="tag">正则re</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://zhaojiafu.github.io/2019/12/02/509550cc8aca4ee13dbacb4ccb58828f/&title=《正则表达式-匹配中英文、字母和数字》 — 赵家富的博客&pic=https://zhaojiafu.github.io/img/zhao.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" target="_blank" rel="noopener" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://zhaojiafu.github.io/2019/12/02/509550cc8aca4ee13dbacb4ccb58828f/&title=《正则表达式-匹配中英文、字母和数字》 — 赵家富的博客&source=感觉无从下手的时候，问自己“不难，要你干啥？”" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://zhaojiafu.github.io/2019/12/02/509550cc8aca4ee13dbacb4ccb58828f/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《正则表达式-匹配中英文、字母和数字》 — 赵家富的博客&url=https://zhaojiafu.github.io/2019/12/02/509550cc8aca4ee13dbacb4ccb58828f/&via=https://zhaojiafu.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://zhaojiafu.github.io/2019/12/02/509550cc8aca4ee13dbacb4ccb58828f/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" target="_blank" rel="noopener" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2019/12/02/1d87ccdd9c6c0002bbca36ab36953b55/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">python 将webp的图片格式转换为jpg格式</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2019/12/02/22d06195deff01b416993b503696c160/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">分享一些珍藏和网上搜集的一些接码平台</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<section class="comments" id="comments">
+    <div id="gitalk-container"></div>
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+        var id = location.pathname
+        if (location.pathname.length > 50) {
+          id = location.pathname.replace(/\/\d+\/\d+\/\d+\//, '').replace('/', '').substring(0, 50)
+        }
+        const gitalk = new Gitalk({
+          clientID: '388d0a78cda30f118f86',
+          clientSecret: '2c64b34cc20f23d768dffff64acb8c2ee02c3bee',
+          repo: 'https://zhaojiafu.github.io/',
+          owner: 'zjf',
+          admin: ['zjf'],
+          id: id,      // Ensure uniqueness and length less than 50
+          title: document.title.split('|')[0],
+          distractionFreeMode: false  // Facebook-like distraction free mode
+        })
+
+        gitalk.render('gitalk-container')
+    </script>
+</section>
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;" target="_blank" rel="noopener"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢大爷~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.jpg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.jpg" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+            <span>博客内容遵循 <a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+        <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=0 height=0 src="http://music.163.com/song/media/outer/url?id=1369798757&auto=1"></iframe>
+
+    </div>
+    <div class="bottom">
+        <p><span>赵家富 &copy; 2019</span>
+            <span>
+                
+
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" target="_blank" rel="noopener" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://zhaojiafu.github.io/2019/12/02/509550cc8aca4ee13dbacb4ccb58828f/&title=《正则表达式-匹配中英文、字母和数字》 — 赵家富的博客&pic=https://zhaojiafu.github.io/img/zhao.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" target="_blank" rel="noopener" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://zhaojiafu.github.io/2019/12/02/509550cc8aca4ee13dbacb4ccb58828f/&title=《正则表达式-匹配中英文、字母和数字》 — 赵家富的博客&source=感觉无从下手的时候，问自己“不难，要你干啥？”" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://zhaojiafu.github.io/2019/12/02/509550cc8aca4ee13dbacb4ccb58828f/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《正则表达式-匹配中英文、字母和数字》 — 赵家富的博客&url=https://zhaojiafu.github.io/2019/12/02/509550cc8aca4ee13dbacb4ccb58828f/&via=https://zhaojiafu.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://zhaojiafu.github.io/2019/12/02/509550cc8aca4ee13dbacb4ccb58828f/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;" target="_blank" rel="noopener"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACs0lEQVR42u3aQW5iMRAEUO5/6cx2JASp6rYTIr2/QgiMnyPZTnU/HvHz9fT8//7z6/fffR6n/a3DDx4eHt566q+GTj7zauT3y/F+6rP54OHh4d3mvRo0/0yCfD/RzVK+fB8PDw/vY3izbXp2RcbDw8P767xk609GaJcADw8P79N4s6Ah2cTb93P24awFDw8Pr6s6RZfaz3l9pb6Hh4eHt66qz0r47YQ2QfA3s8XDw8O7wGsnkRSr3l9/921YbeCLh4eHd5aXD5qEBTksjzNWkTEeHh7eZV4bg25i0+SQ2BTYHvnQeHh4eJN9uG4wnW3isyv7LJLAw8PD+y3eJphoD5W89WpVu8PDw8Nb89pwdnY5zqeeFN6KEBkPDw/vMq/djttAdoaZnQLFz+Ph4eGtmwbyQCFZlLyFaxNqrGIIPDw8vDUv/79+1m7VhsXt4uLh4eH9PK8NFPYL1Ea9+YGEh4eHd4PXXo7zrX8zuSJuSL6Lh4eHd5Q3CwtmIe/sSGgjjJcpNR4eHt4hXhsKtJv4KXZ+GBR/Qzw8PLwRb9bk1LZPJbC26Sq6oOPh4eFd4OXtAsnBMCvwnz2Kiv4IPDw8vAWvbbeaXXbbeHdTKsPDw8O7x5tdWIuyfRu5lsdM0XSFh4eHd4iXg9ulaSOJ2SGRzAEPDw/vBm/fKNA2RSWwU5d+PDw8vHu8JH6dFfiLK28ccBQLhIeHh3eNNzsA2qnfG+clEg8PD+8o76t88v22DYUTcD0fPDw8vAu82SbelrXasOPUazw8PLx7vGSibbmrLWLlc8jDYjw8PLzbvFlj0ynqD2UteHh4eL/Ky8td7ZGTl+Wi9/Hw8PA+jJccGHkwMbt8X7lS4+Hh4R0KI95ffOsfDo6cfOm/abrCw8PDO8pr/+Fvw9l8OfKL8ia8wMPDw1vw/gEQKbtgy2TP0AAAAABJRU5ErkJggg==" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '死鬼去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+<script src="/node_modules/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"node_modules/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/node_modules/assets/shizuku.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"react":{"opacity":0.7},"log":false});</script></body>
+</html>

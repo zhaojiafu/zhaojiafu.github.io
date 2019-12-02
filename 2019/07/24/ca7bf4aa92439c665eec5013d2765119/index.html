@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <link rel="canonical" href="https://zhaojiafu.github.io/2019/07/24/ca7bf4aa92439c665eec5013d2765119/">
+    
+    
+    <title>python Windows 下配置虚拟环境 | 赵家富的博客 | 保持好奇心</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="其他,python,虚拟环境">
+    <meta name="description" content="说明：虚拟环境有时候项目不同，可以需要不同的模块版本，这个时候就需要这个虚拟环境了，但是，我之前弄了很多次就没有成功，这一次参考一个博客就成功了，我也很纳闷。不管了，先记录下来，剩下下次再不会了。 0、管理虚拟环境virtualenvwrapper：#安装一virtualenv 的windows版本 pip install virtualenvwrapper-win # 创建一个虚拟环境 mkvi">
+<meta name="keywords" content="其他,python,虚拟环境">
+<meta property="og:type" content="article">
+<meta property="og:title" content="python Windows 下配置虚拟环境">
+<meta property="og:url" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;2019&#x2F;07&#x2F;24&#x2F;ca7bf4aa92439c665eec5013d2765119&#x2F;index.html">
+<meta property="og:site_name" content="赵家富的博客">
+<meta property="og:description" content="说明：虚拟环境有时候项目不同，可以需要不同的模块版本，这个时候就需要这个虚拟环境了，但是，我之前弄了很多次就没有成功，这一次参考一个博客就成功了，我也很纳闷。不管了，先记录下来，剩下下次再不会了。 0、管理虚拟环境virtualenvwrapper：#安装一virtualenv 的windows版本 pip install virtualenvwrapper-win # 创建一个虚拟环境 mkvi">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20190920103837215.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20190920103701207.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20190724114038734.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20190724114243447.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;2019072411465990.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20190724122325672.png">
+<meta property="og:updated_time" content="2019-12-02T07:00:36.752Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20190920103837215.png">
+    
+    <link rel="shortcut icon" href="/img/cb2nm-5l9w0-001.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" target="_blank" rel="noopener" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/zhao.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">赵家富</h5>
+          <a href="mailto:530519174@qq.com" target="_blank" rel="noopener" title="530519174@qq.com" class="mail">530519174@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                archives(所有)
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags/"  >
+                <i class="icon icon-lg icon-tags"></i>
+                tag(标签)
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories/"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories(分类)
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/zhaojiafu" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://blog.csdn.net/weixin_42081389" target="_blank" >
+                <i class="icon icon-lg icon-csdn"></i>
+                Csdn
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" target="_blank" rel="noopener" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+
+        <div class="flex-col header-title ellipsis">python Windows 下配置虚拟环境</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" target="_blank" rel="noopener" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" target="_blank" rel="noopener" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" target="_blank" rel="noopener" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+
+        <h1 class="title">python Windows 下配置虚拟环境
+        </h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2019-07-24T03:34:32.000Z" itemprop="datePublished" class="page-time">
+  2019-07-24
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/python/">python</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#说明："><span class="post-toc-number">1.</span> <span class="post-toc-text">说明：</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#0、管理虚拟环境virtualenvwrapper："><span class="post-toc-number">2.</span> <span class="post-toc-text">0、管理虚拟环境virtualenvwrapper：</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#1、安装模块virtualenv"><span class="post-toc-number">3.</span> <span class="post-toc-text">1、安装模块virtualenv</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#2、为项目安装虚拟环境"><span class="post-toc-number">4.</span> <span class="post-toc-text">2、为项目安装虚拟环境</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#创建失败第二个方法创建："><span class="post-toc-number">4.1.</span> <span class="post-toc-text">创建失败第二个方法创建：</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#3、启动虚拟环境"><span class="post-toc-number">5.</span> <span class="post-toc-text">3、启动虚拟环境</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#3-1、方法1：可以直接在刚刚命令下使用"><span class="post-toc-number">5.1.</span> <span class="post-toc-text">3.1、方法1：可以直接在刚刚命令下使用</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#3-2、方法2：添加刚刚的虚拟环境的Scripts到环境变量中"><span class="post-toc-number">5.2.</span> <span class="post-toc-text">3.2、方法2：添加刚刚的虚拟环境的Scripts到环境变量中</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#3、退出、deactivate"><span class="post-toc-number">5.3.</span> <span class="post-toc-text">3、退出、deactivate</span></a></li></ol></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-ca7bf4aa92439c665eec5013d2765119"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">python Windows 下配置虚拟环境</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2019-07-24 11:34:32" datetime="2019-07-24T03:34:32.000Z"  itemprop="datePublished">2019-07-24</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/python/">python</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h1 id="说明："><a href="#说明：" class="headerlink" title="说明："></a>说明：</h1><p>虚拟环境有时候项目不同，可以需要不同的模块版本，这个时候就需要这个虚拟环境了，但是，我之前弄了很多次就没有成功，这一次参考一个博客就成功了，我也很纳闷。不管了，先记录下来，剩下下次再不会了。</p>
+<h1 id="0、管理虚拟环境virtualenvwrapper："><a href="#0、管理虚拟环境virtualenvwrapper：" class="headerlink" title="0、管理虚拟环境virtualenvwrapper："></a>0、管理虚拟环境virtualenvwrapper：</h1><pre><code>#安装一virtualenv 的windows版本
+pip install virtualenvwrapper-win
+# 创建一个虚拟环境
+mkvirtualenv myproject
+#使用，激活该环境，这样以后使用pip安装包将安装到该环境下
+workon myproject
+
+配置好virtualenvwrapper，就可以使用它的功能，方便管理虚拟环境
+workon:                    列出虚拟环境列表
+lsvirtualenv:            列出虚拟环境列表
+mkvirtualenv:            新建虚拟环境
+workon [虚拟环境名称]:    切换/进入虚拟环境
+rmvirtualenv :            删除虚拟环境
+deactivate:             离开虚拟环境</code></pre><h1 id="1、安装模块virtualenv"><a href="#1、安装模块virtualenv" class="headerlink" title="1、安装模块virtualenv"></a>1、安装模块virtualenv</h1><pre><code>pip install virtualenv</code></pre><p>我的这个现实是之前安装成功了，但是没有弄成，如果你没有安装过会显示安装成功。</p>
+{% image /imgs/20190724112447416.png '在这里插入图片描述' '' %}
+
+<h1 id="2、为项目安装虚拟环境"><a href="#2、为项目安装虚拟环境" class="headerlink" title="2、为项目安装虚拟环境"></a>2、为项目安装虚拟环境</h1><p>建议放到软件盘，然后cmd中到指定文件夹<br>比如我创建_virtualenv_dir目录，用来存放所以的虚拟环境，然后在创建一个myporject_1目录，用来存放第一个虚拟环境，如果后来还有项目需要，可以接着创建虚拟环境目录。<br>比如我的这个在</p>
+<pre><code>D:\tools\_virtualenv_dir\myporject_1</code></pre><p>然后执行 virtualenv env</p>
+<pre><code>virtualenv env</code></pre><p>等待安装完成<br>我的这个就是安装完成了，这个时候就可以使用虚拟环境了</p>
+{% image /imgs/2019072411375143.png '在这里插入图片描述' '' %}
+<h2 id="创建失败第二个方法创建："><a href="#创建失败第二个方法创建：" class="headerlink" title="创建失败第二个方法创建："></a>创建失败第二个方法创建：</h2><p>上面的方法之前是可以的，后来我的突然不可以了，然后晚上回家自己电脑测试可以，也没有找到确定原因。<br>下面是这个错误截图，特意演示了一次，需要的可以看看：</p>
+{% image /imgs/20190920104326832.png '在这里插入图片描述' '' %}
+
+<p>后来通过谷歌搜索到一个官方的文档中有个window创建虚拟环境命令，然后我把python3改为python就成功了。具体之前的命令公司电脑上突然不可以使用了，至此还没有找到上面截图错误的原因，我也尝试修改代码，但是修改之后还有其他错误，然后就放弃了，不知道是不是我后来安装的其他模块和virtualenv 模块有版本不兼容问题，下面的命令可以创建虚拟环境，会在当前执行的目录下生成虚拟环境，如果你也纠结这个问题可以参加我的这个。</p>
+<p><strong>参考官方：</strong><br><a href="https://docs.python.org/zh-cn/3.8/tutorial/venv.html" target="_blank" rel="noopener">https://docs.python.org/zh-cn/3.8/tutorial/venv.html</a></p>
+<p>如果创建失败，可以使用<br>官方是这个：</p>
+<pre><code>python3 -m venv tutorial-env</code></pre><p>但是我执行报错：，意思是powershell下不识别python3</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/20190920103837215.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+
+
+<p>然后我使用：python成功创建</p>
+<blockquote>
+<p>python -m venv deep</p>
+</blockquote>
+<p><img src="/imgs/20190920103701207.png" alt="在这里插入图片描述"></p>
+<h1 id="3、启动虚拟环境"><a href="#3、启动虚拟环境" class="headerlink" title="3、启动虚拟环境"></a>3、启动虚拟环境</h1><h2 id="3-1、方法1：可以直接在刚刚命令下使用"><a href="#3-1、方法1：可以直接在刚刚命令下使用" class="headerlink" title="3.1、方法1：可以直接在刚刚命令下使用"></a>3.1、方法1：可以直接在刚刚命令下使用</h2><pre><code>env\Scripts\activate</code></pre><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/20190724114038734.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+
+<h2 id="3-2、方法2：添加刚刚的虚拟环境的Scripts到环境变量中"><a href="#3-2、方法2：添加刚刚的虚拟环境的Scripts到环境变量中" class="headerlink" title="3.2、方法2：添加刚刚的虚拟环境的Scripts到环境变量中"></a>3.2、方法2：添加刚刚的虚拟环境的Scripts到环境变量中</h2><p>不知道大家看到上面方法1，有没有想到这一步，加到环境变量中，这样就可以直接使用activate</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/20190724114243447.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/2019072411465990.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+
+<p>这个时候说明，环境变量添加成功，这个时候就可以在环境变量里面随意安装需要模块了。如果再多个环境变量，继续创建新的文件夹就行。</p>
+<h2 id="3、退出、deactivate"><a href="#3、退出、deactivate" class="headerlink" title="3、退出、deactivate"></a>3、退出、deactivate</h2><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/20190724122325672.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+
+<p>参考：<br><a href="https://blog.csdn.net/liuchunming033/article/details/46008301" target="_blank" rel="noopener">https://blog.csdn.net/liuchunming033/article/details/46008301</a><br><a href="https://virtualenv-chinese-docs.readthedocs.io/en/latest/#windows" target="_blank" rel="noopener">https://virtualenv-chinese-docs.readthedocs.io/en/latest/#windows</a></p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2019-12-02T07:00:36.752Z" itemprop="dateUpdated">2019-12-02 15:00:36</time>
+</span><br>
+
+
+        
+        这里可以写作者留言，标签和 hexo 中所有变量及辅助函数等均可调用，示例：<a href="/2019/07/24/ca7bf4aa92439c665eec5013d2765119/" target="_blank" rel="external">https://zhaojiafu.github.io/2019/07/24/ca7bf4aa92439c665eec5013d2765119/</a>
+        
+    </div>
+    
+    <footer>
+        <a href="https://zhaojiafu.github.io">
+            <img src="/img/zhao.jpg" alt="赵家富">
+            赵家富
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" target="_blank" rel="noopener" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python/" rel="tag">python</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%85%B6%E4%BB%96/" rel="tag">其他</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83/" rel="tag">虚拟环境</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://zhaojiafu.github.io/2019/07/24/ca7bf4aa92439c665eec5013d2765119/&title=《python Windows 下配置虚拟环境》 — 赵家富的博客&pic=https://zhaojiafu.github.io/img/zhao.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" target="_blank" rel="noopener" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://zhaojiafu.github.io/2019/07/24/ca7bf4aa92439c665eec5013d2765119/&title=《python Windows 下配置虚拟环境》 — 赵家富的博客&source=感觉无从下手的时候，问自己“不难，要你干啥？”" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://zhaojiafu.github.io/2019/07/24/ca7bf4aa92439c665eec5013d2765119/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《python Windows 下配置虚拟环境》 — 赵家富的博客&url=https://zhaojiafu.github.io/2019/07/24/ca7bf4aa92439c665eec5013d2765119/&via=https://zhaojiafu.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://zhaojiafu.github.io/2019/07/24/ca7bf4aa92439c665eec5013d2765119/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" target="_blank" rel="noopener" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2019/07/24/078fdd0d3c7b63124fe6048eebe05ec2/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">window安装MySQL5.7 的压缩包安装过程（实测有效）（中间报错：_mysql.connector.errors.NotSupportedError和由于找不到msvcr120.dll无法继续</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2019/07/24/9d9ad2c06f02e8462f035ff310e5afb1/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">安装Twisted 报错：Microsoft Visual C++ 14.0 is required。。。</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<section class="comments" id="comments">
+    <div id="gitalk-container"></div>
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+        var id = location.pathname
+        if (location.pathname.length > 50) {
+          id = location.pathname.replace(/\/\d+\/\d+\/\d+\//, '').replace('/', '').substring(0, 50)
+        }
+        const gitalk = new Gitalk({
+          clientID: '388d0a78cda30f118f86',
+          clientSecret: '2c64b34cc20f23d768dffff64acb8c2ee02c3bee',
+          repo: 'https://zhaojiafu.github.io/',
+          owner: 'zjf',
+          admin: ['zjf'],
+          id: id,      // Ensure uniqueness and length less than 50
+          title: document.title.split('|')[0],
+          distractionFreeMode: false  // Facebook-like distraction free mode
+        })
+
+        gitalk.render('gitalk-container')
+    </script>
+</section>
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;" target="_blank" rel="noopener"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢大爷~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.jpg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.jpg" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+            <span>博客内容遵循 <a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+        <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=0 height=0 src="http://music.163.com/song/media/outer/url?id=1369798757&auto=1"></iframe>
+
+    </div>
+    <div class="bottom">
+        <p><span>赵家富 &copy; 2019</span>
+            <span>
+                
+
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" target="_blank" rel="noopener" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://zhaojiafu.github.io/2019/07/24/ca7bf4aa92439c665eec5013d2765119/&title=《python Windows 下配置虚拟环境》 — 赵家富的博客&pic=https://zhaojiafu.github.io/img/zhao.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" target="_blank" rel="noopener" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://zhaojiafu.github.io/2019/07/24/ca7bf4aa92439c665eec5013d2765119/&title=《python Windows 下配置虚拟环境》 — 赵家富的博客&source=感觉无从下手的时候，问自己“不难，要你干啥？”" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://zhaojiafu.github.io/2019/07/24/ca7bf4aa92439c665eec5013d2765119/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《python Windows 下配置虚拟环境》 — 赵家富的博客&url=https://zhaojiafu.github.io/2019/07/24/ca7bf4aa92439c665eec5013d2765119/&via=https://zhaojiafu.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://zhaojiafu.github.io/2019/07/24/ca7bf4aa92439c665eec5013d2765119/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;" target="_blank" rel="noopener"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACr0lEQVR42u3aMZLCQAwEQP7/aS7lAsyM5KUI2hGFD3t7g5VO0uMRX8+X6/Wb/FfvruRX+RuHFx4eHt5i6dePvv4m2Yjk8/U68zXj4eHhneYlj8t/1W7TdUjItwMPDw/vN3l5kGifuU/o8fDw8H6T1ybiLWyTguPh4eF9k9cu9Do8JEWK62Ul7JtrLXh4eHhd1ynqIv3O5yP9PTw8PLx1V71NlO/a7zZ9f7taPDw8vAO8zfhUe6C3CfGmTIyHh4f3TV6+iKQQ0AaVE+VjPDw8vHt5+ZBTe/TPBhGSUu+q9YWHh4d3Ey85gvOX5S2xGWBYhsDDw8O7lTdLbfeF2tPlYDw8PLxzvPzf/nvvtul1Pub1rxiBh4eHd4DXlhLy0LIpy24S7miP8fDw8Ba8/HOSFrcjArOCcrRBeHh4eMd4eZI6GxRoy7J3BS08PDy8c7xNgTVfSp465+20D8EMDw8P7xhvMwQwCy2zFlcxNDCrJePh4eHFvPw4nhV225CQvzEausLDw8M7zGvT3DyEtCly/sa3W4OHh4d3gLdZbtuyyptts1LyMDzg4eHhLXib5lZbxt2MIKy6fHh4eHhr3mZEYFZa3afaRUkCDw8P7xhvVkRoj+xkC/KGWbI2PDw8vBO85HZeRGiXOGu/rWoteHh4eMd4bSL7KK/80M+36UOtBQ8PD+8Ab9O23yTc7bbWpV48PDy8Y7y8JJEkte1xPwsw0Ybi4eHh3cp7ltcmHU8O8XZzP9zFw8PDO8DblA/aF89GrNrC8WMTW/Dw8PBiXtvU37em8mN9P9yAh4eHd45XDzMF7JyaFIuTYkRxGw8PD++LvHaMIA85ObL4Hg8PD++HecnR3/7l7Ml4eHh43+G1j94PTrUjXHkqj4eHh3eaNxts2o9StQMKs+3Dw8PDu5X3B5YKiL1fYjeQAAAAAElFTkSuQmCC" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '死鬼去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+<script src="/node_modules/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"node_modules/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/node_modules/assets/shizuku.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"react":{"opacity":0.7},"log":false});</script></body>
+</html>

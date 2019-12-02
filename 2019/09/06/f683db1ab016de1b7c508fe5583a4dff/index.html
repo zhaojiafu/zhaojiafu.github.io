@@ -1,0 +1,757 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <link rel="canonical" href="https://zhaojiafu.github.io/2019/09/06/f683db1ab016de1b7c508fe5583a4dff/">
+    
+    
+    <title>ffmpeg 常用命令总结：（avi转MP4、MP4转ts、视频压缩、去除视频声音、合并音频和视频） | 赵家富的博客 | 保持好奇心</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="ffmpeg">
+    <meta name="description" content="@[toc]  配置 window10 64位系统 说明：  整理一下自己用到过的几个常用命令，记录，方便帮助到需求和我一样的人，也方便以后备用。后续用到学到了会持续更新：  0、ffmpeg一些命令参数： {% image &#x2F;imgs&#x2F;20190906122228456.png &amp;apos;在这里插入图片描述&amp;apos; &amp;apos;&amp;apos; %}  a) 通用选项-L license -h 帮助 -fromats 显示可用的格">
+<meta name="keywords" content="ffmpeg">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ffmpeg 常用命令总结：（avi转MP4、MP4转ts、视频压缩、去除视频声音、合并音频和视频）">
+<meta property="og:url" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;2019&#x2F;09&#x2F;06&#x2F;f683db1ab016de1b7c508fe5583a4dff&#x2F;index.html">
+<meta property="og:site_name" content="赵家富的博客">
+<meta property="og:description" content="@[toc]  配置 window10 64位系统 说明：  整理一下自己用到过的几个常用命令，记录，方便帮助到需求和我一样的人，也方便以后备用。后续用到学到了会持续更新：  0、ffmpeg一些命令参数： {% image &#x2F;imgs&#x2F;20190906122228456.png &amp;apos;在这里插入图片描述&amp;apos; &amp;apos;&amp;apos; %}  a) 通用选项-L license -h 帮助 -fromats 显示可用的格">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20190904171222324.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20190904171258425.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20190904181119803.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20190904181054891.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20190905095339284.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20190906164048790.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;2019090912531425.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20190909150026789.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;2019091909571587.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20190919095759260.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20190919095848923.png">
+<meta property="og:updated_time" content="2019-12-02T07:26:18.098Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20190904171222324.png">
+    
+    <link rel="shortcut icon" href="/img/cb2nm-5l9w0-001.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" target="_blank" rel="noopener" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/zhao.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">赵家富</h5>
+          <a href="mailto:530519174@qq.com" target="_blank" rel="noopener" title="530519174@qq.com" class="mail">530519174@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                archives(所有)
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags/"  >
+                <i class="icon icon-lg icon-tags"></i>
+                tag(标签)
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories/"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories(分类)
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/zhaojiafu" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://blog.csdn.net/weixin_42081389" target="_blank" >
+                <i class="icon icon-lg icon-csdn"></i>
+                Csdn
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" target="_blank" rel="noopener" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+
+        <div class="flex-col header-title ellipsis">ffmpeg 常用命令总结：（avi转MP4、MP4转ts、视频压缩、去除视频声音、合并音频和视频）</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" target="_blank" rel="noopener" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" target="_blank" rel="noopener" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" target="_blank" rel="noopener" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+
+        <h1 class="title">ffmpeg 常用命令总结：（avi转MP4、MP4转ts、视频压缩、去除视频声音、合并音频和视频）
+        </h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2019-09-06T03:34:32.000Z" itemprop="datePublished" class="page-time">
+  2019-09-06
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/ffmpeg/">ffmpeg</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#配置"><span class="post-toc-number">1.</span> <span class="post-toc-text">配置</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#说明："><span class="post-toc-number">2.</span> <span class="post-toc-text">说明：</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#0、ffmpeg一些命令参数："><span class="post-toc-number">3.</span> <span class="post-toc-text">0、ffmpeg一些命令参数：</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#a-通用选项"><span class="post-toc-number">3.1.</span> <span class="post-toc-text">a) 通用选项</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#b-视频选项"><span class="post-toc-number">3.2.</span> <span class="post-toc-text">b) 视频选项</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#c-高级视频选项"><span class="post-toc-number">3.3.</span> <span class="post-toc-text">c)高级视频选项</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#d-音频选项"><span class="post-toc-number">3.4.</span> <span class="post-toc-text">d)音频选项</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#e-音频-视频捕获选项"><span class="post-toc-number">3.5.</span> <span class="post-toc-text">e)音频/视频捕获选项</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#f-高级选项"><span class="post-toc-number">3.6.</span> <span class="post-toc-text">f)高级选项</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#1、avi转MP4命令："><span class="post-toc-number">4.</span> <span class="post-toc-text">1、avi转MP4命令：</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#2、MP4转ts"><span class="post-toc-number">5.</span> <span class="post-toc-text">2、MP4转ts</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#3、视频压缩"><span class="post-toc-number">6.</span> <span class="post-toc-text">3、视频压缩</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#4、去除视频声音"><span class="post-toc-number">7.</span> <span class="post-toc-text">4、去除视频声音</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#5、合并音频和视频"><span class="post-toc-number">8.</span> <span class="post-toc-text">5、合并音频和视频</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#6、给视频添加水印"><span class="post-toc-number">9.</span> <span class="post-toc-text">6、给视频添加水印</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#7、flv-转MP4"><span class="post-toc-number">10.</span> <span class="post-toc-text">7、flv 转MP4</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#8、视频剪辑："><span class="post-toc-number">11.</span> <span class="post-toc-text">8、视频剪辑：</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#9、给视频添加字幕srt"><span class="post-toc-number">12.</span> <span class="post-toc-text">9、给视频添加字幕srt</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#10、同时给视频添加音乐-字幕"><span class="post-toc-number">13.</span> <span class="post-toc-text">10、同时给视频添加音乐+字幕</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#11、使用ffmpeg-webm-转换-mp4"><span class="post-toc-number">14.</span> <span class="post-toc-text">11、使用ffmpeg webm 转换 mp4</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#12、合并俩个mp4视频"><span class="post-toc-number">15.</span> <span class="post-toc-text">12、合并俩个mp4视频</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#1、先创建个name-txt"><span class="post-toc-number">15.1.</span> <span class="post-toc-text">1、先创建个name.txt</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#2、命令合并："><span class="post-toc-number">15.2.</span> <span class="post-toc-text">2、命令合并：</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#13、提取视频的音频为MP3"><span class="post-toc-number">16.</span> <span class="post-toc-text">13、提取视频的音频为MP3</span></a></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-f683db1ab016de1b7c508fe5583a4dff"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">ffmpeg 常用命令总结：（avi转MP4、MP4转ts、视频压缩、去除视频声音、合并音频和视频）</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2019-09-06 11:34:32" datetime="2019-09-06T03:34:32.000Z"  itemprop="datePublished">2019-09-06</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/ffmpeg/">ffmpeg</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p>﻿<br>@[toc]</p>
+<blockquote>
+<h1 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h1></blockquote>
+<pre><code>window10 64位系统</code></pre><blockquote>
+<h1 id="说明："><a href="#说明：" class="headerlink" title="说明："></a>说明：</h1></blockquote>
+<p> 整理一下自己用到过的几个常用命令，记录，方便帮助到需求和我一样的人，也方便以后备用。后续用到学到了会持续更新：</p>
+<blockquote>
+<h1 id="0、ffmpeg一些命令参数："><a href="#0、ffmpeg一些命令参数：" class="headerlink" title="0、ffmpeg一些命令参数："></a>0、ffmpeg一些命令参数：</h1></blockquote>
+{% image /imgs/20190906122228456.png '在这里插入图片描述' '' %}
+
+<h2 id="a-通用选项"><a href="#a-通用选项" class="headerlink" title="a) 通用选项"></a>a) 通用选项</h2><p>-L license</p>
+<p>-h 帮助</p>
+<p>-fromats 显示可用的格式，编解码的，协议的。。。</p>
+<p>-f fmt 强迫采用格式fmt</p>
+<p>-I filename 输入文件</p>
+<p>-y 覆盖输出文件</p>
+<p>-t duration 设置纪录时间 hh:mm:ss[.xxx]格式的记录时间也支持</p>
+<p>-ss position 搜索到指定的时间 [-]hh:mm:ss[.xxx]的格式也支持</p>
+<p>-title string 设置标题</p>
+<p>-author string 设置作者</p>
+<p>-copyright string 设置版权</p>
+<p>-comment string 设置评论</p>
+<p>-target type 设置目标文件类型(vcd,svcd,dvd) 所有的格式选项（比特率，编解码以及缓冲区大小）自动设置 ，只需要输入如下的就可以了：<br>ffmpeg -i myfile.avi -target vcd /tmp/vcd.mpg</p>
+<p>-hq 激活高质量设置</p>
+<p>-itsoffset offset 设置以秒为基准的时间偏移，该选项影响所有后面的输入文件。该偏移被加到输入文件的时戳，定义一个正偏移意味着相应的流被延迟了 offset秒。 [-]hh:mm:ss[.xxx]的格式也支持</p>
+<h2 id="b-视频选项"><a href="#b-视频选项" class="headerlink" title="b) 视频选项"></a>b) 视频选项</h2><p>-b bitrate 设置比特率，缺省200kb/s</p>
+<p>-r fps 设置帧频 缺省25</p>
+<p>-s size 设置帧大小 格式为WXH 缺省160X128.下面的简写也可以直接使用：<br>Sqcif 128X96 qcif 176X144 cif 252X288 4cif 704X576</p>
+<p>-aspect aspect 设置横纵比 4:3 16:9 或 1.3333 1.7777</p>
+<p>-croptop size 设置顶部切除带大小 像素单位</p>
+<p>-cropbottom size –cropleft size –cropright size</p>
+<p>-padtop size 设置顶部补齐的大小 像素单位</p>
+<p>-padbottom size –padleft size –padright size –padcolor color 设置补齐条颜色(hex,6个16进制的数，红:绿:兰排列，比如 000000代表黑色)</p>
+<p>-vn 不做视频记录</p>
+<p>-bt tolerance 设置视频码率容忍度kbit/s</p>
+<p>-maxrate bitrate设置最大视频码率容忍度</p>
+<p>-minrate bitreate 设置最小视频码率容忍度</p>
+<p>-bufsize size 设置码率控制缓冲区大小</p>
+<p>-vcodec codec 强制使用codec编解码方式。 如果用copy表示原始编解码数据必须被拷贝。</p>
+<p>-sameq 使用同样视频质量作为源（VBR）</p>
+<p>-pass n 选择处理遍数（1或者2）。两遍编码非常有用。第一遍生成统计信息，第二遍生成精确的请求的码率</p>
+<p>-passlogfile file 选择两遍的纪录文件名为file</p>
+<h2 id="c-高级视频选项"><a href="#c-高级视频选项" class="headerlink" title="c)高级视频选项"></a>c)高级视频选项</h2><p>-g gop_size 设置图像组大小</p>
+<p>-intra 仅适用帧内编码</p>
+<p>-qscale q 使用固定的视频量化标度(VBR)</p>
+<p>-qmin q 最小视频量化标度(VBR)</p>
+<p>-qmax q 最大视频量化标度(VBR)</p>
+<p>-qdiff q 量化标度间最大偏差 (VBR)</p>
+<p>-qblur blur 视频量化标度柔化(VBR)</p>
+<p>-qcomp compression 视频量化标度压缩(VBR)</p>
+<p>-rc_init_cplx complexity 一遍编码的初始复杂度</p>
+<p>-b_qfactor factor 在p和b帧间的qp因子</p>
+<p>-i_qfactor factor 在p和i帧间的qp因子</p>
+<p>-b_qoffset offset 在p和b帧间的qp偏差</p>
+<p>-i_qoffset offset 在p和i帧间的qp偏差</p>
+<p>-rc_eq equation 设置码率控制方程 默认tex^qComp</p>
+<p>-rc_override override 特定间隔下的速率控制重载</p>
+<p>-me method 设置运动估计的方法 可用方法有 zero phods log x1 epzs(缺省) full</p>
+<p>-dct_algo algo 设置dct的算法 可用的有 0 FF_DCT_AUTO 缺省的DCT 1 FF_DCT_FASTINT 2 FF_DCT_INT 3 FF_DCT_MMX 4 FF_DCT_MLIB 5 FF_DCT_ALTIVEC</p>
+<p>-idct_algo algo 设置idct算法。可用的有 0 FF_IDCT_AUTO 缺省的IDCT 1 FF_IDCT_INT 2 FF_IDCT_SIMPLE 3 FF_IDCT_SIMPLEMMX 4 FF_IDCT_LIBMPEG2MMX 5 FF_IDCT_PS2 6 FF_IDCT_MLIB 7 FF_IDCT_ARM 8 FF_IDCT_ALTIVEC 9 FF_IDCT_SH4 10 FF_IDCT_SIMPLEARM</p>
+<p>-er n 设置错误残留为n 1 FF_ER_CAREFULL 缺省 2 FF_ER_COMPLIANT 3 FF_ER_AGGRESSIVE 4 FF_ER_VERY_AGGRESSIVE</p>
+<p>-ec bit_mask 设置错误掩蔽为bit_mask,该值为如下值的位掩码 1 FF_EC_GUESS_MVS (default=enabled) 2 FF_EC_DEBLOCK (default=enabled)</p>
+<p>-bf frames 使用frames B 帧，支持mpeg1,mpeg2,mpeg4</p>
+<p>-mbd mode 宏块决策 0 FF_MB_DECISION_SIMPLE 使用mb_cmp 1 FF_MB_DECISION_BITS 2 FF_MB_DECISION_RD</p>
+<p>-4mv 使用4个运动矢量 仅用于mpeg4</p>
+<p>-part 使用数据划分 仅用于mpeg4</p>
+<p>-bug param 绕过没有被自动监测到编码器的问题</p>
+<p>-strict strictness 跟标准的严格性</p>
+<p>-aic 使能高级帧内编码 h263+</p>
+<p>-umv 使能无限运动矢量 h263+</p>
+<p>-deinterlace 不采用交织方法</p>
+<p>-interlace 强迫交织法编码 仅对mpeg2和mpeg4有效。当你的输入是交织的并且你想要保持交织以最小图像损失的时候采用该选项。可选的方法是不交织，但是损失更大</p>
+<p>-psnr 计算压缩帧的psnr</p>
+<p>-vstats 输出视频编码统计到vstats_hhmmss.log</p>
+<p>-vhook module 插入视频处理模块 module 包括了模块名和参数，用空格分开</p>
+<h2 id="d-音频选项"><a href="#d-音频选项" class="headerlink" title="d)音频选项"></a>d)音频选项</h2><p>-ab bitrate 设置音频码率</p>
+<p>-ar freq 设置音频采样率</p>
+<p>-ac channels 设置通道 缺省为1</p>
+<p>-an 不使能音频纪录</p>
+<p>-acodec codec 使用codec编解码</p>
+<h2 id="e-音频-视频捕获选项"><a href="#e-音频-视频捕获选项" class="headerlink" title="e)音频/视频捕获选项"></a>e)音频/视频捕获选项</h2><p>-vd device 设置视频捕获设备。比如/dev/video0</p>
+<p>-vc channel 设置视频捕获通道 DV1394专用</p>
+<p>-tvstd standard 设置电视标准 NTSC PAL(SECAM)</p>
+<p>-dv1394 设置DV1394捕获</p>
+<p>-av device 设置音频设备 比如/dev/dsp</p>
+<h2 id="f-高级选项"><a href="#f-高级选项" class="headerlink" title="f)高级选项"></a>f)高级选项</h2><p>-map file:stream 设置输入流映射</p>
+<p>-debug 打印特定调试信息</p>
+<p>-benchmark 为基准测试加入时间</p>
+<p>-hex 倾倒每一个输入包</p>
+<p>-bitexact 仅使用位精确算法 用于编解码测试</p>
+<p>-ps size 设置包大小，以bits为单位</p>
+<p>-re 以本地帧频读数据，主要用于模拟捕获设备</p>
+<p>-loop 循环输入流。只工作于图像流，用于ffserver测试</p>
+<blockquote>
+<h1 id="1、avi转MP4命令："><a href="#1、avi转MP4命令：" class="headerlink" title="1、avi转MP4命令："></a>1、avi转MP4命令：</h1></blockquote>
+<pre><code>ffmpeg -i .\Video.avi -c copy -map 0 video.mp4
+或
+ffmpeg -i .\Video.avi -c:v libx264 -crf 19 -preset slow -c:a aac -b:a 192k -ac 2  video.mp4
+
+//剪切视频
+ffmpeg -ss 0:1:30 -t 0:0:50 -i 1.avi -vcodec copy -acodec copy 3.mp4    
+//-r 提取图像的频率，-ss 开始时间，-t 持续时间</code></pre><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/20190904171222324.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/20190904171258425.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+
+
+<blockquote>
+<h1 id="2、MP4转ts"><a href="#2、MP4转ts" class="headerlink" title="2、MP4转ts"></a>2、MP4转ts</h1></blockquote>
+<p>这个功能很好，而且不影响观看，大小还小了不少。</p>
+<pre><code>ffmpeg -i .\video.mp4 output.ts</code></pre>{% image /imgs/20190904180657848.png '在这里插入图片描述' '' %}
+
+
+<blockquote>
+<h1 id="3、视频压缩"><a href="#3、视频压缩" class="headerlink" title="3、视频压缩"></a>3、视频压缩</h1></blockquote>
+<p>压缩命令：</p>
+<pre><code>1）ffmpeg -i 123_ffmpeg.mp4  (压缩的文件更大更清晰，一般情况下不用）
+
+2）ffmpeg.exe -i 123.MP4 -b:v 700k 1231_ffmpeg.mp4(压缩的更小，相对模糊一些）</code></pre><p>第二个压缩成更小的，压缩成2M多的视频，真厉害。</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/20190904181119803.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/20190904181054891.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+
+<blockquote>
+<h1 id="4、去除视频声音"><a href="#4、去除视频声音" class="headerlink" title="4、去除视频声音"></a>4、去除视频声音</h1></blockquote>
+<pre><code>ffmpeg -i 1.avi -vcodec copy -an 2.avi  </code></pre><blockquote>
+<h1 id="5、合并音频和视频"><a href="#5、合并音频和视频" class="headerlink" title="5、合并音频和视频"></a>5、合并音频和视频</h1></blockquote>
+<pre><code>ffmpeg -i a.wav  -i a.avi out.avi </code></pre><p>若音频比视频长，画面停留在最后一帧，继续播放声音。 </p>
+<blockquote>
+<h1 id="6、给视频添加水印"><a href="#6、给视频添加水印" class="headerlink" title="6、给视频添加水印"></a>6、给视频添加水印</h1></blockquote>
+<pre><code>ffmpeg -i result2.mp4 -vf &quot;drawtext=fontfile=FZBaoHTJW_Xi.TTF: text=&apos;创作者：奮乧妑_仯姩&apos;:x=100:y=10:fontsize=24:fontcolor=yellow:shadowy=2&quot; drawtext.mp4</code></pre><p>记得下载需要的字体，或者自己电脑去复制都行。<br>你需要更改：</p>
+<ol>
+<li>FZBaoHTJW_Xi.TTF  ：我的字体文件（放在和视频一个目录下，可以网上去下载，或者window电脑目录下复制： C:\Windows\Fonts）</li>
+<li>result2.mp4  ：我的需要添加水印视频</li>
+<li>text=’创作者：奮乧妑_仯姩’  ：’创作者：奮乧妑_仯姩’这个是我的水印内容，更改为你自己的</li>
+<li>drawtext.mp4  ：添加水印之后生成的视频名字</li>
+</ol>
+<p><img src="/imgs/20190905095339284.png" alt="在这里插入图片描述"></p>
+<blockquote>
+<h1 id="7、flv-转MP4"><a href="#7、flv-转MP4" class="headerlink" title="7、flv 转MP4"></a>7、flv 转MP4</h1></blockquote>
+<pre><code>ffmpeg -i input.flv output.mp4</code></pre><blockquote>
+<h1 id="8、视频剪辑："><a href="#8、视频剪辑：" class="headerlink" title="8、视频剪辑："></a>8、视频剪辑：</h1></blockquote>
+<pre><code>//截取从头开始的30s
+ffmpeg -ss 00:00:00 -t 00:00:30 -i keyoutput.mp4 -vcodec copy -acodec copy split.mp4
+//截取从30s开始的30s
+ffmpeg -ss 00:00:30 -t 00:00:30 -i keyoutput.mp4 -vcodec copy -acodec copy split1.mp4</code></pre><p><img src="/imgs/20190906164048790.png" alt="在这里插入图片描述"></p>
+<blockquote>
+<h1 id="9、给视频添加字幕srt"><a href="#9、给视频添加字幕srt" class="headerlink" title="9、给视频添加字幕srt"></a>9、给视频添加字幕srt</h1></blockquote>
+<p>参考博主：<a href="https://moejj.com/ffmpeg-add-subtitles-and-watermark/" target="_blank" rel="noopener">https://moejj.com/ffmpeg-add-subtitles-and-watermark/</a></p>
+<pre><code>ffmpeg -i video.avi -vf subtitles=subtitle.srt out.avi</code></pre><blockquote>
+<h1 id="10、同时给视频添加音乐-字幕"><a href="#10、同时给视频添加音乐-字幕" class="headerlink" title="10、同时给视频添加音乐+字幕"></a>10、同时给视频添加音乐+字幕</h1></blockquote>
+<pre><code>ffmpeg -i .\1111.mp4 -i .\2222.mp3 -vf subtitles=all_mp3_srt.srt out2.avi</code></pre><blockquote>
+<h1 id="11、使用ffmpeg-webm-转换-mp4"><a href="#11、使用ffmpeg-webm-转换-mp4" class="headerlink" title="11、使用ffmpeg webm 转换 mp4"></a>11、使用ffmpeg webm 转换 mp4</h1></blockquote>
+<p>参考：<a href="http://www.voidcn.com/article/p-evqojtvk-bta.html" target="_blank" rel="noopener">http://www.voidcn.com/article/p-evqojtvk-bta.html</a></p>
+<pre><code>ffmpeg -fflags +genpts -i .\111.webm  -r 24 1.mp4</code></pre><p>解释：</p>
+<ol>
+<li>-r 24 代码生成的视频时24帧，你也可以改成30或者60</li>
+<li>-i .\111.webm   111.webm 是我的当前目录下 webm格式的视频</li>
+<li>1.mp4 会在当前目录下生成 这个mp4视频</li>
+</ol>
+<p><img src="/imgs/2019090912531425.png" alt="在这里插入图片描述"></p>
+{% image /imgs/20190909125346253.png '在这里插入图片描述' '' %}
+
+
+<blockquote>
+<h1 id="12、合并俩个mp4视频"><a href="#12、合并俩个mp4视频" class="headerlink" title="12、合并俩个mp4视频"></a>12、合并俩个mp4视频</h1></blockquote>
+<h2 id="1、先创建个name-txt"><a href="#1、先创建个name-txt" class="headerlink" title="1、先创建个name.txt"></a>1、先创建个name.txt</h2><pre><code>file &apos;split1.mp4&apos;
+
+file &apos;split2.mp4&apos;</code></pre><p><img src="/imgs/20190909150026789.png" alt="在这里插入图片描述"></p>
+<h2 id="2、命令合并："><a href="#2、命令合并：" class="headerlink" title="2、命令合并："></a>2、命令合并：</h2><pre><code>ffmpeg -f concat -i name.txt -c copy output.mp4</code></pre>{% image /imgs/20190909150212750.png '在这里插入图片描述' '' %}
+
+<h1 id="13、提取视频的音频为MP3"><a href="#13、提取视频的音频为MP3" class="headerlink" title="13、提取视频的音频为MP3"></a>13、提取视频的音频为MP3</h1><p> 命令：</p>
+<pre><code>ffmpeg -i .\result.mp4 -vn .\result.mp3</code></pre><p> 生成之前是这种一个MP4文件<br> <figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/2019091909571587.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure><br>命令处理：</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/20190919095759260.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+<p>成功提取出mp3文件</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/20190919095848923.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2019-12-02T07:26:18.098Z" itemprop="dateUpdated">2019-12-02 15:26:18</time>
+</span><br>
+
+
+        
+        这里可以写作者留言，标签和 hexo 中所有变量及辅助函数等均可调用，示例：<a href="/2019/09/06/f683db1ab016de1b7c508fe5583a4dff/" target="_blank" rel="external">https://zhaojiafu.github.io/2019/09/06/f683db1ab016de1b7c508fe5583a4dff/</a>
+        
+    </div>
+    
+    <footer>
+        <a href="https://zhaojiafu.github.io">
+            <img src="/img/zhao.jpg" alt="赵家富">
+            赵家富
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" target="_blank" rel="noopener" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ffmpeg/" rel="tag">ffmpeg</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://zhaojiafu.github.io/2019/09/06/f683db1ab016de1b7c508fe5583a4dff/&title=《ffmpeg 常用命令总结：（avi转MP4、MP4转ts、视频压缩、去除视频声音、合并音频和视频）》 — 赵家富的博客&pic=https://zhaojiafu.github.io/img/zhao.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" target="_blank" rel="noopener" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://zhaojiafu.github.io/2019/09/06/f683db1ab016de1b7c508fe5583a4dff/&title=《ffmpeg 常用命令总结：（avi转MP4、MP4转ts、视频压缩、去除视频声音、合并音频和视频）》 — 赵家富的博客&source=感觉无从下手的时候，问自己“不难，要你干啥？”" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://zhaojiafu.github.io/2019/09/06/f683db1ab016de1b7c508fe5583a4dff/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《ffmpeg 常用命令总结：（avi转MP4、MP4转ts、视频压缩、去除视频声音、合并音频和视频）》 — 赵家富的博客&url=https://zhaojiafu.github.io/2019/09/06/f683db1ab016de1b7c508fe5583a4dff/&via=https://zhaojiafu.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://zhaojiafu.github.io/2019/09/06/f683db1ab016de1b7c508fe5583a4dff/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" target="_blank" rel="noopener" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2019/09/07/d7129ace2f4b92f2a04c044df02ae5ab/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">window10系统下nodejs一些知识（后续学到用的知识会持续更新。。。）</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2019/09/01/627ce7ae913664b48ff83e5b4021aa49/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">qqpcmgr_docpro 这个隐藏文件无法删除的问题解决方法</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<section class="comments" id="comments">
+    <div id="gitalk-container"></div>
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+        var id = location.pathname
+        if (location.pathname.length > 50) {
+          id = location.pathname.replace(/\/\d+\/\d+\/\d+\//, '').replace('/', '').substring(0, 50)
+        }
+        const gitalk = new Gitalk({
+          clientID: '388d0a78cda30f118f86',
+          clientSecret: '2c64b34cc20f23d768dffff64acb8c2ee02c3bee',
+          repo: 'https://zhaojiafu.github.io/',
+          owner: 'zjf',
+          admin: ['zjf'],
+          id: id,      // Ensure uniqueness and length less than 50
+          title: document.title.split('|')[0],
+          distractionFreeMode: false  // Facebook-like distraction free mode
+        })
+
+        gitalk.render('gitalk-container')
+    </script>
+</section>
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;" target="_blank" rel="noopener"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢大爷~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.jpg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.jpg" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+            <span>博客内容遵循 <a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+        <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=0 height=0 src="http://music.163.com/song/media/outer/url?id=1369798757&auto=1"></iframe>
+
+    </div>
+    <div class="bottom">
+        <p><span>赵家富 &copy; 2019</span>
+            <span>
+                
+
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" target="_blank" rel="noopener" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://zhaojiafu.github.io/2019/09/06/f683db1ab016de1b7c508fe5583a4dff/&title=《ffmpeg 常用命令总结：（avi转MP4、MP4转ts、视频压缩、去除视频声音、合并音频和视频）》 — 赵家富的博客&pic=https://zhaojiafu.github.io/img/zhao.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" target="_blank" rel="noopener" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://zhaojiafu.github.io/2019/09/06/f683db1ab016de1b7c508fe5583a4dff/&title=《ffmpeg 常用命令总结：（avi转MP4、MP4转ts、视频压缩、去除视频声音、合并音频和视频）》 — 赵家富的博客&source=感觉无从下手的时候，问自己“不难，要你干啥？”" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://zhaojiafu.github.io/2019/09/06/f683db1ab016de1b7c508fe5583a4dff/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《ffmpeg 常用命令总结：（avi转MP4、MP4转ts、视频压缩、去除视频声音、合并音频和视频）》 — 赵家富的博客&url=https://zhaojiafu.github.io/2019/09/06/f683db1ab016de1b7c508fe5583a4dff/&via=https://zhaojiafu.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://zhaojiafu.github.io/2019/09/06/f683db1ab016de1b7c508fe5583a4dff/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;" target="_blank" rel="noopener"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACwUlEQVR42u3a0W7jMAwEwPz/T6fAPbVo4+xSUpIDxk8Hw2dzVEBkKN5u8XX/d/2+8/3+/df16Mn2i7M33PDw8PCO8e6X1/Uz+ULki3UdQ/48Hh4e3mlevjXnW3byhmvkdRJKFhcPDw/vvby22M2TzXUk1zHg4eHh/V+8pAOQ38kLcTw8PLxP4OWNgKREToJrwz3ea8HDw8OLebPjqPf+++D5Hh4eHt7CqXqeJPL3t5EsRYuHh4d3gJccO82GA1rkejIofjHg4eHhbeW1wSXjWbsK9OFBGh4eHt4B3sqB0+wN+YhAe+dJesDDw8Nb5uU/+9tRg/Ve62whftzHw8PDO8y7fvVssKAOKBgySH4G1CuHh4eHV/JmH0iezJdsb1vkR2LAw8PDO8BrQ2+btskWv94a/uP/4uHh4R3gtaXzbFygLYXb7z65g4eHh3eA1zZhc3xeNM+aHUXjGA8PD+8YL2kf5OXvrLGbLFkSAx4eHt4J3j242o04X6B8UCAHP+y14OHh4W3i5eXsbLtvc1S70FFUeHh4eFt5s1GnWfu1HbFqWx4P8x4eHh7eC3mzT+4ayZolGzw8PLx38ZIGbpswVpoRw7EDPDw8vMO8XYV1kk7ygYM2nofTZHh4eHibePnQQFJqt8ME7TjXcOnx8PDwXsLLGS2+Ldbbwa9towN4eHh4l33OZHttR6na1vAtvoqyGw8PD+8lvBkjDyu5v34Uh4eHh3eO1x5WDQ+i8jGpUdooYsPDw8Nb5t3Lq00eK+2M9cYxHh4e3gnerCBOtvtZQbzS8sDDw8N7Je90Mkjuz5oRUeMDDw8P7xhv1phY6nzEB1qz4zE8PDy8T+C1owazJNE2cJ8kDDw8PLwP4M0OzPIEkw8HRH8APDw8vGO8thmRJIZZcTxLM5t7LXh4eHjP31B/Mg+l3dDzpakZeHh4eKu8L3mifYJWYhl0AAAAAElFTkSuQmCC" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '死鬼去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+<script src="/node_modules/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"node_modules/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/node_modules/assets/shizuku.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"react":{"opacity":0.7},"log":false});</script></body>
+</html>

@@ -1,0 +1,1589 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <link rel="canonical" href="https://zhaojiafu.github.io/2019/09/30/fa47655a0e5a0275481489ebfb9e99c8/">
+    
+    
+    <title>整理一些linux命令必须熟练掌握常的命令（复习+扩展学习Linux命令） | 赵家富的博客 | 保持好奇心</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="Linux">
+    <meta name="description" content="说明：因为最近一年的工作都是使用windows系统下使用的，之前学习用过一段时间的Linux，但是没有系统的学习学习，所以打算再系统的学习下相关知识，总结一些常用的命令统计下来。 如果有想学一点基础也没有的，或者么有Linux系统环境，建议使用window电脑装个双系统，安装个Ubuntu就可以，刚开始也可以去B站去搜索一些教程或者看些菜鸟教程，也是很不错的选择，一点没有接触的建议先去找些视频看些">
+<meta name="keywords" content="Linux">
+<meta property="og:type" content="article">
+<meta property="og:title" content="整理一些linux命令必须熟练掌握常的命令（复习+扩展学习Linux命令）">
+<meta property="og:url" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;2019&#x2F;09&#x2F;30&#x2F;fa47655a0e5a0275481489ebfb9e99c8&#x2F;index.html">
+<meta property="og:site_name" content="赵家富的博客">
+<meta property="og:description" content="说明：因为最近一年的工作都是使用windows系统下使用的，之前学习用过一段时间的Linux，但是没有系统的学习学习，所以打算再系统的学习下相关知识，总结一些常用的命令统计下来。 如果有想学一点基础也没有的，或者么有Linux系统环境，建议使用window电脑装个双系统，安装个Ubuntu就可以，刚开始也可以去B站去搜索一些教程或者看些菜鸟教程，也是很不错的选择，一点没有接触的建议先去找些视频看些">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20190930100713399.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20190930102132411.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20190930085654715.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20190929175547419.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20190929175805944.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20190930083907980.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20191011171500420.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20191011171555203.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20191011172048398.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20191011172105860.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20191011172318616.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20190930150428133.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20190930150523671.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20190930150826148.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20190930150923857.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;201909301512152.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;2019093015124227.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20190930161536639.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20190930162449274.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20190930162631819.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20190930170628286.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20190930170909705.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20190930172915183.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20190930172454176.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;2019093017361738.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;2019101117013764.png">
+<meta property="og:updated_time" content="2019-12-02T07:26:18.357Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20190930100713399.png">
+    
+    <link rel="shortcut icon" href="/img/cb2nm-5l9w0-001.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" target="_blank" rel="noopener" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/zhao.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">赵家富</h5>
+          <a href="mailto:530519174@qq.com" target="_blank" rel="noopener" title="530519174@qq.com" class="mail">530519174@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                archives(所有)
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags/"  >
+                <i class="icon icon-lg icon-tags"></i>
+                tag(标签)
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories/"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories(分类)
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/zhaojiafu" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://blog.csdn.net/weixin_42081389" target="_blank" >
+                <i class="icon icon-lg icon-csdn"></i>
+                Csdn
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" target="_blank" rel="noopener" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+
+        <div class="flex-col header-title ellipsis">整理一些linux命令必须熟练掌握常的命令（复习+扩展学习Linux命令）</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" target="_blank" rel="noopener" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" target="_blank" rel="noopener" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" target="_blank" rel="noopener" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+
+        <h1 class="title">整理一些linux命令必须熟练掌握常的命令（复习+扩展学习Linux命令）
+        </h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2019-09-30T03:34:32.000Z" itemprop="datePublished" class="page-time">
+  2019-09-30
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Linux/">Linux</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#说明："><span class="post-toc-number">1.</span> <span class="post-toc-text">说明：</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#一、磁盘管理"><span class="post-toc-number">2.</span> <span class="post-toc-text">一、磁盘管理</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#①、ls命令"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">①、ls命令</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#②、cd命令-切换工作目录"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">②、cd命令(切换工作目录)</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#③、-pwd命令"><span class="post-toc-number">2.3.</span> <span class="post-toc-text">③、 pwd命令</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#④、df命令"><span class="post-toc-number">2.4.</span> <span class="post-toc-text">④、df命令</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#⑤、du命令"><span class="post-toc-number">2.5.</span> <span class="post-toc-text">⑤、du命令</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#⑥、mkdir命令（创建文件夹）"><span class="post-toc-number">2.6.</span> <span class="post-toc-text">⑥、mkdir命令（创建文件夹）</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#⑦、stat命令"><span class="post-toc-number">2.7.</span> <span class="post-toc-text">⑦、stat命令</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#⑧、输出重定向命令-lt-和-lt-lt"><span class="post-toc-number">2.8.</span> <span class="post-toc-text">⑧、输出重定向命令 &lt; 和 &lt;&lt;</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#⑨、清屏：clear"><span class="post-toc-number">2.9.</span> <span class="post-toc-text">⑨、清屏：clear</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#二、文件管理"><span class="post-toc-number">3.</span> <span class="post-toc-text">二、文件管理</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#①、cat（cat-concatenate-连锁）"><span class="post-toc-number">3.1.</span> <span class="post-toc-text">①、cat（cat: concatenate 连锁）</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#②、chattr命令"><span class="post-toc-number">3.2.</span> <span class="post-toc-text">②、chattr命令</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#③、chmod命令"><span class="post-toc-number">3.3.</span> <span class="post-toc-text">③、chmod命令</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#数字语法为："><span class="post-toc-number">3.3.1.</span> <span class="post-toc-text">数字语法为：</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#④、file命令"><span class="post-toc-number">3.4.</span> <span class="post-toc-text">④、file命令</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#⑤、find命令"><span class="post-toc-number">3.5.</span> <span class="post-toc-text">⑤、find命令</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#⑥、more命令"><span class="post-toc-number">3.6.</span> <span class="post-toc-text">⑥、more命令</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#⑦、mv命令"><span class="post-toc-number">3.7.</span> <span class="post-toc-text">⑦、mv命令</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#⑧、rm命令"><span class="post-toc-number">3.8.</span> <span class="post-toc-text">⑧、rm命令</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#⑨、cp命令"><span class="post-toc-number">3.9.</span> <span class="post-toc-text">⑨、cp命令</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#⑩、whereis命令"><span class="post-toc-number">3.10.</span> <span class="post-toc-text">⑩、whereis命令</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#⑪、ln命令（文件链接）"><span class="post-toc-number">3.11.</span> <span class="post-toc-text">⑪、ln命令（文件链接）</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#⑫、which（在path中查找文件）"><span class="post-toc-number">3.12.</span> <span class="post-toc-text">⑫、which（在path中查找文件）</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#三、文档编辑"><span class="post-toc-number">4.</span> <span class="post-toc-text">三、文档编辑</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#①、grep-命令（文本查找）"><span class="post-toc-number">4.1.</span> <span class="post-toc-text">①、grep 命令（文本查找）</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#②、-wc-新增"><span class="post-toc-number">4.2.</span> <span class="post-toc-text">②、==wc (新增)==</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#③、sort（排序，新增）"><span class="post-toc-number">4.3.</span> <span class="post-toc-text">==③、sort（排序，新增）==</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#四、压缩命令"><span class="post-toc-number">5.</span> <span class="post-toc-text">四、压缩命令</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#1、tar命令"><span class="post-toc-number">5.1.</span> <span class="post-toc-text">1、tar命令</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#2、rar压缩解压缩"><span class="post-toc-number">5.2.</span> <span class="post-toc-text">2、rar压缩解压缩</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#3、7z压缩解压缩"><span class="post-toc-number">5.3.</span> <span class="post-toc-text">3、7z压缩解压缩</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#4、zip压缩解压缩"><span class="post-toc-number">5.4.</span> <span class="post-toc-text">4、zip压缩解压缩</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#5、7za"><span class="post-toc-number">5.5.</span> <span class="post-toc-text">5、7za</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#五、Linux命令-用户、权限管理"><span class="post-toc-number">6.</span> <span class="post-toc-text">五、Linux命令-用户、权限管理</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#1、查看当前用户：whoami"><span class="post-toc-number">6.1.</span> <span class="post-toc-text">1、查看当前用户：whoami</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#2、查看登录用户：who"><span class="post-toc-number">6.2.</span> <span class="post-toc-text">2、查看登录用户：who</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#3、退出登录账户：-exit"><span class="post-toc-number">6.3.</span> <span class="post-toc-text">3、退出登录账户： exit</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#4、添加用户账号：useradd"><span class="post-toc-number">6.4.</span> <span class="post-toc-text">4、添加用户账号：useradd</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#5、设置用户密码：passwd"><span class="post-toc-number">6.5.</span> <span class="post-toc-text">5、设置用户密码：passwd</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#6、删除用户：userdel"><span class="post-toc-number">6.6.</span> <span class="post-toc-text">6、删除用户：userdel</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#7、切换用户：su"><span class="post-toc-number">6.7.</span> <span class="post-toc-text">7、切换用户：su</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#8、查看有哪些用户组"><span class="post-toc-number">6.8.</span> <span class="post-toc-text">8、查看有哪些用户组</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#9、添加、删除组账号：groupadd、groupdel"><span class="post-toc-number">6.9.</span> <span class="post-toc-text">9、添加、删除组账号：groupadd、groupdel</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#10、修改用户所在组：usermod"><span class="post-toc-number">6.10.</span> <span class="post-toc-text">10、修改用户所在组：usermod</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#11、查看用户在哪些组"><span class="post-toc-number">6.11.</span> <span class="post-toc-text">11、查看用户在哪些组</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#12、为创建的普通用户添加sudo权限"><span class="post-toc-number">6.12.</span> <span class="post-toc-text">12、为创建的普通用户添加sudo权限</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#六、Linux命令-系统管理"><span class="post-toc-number">7.</span> <span class="post-toc-text">六、Linux命令-系统管理</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#1、ifconfig（显示网络设备）"><span class="post-toc-number">7.1.</span> <span class="post-toc-text">1、ifconfig（显示网络设备）</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#2、ping命令用于检测主机。"><span class="post-toc-number">7.2.</span> <span class="post-toc-text">2、ping命令用于检测主机。</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#3、查看当前日历：cal"><span class="post-toc-number">7.3.</span> <span class="post-toc-text">3、查看当前日历：cal</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#4、显示或设置时间：date"><span class="post-toc-number">7.4.</span> <span class="post-toc-text">4、显示或设置时间：date</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#5、ps（用于显示当前进程-process-的状态）"><span class="post-toc-number">7.5.</span> <span class="post-toc-text">5、ps（用于显示当前进程 (process) 的状态）</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#6、动态显示进程：top"><span class="post-toc-number">7.6.</span> <span class="post-toc-text">6、动态显示进程：top</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#7、终止进程：kill"><span class="post-toc-number">7.7.</span> <span class="post-toc-text">7、终止进程：kill</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#8、关机重启：reboot、shutdown、init"><span class="post-toc-number">7.8.</span> <span class="post-toc-text">8、关机重启：reboot、shutdown、init</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#七、-Linux统计文件夹下的文件数目（新增）"><span class="post-toc-number">8.</span> <span class="post-toc-text">七、==Linux统计文件夹下的文件数目（新增）==</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#1、统计当前目录下文件的个数（不包括目录）"><span class="post-toc-number">8.1.</span> <span class="post-toc-text">1、统计当前目录下文件的个数（不包括目录）</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#2、统计当前目录下文件的个数（包括子目录）"><span class="post-toc-number">8.2.</span> <span class="post-toc-text">2、统计当前目录下文件的个数（包括子目录）</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#3、查看某目录下文件夹-目录-的个数（包括子目录）"><span class="post-toc-number">8.3.</span> <span class="post-toc-text">3、查看某目录下文件夹(目录)的个数（包括子目录）</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#4、查看当前目录下含有多少个文件（目录-文件）"><span class="post-toc-number">8.4.</span> <span class="post-toc-text">4、查看当前目录下含有多少个文件（目录+文件）</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#4、命令解析："><span class="post-toc-number">8.5.</span> <span class="post-toc-text">4、命令解析：</span></a></li></ol></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-fa47655a0e5a0275481489ebfb9e99c8"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">整理一些linux命令必须熟练掌握常的命令（复习+扩展学习Linux命令）</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2019-09-30 11:34:32" datetime="2019-09-30T03:34:32.000Z"  itemprop="datePublished">2019-09-30</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Linux/">Linux</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h2 id="说明："><a href="#说明：" class="headerlink" title="说明："></a>说明：</h2><p>因为最近一年的工作都是使用windows系统下使用的，之前学习用过一段时间的Linux，但是没有系统的学习学习，所以打算再系统的学习下相关知识，总结一些常用的命令统计下来。</p>
+<p>如果有想学一点基础也没有的，或者么有Linux系统环境，建议使用window电脑装个双系统，安装个Ubuntu就可以，刚开始也可以去B站去搜索一些教程或者看些菜鸟教程，也是很不错的选择，一点没有接触的建议先去找些视频看些，再去看文档比较接收的快，我之前也找了些视频看的基础讲解。</p>
+<p>最近学习一些知识，涉及到linux，发现好多不知道咋用的了，主要因为一个项目，然后各种测试，装系统，网上搜索安装docker方法，结果我的window就是不支持，因为我的window系统删减版的，没有Hyper，公司电脑也装不上，也不想重装系统（重装代价比较大，使用虚拟机测试可以测试测试），所以家里测试装了一个Ubuntu16.04，因为之前装过一次，但是后来因为系统重装加上好久没有再安装使用了，发现16.04找了各种安装命令都无果。后来换了几个版本的Ubuntu，最终安装一个18.04版本的弄好docker了（但是还不会docker），等复习下一个知识就打算学习下docker。回头单独写个window10安装双系统的步骤和注意事项（计划放在十一期间把）。</p>
+<p>日后有需要常用的再扩展增加博客中，如果看到这个博客的你有其他常用命令欢迎留言赐教，我也学习学习增加到博客中，欢迎一起学习沟通和交流。</p>
+<h2 id="一、磁盘管理"><a href="#一、磁盘管理" class="headerlink" title="一、磁盘管理"></a>一、磁盘管理</h2><h3 id="①、ls命令"><a href="#①、ls命令" class="headerlink" title="①、ls命令"></a>①、ls命令</h3><p> ls命令用于显示指定工作目录下之内容（列出目前工作目录所含之文件及子目录)。</p>
+<p><strong>语法</strong></p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">ls [-alrtAFR] [name...]</span></pre></td></tr></table></figure>
+
+<p><strong>参数 :</strong></p>
+<pre><code>-a 显示所有文件及目录 (ls内定将文件名或目录名称开头为&quot;.&quot;的视为隐藏档，不会列出)
+-l 除文件名称外，亦将文件型态、权限、拥有者、文件大小等资讯详细列出
+-r 将文件以相反次序显示(原定依英文字母次序)
+-t 将文件依建立时间之先后次序列出
+-A 同 -a ，但不列出 &quot;.&quot; (目前目录) 及 &quot;..&quot; (父目录)
+-F 在列出的文件名称后加一符号；例如可执行档则加 &quot;*&quot;, 目录则加 &quot;/&quot;
+-R 若目录下有文件，则以下之文件亦皆依序列出</code></pre><p><strong>实例</strong><br>列出根目录()下的所有目录：</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">cd /</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">ls</span></pre></td></tr></table></figure>
+<p>显示：</p>
+<pre><code>bin  boot  dev  etc  home  lib  lib64  lost+found  media  mnt  opt  proc  root  run  sbin  srv  sys  tmp  usr  var</code></pre><p>显示当前目录下所有文件的权限等：</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">ls  -l</span></pre></td></tr></table></figure>
+
+{% image /imgs/20190930094007403.png '在这里插入图片描述' '' %}
+
+
+
+<h3 id="②、cd命令-切换工作目录"><a href="#②、cd命令-切换工作目录" class="headerlink" title="②、cd命令(切换工作目录)"></a>②、cd命令(切换工作目录)</h3><p>cd命令用于切换当前工作目录至 dirName(目录参数)。</p>
+<p>其中 dirName 表示法可为绝对路径或相对路径。若目录名称省略，则变换至使用者的 home 目录 (也就是刚 login 时所在的目录)。</p>
+<p>另外，”~” 也表示为 home 目录 的意思，”.” 则是表示目前所在的目录，”..” 则表示目前目录位置的上一层目录，”/“ 表示为根目录。</p>
+<p><strong>语法：</strong></p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">cd [dirName]</span></pre></td></tr></table></figure>
+
+<p>dirName：要切换的目标目录。<br><strong>实例：</strong><br>跳到 /usr/bin/ :</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">cd /usr/bin</span></pre></td></tr></table></figure>
+
+<p>跳到自己的 home 目录 :</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">cd ~</span></pre></td></tr></table></figure>
+
+
+<h3 id="③、-pwd命令"><a href="#③、-pwd命令" class="headerlink" title="③、 pwd命令"></a>③、 pwd命令</h3><p>pwd命令用于显示工作目录。</p>
+<p>执行pwd指令可立刻得知您目前所在的工作目录的绝对路径名称。</p>
+<p>语法</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">pwd [--help][--version]</span></pre></td></tr></table></figure>
+
+<p>参数说明:</p>
+<pre><code>--help 在线帮助。
+--version 显示版本信息。</code></pre><p><strong>实例</strong><br>查看当前所在目录：</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="variable">$pwd</span></span></pre></td></tr></table></figure>
+<p>结果，这是在home目录下：<br>    /home/zhao</p>
+<h3 id="④、df命令"><a href="#④、df命令" class="headerlink" title="④、df命令"></a>④、df命令</h3><p> df命令用于显示目前在Linux系统上的文件系统的磁盘使用情况统计。</p>
+<p><strong>语法：</strong></p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">df [选项]... [FILE]...</span></pre></td></tr></table></figure>
+
+<pre><code>文件-a, --all 包含所有的具有 0 Blocks 的文件系统
+文件--block-size={SIZE} 使用 {SIZE} 大小的 Blocks
+文件-h, --human-readable 使用人类可读的格式(预设值是不加这个选项的...)
+文件-H, --si 很像 -h, 但是用 1000 为单位而不是用 1024
+文件-i, --inodes 列出 inode 资讯，不列出已使用 block
+文件-k, --kilobytes 就像是 --block-size=1024
+文件-l, --local 限制列出的文件结构
+文件-m, --megabytes 就像 --block-size=1048576
+文件--no-sync 取得资讯前不 sync (预设值)
+文件-P, --portability 使用 POSIX 输出格式
+文件--sync 在取得资讯前 sync
+文件-t, --type=TYPE 限制列出文件系统的 TYPE
+文件-T, --print-type 显示文件系统的形式
+文件-x, --exclude-type=TYPE 限制列出文件系统不要显示 TYPE
+文件-v (忽略)
+文件--help 显示这个帮手并且离开
+文件--version 输出版本资讯并且离开</code></pre><p><strong>实例：</strong></p>
+<p><strong>1、显示文件系统的磁盘使用情况统计：</strong></p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="variable">$df</span></span></pre></td></tr></table></figure>
+
+<pre><code>Filesystem     1K-blocks     Used Available Use% Mounted on
+devtmpfs         1732892        0   1732892   0% /dev
+tmpfs            1744332        0   1744332   0% /dev/shm
+tmpfs            1744332      252   1744080   1% /run
+tmpfs            1744332        0   1744332   0% /sys/fs/cgroup
+/dev/vda1       61775868 23733920  34880860  41% /</code></pre><p>第一列指定文件系统的名称，第二列指定一个特定的文件系统1K-块1K是1024字节为单位的总内存。用和可用列正在使用中，分别指定的内存量。</p>
+<p>使用列指定使用的内存的百分比，而最后一栏”安装在”指定的文件系统的挂载点</p>
+<p><strong>2、df也可以显示磁盘使用的文件系统信息：</strong></p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="variable">$df</span> software/</span></pre></td></tr></table></figure>
+<p>software是当前文件目录，然后这个结果其实就是上面的最后一行数据，当前磁盘使用了41%。</p>
+<p><img src="/imgs/20190930100713399.png" alt="在这里插入图片描述"></p>
+<p><strong>3、显示所有的信息:</strong></p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="variable">$df</span> --total</span></pre></td></tr></table></figure>
+
+<pre><code>Filesystem     1K-blocks     Used Available Use% Mounted on
+devtmpfs         1732892        0   1732892   0% /dev
+tmpfs            1744332        0   1744332   0% /dev/shm
+tmpfs            1744332      252   1744080   1% /run
+tmpfs            1744332        0   1744332   0% /sys/fs/cgroup
+/dev/vda1       61775868 23735020  34879760  41% /
+total           68741756 23735272  41845396  37% -</code></pre><p>我们看到输出的末尾，包含一个额外的行，显示总的每一列。</p>
+<p><strong>4、-h选项，通过它可以产生可读的格式df命令的输出：</strong></p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="variable">$df</span> -h</span></pre></td></tr></table></figure>
+
+<pre><code>Filesystem      Size  Used Avail Use% Mounted on
+devtmpfs        1.7G     0  1.7G   0% /dev
+tmpfs           1.7G     0  1.7G   0% /dev/shm
+tmpfs           1.7G  252K  1.7G   1% /run
+tmpfs           1.7G     0  1.7G   0% /sys/fs/cgroup
+/dev/vda1        59G   23G   34G  41% /</code></pre><h3 id="⑤、du命令"><a href="#⑤、du命令" class="headerlink" title="⑤、du命令"></a>⑤、du命令</h3><p>du命令用于显示目录或文件的大小。</p>
+<p>du会显示指定的目录或文件所占用的磁盘空间。</p>
+<p><strong>语法</strong></p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">du [-abcDhHklmsSx][-L &lt;符号连接&gt;][-X &lt;文件&gt;][--block-size][--exclude=&lt;目录或文件&gt;][--max-depth=&lt;目录层数&gt;][--help][--version][目录或文件]</span></pre></td></tr></table></figure>
+
+<p><strong>参数说明：</strong></p>
+<pre><code>-a或-all 显示目录中个别文件的大小。
+-b或-bytes 显示目录或文件大小时，以byte为单位。
+-c或--total 除了显示个别目录或文件的大小外，同时也显示所有目录或文件的总和。
+-D或--dereference-args 显示指定符号连接的源文件大小。
+-h或--human-readable 以K，M，G为单位，提高信息的可读性。
+-H或--si 与-h参数相同，但是K，M，G是以1000为换算单位。
+-k或--kilobytes 以1024 bytes为单位。
+-l或--count-links 重复计算硬件连接的文件。
+-L&lt;符号连接&gt;或--dereference&lt;符号连接&gt; 显示选项中所指定符号连接的源文件大小。
+-m或--megabytes 以1MB为单位。
+-s或--summarize 仅显示总计。
+-S或--separate-dirs 显示个别目录的大小时，并不含其子目录的大小。
+-x或--one-file-xystem 以一开始处理时的文件系统为准，若遇上其它不同的文件系统目录则略过。
+-X&lt;文件&gt;或--exclude-from=&lt;文件&gt; 在&lt;文件&gt;指定目录或文件。
+--exclude=&lt;目录或文件&gt; 略过指定的目录或文件。
+--max-depth=&lt;目录层数&gt; 超过指定层数的目录后，予以忽略。
+--help 显示帮助。
+--version 显示版本信息。</code></pre><p><strong>实例</strong><br>1、显示目录或者文件所占空间:</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="variable">$du</span></span></pre></td></tr></table></figure>
+<p>只显示当前目录下面的子目录的目录大小和当前目录的文件总数量，最下面的13880572为当前目录的总文件数量</p>
+<p>太多了截图一点结尾。这个命令会把目录下所有的文件都显示出来。</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/20190930102132411.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+
+<p>2、不全部显示，只显示总数量</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">du -s</span></pre></td></tr></table></figure>
+<pre><code>$du -s
+13880572        .</code></pre><p>3、显示总数量的大小</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">du -s -h</span></pre></td></tr></table></figure>
+
+
+<pre><code>$du -s -h
+14G     .</code></pre><p>4、显示当前目录或者文件的大小</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">du -s -h software/</span></pre></td></tr></table></figure>
+
+<pre><code>$du -s -h software/
+172M    software/</code></pre><h3 id="⑥、mkdir命令（创建文件夹）"><a href="#⑥、mkdir命令（创建文件夹）" class="headerlink" title="⑥、mkdir命令（创建文件夹）"></a>⑥、mkdir命令（创建文件夹）</h3><p>mkdir命令用于建立名称为 dirName 之子目录。</p>
+<p><strong>语法</strong></p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">mkdir [-p] dirName</span></pre></td></tr></table></figure>
+
+<p><strong>参数说明：</strong></p>
+<pre><code>-p 确保目录名称存在，不存在的就建一个。</code></pre><p><strong>实例:</strong><br>1、在当前工作目录下，建立一个名为 zhao的子目录 :</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">mkdir zhao</span></pre></td></tr></table></figure>
+
+<p>2、在工作目录下的 zhao2 目录中，建立一个名为 zhao1 的子目录。 若 zhao2 目录原本不存在，则建立一个。（注：本例若不加 -p，且原本 BBB目录不存在，则产生错误。）</p>
+<p>不加p报错</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="variable">$mkdir</span> ./zhao2/zhao1</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">mkdir: cannot create directory ‘./zhao2/zhao1’: No such file or directory</span></pre></td></tr></table></figure>
+
+
+<p>加-p创建成功</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="variable">$mkdir</span> -p ./zhao2/zhao1</span></pre></td></tr></table></figure>
+
+
+<h3 id="⑦、stat命令"><a href="#⑦、stat命令" class="headerlink" title="⑦、stat命令"></a>⑦、stat命令</h3><p> stat命令用于显示inode内容。</p>
+<p>stat以文字的格式来显示inode的内容。</p>
+<p><strong>语法</strong></p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">stat [文件或目录]</span></pre></td></tr></table></figure>
+
+<p><strong>实例</strong><br>查看当前目录下 zufang2.txt 文件的inode内容内容，可以用以下命令：</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="variable">$stat</span> zufang2.txt</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  File: ‘zufang2.txt’</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">  Size: <span class="number">14202</span>           Blocks: <span class="number">32</span>         IO Block: <span class="number">4096</span>   regular file</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">Device: fd01h/<span class="number">64769</span>d    Inode: <span class="number">2359881</span>     Links: <span class="number">1</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">Access: (<span class="number">0664</span>/-rw-rw-r--)  Uid: (<span class="number">1329303</span>/wb-zjf497303)   Gid: (  <span class="number">100</span>/   users)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">Access: <span class="number">2019</span>-<span class="number">09</span>-<span class="number">30</span> <span class="number">09</span>:<span class="number">32</span>:<span class="number">33.240221082</span> +<span class="number">0800</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">Modify: <span class="number">2019</span>-<span class="number">09</span>-<span class="number">30</span> <span class="number">09</span>:<span class="number">32</span>:<span class="number">24.775983506</span> +<span class="number">0800</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">Change: <span class="number">2019</span>-<span class="number">09</span>-<span class="number">30</span> <span class="number">09</span>:<span class="number">32</span>:<span class="number">24.779983619</span> +<span class="number">0800</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line"> Birth: -</span></pre></td></tr></table></figure>
+
+<h3 id="⑧、输出重定向命令-lt-和-lt-lt"><a href="#⑧、输出重定向命令-lt-和-lt-lt" class="headerlink" title="⑧、输出重定向命令 &lt; 和 &lt;&lt;"></a>⑧、输出重定向命令 &lt; 和 &lt;&lt;</h3><p>Linux允许将命令执行结果重定向到一个文件，本应显示在终端上的内容保存到指定文件中。<br>如：ls &gt; test.txt ( test.txt 如果不存在，则创建，存在则覆盖其内容 )</p>
+<p>注意： &gt;输出重定向会覆盖原来的内容，&gt;&gt;输出重定向则会追加到文件的尾部。</p>
+<h3 id="⑨、清屏：clear"><a href="#⑨、清屏：clear" class="headerlink" title="⑨、清屏：clear"></a>⑨、清屏：clear</h3><p>clear作用为清除终端上的显示(类似于DOS的cls清屏功能)，</p>
+<p>也可使用快捷键：Ctrl + l ( “l” 为字母 )。</p>
+<h2 id="二、文件管理"><a href="#二、文件管理" class="headerlink" title="二、文件管理"></a>二、文件管理</h2><h3 id="①、cat（cat-concatenate-连锁）"><a href="#①、cat（cat-concatenate-连锁）" class="headerlink" title="①、cat（cat: concatenate 连锁）"></a>①、cat（cat: concatenate 连锁）</h3><p>cat命令连接文件并打印到标准输出设备上，cat经常用来显示文件的内容。</p>
+<p>注意：当文件较大时，文本在屏幕上迅速闪过（滚屏），用户往往看不清所显示的内容。因此，一般用more等命令分屏显示。为了控制滚屏，可以按Ctrl+S键，停止滚屏；按Ctrl+Q键可以恢复滚屏。按Ctrl+C（中断）键可以终止该命令的执行，并且返回Shell提示符状态。</p>
+<p><strong>语法格式</strong></p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">cat  [-AbeEnstTuv] [--help] [--version] fileName</span></pre></td></tr></table></figure>
+
+<p>参数说明：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">-n 或 --number：由 1 开始对所有输出的行数编号。</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">-b 或 --number-nonblank：和 -n 相似，只不过对于空白行不编号。</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">-s 或 --squeeze-blank：当遇到有连续两行以上的空白行，就代换为一行的空白行。</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">-v 或 --show-nonprinting：使用 ^ 和 M- 符号，除了 LFD 和 TAB 之外。</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">-E 或 --show-ends : 在每行结束处显示 $。</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">-T 或 --show-tabs: 将 TAB 字符显示为 ^I。</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">-A, --show-all：等价于 -vET。</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line">-e：等价于&quot;-vE&quot;选项；</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">17</span></pre></td><td class="code"><pre><span class="line">-t：等价于&quot;-vT&quot;选项；</span></pre></td></tr></table></figure>
+
+<p><strong><em>实例：</em></strong></p>
+<p>把 zufang.txt的文档内容加上行号后输入 zufang2.txt 这个文档里：</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">cat -n zufang.txt &gt; zufang2.txt</span></pre></td></tr></table></figure>
+
+<p>把 zufang.txt  和zufang2.txt的文档内容加上行号（空白行不加）之后将内容附加到 zufang3.txt 文档里：</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">cat -b zufang.txt zufang2.txt &gt;&gt; zufang3.txt</span></pre></td></tr></table></figure>
+
+<p>清空 /etc/test.txt 文档内容：</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">cat /dev/null &gt; /etc/test.txt</span></pre></td></tr></table></figure>
+
+<p>cat 也可以用来制作镜像文件。例如要制作软盘的镜像文件，将软盘放好后输入：</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">cat /dev/fd0 &gt; OUTFILE</span></pre></td></tr></table></figure>
+
+
+
+<h3 id="②、chattr命令"><a href="#②、chattr命令" class="headerlink" title="②、chattr命令"></a>②、chattr命令</h3><p>Linux chattr命令用于改变文件属性。</p>
+<p>这项指令可改变存放在ext2文件系统上的文件或目录属性，这些属性共有以下8种模式：</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">a：让文件或目录仅供附加用途。</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">b：不更新文件或目录的最后存取时间。</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">c：将文件或目录压缩后存放。</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">d：将文件或目录排除在倾倒操作之外。</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">i：不得任意更动文件或目录。</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">s：保密性删除文件或目录。</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">S：即时更新文件或目录。</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">u：预防意外删除</span></pre></td></tr></table></figure>
+
+<p>语法</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">chattr [-RV][-v&lt;版本编号&gt;][+/-/=&lt;属性&gt;][文件或目录...]</span></pre></td></tr></table></figure>
+
+<p>参数
+　　</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">-R 递归处理，将指定目录下的所有文件及子目录一并处理。</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">　　-v&lt;版本编号&gt; 设置文件或目录版本。</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">　　-V 显示指令执行过程。</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">　　+&lt;属性&gt; 开启文件或目录的该项属性。</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">　　-&lt;属性&gt; 关闭文件或目录的该项属性。</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">　　=&lt;属性&gt; 指定文件或目录的该项属性。</span></pre></td></tr></table></figure>
+
+<p>实例<br>用chattr命令防止系统中某个关键文件被修改：</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">chattr +i zufang.txt</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">lsattr zufang.txt</span></pre></td></tr></table></figure>
+
+<p>会显示如下属性</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">chattr: Operation not permitted <span class="keyword">while</span> setting flags on zufang.txt</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">--------------e---- zufang.txt</span></pre></td></tr></table></figure>
+
+<h3 id="③、chmod命令"><a href="#③、chmod命令" class="headerlink" title="③、chmod命令"></a>③、chmod命令</h3><p>chmod命令用来变更文件或目录的权限。在UNIX系统家族里，文件或目录权限的控制分别以读取、写入、执行3种一般权限来区分，另有3种特殊权限可供运用。用户可以使用chmod指令去变更文件与目录的权限，设置方式采用文字或数字代号皆可。符号连接的权限无法变更，如果用户对符号连接修改权限，其改变会作用在被连接的原始文件。<br><strong>语法</strong></p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">chmod [-cfvR] [--help] [--version] mode file...</span></pre></td></tr></table></figure>
+
+<p>参数说明</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">mode : 权限设定字串，格式如下 :</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">[ugoa...][[+-=][rwxX]...][,...]</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">其中：</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">u 表示该文件的拥有者，g 表示与该文件的拥有者属于同一个群体(group)者，o 表示其他以外的人，a 表示这三者皆是。</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">+ 表示增加权限、- 表示取消权限、= 表示唯一设定权限。</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">r 表示可读取，w 表示可写入，x 表示可执行，X 表示只有当该文件是个子目录或者该文件已经被设定过为可执行。</span></pre></td></tr></table></figure>
+
+<p>其他参数说明：</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">-c : 若该文件权限确实已经更改，才显示其更改动作</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">-f : 若该文件权限无法被更改也不要显示错误讯息</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">-v : 显示权限变更的详细资料</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">-R : 对目前目录下的所有文件与子目录进行相同的权限变更(即以递回的方式逐个变更)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">--help : 显示辅助说明</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">--version : 显示版本</span></pre></td></tr></table></figure>
+
+<p><strong>实例：</strong><br>将文件 zufang.txt 设为所有人皆可读取 :</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">chmod ugo+r zufang.txt</span></pre></td></tr></table></figure>
+
+<p>将文件 zufang.txt 设为所有人皆可读取 :</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">chmod a+r zufang.txt</span></pre></td></tr></table></figure>
+
+<p>将文件 zufang.txt 与 zufang2.txt 设为该文件拥有者，与其所属同一个群体者可写入，但其他以外的人则不可写入 :</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">chmod ug+w,o-w zufang.txt zufang2.txt</span></pre></td></tr></table></figure>
+
+<p>将 zufang3.txt 设定为只有该文件拥有者可以执行 :</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">chmod u+x zufang3.txt</span></pre></td></tr></table></figure>
+
+<p>将目前目录下的所有文件与子目录皆设为任何人可读取 :</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">chmod -R a+r *</span></pre></td></tr></table></figure>
+
+<p>此外chmod也可以用数字来表示权限如 :</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">chmod <span class="number">777</span> file</span></pre></td></tr></table></figure>
+
+<h4 id="数字语法为："><a href="#数字语法为：" class="headerlink" title="数字语法为："></a>数字语法为：</h4><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">chmod abc file</span></pre></td></tr></table></figure>
+
+<p>其中a,b,c各为一个数字，分别表示User、Group、及Other的权限<br>r=4，w=2，x=1<br>若要rwx属性则4+2+1=7；<br>若要rw-属性则4+2=6；<br>若要r-x属性则4+1=5。</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">chmod a=rwx file</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">chmod <span class="number">777</span> file</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">效果相同</span></pre></td></tr></table></figure>
+
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">chmod ug=rwx,o=x file</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">chmod <span class="number">771</span> file</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">效果相同</span></pre></td></tr></table></figure>
+
+<h3 id="④、file命令"><a href="#④、file命令" class="headerlink" title="④、file命令"></a>④、file命令</h3><p>file命令用来探测给定文件的类型。file命令对文件的检查分为文件系统、魔法幻数检查和语言检查3个过程。</p>
+<p><strong>语法</strong></p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">file [-bcLvz][-f &lt;名称文件&gt;][-m &lt;魔法数字文件&gt;...][文件或目录...]</span></pre></td></tr></table></figure>
+
+<p><strong>参数：</strong></p>
+<blockquote>
+<p>-b 　列出辨识结果时，不显示文件名称。<br>-c 　详细显示指令执行过程，便于排错或分析程序执行的情形。<br>-f&lt;名称文件&gt; 　指定名称文件，其内容有一个或多个文件名称时，让file依序辨识这些文件，格式为每列一个文件名称。<br>-L 　直接显示符号连接所指向的文件的类别。<br>-m&lt;魔法数字文件&gt; 　指定魔法数字文件。<br>-v 　显示版本信息。<br>-z 　尝试去解读压缩文件的内容。 [文件或目录…] 要确定类型的文件列表，多个文件之间使用空格分开，可以使用shell通配符匹配多个文件。</p>
+</blockquote>
+<p><strong>实例</strong><br>显示文件类型：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">file zufang.txt</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">zufang.txt: UTF-8 Unicode (with BOM) text, with CRLF line terminators</span></pre></td></tr></table></figure>
+<p>不显示文件名称</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">file -b zufang.txt</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">UTF-8 Unicode (with BOM) text, with CRLF line terminators</span></pre></td></tr></table></figure>
+<p>显示MIME类别</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">file -i zufang.txt</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">zufang.txt: text/plain; charset=utf-8</span></pre></td></tr></table></figure>
+
+<h3 id="⑤、find命令"><a href="#⑤、find命令" class="headerlink" title="⑤、find命令"></a>⑤、find命令</h3><p>Linux find命令用来在指定目录下查找文件。任何位于参数之前的字符串都将被视为欲查找的目录名。如果使用该命令时，不设置任何参数，则find命令将在当前目录下查找子目录与文件。并且将查找到的子目录和文件全部进行显示。</p>
+<p><strong>参数说明 :</strong></p>
+<p>find 根据下列规则判断 path 和 expression，在命令列上第一个 - ( ) , ! 之前的部份为 path，之后的是 expression。如果 path 是空字串则使用目前路径，如果 expression 是空字串则使用 -print 为预设 expression。</p>
+<p>expression 中可使用的选项有二三十个之多，在此只介绍最常用的部份。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">-mount, -xdev : 只检查和指定目录在同一个文件系统下的文件，避免列出其它文件系统中的文件</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">-name name, -iname name : 文件名称符合 name 的文件。iname 会忽略大小写	</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">-maxdepth n 代表的做大往下找的深度（最多进入n层子文件夹去查找）</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">-<span class="built_in">exec</span>&lt;执行指令&gt; \;：假设find指令的回传值为True，就执行该指令；记得命令后面要配合`\;`</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">-amin n : 在过去 n 分钟内被读取过</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">-anewer file : 比文件 file 更晚被读取过的文件</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">-atime n : 在过去n天内被读取过的文件</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line">-cmin n : 在过去 n 分钟内被修改过</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">17</span></pre></td><td class="code"><pre><span class="line">-cnewer file :比文件 file 更新的文件</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">18</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">19</span></pre></td><td class="code"><pre><span class="line">-ctime n : 在过去n天内被修改过的文件</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">20</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">21</span></pre></td><td class="code"><pre><span class="line">-empty : 空的文件-gid n or -group name : gid 是 n 或是 group 名称是 name</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">22</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">23</span></pre></td><td class="code"><pre><span class="line">-ipath p, -path p : 路径名称符合 p 的文件，ipath 会忽略大小写</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">24</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">25</span></pre></td><td class="code"><pre><span class="line">-size n : 文件大小 是 n 单位，b 代表 512 位元组的区块，c 表示字元数，k 表示 kilo bytes，w 是二个位元组。-<span class="built_in">type</span> c : 文件类型是 c 的文件。</span></pre></td></tr></table></figure>
+
+
+<p><strong>实例</strong><br>将目前目录及其子目录下所有延伸档名是 c 的文件列出来。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">find . -name <span class="string">"*.c"</span></span></pre></td></tr></table></figure>
+
+<p>将目前目录其其下子目录中所有一般文件列出</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">find . -<span class="built_in">type</span> f</span></pre></td></tr></table></figure>
+
+<p>将目前目录及其子目录下所有最近 20 天内更新过的文件列出</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">find . -ctime -20</span></pre></td></tr></table></figure>
+
+<p>查找/var/log目录中更改时间在7日以前的普通文件，并在删除之前询问它们：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">find /var/<span class="built_in">log</span> -<span class="built_in">type</span> f -mtime +7 -ok rm &#123;&#125; \;</span></pre></td></tr></table></figure>
+
+<p>查找前目录中文件属主具有读、写权限，并且文件所属组的用户和其他用户具有读权限的文件：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">find . -<span class="built_in">type</span> f -perm 644 -<span class="built_in">exec</span> ls -l &#123;&#125; \;</span></pre></td></tr></table></figure>
+
+<p>为了查找系统中所有文件长度为0的普通文件，并列出它们的完整路径：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">find / -<span class="built_in">type</span> f -size 0 -<span class="built_in">exec</span> ls -l &#123;&#125; \;</span></pre></td></tr></table></figure>
+
+<h3 id="⑥、more命令"><a href="#⑥、more命令" class="headerlink" title="⑥、more命令"></a>⑥、more命令</h3><p>more命令是一个基于vi编辑器文本过滤器，它以全屏幕的方式按页显示文本文件的内容，支持vi中的关键字定位操作。more名单中内置了若干快捷键，常用的有H（获得帮助信息），Enter（向下翻滚一行），空格（向下滚动一屏），Q（退出命令）。</p>
+<p><strong>语法</strong></p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">more [-dlfpcsu] [-num] [+/pattern] [+linenum] [fileNames..]</span></pre></td></tr></table></figure>
+
+<p><strong>参数：</strong></p>
+<blockquote>
+<p>-num 一次显示的行数<br>-d 提示使用者，在画面下方显示 [Press space to continue, ‘q’ to quit.] ，如果使用者按错键，则会显示 [Press ‘h’ for instructions.] 而不是 ‘哔’ 声<br>-l 取消遇见特殊字元 ^L（送纸字元）时会暂停的功能<br>-f 计算行数时，以实际上的行数，而非自动换行过后的行数（有些单行字数太长的会被扩展为两行或两行以上）<br>-p 不以卷动的方式显示每一页，而是先清除萤幕后再显示内容<br>-c 跟 -p 相似，不同的是先显示内容再清除其他旧资料<br>-s 当遇到有连续两行以上的空白行，就代换为一行的空白行<br>-u 不显示下引号 （根据环境变数 TERM 指定的 terminal 而有所不同）<br>+/pattern 在每个文档显示前搜寻该字串（pattern），然后从该字串之后开始显示<br>+num 从第 num 行开始显示 fileNames 欲显示内容的文档，可为复数个数</p>
+</blockquote>
+<p><strong>快捷键：</strong></p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">按Space键：显示文本的下一屏内容。 </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">按Enier键：向下n行，需要定义。默认为<span class="number">1</span>行。</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">按斜线符|：接着输入一个模式，可以在文本中寻找下一个相匹配的模式。</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">按H键：显示帮助屏，该屏上有相关的帮助信息。</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">按B键：显示上一屏内容。</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">按Q键：退出rnore命令</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">Ctrl+F 向下滚动一</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">Ctrl+B 返回上一</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">= 输出当前行的行</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">：f 输出文件名和当前行的行号</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">V 调用vi编辑器</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">!命令 调用Shell，并执行命令</span></pre></td></tr></table></figure>
+
+
+<h3 id="⑦、mv命令"><a href="#⑦、mv命令" class="headerlink" title="⑦、mv命令"></a>⑦、mv命令</h3><p>mv命令用来为文件或目录改名、或将文件或目录移入其它位置。</p>
+<p>mv命令可以用来将源文件移至一个目标文件中，或将一组文件移至一个目标目录中。源文件被移至目标文件有两种不同的结果：</p>
+<p><strong>注意事项：</strong></p>
+<p>如果目标文件是到某一目录文件的路径，源文件会被移到此目录下，且文件名不变。<br>如果目标文件不是目录文件，则源文件名（只能有一个）会变为此目标文件名，并覆盖己存在的同名文件。如果源文件和目标文件在同一个目录下，mv的作用就是改文件名。当目标文件是目录文件时，源文件或目录参数可以有多个，则所有的源文件都会被移至目标文件中。所有移到该目录下的文件都将保留以前的文件名。<br>注意事项：mv与cp的结果不同，mv好像文件“搬家”，文件个数并未增加。而cp对文件进行复制，文件个数增加了。</p>
+<p><strong>语法：</strong></p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">mv [options] source dest</span></pre></td></tr></table></figure>
+<p>source表示源文件或目录，target表示目标文件或目录。如果将一个文件移到一个已经存在的目标文件中，则目标文件的内容将被覆盖。</p>
+<p><strong>参数：</strong></p>
+<p>-i: 若指定目录已有同名文件，则先询问是否覆盖旧文件;<br>-f: 在mv操作要覆盖某已有的目标文件时不给任何指示;</p>
+<p><strong>实例：</strong><br>将文件 aaa 更名为 bbb :</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">mv aaa bbb</span></pre></td></tr></table></figure>
+
+<p>将info目录放入logs目录中。注意，如果logs目录不存在，则该命令将info改名为logs。</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">mv info/ logs</span></pre></td></tr></table></figure>
+
+<p>再如将/usr/student下的所有文件和目录移到当前目录下，命令行为：</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">mv /usr/student/*  .</span></pre></td></tr></table></figure>
+
+<h3 id="⑧、rm命令"><a href="#⑧、rm命令" class="headerlink" title="⑧、rm命令"></a>⑧、rm命令</h3><p>rm命令可以删除一个目录中的一个或多个文件或目录，也可以将某个目录及其下属的所有文件及其子目录均删除掉。对于链接文件，只是删除整个链接文件，而原有文件保持不变。</p>
+<p><strong>注意：</strong></p>
+<p>使用rm命令要格外小心。因为一旦删除了一个文件，就无法再恢复它。所以，在删除文件之前，最好再看一下文件的内容，确定是否真要删除。rm命令可以用-i选项，这个选项在使用文件扩展名字符删除多个文件时特别有用。使用这个选项，系统会要求你逐一确定是否要删除。这时，必须输入y并按Enter键，才能删除文件。如果仅按Enter键或其他字符，文件不会被删除。</p>
+<p><strong>语法</strong></p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">rm [options] name...</span></pre></td></tr></table></figure>
+
+<p><strong>参数：</strong></p>
+<p>-i 删除前逐一询问确认。<br>-f 即使原档案属性设为唯读，亦直接删除，无需逐一确认。<br>-r 将目录及以下之档案亦逐一删除。</p>
+<p><strong>案例：</strong></p>
+<p>删除当前目录下的所有文件及目录，并且是直接删除，无需逐一确认命令行为：<br>（<strong>使用前注意是否需要删除或者备份一份？无法恢复</strong>）</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">rm  -rf  要删除的文件名或目录</span></pre></td></tr></table></figure>
+
+<p>删除文件名 test.txt:</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">rm  -rf   test.txt</span></pre></td></tr></table></figure>
+
+<p>删除目录 test，不管该目录下是否有子目录或文件，都直接删除:</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">rm  -rf   test/</span></pre></td></tr></table></figure>
+
+<h3 id="⑨、cp命令"><a href="#⑨、cp命令" class="headerlink" title="⑨、cp命令"></a>⑨、cp命令</h3><p>cp主要用于复制文件或目录。<br><strong>语法</strong></p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">cp [options] source dest</span></pre></td></tr></table></figure>
+
+<p><strong>参数说明：</strong></p>
+<pre><code>-a：此选项通常在复制目录时使用，它保留链接、文件属性，并复制目录下的所有内容。其作用等于dpR参数组合。
+-d：复制时保留链接。这里所说的链接相当于Windows系统中的快捷方式。
+-f：覆盖已经存在的目标文件而不给出提示。
+-i：与-f选项相反，在覆盖目标文件之前给出提示，要求用户确认是否覆盖，回答&quot;y&quot;时目标文件将被覆盖。
+-p：除复制文件的内容外，还把修改时间和访问权限也复制到新文件中。
+-r：若给出的源文件是一个目录文件，此时将复制该目录下所有的子目录和文件。
+-l：不复制文件，只是生成链接文件。</code></pre><p><strong>实例</strong><br>使用指令”cp”将当前目录”test/“下的所有文件复制到新目录”newtest”下，输入如下命令：</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">cp –r test/ newtest</span></pre></td></tr></table></figure>
+<p>注意：用户使用该指令复制目录时，必须使用参数”-r”或者”-R”。</p>
+<h3 id="⑩、whereis命令"><a href="#⑩、whereis命令" class="headerlink" title="⑩、whereis命令"></a>⑩、whereis命令</h3><p>whereis命令用于查找文件。</p>
+<p>该指令会在特定目录中查找符合条件的文件。这些文件应属于原始代码、二进制文件，或是帮助文件。</p>
+<p>该指令只能用于查找二进制文件、源代码文件和man手册页，一般文件的定位需使用locate命令。</p>
+<p><strong>语法</strong></p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">whereis [-bfmsu][-B &lt;目录&gt;...][-M &lt;目录&gt;...][-S &lt;目录&gt;...][文件...]</span></pre></td></tr></table></figure>
+
+<p><strong>参数：</strong></p>
+<pre><code>-b 　只查找二进制文件。
+-B&lt;目录&gt; 　只在设置的目录下查找二进制文件。
+-f 　不显示文件名前的路径名称。
+-m 　只查找说明文件。
+-M&lt;目录&gt; 　只在设置的目录下查找说明文件。
+-s 　只查找原始代码文件。
+-S&lt;目录&gt; 　只在设置的目录下查找原始代码文件。
+-u 　查找不包含指定类型的文件。</code></pre><p><strong>实例</strong><br>使用指令”whereis”查看指令”bash”的位置，输入如下命令：</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">whereis bash</span></pre></td></tr></table></figure>
+
+<p>上面的指令执行后，输出信息如下所示：</p>
+<pre><code>bash: /usr/bin/bash /usr/share/man/man1/bash.1.gz</code></pre><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">whereis python2.<span class="number">7</span></span></pre></td></tr></table></figure>
+<p>上面的指令执行后，输出信息如下所示：</p>
+<pre><code>python2: /usr/bin/python2.7 /usr/bin/python2.7-config /usr/bin/python2 /usr/lib/python2.7 /usr/lib64/python2.7 /usr/include/python2.7 /usr/local/python2.7 /usr/share/man/man1/python2.1.gz</code></pre><h3 id="⑪、ln命令（文件链接）"><a href="#⑪、ln命令（文件链接）" class="headerlink" title="⑪、ln命令（文件链接）"></a>⑪、ln命令（文件链接）</h3><p>linux链接文件类似于Windows下的快捷方式。<br>链接文件分为软链接和硬链接。<br>软链接：软链接不占用磁盘空间，源文件删除则软链接失效。<br>硬链接：硬链接只能链接普通文件，不能链接目录。<br>使用格式：</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">ln 源文件 链接文件</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">ln -s 源文件 链接文件</span></pre></td></tr></table></figure>
+
+<p>如果没有-s选项代表建立一个硬链接文件，两个文件占用相同大小的硬盘空间，即使删除了源文件，链接文件还是存在，所以-s选项是更常见的形式。</p>
+<p><strong>注意：</strong></p>
+<p>如果软链接文件和源文件不在同一个目录，源文件要使用绝对路径，不能使用相对路径。</p>
+<p><strong>选项：</strong></p>
+<pre><code>-b或--backup：删除，覆盖目标文件之前的备份；
+-d或-F或——directory：建立目录的硬连接；
+-f或——force：强行建立文件或目录的连接，不论文件或目录是否存在；
+-i或——interactive：覆盖既有文件之前先询问用户；
+-n或--no-dereference：把符号连接的目的目录视为一般文件；
+-s或——symbolic：对源文件建立符号连接，而非硬连接；
+-S&lt;字尾备份字符串&gt;或--suffix=&lt;字尾备份字符串&gt;：用&quot;-b&quot;参数备份目标文件后，备份文件的字尾会被加上一个备份字符串，预设的备份字符串是符号“~”，用户可通过“-S”参数来改变它；
+-v或——verbose：显示指令执行过程；
+-V&lt;备份方式&gt;或--version-control=&lt;备份方式&gt;：用“-b”参数备份目标文件后，备份文件的字尾会被加上一个备份字符串，这个字符串不仅可用“-S”参数变更，当使用“-V”参数&lt;备份方式&gt;指定不同备份方式时，也会产生不同字尾的备份字符串；
+--help：在线帮助；
+--version：显示版本信息。</code></pre><p><strong>参数：</strong><br>源文件：指定连接的源文件。如果使用-s选项创建符号连接，则“源文件”可以是文件或者目录。创建硬连接时，则“源文件”参数只能是文件；<br>目标文件：指定源文件的目标连接文件。<br>实例<br>将目录/usr/mengqc/mub1下的文件m2.c链接到目录/usr/zhao下的文件a2.c</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">cd /usr/mengqc</span></pre></td></tr></table></figure>
+
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">ln /mub1/m2.c /usr/zhao/a2.c</span></pre></td></tr></table></figure>
+
+<p>在执行ln命令之前，目录/usr/zhao中不存在a2.c文件。执行ln之后，在/usr/zhao目录中才有a2.c这一项，表明m2.c和a2.c链接起来（注意，二者在物理上是同一文件），利用ls -l命令可以看到链接数的变化。</p>
+<p>在目录/usr/zhao下建立一个符号链接文件abc，使它指向目录/usr/mengqc/mub1</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">ln -s /usr/mengqc/mub1 /usr/zhao/abc</span></pre></td></tr></table></figure>
+
+<p>执行该命令后，/usr/mengqc/mub1代表的路径将存放在名为/usr/zhao/abc的文件中。</p>
+<h3 id="⑫、which（在path中查找文件）"><a href="#⑫、which（在path中查找文件）" class="headerlink" title="⑫、which（在path中查找文件）"></a>⑫、which（在path中查找文件）</h3><p>which命令用于查找文件。</p>
+<p>which指令会在环境变量$PATH设置的目录里查找符合条件的文件。</p>
+<p><strong>语法</strong></p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">which [文件...]</span></pre></td></tr></table></figure>
+
+<p><strong>参数：</strong></p>
+<pre><code>-n&lt;文件名长度&gt; 　指定文件名长度，指定的长度必须大于或等于所有文件中最长的文件名。
+-p&lt;文件名长度&gt; 　与-n参数相同，但此处的&lt;文件名长度&gt;包括了文件的路径。
+-w 　指定输出时栏位的宽度。
+-V 　显示版本信息。</code></pre><p><strong>实例</strong><br>使用指令”which”查看指令”python”的绝对路径，输入如下命令：</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">which python</span></pre></td></tr></table></figure>
+<p>返回结果：</p>
+<pre><code>/usr/bin/python</code></pre><h2 id="三、文档编辑"><a href="#三、文档编辑" class="headerlink" title="三、文档编辑"></a>三、文档编辑</h2><h3 id="①、grep-命令（文本查找）"><a href="#①、grep-命令（文本查找）" class="headerlink" title="①、grep 命令（文本查找）"></a>①、grep 命令（文本查找）</h3><p>grep 命令用于查找文件里符合条件的字符串。</p>
+<p>grep 指令用于查找内容包含指定的范本样式的文件，如果发现某文件的内容符合所指定的范本样式，预设 grep 指令会把含有范本样式的那一列显示出来。若不指定任何文件名称，或是所给予的文件名为 -，则 grep 指令会从标准输入设备读取数据。</p>
+<p><strong>语法</strong></p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">grep [-abcEFGhHilLnqrsvVwxy][-A&lt;显示列数&gt;][-B&lt;显示列数&gt;][-C&lt;显示列数&gt;][-d&lt;进行动作&gt;][-e&lt;范本样式&gt;][-f&lt;范本文件&gt;][--help][范本样式][文件或目录...]</span></pre></td></tr></table></figure>
+
+<p><strong>参数：</strong></p>
+<pre><code>-a 或 --text : 不要忽略二进制的数据。
+-A&lt;显示行数&gt; 或 --after-context=&lt;显示行数&gt; : 除了显示符合范本样式的那一列之外，并显示该行之后的内容。
+-b 或 --byte-offset : 在显示符合样式的那一行之前，标示出该行第一个字符的编号。
+-B&lt;显示行数&gt; 或 --before-context=&lt;显示行数&gt; : 除了显示符合样式的那一行之外，并显示该行之前的内容。
+-c 或 --count : 计算符合样式的列数。
+-C&lt;显示行数&gt; 或 --context=&lt;显示行数&gt;或-&lt;显示行数&gt; : 除了显示符合样式的那一行之外，并显示该行之前后的内容。
+-d &lt;动作&gt; 或 --directories=&lt;动作&gt; : 当指定要查找的是目录而非文件时，必须使用这项参数，否则grep指令将回报信息并停止动作。
+-e&lt;范本样式&gt; 或 --regexp=&lt;范本样式&gt; : 指定字符串做为查找文件内容的样式。
+-E 或 --extended-regexp : 将样式为延伸的正则表达式来使用。
+-f&lt;规则文件&gt; 或 --file=&lt;规则文件&gt; : 指定规则文件，其内容含有一个或多个规则样式，让grep查找符合规则条件的文件内容，格式为每行一个规则样式。
+-F 或 --fixed-regexp : 将样式视为固定字符串的列表。
+-G 或 --basic-regexp : 将样式视为普通的表示法来使用。
+-h 或 --no-filename : 在显示符合样式的那一行之前，不标示该行所属的文件名称。
+-H 或 --with-filename : 在显示符合样式的那一行之前，表示该行所属的文件名称。
+-i 或 --ignore-case : 忽略字符大小写的差别。
+-l 或 --file-with-matches : 列出文件内容符合指定的样式的文件名称。
+-L 或 --files-without-match : 列出文件内容不符合指定的样式的文件名称。
+-n 或 --line-number : 在显示符合样式的那一行之前，标示出该行的列数编号。
+-o 或 --only-matching : 只显示匹配PATTERN 部分。
+-q 或 --quiet或--silent : 不显示任何信息。
+-r 或 --recursive : 此参数的效果和指定&quot;-d recurse&quot;参数相同。
+-s 或 --no-messages : 不显示错误信息。
+-v 或 --revert-match : 显示不包含匹配文本的所有行。
+-V 或 --version : 显示版本信息。
+-w 或 --word-regexp : 只显示全字符合的列。
+-x --line-regexp : 只显示全列符合的列。
+-y : 此参数的效果和指定&quot;-i&quot;参数相同。</code></pre><p><strong>匹配文本参数</strong></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/20190930085654715.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+
+
+<p><strong>实例</strong></p>
+<p>1、在当前目录中，查找后缀有 txt字样的文件中包含zhihu  字符串的文件，并打印出该字符串的行。此时，可以使用如下命令：</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">grep zhihu  *txt</span></pre></td></tr></table></figure>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/20190929175547419.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+<p>2、以递归的方式查找符合条件的文件。例如，查找指定目录/etc/pki/ 及其子目录（如果存在子目录的话）下所有文件中包含字符串”update”的文件，并打印出该字符串所在行的内容，使用的命令为：</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">grep -r update /etc/pki/</span></pre></td></tr></table></figure>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/20190929175805944.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+
+<p>3、反向查找。前面各个例子是查找并打印出符合条件的行，通过”-v”参数可以打印出不符合条件行的内容。</p>
+<p>查找文件名中包含 zu的文件中不包含每天 的行，此时，使用的命令为：</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">grep -v 每天 *zu*</span></pre></td></tr></table></figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/20190930083907980.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+
+
+<h3 id="②、-wc-新增"><a href="#②、-wc-新增" class="headerlink" title="②、==wc (新增)=="></a>②、==wc (新增)==</h3><p>Linux wc命令用于计算字数、行数。</p>
+<p>利用wc指令我们可以计算文件的Byte数、字数、或是列数，若不指定文件名称、或是所给予的文件名为”-“，则wc指令会从标准输入设备读取数据。<br><strong>语法</strong></p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">wc [-clw][--help][--version][文件...]</span></pre></td></tr></table></figure>
+
+<p><strong>参数：</strong></p>
+<p>-</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">c或--bytes或--chars 只显示Bytes数。</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">-l或--lines 只显示行数。</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">-w或--words 只显示字数。</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">--help 在线帮助。</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">--version 显示版本信息</span></pre></td></tr></table></figure>
+<p><strong>实例</strong><br>在默认的情况下，wc将计算指定文件的行数、字数，以及字节数。使用的命令为：</p>
+<p><strong>1、使用cat查看文本内容：</strong></p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">cat name.txt</span></pre></td></tr></table></figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/20191011171500420.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+<p>2、wc 统计文件信息</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">wc name.txt</span></pre></td></tr></table></figure>
+
+
+<p>结果截图：</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/20191011171555203.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+<p>其中，返回有四个参数：2代表有2行，7代表有7个单词数，44代表字节。name.txt就是文件名。<br>中文如果在一起，就被识别为一个单词。<br>更改后：</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/20191011172048398.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+<p>结果依然是7个单词。</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/20191011172105860.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+<p>好像只能识别空格，进行分开统计的。</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/20191011172318616.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+
+<h3 id="③、sort（排序，新增）"><a href="#③、sort（排序，新增）" class="headerlink" title="==③、sort（排序，新增）=="></a>==③、sort（排序，新增）==</h3><blockquote>
+<p>sort命令是在Linux里非常有用，它将文件进行排序，并将排序结果标准输出。sort命令既可以从特定的文件，也可以从stdin中获取输入。</p>
+</blockquote>
+<p><strong><em>语法</em></strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">sort(选项)(参数)</span></pre></td></tr></table></figure>
+
+<p><strong><em>选项</em></strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">-b：忽略每行前面开始出的空格字符；</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">-c：检查文件是否已经按照顺序排序；</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">-d：排序时，处理英文字母、数字及空格字符外，忽略其他的字符；</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">-f：排序时，将小写字母视为大写字母；</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">-i：排序时，除了040至176之间的ASCII字符外，忽略其他的字符；</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">-m：将几个排序号的文件进行合并；</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">-M：将前面3个字母依照月份的缩写进行排序；</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">-n：依照数值的大小排序；</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">-o&lt;输出文件&gt;：将排序后的结果存入制定的文件；</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">-r：以相反的顺序来排序；</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">-t&lt;分隔字符&gt;：指定排序时所用的栏位分隔字符；</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">+&lt;起始栏位&gt;-&lt;结束栏位&gt;：以指定的栏位来排序，范围由起始栏位到结束栏位的前一栏位。</span></pre></td></tr></table></figure>
+
+<p><strong><em>参数</em></strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">文件：指定待排序的文件列表。</span></pre></td></tr></table></figure>
+
+<p><strong><em>实例：</em></strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">a<span class="comment">#10#1#1</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">c<span class="comment">#30#3#3</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">d<span class="comment">#40#4#4</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">b<span class="comment">#20#2#2</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">e<span class="comment">#50#5#5</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">e<span class="comment">#50#5#5</span></span></pre></td></tr></table></figure>
+
+<p><strong>1、直接sort默认排序。</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="variable">$sort</span> sort.txt</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">a<span class="comment">#10#1#1</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">b<span class="comment">#20#2#2</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">c<span class="comment">#30#3#3</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">d<span class="comment">#40#4#4</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">e<span class="comment">#50#5#5</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">e<span class="comment">#50#5#5</span></span></pre></td></tr></table></figure>
+
+<p><strong>2、忽略相同行使用-u选项或者uniq</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="variable">$sort</span> -u sort.txt</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">a<span class="comment">#10#1#1</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">b<span class="comment">#20#2#2</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">c<span class="comment">#30#3#3</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">d<span class="comment">#40#4#4</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">e<span class="comment">#50#5#5</span></span></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="variable">$uniq</span> sort.txt</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">a<span class="comment">#10#1#1</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">c<span class="comment">#30#3#3</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">d<span class="comment">#40#4#4</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">b<span class="comment">#20#2#2</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">e<span class="comment">#50#5#5</span></span></pre></td></tr></table></figure>
+<p><strong>3、sort的-n、-r、-k、-t选项的使用：</strong></p>
+<p>将第二列（按#为分隔符）列按照数字从小到大顺序排列：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="variable">$sort</span> -nk 2 -t<span class="comment"># sort.txt</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">a<span class="comment">#10#1#1</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">b<span class="comment">#20#2#2</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">c<span class="comment">#30#3#3</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">d<span class="comment">#40#4#4</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">e<span class="comment">#50#5#5</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">e<span class="comment">#50#5#5</span></span></pre></td></tr></table></figure>
+<p>将第3列（按#为分隔符）列按照数字从小到大顺序排列：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="variable">$sort</span> -nk 3 -t<span class="comment"># sort.txt</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">a<span class="comment">#10#1#1</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">b<span class="comment">#20#2#2</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">c<span class="comment">#30#3#3</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">d<span class="comment">#40#4#4</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">e<span class="comment">#50#5#5</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">e<span class="comment">#50#5#5</span></span></pre></td></tr></table></figure>
+
+<p>新建sort2.txt：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="variable">$cat</span> sort2.txt</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="comment">#10#3.5</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">c<span class="comment">#30#2.1</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">d<span class="comment">#40#7.8</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">b<span class="comment">#20#5.6</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">e<span class="comment">#50#1</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">e<span class="comment">#50#8</span></span></pre></td></tr></table></figure>
+<p>按最后一列从小到大排序：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="variable">$sort</span> -nk 3 -t<span class="comment"># sort2.txt</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">e<span class="comment">#50#1</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">c<span class="comment">#30#2.1</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"><span class="comment">#10#3.5</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">b<span class="comment">#20#5.6</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">d<span class="comment">#40#7.8</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">e<span class="comment">#50#8</span></span></pre></td></tr></table></figure>
+
+<blockquote>
+<p>按最后一列从大到小排序：<br>-n是按照数字大小排序，-r是以相反顺序，-k是指定需要爱排序的栏位，-t指定栏位分隔符为冒号</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="variable">$sort</span> -nrk 3 -t<span class="comment"># sort2.txt</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">e<span class="comment">#50#8</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">d<span class="comment">#40#7.8</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">b<span class="comment">#20#5.6</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line"><span class="comment">#10#3.5</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">c<span class="comment">#30#2.1</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">e<span class="comment">#50#1</span></span></pre></td></tr></table></figure>
+
+<h2 id="四、压缩命令"><a href="#四、压缩命令" class="headerlink" title="四、压缩命令"></a>四、压缩命令</h2><h3 id="1、tar命令"><a href="#1、tar命令" class="headerlink" title="1、tar命令"></a>1、tar命令</h3><p>tar命令用于备份文件。</p>
+<p>tar是用来建立，还原备份文件的工具程序，它可以加入，解开备份文件内的文件。</p>
+<p><strong>语法</strong></p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">tar [-ABcdgGhiklmMoOpPrRsStuUvwWxzZ][-b &lt;区块数目&gt;][-C &lt;目的目录&gt;][-f &lt;备份文件&gt;][-F &lt;Script文件&gt;][-K &lt;文件&gt;][-L &lt;媒体容量&gt;][-N &lt;日期时间&gt;][-T &lt;范本文件&gt;][-V &lt;卷册名称&gt;][-X &lt;范本文件&gt;][-&lt;设备编号&gt;&lt;存储密度&gt;][--after-date=&lt;日期时间&gt;][--atime-preserve][--backuup=&lt;备份方式&gt;][--checkpoint][--concatenate][--confirmation][--delete][--exclude=&lt;范本样式&gt;][--force-local][--group=&lt;群组名称&gt;][--help][--ignore-failed-read][--new-volume-script=&lt;Script文件&gt;][--newer-mtime][--no-recursion][--null][--numeric-owner][--owner=&lt;用户名称&gt;][--posix][--erve][--preserve-order][--preserve-permissions][--record-size=&lt;区块数目&gt;][--recursive-unlink][--remove-files][--rsh-command=&lt;执行指令&gt;][--same-owner][--suffix=&lt;备份字尾字符串&gt;][--totals][--use-compress-program=&lt;执行指令&gt;][--version][--volno-file=&lt;编号文件&gt;][文件或目录...]</span></pre></td></tr></table></figure>
+
+<p><strong>参数：</strong></p>
+<pre><code>-A或--catenate 新增文件到已存在的备份文件。
+-b&lt;区块数目&gt;或--blocking-factor=&lt;区块数目&gt; 设置每笔记录的区块数目，每个区块大小为12Bytes。
+-B或--read-full-records 读取数据时重设区块大小。
+-c或--create 建立新的备份文件。
+-C&lt;目的目录&gt;或--directory=&lt;目的目录&gt; 切换到指定的目录。
+-d或--diff或--compare 对比备份文件内和文件系统上的文件的差异。
+-f&lt;备份文件&gt;或--file=&lt;备份文件&gt; 指定备份文件。
+-F&lt;Script文件&gt;或--info-script=&lt;Script文件&gt; 每次更换磁带时，就执行指定的Script文件。
+-g或--listed-incremental 处理GNU格式的大量备份。
+-G或--incremental 处理旧的GNU格式的大量备份。
+-h或--dereference 不建立符号连接，直接复制该连接所指向的原始文件。
+-i或--ignore-zeros 忽略备份文件中的0 Byte区块，也就是EOF。
+-k或--keep-old-files 解开备份文件时，不覆盖已有的文件。
+-K&lt;文件&gt;或--starting-file=&lt;文件&gt; 从指定的文件开始还原。
+-l或--one-file-system 复制的文件或目录存放的文件系统，必须与tar指令执行时所处的文件系统相同，否则不予复制。
+-L&lt;媒体容量&gt;或-tape-length=&lt;媒体容量&gt; 设置存放每体的容量，单位以1024 Bytes计算。
+-m或--modification-time 还原文件时，不变更文件的更改时间。
+-M或--multi-volume 在建立，还原备份文件或列出其中的内容时，采用多卷册模式。
+-N&lt;日期格式&gt;或--newer=&lt;日期时间&gt; 只将较指定日期更新的文件保存到备份文件里。
+-o或--old-archive或--portability 将资料写入备份文件时使用V7格式。
+-O或--stdout 把从备份文件里还原的文件输出到标准输出设备。
+-p或--same-permissions 用原来的文件权限还原文件。
+-P或--absolute-names 文件名使用绝对名称，不移除文件名称前的&quot;/&quot;号。
+-r或--append 新增文件到已存在的备份文件的结尾部分。
+-R或--block-number 列出每个信息在备份文件中的区块编号。
+-s或--same-order 还原文件的顺序和备份文件内的存放顺序相同。
+-S或--sparse 倘若一个文件内含大量的连续0字节，则将此文件存成稀疏文件。
+-t或--list 列出备份文件的内容。
+-T&lt;范本文件&gt;或--files-from=&lt;范本文件&gt; 指定范本文件，其内含有一个或多个范本样式，让tar解开或建立符合设置条件的文件。
+-u或--update 仅置换较备份文件内的文件更新的文件。
+-U或--unlink-first 解开压缩文件还原文件之前，先解除文件的连接。
+-v或--verbose 显示指令执行过程。
+-V&lt;卷册名称&gt;或--label=&lt;卷册名称&gt; 建立使用指定的卷册名称的备份文件。
+-w或--interactive 遭遇问题时先询问用户。
+-W或--verify 写入备份文件后，确认文件正确无误。
+-x或--extract或--get 从备份文件中还原文件。
+-X&lt;范本文件&gt;或--exclude-from=&lt;范本文件&gt; 指定范本文件，其内含有一个或多个范本样式，让ar排除符合设置条件的文件。
+-z或--gzip或--ungzip 通过gzip指令处理备份文件。
+-Z或--compress或--uncompress 通过compress指令处理备份文件。
+-&lt;设备编号&gt;&lt;存储密度&gt; 设置备份用的外围设备编号及存放数据的密度。
+--after-date=&lt;日期时间&gt; 此参数的效果和指定&quot;-N&quot;参数相同。
+--atime-preserve 不变更文件的存取时间。
+--backup=&lt;备份方式&gt;或--backup 移除文件前先进行备份。
+--checkpoint 读取备份文件时列出目录名称。
+--concatenate 此参数的效果和指定&quot;-A&quot;参数相同。
+--confirmation 此参数的效果和指定&quot;-w&quot;参数相同。
+--delete 从备份文件中删除指定的文件。
+--exclude=&lt;范本样式&gt; 排除符合范本样式的文件。
+--group=&lt;群组名称&gt; 把加入设备文件中的文件的所属群组设成指定的群组。
+--help 在线帮助。
+--ignore-failed-read 忽略数据读取错误，不中断程序的执行。
+--new-volume-script=&lt;Script文件&gt; 此参数的效果和指定&quot;-F&quot;参数相同。
+--newer-mtime 只保存更改过的文件。
+--no-recursion 不做递归处理，也就是指定目录下的所有文件及子目录不予处理。
+--null 从null设备读取文件名称。
+--numeric-owner 以用户识别码及群组识别码取代用户名称和群组名称。
+--owner=&lt;用户名称&gt; 把加入备份文件中的文件的拥有者设成指定的用户。
+--posix 将数据写入备份文件时使用POSIX格式。
+--preserve 此参数的效果和指定&quot;-ps&quot;参数相同。
+--preserve-order 此参数的效果和指定&quot;-A&quot;参数相同。
+--preserve-permissions 此参数的效果和指定&quot;-p&quot;参数相同。
+--record-size=&lt;区块数目&gt; 此参数的效果和指定&quot;-b&quot;参数相同。
+--recursive-unlink 解开压缩文件还原目录之前，先解除整个目录下所有文件的连接。
+--remove-files 文件加入备份文件后，就将其删除。
+--rsh-command=&lt;执行指令&gt; 设置要在远端主机上执行的指令，以取代rsh指令。
+--same-owner 尝试以相同的文件拥有者还原文件。
+--suffix=&lt;备份字尾字符串&gt; 移除文件前先行备份。
+--totals 备份文件建立后，列出文件大小。
+--use-compress-program=&lt;执行指令&gt; 通过指定的指令处理备份文件。
+--version 显示版本信息。
+--volno-file=&lt;编号文件&gt; 使用指定文件内的编号取代预设的卷册编号。</code></pre><p>常用示例：<br>1、将文件全部打包成tar包：</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">tar -cvf log.tar log2012.log    仅打包，不压缩！ </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">tar -zcvf log.tar.gz log2012.log   打包后，以 gzip 压缩（常用） </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">tar -jcvf log.tar.bz2 log2012.log  打包后，以 bzip2 压缩</span></pre></td></tr></table></figure>
+
+<p>2、列出压缩文件内容</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="variable">$tar</span> -ztvf test1.tar.gz</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">-rw-rw-r-- wb-zjf497303/users <span class="number">14202</span> <span class="number">2019</span>-<span class="number">09</span>-<span class="number">30</span> <span class="number">09</span>:<span class="number">32</span> zufang2.txt</span></pre></td></tr></table></figure>
+
+<p>3、解压文件</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="variable">$tar</span> -zxvf test1.tar.gz</span></pre></td></tr></table></figure>
+
+<pre><code>zufang2.txt</code></pre><p>会自动解压文件到当前目录，会生成一个zufang2.txt文件</p>
+<h3 id="2、rar压缩解压缩"><a href="#2、rar压缩解压缩" class="headerlink" title="2、rar压缩解压缩"></a>2、rar压缩解压缩</h3><p><strong>安装</strong></p>
+<p>Ubuntu安装</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">sudo apt-get install rar unrar</span></pre></td></tr></table></figure>
+<p><strong>linux 安装：</strong></p>
+<p>或者可从<a href="http://www.rarsoft.com/download.htm下载" target="_blank" rel="noopener">http://www.rarsoft.com/download.htm下载</a> RAR for Linux 编译安装<br>    # tar -xzpvf rarlinux-3.8.0.tar.gz<br>    # cd rar<br>    # make<br>这样就安装好了，安装之后就有了rar和unrar这两个程序，rar是压缩程序，unrar是解压程序。它们的参数选项很多，可用命令rar -help和unrar -help查看。</p>
+<p><strong>压缩：rar a [目标文件名].rar [原文件名/目录名]<br>解压：unrar e [原文件名].rar</strong></p>
+<p><strong>实例：</strong><br>将test.jpg和test.png压缩成一个rar包：<code>rar a test.rar test.jpg test.png</code><br>将所有.jpg的文件压缩成一个rar包：<code>rar a test.rar *.jpg</code><br>将文件夹test压缩成一个rar包：<code>rar a test.rar test</code><br>将test.rar中的所有文件解压出来：<code>unrar e test.rar</code></p>
+<h3 id="3、7z压缩解压缩"><a href="#3、7z压缩解压缩" class="headerlink" title="3、7z压缩解压缩"></a>3、7z压缩解压缩</h3><p><strong>参数含义：</strong></p>
+<pre><code>x  代表解压缩文件，并且是按原始目录树解压
+-r 表示递归解压缩所有的子文件夹
+-o 是指定解压到的目录，-o后是没有空格的，直接接目录。这一点需要注意。
+a  代表添加文件／文件夹到压缩包
+-t 是指定压缩类型，这里定为7z，可不指定，因为7za默认压缩类型就是7z。
+-r 表示递归所有的子文件夹</code></pre><p><strong>压缩：7z a [目标文件名].7z [原文件名/目录名]<br>解压：7z x [原文件名].7z</strong></p>
+<p><strong>实例：</strong><br>解压到指定当前目录文件夹demo下</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="number">7</span>za x chrysanthemum_test_images.<span class="number">7</span>z -r -o./demo</span></pre></td></tr></table></figure>
+
+<p>将filename.7z解压到当前目录：</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="number">7</span>z x filename.<span class="number">7</span>z -r -o./</span></pre></td></tr></table></figure>
+
+<p>将当前目录下的所有文件压缩成test.7z文件：</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="number">7</span>z a -t7z -r test.<span class="number">7</span>z ./*</span></pre></td></tr></table></figure>
+
+<h3 id="4、zip压缩解压缩"><a href="#4、zip压缩解压缩" class="headerlink" title="4、zip压缩解压缩"></a>4、zip压缩解压缩</h3><p>linux下提供了zip和unzip程序，zip是压缩程序，unzip是解压程序。它们的参数选项很多，可用命令zip -help和unzip -help查看，这里只做简单介绍。</p>
+<p><strong>压缩： zip -r [目标文件名].zip [原文件/目录名]<br>解压： unzip [原文件名].zip</strong></p>
+<p><strong>实例：</strong><br>将test.jpg和test.png压缩成一个zip包：<code>zip test.zip test.jpg test.png</code><br>将所有.jpg的文件压缩成一个zip包：<code>zip test.zip *.jpg</code><br>将文件夹test压缩成一个zip包：<code>zip -r test.zip test</code><br>将test.zip中的所有文件解压出来：<code>unzip test.zip</code><br>将/home目录下面的mydata目录压缩为mydata.zip：</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">zip -r mydata.zip mydata</span></pre></td></tr></table></figure>
+
+<p>将/home目录下面的mydata.zip解压到mydatabak目录里面：</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">unzip mydata.zip -d mydatabak</span></pre></td></tr></table></figure>
+
+<h3 id="5、7za"><a href="#5、7za" class="headerlink" title="5、7za"></a>5、7za</h3><p>7z，全称7-Zip，是一款开源软件，目前公认压缩比例最大的压缩解压软件。</p>
+<p>centos安装，</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">yum -y install p7zip</span></pre></td></tr></table></figure>
+
+<p>或者编译安装：</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">wget http://nchc.dl.sourceforge.net/sourceforge/p7zip/p7zip_4.<span class="number">65</span>_src_all.tar.bz2</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">tar -xjvf p7zip_4.<span class="number">65</span>_src_all.tar.bz2</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">cd p7zip_4.<span class="number">65</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">make</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">make install</span></pre></td></tr></table></figure>
+
+
+
+<p>主要特征：</p>
+<p>全新的LZMA算法，加大7z压缩比</p>
+<p>支持格式：压缩：7z，XZ,BZIP2,GZIP,TAR,ZIP</p>
+<p>   解压：ARJ,CAB,CHM,CPIO,DEB,DMG,FAT,HFS,ISO,LZH,LZMA,MBR,MSI,NAIS,NTFS,RAR,RPM,UDF,VHD,WIM,XAR,Z</p>
+<p>退出代码：</p>
+<pre><code>0    正常
+
+1    告警，没有致命错误。例如某些文件正在被使用，没有被压缩
+
+2    致命问题
+
+7    命令行错误
+
+8    没有足够内存
+
+255  用户停止操作</code></pre><p><strong>使用：</strong></p>
+<p>然后说命令  最简单实用的压缩命令：</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="number">7</span>za a /home/web.<span class="number">7</span>z /home/wwwroot</span></pre></td></tr></table></figure>
+
+
+<p>将/home/wwwroot 打包压缩为 web.7z 放在home目录里面</p>
+<p>解压缩的话</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="number">7</span>za e src_fil</span></pre></td></tr></table></figure>
+
+
+<p>command操作命令：</p>
+<pre><code>a 添加到压缩文件
+b 基准测试，测试7z当前性能
+d 从压缩文件中删除
+e 从压缩文件中解压缩，但不包含目录结构（即所有各级文件都解压到一个目录里）
+l 列出压缩文件的内容
+t 测试压缩文件
+u 更新文件到压缩文件
+x 从压缩文件中解压缩，包含目录结构</code></pre><p>可见，最常用的指令是a, l和x.</p>
+<p>1、压缩a.txt和b.txt到c.7z:</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="number">7</span>za a c.<span class="number">7</span>z a.txt b.txt</span></pre></td></tr></table></figure>
+
+<p>（命令a后的第一个为目标压缩文档名，然后是文件列表）</p>
+<p>2、压缩a.txt和b.txt到/home/www/c.7z:</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="number">7</span>za a /home/www/c.<span class="number">7</span>z a.txt b.txt</span></pre></td></tr></table></figure>
+
+<p>（目录名包含空格，用引号）<br>3、列出c.7z的内容：</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="number">7</span>za l c.<span class="number">7</span>z</span></pre></td></tr></table></figure>
+
+<p>4、解压缩c.7z到/home/www:</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="number">7</span>za x c.<span class="number">7</span>z -o/home/www</span></pre></td></tr></table></figure>
+
+<p>（-o表示输出目录，其与目录路径之间没有空格）<br>这样解压包含下级目录名，但不会在/home/www下新建一个c文件夹，如果需要，就把输出目录设为/home/www/c，这样会自动创建文件夹c。<br>如果要生成zip压缩包，可以直接将目标压缩包名设为c.zip，则它会自动使用zip算法压缩。</p>
+<h2 id="五、Linux命令-用户、权限管理"><a href="#五、Linux命令-用户、权限管理" class="headerlink" title="五、Linux命令-用户、权限管理"></a>五、Linux命令-用户、权限管理</h2><h3 id="1、查看当前用户：whoami"><a href="#1、查看当前用户：whoami" class="headerlink" title="1、查看当前用户：whoami"></a>1、查看当前用户：whoami</h3><p>whoami该命令用户查看当前系统当前账号的用户名。可通过cat /etc/passwd查看系统用户信息。<br>由于系统管理员通常需要使用多种身份登录系统，例如通常使用普通用户登录系统，然后再以su命令切换到root身份对传统进行管理。这时候就可以使用whoami来查看当前用户的身份。</p>
+<h3 id="2、查看登录用户：who"><a href="#2、查看登录用户：who" class="headerlink" title="2、查看登录用户：who"></a>2、查看登录用户：who</h3><p><strong>语法</strong></p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">who - [husfV] [user]</span></pre></td></tr></table></figure>
+
+<p><strong>参数说明：</strong></p>
+<pre><code>-H 或 --heading：显示各栏位的标题信息列；
+-i 或 -u 或 --idle：显示闲置时间，若该用户在前一分钟之内有进行任何动作，将标示成&quot;.&quot;号，如果该用户已超过24小时没有任何动作，则标示出&quot;old&quot;字符串；
+-m：此参数的效果和指定&quot;am i&quot;字符串相同；
+-q 或--count：只显示登入系统的帐号名称和总人数；
+-s：此参数将忽略不予处理，仅负责解决who指令其他版本的兼容性问题；
+-w 或-T或--mesg或--message或--writable：显示用户的信息状态栏；
+--help：在线帮助；
+--version：显示版本信息。</code></pre><p><strong>实例</strong><br>1、显示当前登录系统的用户</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="variable">$who</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">zhao pts/<span class="number">0</span>        <span class="number">2019</span>-<span class="number">09</span>-<span class="number">29</span> <span class="number">14</span>:<span class="number">04</span> (<span class="number">123.8</span>.<span class="number">10.1</span>)</span></pre></td></tr></table></figure>
+
+<p>2、显示标题栏</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="variable">$who</span> -H</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">NAME     LINE         TIME             COMMENT</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">zhao  	 pts/<span class="number">0</span>        <span class="number">2019</span>-<span class="number">09</span>-<span class="number">29</span> <span class="number">14</span>:<span class="number">04</span> (<span class="number">123.8</span>.<span class="number">10.1</span>)</span></pre></td></tr></table></figure>
+
+<p>3、显示用户登录来源</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="variable">$who</span> -l -H</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">NAME     LINE         TIME             IDLE          PID COMMENT</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">LOGIN    ttyS0        <span class="number">2019</span>-<span class="number">06</span>-<span class="number">19</span> <span class="number">17</span>:<span class="number">32</span>               <span class="number">567</span> id=tyS0</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">LOGIN    tty1         <span class="number">2019</span>-<span class="number">06</span>-<span class="number">19</span> <span class="number">17</span>:<span class="number">32</span>               <span class="number">568</span> id=tty1</span></pre></td></tr></table></figure>
+
+<p>4、显示终端属性</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="variable">$who</span> -T -H</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">NAME       LINE         TIME             COMMENT</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">zhao  	   + pts/<span class="number">0</span>        <span class="number">2019</span>-<span class="number">09</span>-<span class="number">29</span> <span class="number">14</span>:<span class="number">04</span> (<span class="number">123.8</span>.<span class="number">10.1</span>)</span></pre></td></tr></table></figure>
+
+<p>5、只显示当前用户</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="variable">$who</span> -m -H</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">NAME     LINE         TIME             COMMENT</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">zhao  	 pts/<span class="number">0</span>        <span class="number">2019</span>-<span class="number">09</span>-<span class="number">29</span> <span class="number">14</span>:<span class="number">04</span> (<span class="number">123.8</span>.<span class="number">10.1</span>)</span></pre></td></tr></table></figure>
+
+<p>6、精简模式显示</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="variable">$who</span> -q</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">zhao  	   </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"><span class="comment"># users=1</span></span></pre></td></tr></table></figure>
+
+
+<h3 id="3、退出登录账户：-exit"><a href="#3、退出登录账户：-exit" class="headerlink" title="3、退出登录账户： exit"></a>3、退出登录账户： exit</h3><p>如果是图形界面，退出当前终端；<br>如果是使用ssh远程登录，退出登陆账户；<br>如果是切换后的登陆用户，退出则返回上一个登陆账号。</p>
+<h3 id="4、添加用户账号：useradd"><a href="#4、添加用户账号：useradd" class="headerlink" title="4、添加用户账号：useradd"></a>4、添加用户账号：useradd</h3><p>在Unix/Linux中添加用户账号可以使用adduser或useradd命令，因为adduser命令是指向useradd命令的一个链接，因此，这两个命令的使用格式完全一样。<br>useradd命令的使用格式如下： useradd [参数] 新建用户账号</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/20190930150428133.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+<p><strong>相关说明：</strong></p>
+<p>•    Linux每个用户都要有一个主目录，主目录就是第一次登陆系统，用户的默认当前目录(/home/用户)；<br>•    每一个用户必须有一个主目录，所以用useradd创建用户的时候，一定给用户指定一个主目录；<br>•    用户的主目录一般要放到根目录的home目录下，用户的主目录和用户名是相同的；<br>•    如果创建用户的时候，不指定组名，那么系统会自动创建一个和用户名一样的组名。</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/20190930150523671.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+
+<h3 id="5、设置用户密码：passwd"><a href="#5、设置用户密码：passwd" class="headerlink" title="5、设置用户密码：passwd"></a>5、设置用户密码：passwd</h3><p>在Unix/Linux中，超级用户可以使用passwd命令为普通用户设置或修改用户口令。用户也可以直接使用该命令来修改自己的口令，而无需在命令后面使用用户名。</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/20190930150826148.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+
+<h3 id="6、删除用户：userdel"><a href="#6、删除用户：userdel" class="headerlink" title="6、删除用户：userdel"></a>6、删除用户：userdel</h3><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/20190930150923857.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">userdel -r laowang</span></pre></td></tr></table></figure>
+
+<h3 id="7、切换用户：su"><a href="#7、切换用户：su" class="headerlink" title="7、切换用户：su"></a>7、切换用户：su</h3><p>可以通过su命令切换用户，su后面可以加“-”。su和su –命令不同之处在于，su -切换到对应的用户时会将当前的工作目录自动转换到切换后的用户主目录。</p>
+<p><strong>注意：</strong></p>
+<p>如果是ubuntu平台，需要在命令前加“sudo”，如果在某些操作需要管理员才能操作，ubuntu无需切换到root用户即可操作，只需加“sudo”即可。sudo是ubuntu平台下允许系统管理员让普通用户执行一些或者全部的root命令的一个工具，减少了root 用户的登陆和管理时间，提高了安全性。</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/201909301512152.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+<p>Ubuntu下切换到root的简单命令:</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/2019093015124227.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+
+<h3 id="8、查看有哪些用户组"><a href="#8、查看有哪些用户组" class="headerlink" title="8、查看有哪些用户组"></a>8、查看有哪些用户组</h3><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">cat /etc/group</span></pre></td></tr></table></figure>
+
+<h3 id="9、添加、删除组账号：groupadd、groupdel"><a href="#9、添加、删除组账号：groupadd、groupdel" class="headerlink" title="9、添加、删除组账号：groupadd、groupdel"></a>9、添加、删除组账号：groupadd、groupdel</h3><pre><code>groupadd 新建组账号 
+groupdel 组账号 
+cat /etc/group 查看用户组</code></pre><h3 id="10、修改用户所在组：usermod"><a href="#10、修改用户所在组：usermod" class="headerlink" title="10、修改用户所在组：usermod"></a>10、修改用户所在组：usermod</h3><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">usermod -g 用户组 用户名</span></pre></td></tr></table></figure>
+
+<h3 id="11、查看用户在哪些组"><a href="#11、查看用户在哪些组" class="headerlink" title="11、查看用户在哪些组"></a>11、查看用户在哪些组</h3><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">groups laowang</span></pre></td></tr></table></figure>
+
+<h3 id="12、为创建的普通用户添加sudo权限"><a href="#12、为创建的普通用户添加sudo权限" class="headerlink" title="12、为创建的普通用户添加sudo权限"></a>12、为创建的普通用户添加sudo权限</h3><p>新创建的用户，默认不能sudo，需要进行一下操作（sudo账户下使用命令）</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">sudo usermod -a -G adm 用户名</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">sudo usermod -a -G sudo 用户名</span></pre></td></tr></table></figure>
+
+
+<h2 id="六、Linux命令-系统管理"><a href="#六、Linux命令-系统管理" class="headerlink" title="六、Linux命令-系统管理"></a>六、Linux命令-系统管理</h2><h3 id="1、ifconfig（显示网络设备）"><a href="#1、ifconfig（显示网络设备）" class="headerlink" title="1、ifconfig（显示网络设备）"></a>1、ifconfig（显示网络设备）</h3><p> ifconfig命令用于显示或设置网络设备（类似于window的ipconfig，我一般常用也就查个ip地址）。</p>
+<p>ifconfig可设置网络设备的状态，或是显示目前的设置。</p>
+<p><strong>语法</strong></p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">ifconfig [网络设备][down up -allmulti -arp -promisc][add&lt;地址&gt;][del&lt;地址&gt;][&lt;hw&lt;网络设备类型&gt;&lt;硬件地址&gt;][io_addr&lt;I/O地址&gt;][irq&lt;IRQ地址&gt;][media&lt;网络媒介类型&gt;][mem_start&lt;内存地址&gt;][metric&lt;数目&gt;][mtu&lt;字节&gt;][netmask&lt;子网掩码&gt;][tunnel&lt;地址&gt;][-broadcast&lt;地址&gt;][-pointopoint&lt;地址&gt;][IP地址]</span></pre></td></tr></table></figure>
+
+<p><strong>参数说明：</strong></p>
+<pre><code>add&lt;地址&gt; 设置网络设备IPv6的IP地址。
+del&lt;地址&gt; 删除网络设备IPv6的IP地址。
+down 关闭指定的网络设备。
+&lt;hw&lt;网络设备类型&gt;&lt;硬件地址&gt; 设置网络设备的类型与硬件地址。
+io_addr&lt;I/O地址&gt; 设置网络设备的I/O地址。
+irq&lt;IRQ地址&gt; 设置网络设备的IRQ。
+media&lt;网络媒介类型&gt; 设置网络设备的媒介类型。
+mem_start&lt;内存地址&gt; 设置网络设备在主内存所占用的起始地址。
+metric&lt;数目&gt; 指定在计算数据包的转送次数时，所要加上的数目。
+mtu&lt;字节&gt; 设置网络设备的MTU。
+netmask&lt;子网掩码&gt; 设置网络设备的子网掩码。
+tunnel&lt;地址&gt; 建立IPv4与IPv6之间的隧道通信地址。
+up 启动指定的网络设备。
+-broadcast&lt;地址&gt; 将要送往指定地址的数据包当成广播数据包来处理。
+-pointopoint&lt;地址&gt; 与指定地址的网络设备建立直接连线，此模式具有保密功能。
+-promisc 关闭或启动指定网络设备的promiscuous模式。
+[IP地址] 指定网络设备的IP地址。
+[网络设备] 指定网络设备的名称。</code></pre><p><strong>实例</strong><br>显示网络设备信息</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="variable">$ifconfig</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">eth0: flags=<span class="number">4163</span>&lt;UP,BROADCAST,RUNNING,MULTICAST&gt;  mtu <span class="number">1500</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">        inet <span class="number">11.158</span>.<span class="number">133.27</span>  netmask <span class="number">255.255</span>.<span class="number">255.0</span>  broadcast <span class="number">11.158</span>.<span class="number">133.255</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">        ether <span class="number">00</span>:<span class="number">16</span>:<span class="number">3</span>e:<span class="number">04</span>:fe:<span class="number">5</span>b  txqueuelen <span class="number">1000</span>  (Ethernet)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">        RX packets <span class="number">187266929</span>  bytes <span class="number">210146326598</span> (<span class="number">195.7</span> GiB)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">        RX errors <span class="number">0</span>  dropped <span class="number">0</span>  overruns <span class="number">0</span>  frame <span class="number">0</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">        TX packets <span class="number">144879070</span>  bytes <span class="number">212301544384</span> (<span class="number">197.7</span> GiB)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">        TX errors <span class="number">0</span>  dropped <span class="number">0</span> overruns <span class="number">0</span>  carrier <span class="number">0</span>  collisions <span class="number">0</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">lo: flags=<span class="number">73</span>&lt;UP,LOOPBACK,RUNNING&gt;  mtu <span class="number">65536</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">        inet <span class="number">127.0</span>.<span class="number">0.1</span>  netmask <span class="number">255.0</span>.<span class="number">0.0</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">        loop  txqueuelen <span class="number">1</span>  (Local Loopback)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">        RX packets <span class="number">172446</span>  bytes <span class="number">13930479</span> (<span class="number">13.2</span> MiB)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line">        RX errors <span class="number">0</span>  dropped <span class="number">0</span>  overruns <span class="number">0</span>  frame <span class="number">0</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line">        TX packets <span class="number">172446</span>  bytes <span class="number">13930479</span> (<span class="number">13.2</span> MiB)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><span class="line">        TX errors <span class="number">0</span>  dropped <span class="number">0</span> overruns <span class="number">0</span>  carrier <span class="number">0</span>  collisions <span class="number">0</span></span></pre></td></tr></table></figure>
+
+
+<h3 id="2、ping命令用于检测主机。"><a href="#2、ping命令用于检测主机。" class="headerlink" title="2、ping命令用于检测主机。"></a>2、ping命令用于检测主机。</h3><p>执行ping指令会使用ICMP传输协议，发出要求回应的信息，若远端主机的网络功能没有问题，就会回应该信息，因而得知该主机运作正常。<br><strong>语法</strong></p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">ping [-dfnqrRv][-c&lt;完成次数&gt;][-i&lt;间隔秒数&gt;][-I&lt;网络界面&gt;][-l&lt;前置载入&gt;][-p&lt;范本样式&gt;][-s&lt;数据包大小&gt;][-t&lt;存活数值&gt;][主机名称或IP地址]</span></pre></td></tr></table></figure>
+
+<p><strong>参数说明：</strong></p>
+<pre><code>-d 使用Socket的SO_DEBUG功能。
+-c&lt;完成次数&gt; 设置完成要求回应的次数。
+-f 极限检测。
+-i&lt;间隔秒数&gt; 指定收发信息的间隔时间。
+-I&lt;网络界面&gt; 使用指定的网络接口送出数据包。
+-l&lt;前置载入&gt; 设置在送出要求信息之前，先行发出的数据包。
+-n 只输出数值。
+-p&lt;范本样式&gt; 设置填满数据包的范本样式。
+-q 不显示指令执行过程，开头和结尾的相关信息除外。
+-r 忽略普通的Routing Table，直接将数据包送到远端主机上。
+-R 记录路由过程。
+-s&lt;数据包大小&gt; 设置数据包的大小。
+-t&lt;存活数值&gt; 设置存活数值TTL的大小。
+-v 详细显示指令的执行过程。</code></pre><p><strong>实例</strong><br>1、检测是否与主机连通<br>（需要手动结束ctrl + C）</p>
+<p>ping w3c</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="variable">$ping</span> www.w3cschool.cc</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">PING www.w3cschool.cc (<span class="number">203.107</span>.<span class="number">43.165</span>) <span class="number">56</span>(<span class="number">84</span>) bytes of data.</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"><span class="number">64</span> bytes from <span class="number">203.107</span>.<span class="number">43.165</span>: icmp_seq=<span class="number">1</span> ttl=<span class="number">55</span> time=<span class="number">38.8</span> ms</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"><span class="number">64</span> bytes from <span class="number">203.107</span>.<span class="number">43.165</span>: icmp_seq=<span class="number">2</span> ttl=<span class="number">55</span> time=<span class="number">38.9</span> ms</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line"><span class="number">64</span> bytes from <span class="number">203.107</span>.<span class="number">43.165</span>: icmp_seq=<span class="number">3</span> ttl=<span class="number">55</span> time=<span class="number">38.8</span> ms</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line"><span class="number">64</span> bytes from <span class="number">203.107</span>.<span class="number">43.165</span>: icmp_seq=<span class="number">4</span> ttl=<span class="number">55</span> time=<span class="number">38.8</span> ms</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line"><span class="number">64</span> bytes from <span class="number">203.107</span>.<span class="number">43.165</span>: icmp_seq=<span class="number">5</span> ttl=<span class="number">55</span> time=<span class="number">38.8</span> ms</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line"><span class="number">64</span> bytes from <span class="number">203.107</span>.<span class="number">43.165</span>: icmp_seq=<span class="number">6</span> ttl=<span class="number">55</span> time=<span class="number">38.7</span> ms</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line"><span class="number">64</span> bytes from <span class="number">203.107</span>.<span class="number">43.165</span>: icmp_seq=<span class="number">7</span> ttl=<span class="number">55</span> time=<span class="number">38.7</span> ms</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">^C64 bytes from <span class="number">203.107</span>.<span class="number">43.165</span>: icmp_seq=<span class="number">8</span> ttl=<span class="number">55</span> time=<span class="number">38.7</span> ms</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">--- www.w3cschool.cc ping statistics ---</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line"><span class="number">8</span> packets transmitted, <span class="number">8</span> received, <span class="number">0</span>% packet loss, time <span class="number">7009</span>ms</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line">rtt min/avg/max/mdev = <span class="number">38.725</span>/<span class="number">38.814</span>/<span class="number">38.901</span>/<span class="number">0.247</span> ms</span></pre></td></tr></table></figure>
+<p>ping baidu</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="variable">$ping</span> baidu.com</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">PING baidu.com (<span class="number">220.181</span>.<span class="number">38.148</span>) <span class="number">56</span>(<span class="number">84</span>) bytes of data.</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"><span class="number">64</span> bytes from <span class="number">220.181</span>.<span class="number">38.148</span>: icmp_seq=<span class="number">1</span> ttl=<span class="number">51</span> time=<span class="number">7.21</span> ms</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"><span class="number">64</span> bytes from <span class="number">220.181</span>.<span class="number">38.148</span>: icmp_seq=<span class="number">2</span> ttl=<span class="number">51</span> time=<span class="number">7.16</span> ms</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line"><span class="number">64</span> bytes from <span class="number">220.181</span>.<span class="number">38.148</span>: icmp_seq=<span class="number">3</span> ttl=<span class="number">51</span> time=<span class="number">7.26</span> ms</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line"><span class="number">64</span> bytes from <span class="number">220.181</span>.<span class="number">38.148</span>: icmp_seq=<span class="number">4</span> ttl=<span class="number">51</span> time=<span class="number">7.23</span> ms</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">^C</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">--- baidu.com ping statistics ---</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line"><span class="number">4</span> packets transmitted, <span class="number">4</span> received, <span class="number">0</span>% packet loss, time <span class="number">3003</span>ms</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">rtt min/avg/max/mdev = <span class="number">7.168</span>/<span class="number">7.219</span>/<span class="number">7.268</span>/<span class="number">0.092</span> ms</span></pre></td></tr></table></figure>
+
+<p>2、ping IP 地址：</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="variable">$ping</span> <span class="number">8.8</span>.<span class="number">8.8</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">PING <span class="number">8.8</span>.<span class="number">8.8</span> (<span class="number">8.8</span>.<span class="number">8.8</span>) <span class="number">56</span>(<span class="number">84</span>) bytes of data.</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"><span class="number">64</span> bytes from <span class="number">8.8</span>.<span class="number">8.8</span>: icmp_seq=<span class="number">1</span> ttl=<span class="number">48</span> time=<span class="number">45.0</span> ms</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"><span class="number">64</span> bytes from <span class="number">8.8</span>.<span class="number">8.8</span>: icmp_seq=<span class="number">3</span> ttl=<span class="number">48</span> time=<span class="number">45.1</span> ms</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line"><span class="number">64</span> bytes from <span class="number">8.8</span>.<span class="number">8.8</span>: icmp_seq=<span class="number">4</span> ttl=<span class="number">48</span> time=<span class="number">45.1</span> ms</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line"><span class="number">64</span> bytes from <span class="number">8.8</span>.<span class="number">8.8</span>: icmp_seq=<span class="number">5</span> ttl=<span class="number">48</span> time=<span class="number">45.1</span> ms</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line"><span class="number">64</span> bytes from <span class="number">8.8</span>.<span class="number">8.8</span>: icmp_seq=<span class="number">6</span> ttl=<span class="number">48</span> time=<span class="number">44.8</span> ms</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line"><span class="number">64</span> bytes from <span class="number">8.8</span>.<span class="number">8.8</span>: icmp_seq=<span class="number">7</span> ttl=<span class="number">48</span> time=<span class="number">45.0</span> ms</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">^C</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">--- <span class="number">8.8</span>.<span class="number">8.8</span> ping statistics ---</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line"><span class="number">7</span> packets transmitted, <span class="number">6</span> received, <span class="number">14</span>% packet loss, time <span class="number">6046</span>ms</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">rtt min/avg/max/mdev = <span class="number">44.887</span>/<span class="number">45.050</span>/<span class="number">45.184</span>/<span class="number">0.233</span> ms</span></pre></td></tr></table></figure>
+
+<p>3、自动停止ping 4次，每次间隔0.5秒<br>ping4次后自动停止</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="variable">$ping</span> -c <span class="number">4</span> -i <span class="number">0.5</span> <span class="number">8.8</span>.<span class="number">8.8</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">PING <span class="number">8.8</span>.<span class="number">8.8</span> (<span class="number">8.8</span>.<span class="number">8.8</span>) <span class="number">56</span>(<span class="number">84</span>) bytes of data.</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"><span class="number">64</span> bytes from <span class="number">8.8</span>.<span class="number">8.8</span>: icmp_seq=<span class="number">1</span> ttl=<span class="number">47</span> time=<span class="number">40.7</span> ms</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"><span class="number">64</span> bytes from <span class="number">8.8</span>.<span class="number">8.8</span>: icmp_seq=<span class="number">2</span> ttl=<span class="number">47</span> time=<span class="number">40.8</span> ms</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line"><span class="number">64</span> bytes from <span class="number">8.8</span>.<span class="number">8.8</span>: icmp_seq=<span class="number">3</span> ttl=<span class="number">47</span> time=<span class="number">40.7</span> ms</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line"><span class="number">64</span> bytes from <span class="number">8.8</span>.<span class="number">8.8</span>: icmp_seq=<span class="number">4</span> ttl=<span class="number">47</span> time=<span class="number">40.8</span> ms</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">--- <span class="number">8.8</span>.<span class="number">8.8</span> ping statistics ---</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line"><span class="number">4</span> packets transmitted, <span class="number">4</span> received, <span class="number">0</span>% packet loss, time <span class="number">1504</span>ms</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">rtt min/avg/max/mdev = <span class="number">40.757</span>/<span class="number">40.801</span>/<span class="number">40.845</span>/<span class="number">0.250</span> ms</span></pre></td></tr></table></figure>
+
+
+<h3 id="3、查看当前日历：cal"><a href="#3、查看当前日历：cal" class="headerlink" title="3、查看当前日历：cal"></a>3、查看当前日历：cal</h3><p>cal命令用于查看当前日历，-y显示整年日历：<br>Usage:</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">cal [options] [[[day] month] year]</span></pre></td></tr></table></figure>
+
+<pre><code>Options:
+ -1, --one        show only current month (default)-只显示当前月份(默认)
+ -3, --three      show previous, current and next month--表示前一个月、当前的和下个月
+ -s, --sunday     Sunday as first day of week--星期天是一周的第一天
+ -m, --monday     Monday as first day of week--星期一是一周的第一天
+ -j, --julian     output Julian dates
+ -y, --year       show whole current year（显示当前一整年的日历）
+ -V, --version    display version information and exit
+ -h, --help       display this help text and exit</code></pre><p>1、默认显示当前一整月的日历</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/20190930161536639.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+<p>2、显示上个月，这个月和下个月的日历：</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/20190930162449274.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+
+
+<h3 id="4、显示或设置时间：date"><a href="#4、显示或设置时间：date" class="headerlink" title="4、显示或设置时间：date"></a>4、显示或设置时间：date</h3><p>设置时间格式（需要管理员权限）：</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">date -s 时间格式</span></pre></td></tr></table></figure>
+
+<p>CC为年前两位yy为年的后两位，前两位的mm为月，后两位的mm为分钟，dd为天，hh为小时，ss为秒。如： date 010203042016.55。<br>显示时间格式（date ‘+%y,%m,%d,%H,%M,%S’）：</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/20190930162631819.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="variable">$date</span> <span class="string">'+%y/%m/%d'</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="number">19</span>/<span class="number">09</span>/<span class="number">30</span></span></pre></td></tr></table></figure>
+
+<h3 id="5、ps（用于显示当前进程-process-的状态）"><a href="#5、ps（用于显示当前进程-process-的状态）" class="headerlink" title="5、ps（用于显示当前进程 (process) 的状态）"></a>5、ps（用于显示当前进程 (process) 的状态）</h3><p>进程是一个具有一定独立功能的程序，它是操作系统动态执行的基本单元。<br>ps命令可以查看进程的详细状况，常用选项(选项可以不加“-”)如下：</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/20190930170628286.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+
+<p><strong>常用几个参数：</strong></p>
+<pre><code>-A 列出所有的行程
+-w 显示加宽可以显示较多的资讯
+-au 显示较详细的资讯
+-aux 显示所有包含其他使用者的行程</code></pre><p><img src="/imgs/20190930170909705.png" alt="在这里插入图片描述"></p>
+<p><strong>au(x) 输出格式 :</strong></p>
+<pre><code>USER PID %CPU %MEM VSZ RSS TTY STAT START TIME COMMAND
+USER: 行程拥有者
+PID: pid
+%CPU: 占用的 CPU 使用率
+%MEM: 占用的记忆体使用率
+VSZ: 占用的虚拟记忆体大小
+RSS: 占用的记忆体大小
+TTY: 终端的次要装置号码 (minor device number of tty)
+STAT: 该行程的状态
+START: 行程开始时间
+TIME: 执行的时间
+COMMAND:所执行的指令</code></pre><h3 id="6、动态显示进程：top"><a href="#6、动态显示进程：top" class="headerlink" title="6、动态显示进程：top"></a>6、动态显示进程：top</h3><p>top命令用来动态显示运行中的进程。</p>
+<p>top命令能够在运行后，在指定的时间间隔更新显示信息。可以在使用top命令时加上-d 来指定显示信息更新的时间间隔。</p>
+<p><img src="/imgs/20190930172915183.png" alt="在这里插入图片描述"></p>
+<p>在top命令执行后，可以按下按键得到对显示的结果进行排序：<br>下面这些按键是top进入之后按的，然后会有效果</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/20190930172454176.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+<h3 id="7、终止进程：kill"><a href="#7、终止进程：kill" class="headerlink" title="7、终止进程：kill"></a>7、终止进程：kill</h3><p>kill命令指定进程号的进程，需要配合 ps 使用，ps找到程序的pid,然后使用kill pid。<br>使用格式：</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">kill [-signal] pid</span></pre></td></tr></table></figure>
+
+<p>信号值从0到15，其中9为绝对终止，可以处理一般信号无法终止的进程。<br>比如一个pid为9133 的，如果终止进程使用：</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">kill <span class="number">9133</span></span></pre></td></tr></table></figure>
+
+<p>9133 为应用程序所对应的进程号</p>
+<p>有些进程不能直接杀死，这时候我们需要加一个参数“ -9 ”，“ -9 ” 代表强制结束：</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">kill -<span class="number">9</span> pid</span></pre></td></tr></table></figure>
+
+<h3 id="8、关机重启：reboot、shutdown、init"><a href="#8、关机重启：reboot、shutdown、init" class="headerlink" title="8、关机重启：reboot、shutdown、init"></a>8、关机重启：reboot、shutdown、init</h3><p>命令参考如下图：</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/2019093017361738.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+
+
+<h2 id="七、-Linux统计文件夹下的文件数目（新增）"><a href="#七、-Linux统计文件夹下的文件数目（新增）" class="headerlink" title="七、==Linux统计文件夹下的文件数目（新增）=="></a>七、==Linux统计文件夹下的文件数目（新增）==</h2><p>Linux下有三个命令：ls、grep、wc。通过这三个命令的组合可以统计目录下文件及文件夹的个数。</p>
+<h3 id="1、统计当前目录下文件的个数（不包括目录）"><a href="#1、统计当前目录下文件的个数（不包括目录）" class="headerlink" title="1、统计当前目录下文件的个数（不包括目录）"></a>1、统计当前目录下文件的个数（不包括目录）</h3><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">ls -l | grep <span class="string">"^-"</span> | wc -l</span></pre></td></tr></table></figure>
+
+<h3 id="2、统计当前目录下文件的个数（包括子目录）"><a href="#2、统计当前目录下文件的个数（包括子目录）" class="headerlink" title="2、统计当前目录下文件的个数（包括子目录）"></a>2、统计当前目录下文件的个数（包括子目录）</h3><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">ls -lR| grep <span class="string">"^-"</span> | wc -l</span></pre></td></tr></table></figure>
+
+<h3 id="3、查看某目录下文件夹-目录-的个数（包括子目录）"><a href="#3、查看某目录下文件夹-目录-的个数（包括子目录）" class="headerlink" title="3、查看某目录下文件夹(目录)的个数（包括子目录）"></a>3、查看某目录下文件夹(目录)的个数（包括子目录）</h3><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">ls -lR | grep <span class="string">"^d"</span> | wc -l</span></pre></td></tr></table></figure>
+
+<h3 id="4、查看当前目录下含有多少个文件（目录-文件）"><a href="#4、查看当前目录下含有多少个文件（目录-文件）" class="headerlink" title="4、查看当前目录下含有多少个文件（目录+文件）"></a>4、查看当前目录下含有多少个文件（目录+文件）</h3><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">ls | wc -l</span></pre></td></tr></table></figure>
+<p>截图下效果：</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/2019101117013764.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+<h3 id="4、命令解析："><a href="#4、命令解析：" class="headerlink" title="4、命令解析："></a>4、命令解析：</h3><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">ls -l</span></pre></td></tr></table></figure>
+
+<p>长列表输出该目录下文件信息(注意这里的文件是指目录、链接、设备文件等)，每一行对应一个文件或目录，ls -lR是列出所有文件，包括子目录。</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">grep <span class="string">"^-"</span></span></pre></td></tr></table></figure>
+
+<p>过滤ls的输出信息，只保留一般文件，只保留目录是grep “^d”。</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">wc -l</span></pre></td></tr></table></figure>
+
+<p>统计输出信息的行数，统计结果就是输出信息的行数，一行信息对应一个文件，所以就是文件的个数。</p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2019-12-02T07:26:18.357Z" itemprop="dateUpdated">2019-12-02 15:26:18</time>
+</span><br>
+
+
+        
+        这里可以写作者留言，标签和 hexo 中所有变量及辅助函数等均可调用，示例：<a href="/2019/09/30/fa47655a0e5a0275481489ebfb9e99c8/" target="_blank" rel="external">https://zhaojiafu.github.io/2019/09/30/fa47655a0e5a0275481489ebfb9e99c8/</a>
+        
+    </div>
+    
+    <footer>
+        <a href="https://zhaojiafu.github.io">
+            <img src="/img/zhao.jpg" alt="赵家富">
+            赵家富
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" target="_blank" rel="noopener" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://zhaojiafu.github.io/2019/09/30/fa47655a0e5a0275481489ebfb9e99c8/&title=《整理一些linux命令必须熟练掌握常的命令（复习+扩展学习Linux命令）》 — 赵家富的博客&pic=https://zhaojiafu.github.io/img/zhao.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" target="_blank" rel="noopener" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://zhaojiafu.github.io/2019/09/30/fa47655a0e5a0275481489ebfb9e99c8/&title=《整理一些linux命令必须熟练掌握常的命令（复习+扩展学习Linux命令）》 — 赵家富的博客&source=感觉无从下手的时候，问自己“不难，要你干啥？”" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://zhaojiafu.github.io/2019/09/30/fa47655a0e5a0275481489ebfb9e99c8/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《整理一些linux命令必须熟练掌握常的命令（复习+扩展学习Linux命令）》 — 赵家富的博客&url=https://zhaojiafu.github.io/2019/09/30/fa47655a0e5a0275481489ebfb9e99c8/&via=https://zhaojiafu.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://zhaojiafu.github.io/2019/09/30/fa47655a0e5a0275481489ebfb9e99c8/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" target="_blank" rel="noopener" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2019/10/01/6f83dcf3dfd382e33d53f60571f7481f/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">Windows 10系统使用vmware 安装Ubuntu18.04双系统 + Ubuntu 18.04 安装 Docker-ce</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2019/09/26/b5e5ca9375e5c49bad2e7c6ea2d38d48/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">记录一下Ubuntu18.04安装python2.7和python3.6版本</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<section class="comments" id="comments">
+    <div id="gitalk-container"></div>
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+        var id = location.pathname
+        if (location.pathname.length > 50) {
+          id = location.pathname.replace(/\/\d+\/\d+\/\d+\//, '').replace('/', '').substring(0, 50)
+        }
+        const gitalk = new Gitalk({
+          clientID: '388d0a78cda30f118f86',
+          clientSecret: '2c64b34cc20f23d768dffff64acb8c2ee02c3bee',
+          repo: 'https://zhaojiafu.github.io/',
+          owner: 'zjf',
+          admin: ['zjf'],
+          id: id,      // Ensure uniqueness and length less than 50
+          title: document.title.split('|')[0],
+          distractionFreeMode: false  // Facebook-like distraction free mode
+        })
+
+        gitalk.render('gitalk-container')
+    </script>
+</section>
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;" target="_blank" rel="noopener"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢大爷~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.jpg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.jpg" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+            <span>博客内容遵循 <a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+        <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=0 height=0 src="http://music.163.com/song/media/outer/url?id=1369798757&auto=1"></iframe>
+
+    </div>
+    <div class="bottom">
+        <p><span>赵家富 &copy; 2019</span>
+            <span>
+                
+
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" target="_blank" rel="noopener" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://zhaojiafu.github.io/2019/09/30/fa47655a0e5a0275481489ebfb9e99c8/&title=《整理一些linux命令必须熟练掌握常的命令（复习+扩展学习Linux命令）》 — 赵家富的博客&pic=https://zhaojiafu.github.io/img/zhao.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" target="_blank" rel="noopener" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://zhaojiafu.github.io/2019/09/30/fa47655a0e5a0275481489ebfb9e99c8/&title=《整理一些linux命令必须熟练掌握常的命令（复习+扩展学习Linux命令）》 — 赵家富的博客&source=感觉无从下手的时候，问自己“不难，要你干啥？”" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://zhaojiafu.github.io/2019/09/30/fa47655a0e5a0275481489ebfb9e99c8/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《整理一些linux命令必须熟练掌握常的命令（复习+扩展学习Linux命令）》 — 赵家富的博客&url=https://zhaojiafu.github.io/2019/09/30/fa47655a0e5a0275481489ebfb9e99c8/&via=https://zhaojiafu.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://zhaojiafu.github.io/2019/09/30/fa47655a0e5a0275481489ebfb9e99c8/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;" target="_blank" rel="noopener"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACwElEQVR42u3ay24jMQwEwPz/T2evCwRjd5NSHkDNybCjiUoHiWjq4yN+Pv97vn6fj/36PP3909iPGw8eHh7eYupPr2un9bQorz+/Bryez+Mb8PDw8K7xktclh8HrSScLl49KlhgPDw/vN/BOfdMuGR4eHt5f57V/mRfoeQmOh4eH97O8pKiNXhcX05tN/0rWgoeHh9d1naIu0u/5fKW/h4eHh7fuqieF741bDG3U+zhbPDw8vAu8fMNNSu38WkC+fEn5/npp8PDw8M7ykgg1D1uTWCH59dRVAzw8PLwbvHai7Tc5Mi/f6yIeDw8P7wKvDW1nTa/N5YP8MIiQeHh4eAveT7Xtc3C7NNF64+Hh4S14+THQRrGbEnkTTERhBB4eHt6C1264+8bVrFxODoC6s4eHh4e34OUbdDuJdtQsR3kci4eHh3eBl0cSdZMpnlZbQCeHTZ244OHh4Y14LT6Z9Kx0zpe+zlrw8PDw1ry2XM4vV202+rwZ9ma2eHh4eBd4bVNqdsVqfxhsYmU8PDy8s7wbEe3s8GjL9GjR8fDw8K7xZgdAe8G0DWTbA+YxjMDDw8M7ypsV1klpO5vuLDguWnR4eHh4h3j5FpzHu/sIOC+7o/4eHh4e3iHem1OibP/PLg0k231SytfXrfDw8PBGvByTX7faXBdIluDANQI8PDy8NS9v0ucRw2zhklFtEY+Hh4d3mzdrQeVRQsvOwW9iXDw8PLwLvGSzzoPUZLuva/wZEg8PD+8o77N8kjh1cxUgb3RFRT8eHh7eBd6mW9ReF9hHve1nPDw8vHu82WHQbtN542oWbRRhBB4eHt4h3r3OURsEb8KI4mc8PDy8b+Tlo2Zbf9IMu3gw4OHh4V3jbSLdPPadFd94eHh438NrS+FTyfGslVVc7cLDw8O7wNvf25r9szySyEvt4YOHh4eX8v4BCThBBR6twM8AAAAASUVORK5CYII=" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '死鬼去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+<script src="/node_modules/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"node_modules/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/node_modules/assets/shizuku.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"react":{"opacity":0.7},"log":false});</script></body>
+</html>

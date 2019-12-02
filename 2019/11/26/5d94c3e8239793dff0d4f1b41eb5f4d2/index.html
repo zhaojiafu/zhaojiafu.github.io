@@ -1,0 +1,883 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <link rel="canonical" href="https://zhaojiafu.github.io/2019/11/26/5d94c3e8239793dff0d4f1b41eb5f4d2/">
+    
+    
+    <title>shell编程学习笔记之一--学习第五天 | 赵家富的博客 | 保持好奇心</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="python模块">
+    <meta name="description" content="一、说明：打算从B站学习一下shell编程，从很多的课程视频中，挑选了一个：B站视频地址：打算开始学习着做着笔记：这个需要一些Linux基础，还有vim的，如果不太熟练，可以看下我之前的整理的俩个博客： 1、整理一些linux命令必须熟练掌握常的命令（复习+扩展学习Linux命令）整理一些linux命令必须熟练掌握常的命令（复习+扩展学习Linux命令） 2、Linux下vim&#x2F;vi 编辑器 命令">
+<meta name="keywords" content="python模块">
+<meta property="og:type" content="article">
+<meta property="og:title" content="shell编程学习笔记之一--学习第五天">
+<meta property="og:url" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;2019&#x2F;11&#x2F;26&#x2F;5d94c3e8239793dff0d4f1b41eb5f4d2&#x2F;index.html">
+<meta property="og:site_name" content="赵家富的博客">
+<meta property="og:description" content="一、说明：打算从B站学习一下shell编程，从很多的课程视频中，挑选了一个：B站视频地址：打算开始学习着做着笔记：这个需要一些Linux基础，还有vim的，如果不太熟练，可以看下我之前的整理的俩个博客： 1、整理一些linux命令必须熟练掌握常的命令（复习+扩展学习Linux命令）整理一些linux命令必须熟练掌握常的命令（复习+扩展学习Linux命令） 2、Linux下vim&#x2F;vi 编辑器 命令">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20191126090111413.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20191126100537910.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20191126100659878.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20191126100707893.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20191126102502233.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20191126102650281.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20191126103055212.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20191126103359119.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20191126103805782.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20191126104041739.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20191126104246963.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;2019112610450159.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20191126105549776.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20191126110647970.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20191126110920419.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20191126111455534.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20191126111736170.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20191126174709339.png">
+<meta property="og:updated_time" content="2019-12-02T06:45:48.877Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20191126090111413.png">
+    
+    <link rel="shortcut icon" href="/img/cb2nm-5l9w0-001.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" target="_blank" rel="noopener" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/zhao.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">赵家富</h5>
+          <a href="mailto:530519174@qq.com" target="_blank" rel="noopener" title="530519174@qq.com" class="mail">530519174@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                archives(所有)
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags/"  >
+                <i class="icon icon-lg icon-tags"></i>
+                tag(标签)
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories/"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories(分类)
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/zhaojiafu" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://blog.csdn.net/weixin_42081389" target="_blank" >
+                <i class="icon icon-lg icon-csdn"></i>
+                Csdn
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" target="_blank" rel="noopener" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+
+        <div class="flex-col header-title ellipsis">shell编程学习笔记之一--学习第五天</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" target="_blank" rel="noopener" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" target="_blank" rel="noopener" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" target="_blank" rel="noopener" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+
+        <h1 class="title">shell编程学习笔记之一--学习第五天
+        </h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2019-11-26T03:34:32.000Z" itemprop="datePublished" class="page-time">
+  2019-11-26
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/python%E6%A8%A1%E5%9D%97/">python模块</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#一、说明："><span class="post-toc-number">1.</span> <span class="post-toc-text">一、说明：</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#1、整理一些linux命令必须熟练掌握常的命令（复习-扩展学习Linux命令）"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">1、整理一些linux命令必须熟练掌握常的命令（复习+扩展学习Linux命令）</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#2、Linux下vim-vi-编辑器-命令总结"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">2、Linux下vim/vi 编辑器 命令总结</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#3、学习课件："><span class="post-toc-number">1.3.</span> <span class="post-toc-text">3、学习课件：</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#4、之前的博客："><span class="post-toc-number">1.4.</span> <span class="post-toc-text">4、之前的博客：</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#二、实战演练（几个shell常用命令）："><span class="post-toc-number">2.</span> <span class="post-toc-text">二、实战演练（几个shell常用命令）：</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#1、sed命令："><span class="post-toc-number">2.0.1.</span> <span class="post-toc-text">1、sed命令：</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#示例1、将name替换为chinese："><span class="post-toc-number">2.0.1.1.</span> <span class="post-toc-text">示例1、将name替换为chinese：</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#示例2、在每行开头加入-id"><span class="post-toc-number">2.0.1.2.</span> <span class="post-toc-text">示例2、在每行开头加入 #id</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#示例3、在每行末尾加入-id"><span class="post-toc-number">2.0.1.3.</span> <span class="post-toc-text">示例3、在每行末尾加入 #id</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#示例4、在含有chinese的行后面加入demo111"><span class="post-toc-number">2.0.1.4.</span> <span class="post-toc-text">示例4、在含有chinese的行后面加入demo111</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#示例5、在含有chinese的行前加入demo111"><span class="post-toc-number">2.0.1.5.</span> <span class="post-toc-text">示例5、在含有chinese的行前加入demo111</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#示例6、高级用法："><span class="post-toc-number">2.0.1.6.</span> <span class="post-toc-text">示例6、高级用法：</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#示例7、给一个含有数字的文件，提取除最大的和最小的俩个数"><span class="post-toc-number">2.0.1.7.</span> <span class="post-toc-text">示例7、给一个含有数字的文件，提取除最大的和最小的俩个数</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#示例8、打印奇数行或偶数行"><span class="post-toc-number">2.0.1.8.</span> <span class="post-toc-text">示例8、打印奇数行或偶数行</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#2、grep："><span class="post-toc-number">2.0.2.</span> <span class="post-toc-text">2、grep：</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#1、匹配：含有127的行"><span class="post-toc-number">2.0.2.1.</span> <span class="post-toc-text">1、匹配：含有127的行</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#2、匹配含有192的行："><span class="post-toc-number">2.0.2.2.</span> <span class="post-toc-text">2、匹配含有192的行：</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#3、匹配只有192-的："><span class="post-toc-number">2.0.2.3.</span> <span class="post-toc-text">3、匹配只有192.的：</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#4、匹配以192开头-结尾的行"><span class="post-toc-number">2.0.2.4.</span> <span class="post-toc-text">4、匹配以192开头.结尾的行</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#5、匹配一个ip的正确写法："><span class="post-toc-number">2.0.2.5.</span> <span class="post-toc-text">5、匹配一个ip的正确写法：</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#6、吧匹配到的行号打印出来："><span class="post-toc-number">2.0.2.6.</span> <span class="post-toc-text">6、吧匹配到的行号打印出来：</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#7、egrep-和-grep-E-是一样的。"><span class="post-toc-number">2.0.2.7.</span> <span class="post-toc-text">7、egrep 和 grep -E 是一样的。</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#3、awk："><span class="post-toc-number">2.0.3.</span> <span class="post-toc-text">3、awk：</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#①、语法"><span class="post-toc-number">2.0.3.1.</span> <span class="post-toc-text">①、语法</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#②、选项参数说明："><span class="post-toc-number">2.0.3.2.</span> <span class="post-toc-text">②、选项参数说明：</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#③、基本用法"><span class="post-toc-number">2.0.3.3.</span> <span class="post-toc-text">③、基本用法</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#1】、匹配第一列："><span class="post-toc-number">2.0.3.3.1.</span> <span class="post-toc-text">1】、匹配第一列：</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#2】、匹配第1和4列："><span class="post-toc-number">2.0.3.3.2.</span> <span class="post-toc-text">2】、匹配第1和4列：</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#3】、匹配最后一列："><span class="post-toc-number">2.0.3.3.3.</span> <span class="post-toc-text">3】、匹配最后一列：</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#4】、匹配到-etc-passwd下面的用户名"><span class="post-toc-number">2.0.3.3.4.</span> <span class="post-toc-text">4】、匹配到/etc/passwd下面的用户名</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#5】、获取本机ip的方法："><span class="post-toc-number">2.0.3.3.5.</span> <span class="post-toc-text">5】、获取本机ip的方法：</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#6】、打印出服务器的使用率的数值："><span class="post-toc-number">2.0.3.3.6.</span> <span class="post-toc-text">6】、打印出服务器的使用率的数值：</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#7】、在提取的数值起前面加入一段字符串："><span class="post-toc-number">2.0.3.3.7.</span> <span class="post-toc-text">7】、在提取的数值起前面加入一段字符串：</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#4、find"><span class="post-toc-number">2.0.4.</span> <span class="post-toc-text">4、find:</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#实例1、查找指定目录下的-sh文件："><span class="post-toc-number">2.0.4.1.</span> <span class="post-toc-text">实例1、查找指定目录下的.sh文件：</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#实例2、使用exec进行复制："><span class="post-toc-number">2.0.4.2.</span> <span class="post-toc-text">实例2、使用exec进行复制：</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#实例3、删除当前的num-sh文件："><span class="post-toc-number">2.0.4.3.</span> <span class="post-toc-text">实例3、删除当前的num.sh文件：</span></a></li></ol></li></ol></li></ol></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-5d94c3e8239793dff0d4f1b41eb5f4d2"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">shell编程学习笔记之一--学习第五天</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2019-11-26 11:34:32" datetime="2019-11-26T03:34:32.000Z"  itemprop="datePublished">2019-11-26</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/python%E6%A8%A1%E5%9D%97/">python模块</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h1 id="一、说明："><a href="#一、说明：" class="headerlink" title="一、说明："></a>一、说明：</h1><p>打算从B站学习一下shell编程，从很多的课程视频中，挑选了一个：<br><a href="https://www.bilibili.com/video/av8104450" target="_blank" rel="noopener">B站视频地址</a>：<br>打算开始学习着做着笔记：<br>这个需要一些Linux基础，还有vim的，如果不太熟练，可以看下我之前的整理的俩个博客：</p>
+<h2 id="1、整理一些linux命令必须熟练掌握常的命令（复习-扩展学习Linux命令）"><a href="#1、整理一些linux命令必须熟练掌握常的命令（复习-扩展学习Linux命令）" class="headerlink" title="1、整理一些linux命令必须熟练掌握常的命令（复习+扩展学习Linux命令）"></a>1、整理一些linux命令必须熟练掌握常的命令（复习+扩展学习Linux命令）</h2><p><a href="https://blog.csdn.net/weixin_42081389/article/details/101679760" target="_blank" rel="noopener">整理一些linux命令必须熟练掌握常的命令（复习+扩展学习Linux命令）</a></p>
+<h2 id="2、Linux下vim-vi-编辑器-命令总结"><a href="#2、Linux下vim-vi-编辑器-命令总结" class="headerlink" title="2、Linux下vim/vi 编辑器 命令总结"></a>2、Linux下vim/vi 编辑器 命令总结</h2><p><a href="https://blog.csdn.net/weixin_42081389/article/details/102364662" target="_blank" rel="noopener">Linux下vim/vi 编辑器 命令总结</a></p>
+<h2 id="3、学习课件："><a href="#3、学习课件：" class="headerlink" title="3、学习课件："></a>3、学习课件：</h2><p>这个地址我直接把B站中评论下方分享的弄出来了，如果失效，可以下方评论，我把我下载的分享给你。<br><a href="https://www.lanzous.com/b04a4s61e" target="_blank" rel="noopener">下载地址</a></p>
+<h2 id="4、之前的博客："><a href="#4、之前的博客：" class="headerlink" title="4、之前的博客："></a>4、之前的博客：</h2><p><a href="https://blog.csdn.net/weixin_42081389/article/details/103156765" target="_blank" rel="noopener">shell编程学习笔记之–学习第一天</a><br><a href="https://blog.csdn.net/weixin_42081389/article/details/103180406" target="_blank" rel="noopener">shell编程学习笔记之–学习第二天</a><br><a href="https://blog.csdn.net/weixin_42081389/article/details/103198955" target="_blank" rel="noopener">shell编程学习笔记之–学习第三天</a><br><a href="https://blog.csdn.net/weixin_42081389/article/details/103233739" target="_blank" rel="noopener">shell编程学习笔记之一–学习第四天</a></p>
+<h1 id="二、实战演练（几个shell常用命令）："><a href="#二、实战演练（几个shell常用命令）：" class="headerlink" title="二、实战演练（几个shell常用命令）："></a>二、实战演练（几个shell常用命令）：</h1><h3 id="1、sed命令："><a href="#1、sed命令：" class="headerlink" title="1、sed命令："></a>1、sed命令：</h3><blockquote>
+<p>Linux sed 命令是利用脚本来处理文本文件。</p>
+<p>sed 可依照脚本的指令来处理、编辑文本文件。</p>
+<p>Sed 主要用来自动编辑一个或多个文件、简化对文件的反复操作、编写转换程序等。</p>
+</blockquote>
+<p><strong><em>语法</em></strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">sed [-hnV][-e&lt;script&gt;][-f&lt;script文件&gt;][文本文件]</span></pre></td></tr></table></figure>
+
+<p><strong><em>参数说明：</em></strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">-e&lt;script&gt;或--expression=&lt;script&gt; 以选项中指定的script来处理输入的文本文件。</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">-f&lt;script文件&gt;或--file=&lt;script文件&gt; 以选项中指定的script文件来处理输入的文本文件。</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">-h或--<span class="built_in">help</span> 显示帮助。</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">-n或--quiet或--silent 仅显示script处理后的结果。</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">-V或--version 显示版本信息。</span></pre></td></tr></table></figure>
+
+<p><strong><em>动作说明：</em></strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">a ：新增， a 的后面可以接字串，而这些字串会在新的一行出现(目前的下一行)～</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">c ：取代， c 的后面可以接字串，这些字串可以取代 n1,n2 之间的行！</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">d ：删除，因为是删除啊，所以 d 后面通常不接任何咚咚；</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">i ：插入， i 的后面可以接字串，而这些字串会在新的一行出现(目前的上一行)；</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">p ：打印，亦即将某个选择的数据印出。通常 p 会与参数 sed -n 一起运行～</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">s ：取代，可以直接进行取代的工作哩！通常这个 s 的动作可以搭配正规表示法！</span></pre></td></tr></table></figure>
+
+<h4 id="示例1、将name替换为chinese："><a href="#示例1、将name替换为chinese：" class="headerlink" title="示例1、将name替换为chinese："></a>示例1、将name替换为chinese：</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">vi name.txt</span></pre></td></tr></table></figure>
+
+<p>敲入代码：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="comment">#name info</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">My name is zhaojiafu</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">this is my first sed text</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">127.0.0.1</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">192.168.2.1</span></pre></td></tr></table></figure>
+
+
+
+<p>运行命令：</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/20191126090111413.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+<p>查看是否真正修改name.txt</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/20191126100537910.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+<p>这个是修改在缓存中，并没有真正修改原文件，需要加个参数-i。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">sed -i <span class="string">'s/name/chinese/g'</span> name.txt</span></pre></td></tr></table></figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/20191126100659878.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+<p>再次cat查看，发现修改成功了。</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/20191126100707893.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+<p>这样就不用打开在vim中进行替换了，vim的末行命令也是可以进行替换操作的。</p>
+<h4 id="示例2、在每行开头加入-id"><a href="#示例2、在每行开头加入-id" class="headerlink" title="示例2、在每行开头加入 #id"></a>示例2、在每行开头加入 #id</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">sed <span class="string">'s/^/&amp; #id/g'</span> name.txt</span></pre></td></tr></table></figure>
+
+<p>本文我没有写入，如果真正写入到文档，加个-i参数。^代表开头。</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/20191126102502233.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+
+<h4 id="示例3、在每行末尾加入-id"><a href="#示例3、在每行末尾加入-id" class="headerlink" title="示例3、在每行末尾加入 #id"></a>示例3、在每行末尾加入 #id</h4><p>$代表末尾。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">sed <span class="string">'s/$/&amp; #id/g'</span> name.txt</span></pre></td></tr></table></figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/20191126102650281.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+
+<h4 id="示例4、在含有chinese的行后面加入demo111"><a href="#示例4、在含有chinese的行后面加入demo111" class="headerlink" title="示例4、在含有chinese的行后面加入demo111"></a>示例4、在含有chinese的行后面加入demo111</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">sed <span class="string">'/chinese/a demo111'</span> name.txt</span></pre></td></tr></table></figure>
+<p>代码里面的a代表后面。</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/20191126103055212.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+<h4 id="示例5、在含有chinese的行前加入demo111"><a href="#示例5、在含有chinese的行前加入demo111" class="headerlink" title="示例5、在含有chinese的行前加入demo111"></a>示例5、在含有chinese的行前加入demo111</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">sed <span class="string">'/chinese/i demo111'</span> name.txt</span></pre></td></tr></table></figure>
+<p>i代表含有chinese一行的前面加入demo111。</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/20191126103359119.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+
+<h4 id="示例6、高级用法："><a href="#示例6、高级用法：" class="headerlink" title="示例6、高级用法："></a>示例6、高级用法：</h4><ol>
+<li>打印出含有chinese的所有行</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">sed -n <span class="string">'/chinese/p'</span> name.txt</span></pre></td></tr></table></figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/20191126103805782.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+
+<ol start="2">
+<li>打印文档的第一行：</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">sed -n <span class="string">'1p'</span> name.txt</span></pre></td></tr></table></figure>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/20191126104041739.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+
+<ol start="3">
+<li>打印文档的1-5行：</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">sed -n <span class="string">'1,5p'</span> name.txt</span></pre></td></tr></table></figure>
+
+<ol start="4">
+<li>打印文档的第三行到末尾所有行</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">sed -n <span class="string">'3,$p'</span> name.txt</span></pre></td></tr></table></figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/20191126104246963.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+
+<ol start="5">
+<li>打印文章的第四行至第六行</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">sed -n <span class="string">'4p ;6p'</span> name.txt</span></pre></td></tr></table></figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/2019112610450159.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+
+<ol start="6">
+<li>删除文件的20至末尾所有行：</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">sed -i <span class="string">'20,$d'</span> num_sort.txt</span></pre></td></tr></table></figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/20191126105549776.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+
+<h4 id="示例7、给一个含有数字的文件，提取除最大的和最小的俩个数"><a href="#示例7、给一个含有数字的文件，提取除最大的和最小的俩个数" class="headerlink" title="示例7、给一个含有数字的文件，提取除最大的和最小的俩个数"></a>示例7、给一个含有数字的文件，提取除最大的和最小的俩个数</h4><p>num_sort.txt</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">12312 2323 32</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">213 231</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">23123</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">21321432423</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">32131</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">321312</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">3</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">1321</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">31</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">32</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">2132</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line">4</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line">12312 2323 32</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><span class="line">213 231</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">17</span></pre></td><td class="code"><pre><span class="line">23123</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">18</span></pre></td><td class="code"><pre><span class="line">21321432423</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">19</span></pre></td><td class="code"><pre><span class="line">32131</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">20</span></pre></td><td class="code"><pre><span class="line">321312</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">21</span></pre></td><td class="code"><pre><span class="line">3</span></pre></td></tr></table></figure>
+
+<ol>
+<li>第一步：将空格替换成换行符：<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/20191126110647970.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure></li>
+<li>使用grep将空行去掉：</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">cat num_sort.txt | sed <span class="string">'s/ /\n/g'</span>| grep -v <span class="string">'^$'</span></span></pre></td></tr></table></figure>
+<p>grep -v 是指去掉后面匹配到的字符串，<br>‘^$’ 指的是匹配到的空行。</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/20191126110920419.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+
+<ol start="3">
+<li>排序：</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">cat num_sort.txt | sed <span class="string">'s/ /\n/g'</span>| grep -v <span class="string">'^$'</span> | sort -nr</span></pre></td></tr></table></figure>
+<p>sort -n是从小到大排序，r是至反向，-nr就是从大到小排序。</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/20191126111455534.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/20191126111736170.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+
+<ol start="5">
+<li>求出最大数和最小数</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="variable">$cat</span> num_sort.txt | sed <span class="string">'s/ /\n/g'</span>| grep -v <span class="string">'^$'</span> | sort -nr |sed -n <span class="string">'1p;$p'</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">21321432423</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">3</span></pre></td></tr></table></figure>
+
+<h4 id="示例8、打印奇数行或偶数行"><a href="#示例8、打印奇数行或偶数行" class="headerlink" title="示例8、打印奇数行或偶数行"></a>示例8、打印奇数行或偶数行</h4><p><strong><em>方法1：</em></strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">sed -n <span class="string">'p;n'</span> test.txt  <span class="comment">#奇数行</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">sed -n <span class="string">'n;p'</span> test.txt  <span class="comment">#偶数行</span></span></pre></td></tr></table></figure>
+
+<p><strong><em>方法2：</em></strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">sed -n <span class="string">'1~2p'</span> test.txt  <span class="comment">#奇数行</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">sed -n <span class="string">'2~2p'</span> test.txt  <span class="comment">#偶数行</span></span></pre></td></tr></table></figure>
+
+<h3 id="2、grep："><a href="#2、grep：" class="headerlink" title="2、grep："></a>2、grep：</h3><p>我之前的博客记录的有些笔记。<a href="https://blog.csdn.net/weixin_42081389/article/details/101679760#grep__1015" target="_blank" rel="noopener">地址</a></p>
+<p><strong><em>实例：</em></strong><br>name.txt文件：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="variable">$cat</span> name.txt</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="comment">#chinese info</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">My chinese is zhaojiafu</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">this is my first sed text</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">127.0.0.1</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">192.168.2.1</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">192.168.2.</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">192.168.</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">192.</span></pre></td></tr></table></figure>
+
+<h4 id="1、匹配：含有127的行"><a href="#1、匹配：含有127的行" class="headerlink" title="1、匹配：含有127的行"></a>1、匹配：含有<code>127</code>的行</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="variable">$cat</span> name.txt |grep <span class="string">'127'</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">127.0.0.1</span></pre></td></tr></table></figure>
+
+
+<h4 id="2、匹配含有192的行："><a href="#2、匹配含有192的行：" class="headerlink" title="2、匹配含有192的行："></a>2、匹配含有<code>192</code>的行：</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="variable">$cat</span> name.txt |grep <span class="string">'192'</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">192.168.2.1</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">192.168.2.</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">192.168.</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">192.</span></pre></td></tr></table></figure>
+
+<h4 id="3、匹配只有192-的："><a href="#3、匹配只有192-的：" class="headerlink" title="3、匹配只有192.的："></a>3、匹配只有<code>192.</code>的：</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="variable">$cat</span> name.txt |grep <span class="string">'^192\.$'</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">192.</span></pre></td></tr></table></figure>
+<h4 id="4、匹配以192开头-结尾的行"><a href="#4、匹配以192开头-结尾的行" class="headerlink" title="4、匹配以192开头.结尾的行"></a>4、匹配以<code>192</code>开头<code>.</code>结尾的行</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="variable">$cat</span> name.txt |grep <span class="string">'^192.*\.$'</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">192.168.2.</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">192.168.</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">192.</span></pre></td></tr></table></figure>
+
+<h4 id="5、匹配一个ip的正确写法："><a href="#5、匹配一个ip的正确写法：" class="headerlink" title="5、匹配一个ip的正确写法："></a>5、匹配一个ip的正确写法：</h4><p>视频中的教程讲的有点不全，我这里写个正确的匹配ip的方法。</p>
+<p>其中数字肯定不会0开头，一般1-3位，后面都是0-9的数字。<br>其中<code>-E</code>代表使用的是正则匹配。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="variable">$cat</span> name.txt |grep -E <span class="string">'[1-9][0-9]&#123;0,2&#125;(\.[0-9]&#123;1,3&#125;)&#123;3&#125;'</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">127.0.0.1</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">192.168.2.1</span></pre></td></tr></table></figure>
+
+<h4 id="6、吧匹配到的行号打印出来："><a href="#6、吧匹配到的行号打印出来：" class="headerlink" title="6、吧匹配到的行号打印出来："></a>6、吧匹配到的行号打印出来：</h4><p><code>-n</code>参数就是匹配到的行号打印出来，前面的<code>6：</code>和<code>8：</code>就是第6行和第8行</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="variable">$cat</span> name.txt |grep -n -E <span class="string">'[1-9][0-9]&#123;0,2&#125;(\.[0-9]&#123;1,3&#125;)&#123;3&#125;'</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">6:127.0.0.1</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">8:192.168.2.1</span></pre></td></tr></table></figure>
+
+<h4 id="7、egrep-和-grep-E-是一样的。"><a href="#7、egrep-和-grep-E-是一样的。" class="headerlink" title="7、egrep 和 grep -E 是一样的。"></a>7、<code>egrep</code> 和 <code>grep -E</code> 是一样的。</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="variable">$grep</span> -E <span class="string">"192|127"</span> name.txt</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">127.0.0.1</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">192.168.2.1</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">192.168.2.</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">192.168.</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">192.</span></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="variable">$egrep</span> <span class="string">"192|127"</span> name.txt</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">127.0.0.1</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">192.168.2.1</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">192.168.2.</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">192.168.</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">192.</span></pre></td></tr></table></figure>
+
+<h3 id="3、awk："><a href="#3、awk：" class="headerlink" title="3、awk："></a>3、awk：</h3><blockquote>
+<p>AWK是一种处理文本文件的语言，是一个强大的文本分析工具。 之所以叫AWK是因为其取了三位创始人 Alfred Aho，Peter<br>Weinberger, 和 Brian Kernighan 的 Family Name 的首字符。</p>
+</blockquote>
+<h4 id="①、语法"><a href="#①、语法" class="headerlink" title="①、语法"></a>①、语法</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">awk [选项参数] <span class="string">'script'</span> var=value file(s)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">或</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">awk [选项参数] -f scriptfile var=value file(s)</span></pre></td></tr></table></figure>
+
+<h4 id="②、选项参数说明："><a href="#②、选项参数说明：" class="headerlink" title="②、选项参数说明："></a>②、选项参数说明：</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">-F fs or --field-separator fs</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">指定输入文件折分隔符，fs是一个字符串或者是一个正则表达式，如-F:。</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">-v var=value or --asign var=value</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">赋值一个用户定义变量。</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">-f scripfile or --file scriptfile</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">从脚本文件中读取awk命令。</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">-mf nnn and -mr nnn</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">对nnn值设置内在限制，-mf选项限制分配给nnn的最大块数目；-mr选项限制记录的最大数目。这两个功能是Bell实验室版awk的扩展功能，在标准awk中不适用。</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">-W compact or --compat, -W traditional or --traditional</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">在兼容模式下运行awk。所以gawk的行为和标准的awk完全一样，所有的awk扩展都被忽略。</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">-W copyleft or --copyleft, -W copyright or --copyright</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">打印简短的版权信息。</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">-W <span class="built_in">help</span> or --<span class="built_in">help</span>, -W usage or --usage</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line">打印全部awk选项和每个选项的简短说明。</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line">-W lint or --lint</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><span class="line">打印不能向传统unix平台移植的结构的警告。</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">17</span></pre></td><td class="code"><pre><span class="line">-W lint-old or --lint-old</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">18</span></pre></td><td class="code"><pre><span class="line">打印关于不能向传统unix平台移植的结构的警告。</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">19</span></pre></td><td class="code"><pre><span class="line">-W posix</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">20</span></pre></td><td class="code"><pre><span class="line">打开兼容模式。但有以下限制，不识别：/x、函数关键字、func、换码序列以及当fs是一个空格时，将新行作为一个域分隔符；操作符**和**=不能代替^和^=；fflush无效。</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">21</span></pre></td><td class="code"><pre><span class="line">-W re-interval or --re-inerval</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">22</span></pre></td><td class="code"><pre><span class="line">允许间隔正则表达式的使用，参考(grep中的Posix字符类)，如括号表达式[[:alpha:]]。</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">23</span></pre></td><td class="code"><pre><span class="line">-W <span class="built_in">source</span> program-text or --<span class="built_in">source</span> program-text</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">24</span></pre></td><td class="code"><pre><span class="line">使用program-text作为源代码，可与-f命令混用。</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">25</span></pre></td><td class="code"><pre><span class="line">-W version or --version</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">26</span></pre></td><td class="code"><pre><span class="line">打印bug报告信息的版本。</span></pre></td></tr></table></figure>
+
+<h4 id="③、基本用法"><a href="#③、基本用法" class="headerlink" title="③、基本用法"></a>③、基本用法</h4><p>创建一个awk_name.txt文件</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="variable">$cat</span> awk_name.txt</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">My  name is zhaojiafu1</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">My  name is zhaojiafu2</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">My  name is zhaojiafu3</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">My  name is zhaojiafu4</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">My  name is zhaojiafu5</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">My  name is zhaojiafu6</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">My  name is zhaojiafu7</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">My  name is zhaojiafu8</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">My  name is zhaojiafu9</span></pre></td></tr></table></figure>
+
+<h5 id="1】、匹配第一列："><a href="#1】、匹配第一列：" class="headerlink" title="1】、匹配第一列："></a>1】、匹配第一列：</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="variable">$cat</span> awk_name.txt |awk <span class="string">'&#123;print $1&#125;'</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">My</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">My</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">My</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">My</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">My</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">My</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">My</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">My</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">My</span></pre></td></tr></table></figure>
+<h5 id="2】、匹配第1和4列："><a href="#2】、匹配第1和4列：" class="headerlink" title="2】、匹配第1和4列："></a>2】、匹配第1和4列：</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="variable">$cat</span> awk_name.txt |awk <span class="string">'&#123;print $1,$4&#125;'</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">My zhaojiafu1</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">My zhaojiafu2</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">My zhaojiafu3</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">My zhaojiafu4</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">My zhaojiafu5</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">My zhaojiafu6</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">My zhaojiafu7</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">My zhaojiafu8</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">My zhaojiafu9</span></pre></td></tr></table></figure>
+
+<h5 id="3】、匹配最后一列："><a href="#3】、匹配最后一列：" class="headerlink" title="3】、匹配最后一列："></a>3】、匹配最后一列：</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="variable">$cat</span> awk_name.txt |awk <span class="string">'&#123;print $NF&#125;'</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">zhaojiafu1</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">zhaojiafu2</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">zhaojiafu3</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">zhaojiafu4</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">zhaojiafu5</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">zhaojiafu6</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">zhaojiafu7</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">zhaojiafu8</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">zhaojiafu9</span></pre></td></tr></table></figure>
+
+<h5 id="4】、匹配到-etc-passwd下面的用户名"><a href="#4】、匹配到-etc-passwd下面的用户名" class="headerlink" title="4】、匹配到/etc/passwd下面的用户名"></a>4】、匹配到<code>/etc/passwd</code>下面的用户名</h5><p><strong><em>方法一</em></strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="variable">$cat</span> /etc/passwd |sed <span class="string">"s/:/ /g"</span>|awk <span class="string">'&#123;print $1&#125;'</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">root</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">bin</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">daemon</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">adm</span></pre></td></tr></table></figure>
+<p><strong><em>方法二</em></strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="variable">$cat</span> /etc/passwd |awk -F: <span class="string">'&#123;print $1&#125;'</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">root</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">bin</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">daemon</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">adm</span></pre></td></tr></table></figure>
+<p>其中<code>-F:</code>是以<code>：</code>为切割，默认是空格，也可以以<code>#</code>或者其他字符为分割，<code>-F#</code>。</p>
+<h5 id="5】、获取本机ip的方法："><a href="#5】、获取本机ip的方法：" class="headerlink" title="5】、获取本机ip的方法："></a>5】、获取本机ip的方法：</h5><p><strong><em>方法一：</em></strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="variable">$ifconfig</span> eth0|grep -E <span class="string">'[1-9][0-9]&#123;0,2&#125;(\.[0-9]&#123;1,3&#125;)&#123;3&#125;'</span>|sed <span class="string">'s/ /\n/g'</span>|grep -E <span class="string">'[1-9][0-9]&#123;0,2&#125;(\.[0-9]&#123;1,3&#125;)&#123;3&#125;'</span>|head -n 1</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">58.219.63.68</span></pre></td></tr></table></figure>
+
+<p>其中：</p>
+<ol>
+<li><code>ifconfig eth0</code>是为了获取含有ip的一组数据</li>
+<li><code>grep -E &#39;[1-9][0-9]{0,2}(\.[0-9]{1,3}){3}&#39;</code>是为了获取含有ip地址的一行数据</li>
+<li><code>sed &#39;s/ /\n/g&#39;</code>是为了将空格全部替换成换行</li>
+<li><code>grep -E &#39;[1-9][0-9]{0,2}(\.[0-9]{1,3}){3}&#39;</code>是为了提取含有所以ip的行</li>
+<li><code>head -n 1</code>是为了去第一行（因为第一行才是本机ip地址）</li>
+</ol>
+<p><strong><em>方法二：</em></strong></p>
+<p>我的这个是因为，没有视频中的<code>addr：</code>，有的话自己在进行一个<code>awk -F:&#39;{print $2}&#39;</code>提取即可。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="variable">$ifconfig</span> eth0|grep -E <span class="string">'[1-9][0-9]&#123;0,2&#125;(\.[0-9]&#123;1,3&#125;)&#123;3&#125;'</span>|awk <span class="string">'&#123;print $2&#125;'</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">58.219.63.68</span></pre></td></tr></table></figure>
+
+<h5 id="6】、打印出服务器的使用率的数值："><a href="#6】、打印出服务器的使用率的数值：" class="headerlink" title="6】、打印出服务器的使用率的数值："></a>6】、打印出服务器的使用率的数值：</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="variable">$df</span> -h|grep <span class="string">'\/$'</span>|awk <span class="string">'&#123;print $5&#125;'</span>|sed <span class="string">"s/%//g"</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">75</span></pre></td></tr></table></figure>
+
+<h5 id="7】、在提取的数值起前面加入一段字符串："><a href="#7】、在提取的数值起前面加入一段字符串：" class="headerlink" title="7】、在提取的数值起前面加入一段字符串："></a>7】、在提取的数值起前面加入一段字符串：</h5><p><strong><em>方法一：sed</em></strong><br>接着上面的数值：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="variable">$df</span> -h|grep <span class="string">'\/$'</span>|awk <span class="string">'&#123;print $5&#125;'</span>|sed <span class="string">"s/%//g"</span>|sed <span class="string">"s/^/&amp;使用率：/g"</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">使用率：75</span></pre></td></tr></table></figure>
+<p><strong><em>方法二：awk</em></strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="variable">$df</span> -h|grep <span class="string">'\/$'</span>|awk <span class="string">'&#123;print $5&#125;'</span>|sed <span class="string">"s/%//g"</span>|awk <span class="string">'&#123;print "使用率："$NF&#125;'</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">使用率：75</span></pre></td></tr></table></figure>
+
+<h3 id="4、find"><a href="#4、find" class="headerlink" title="4、find:"></a>4、find:</h3><p>之前的博客笔记：<a href="https://blog.csdn.net/weixin_42081389/article/details/101679760#find_655" target="_blank" rel="noopener">地址</a></p>
+<h4 id="实例1、查找指定目录下的-sh文件："><a href="#实例1、查找指定目录下的-sh文件：" class="headerlink" title="实例1、查找指定目录下的.sh文件："></a>实例1、查找指定目录下的.sh文件：</h4><p>查找：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="variable">$find</span> ../day03/ -name <span class="string">"*.sh"</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">../day03/read_line.sh</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">../day03/auto_scp.sh</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">../day03/for_str.sh</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">../day03/for_str2.sh</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">../day03/demo/auto_lamp.sh</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">../day03/demo/for2.sh</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">../day03/demo/backup_mysql.sh</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">../day03/demo/for1.sh</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">../day03/demo/backup_time.sh</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">../day03/while2.sh</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">../day03/while.sh</span></pre></td></tr></table></figure>
+
+<h4 id="实例2、使用exec进行复制："><a href="#实例2、使用exec进行复制：" class="headerlink" title="实例2、使用exec进行复制："></a>实例2、使用exec进行复制：</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="variable">$find</span> ../day04/ -name <span class="string">"num.sh"</span> -<span class="built_in">exec</span> cp &#123;&#125; . \;</span></pre></td></tr></table></figure>
+<p>其中：</p>
+<ol>
+<li><code>{}</code>代表前面的返回值，填充到这里，和python字符串填充有点像。</li>
+<li>后面跟的<code>\;</code>是固定搭配，记得前面要和其他字符有空格。<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="variable">$ls</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">awk_name.txt  name.txt  num.sh  num_sort.txt  sort2.txt  sort.txt</span></pre></td></tr></table></figure>
+
+
+</li>
+</ol>
+<h4 id="实例3、删除当前的num-sh文件："><a href="#实例3、删除当前的num-sh文件：" class="headerlink" title="实例3、删除当前的num.sh文件："></a>实例3、删除当前的num.sh文件：</h4><p>1.查找：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="variable">$find</span> . -name <span class="string">"num.sh"</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">./num.sh</span></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="variable">$find</span> . -name <span class="string">"num.sh"</span> -<span class="built_in">exec</span> rm -rf &#123;&#125; \;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="variable">$ls</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">awk_name.txt  name.txt  num_sort.txt  sort2.txt  sort.txt</span></pre></td></tr></table></figure>
+<p>可以看出已经删除成功。<br>如果最后的<code>\;</code>和前面的命令没有空格会报错。</p>
+<p><strong><em>报错内容示例：</em></strong></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/imgs/20191126174709339.png" alt="在这里插入图片描述" title="">
+                </div>
+                <div class="image-caption">在这里插入图片描述</div>
+            </figure>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2019-12-02T06:45:48.877Z" itemprop="dateUpdated">2019-12-02 14:45:48</time>
+</span><br>
+
+
+        
+        这里可以写作者留言，标签和 hexo 中所有变量及辅助函数等均可调用，示例：<a href="/2019/11/26/5d94c3e8239793dff0d4f1b41eb5f4d2/" target="_blank" rel="external">https://zhaojiafu.github.io/2019/11/26/5d94c3e8239793dff0d4f1b41eb5f4d2/</a>
+        
+    </div>
+    
+    <footer>
+        <a href="https://zhaojiafu.github.io">
+            <img src="/img/zhao.jpg" alt="赵家富">
+            赵家富
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" target="_blank" rel="noopener" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python%E6%A8%A1%E5%9D%97/" rel="tag">python模块</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://zhaojiafu.github.io/2019/11/26/5d94c3e8239793dff0d4f1b41eb5f4d2/&title=《shell编程学习笔记之一--学习第五天》 — 赵家富的博客&pic=https://zhaojiafu.github.io/img/zhao.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" target="_blank" rel="noopener" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://zhaojiafu.github.io/2019/11/26/5d94c3e8239793dff0d4f1b41eb5f4d2/&title=《shell编程学习笔记之一--学习第五天》 — 赵家富的博客&source=感觉无从下手的时候，问自己“不难，要你干啥？”" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://zhaojiafu.github.io/2019/11/26/5d94c3e8239793dff0d4f1b41eb5f4d2/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《shell编程学习笔记之一--学习第五天》 — 赵家富的博客&url=https://zhaojiafu.github.io/2019/11/26/5d94c3e8239793dff0d4f1b41eb5f4d2/&via=https://zhaojiafu.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://zhaojiafu.github.io/2019/11/26/5d94c3e8239793dff0d4f1b41eb5f4d2/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" target="_blank" rel="noopener" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2019/11/28/3017c7294e954991d52861912dc78cd7/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">整理最全的 python 之markdown与HTML的互转的几个模块</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2019/11/25/1d2e4fbdb758ad62f4c00285affeb2e3/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">shell编程学习笔记之一--学习第四天</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<section class="comments" id="comments">
+    <div id="gitalk-container"></div>
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+        var id = location.pathname
+        if (location.pathname.length > 50) {
+          id = location.pathname.replace(/\/\d+\/\d+\/\d+\//, '').replace('/', '').substring(0, 50)
+        }
+        const gitalk = new Gitalk({
+          clientID: '388d0a78cda30f118f86',
+          clientSecret: '2c64b34cc20f23d768dffff64acb8c2ee02c3bee',
+          repo: 'https://zhaojiafu.github.io/',
+          owner: 'zjf',
+          admin: ['zjf'],
+          id: id,      // Ensure uniqueness and length less than 50
+          title: document.title.split('|')[0],
+          distractionFreeMode: false  // Facebook-like distraction free mode
+        })
+
+        gitalk.render('gitalk-container')
+    </script>
+</section>
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;" target="_blank" rel="noopener"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢大爷~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.jpg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.jpg" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+            <span>博客内容遵循 <a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+        <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=0 height=0 src="http://music.163.com/song/media/outer/url?id=1369798757&auto=1"></iframe>
+
+    </div>
+    <div class="bottom">
+        <p><span>赵家富 &copy; 2019</span>
+            <span>
+                
+
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" target="_blank" rel="noopener" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://zhaojiafu.github.io/2019/11/26/5d94c3e8239793dff0d4f1b41eb5f4d2/&title=《shell编程学习笔记之一--学习第五天》 — 赵家富的博客&pic=https://zhaojiafu.github.io/img/zhao.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" target="_blank" rel="noopener" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://zhaojiafu.github.io/2019/11/26/5d94c3e8239793dff0d4f1b41eb5f4d2/&title=《shell编程学习笔记之一--学习第五天》 — 赵家富的博客&source=感觉无从下手的时候，问自己“不难，要你干啥？”" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://zhaojiafu.github.io/2019/11/26/5d94c3e8239793dff0d4f1b41eb5f4d2/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《shell编程学习笔记之一--学习第五天》 — 赵家富的博客&url=https://zhaojiafu.github.io/2019/11/26/5d94c3e8239793dff0d4f1b41eb5f4d2/&via=https://zhaojiafu.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://zhaojiafu.github.io/2019/11/26/5d94c3e8239793dff0d4f1b41eb5f4d2/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;" target="_blank" rel="noopener"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACr0lEQVR42u3aMXIjMQwEQP//077UV7LkGYC0FfRGqq0tEs2AhAB+fMTP55fn65vH34/fJ8/rWR7fH37w8PDwFqEnE+eT5Yvyesw8nm9GwMPDw7vGezZoEsrn6GkDfX0UPX2Ph4eH95a8ZCtPxpwdMHh4eHjvz0sCaher/RIPDw/vHXhJ4rtfjlOhX6m14OHh4cW8U9v6b/6+0t/Dw8PDW3fVkw03Ke/mC3e4TIyHh4d3gdcGMWtfrRr/ceH46Zd4eHh4F3h5u2tzLaAtOrxuodUj4+Hh4R3lvca07fykVdYm4vllrKiOgoeHh7fg5aHMUt5Za6o9DIoyBB4eHt41XjLBpjWVHwarzh4eHh7eBV6bZG9aVpvCRzvL8D8EHh4eXsBrt/tT7FmLq07r8fDw8H6RlxRnN9cOZpcP6gQdDw8P7xovD7dt2+dLsz9Ufrg0gIeHh3eUt9+UkwWazbU6SPDw8PAu8PJCQEvNi7BtoaG+IoaHh4d3lJdfusqnbNtas+0+uvSAh4eHd5m3v/aUM/Lv29j+GwcPDw/vGm+2BefJdBLQplX29KDCw8PDu8ZrSw/5ht5emcoLGVG0eHh4eBd4SSEgv4w1Q7bl3aSQgYeHh3eb1x4G+/ZVHtDqSMDDw8O7xmuLEWc3/TxZbxtpeHh4eH/F25QYNgtx7HjAw8PDu8abJdmboNv22HAuPDw8vGu8WbO/rnbMyq/l0vyQUuPh4eEteJvWVxt6u923ja5vxsfDw8O7wNts4nkrKynF5gn6LAXHw8PDO8trD4PkAkHeuJpd8yrSejw8PLxrvLy0mhRST2GO1Vrw8PDw3oA3W4iWsWm/4eHh4b0bLymk5m/2qfnHZoXw8PDwRrw8FT7V7toEXR8MeHh4eEd57R/+tji7gbVl5eGDh4eHl/L+AYraSt8m8sJFAAAAAElFTkSuQmCC" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '死鬼去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+<script src="/node_modules/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"node_modules/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/node_modules/assets/shizuku.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"react":{"opacity":0.7},"log":false});</script></body>
+</html>

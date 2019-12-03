@@ -162,14 +162,14 @@
     <ul class="post-list">
     
         <li class="post-list-item fade">
-            <article id="post-e5b8e142063a8c402dcf6c09ad1a5e98"
+            <article id="post-4e4ecb6ed5d63865ab06b4fae834bb1d"
   class="article-card article-type-post" itemprop="blogPost">
 
     <div class="post-meta">
         <time class="post-time" title="2019-12-02 11:34:32" datetime="2019-12-02T03:34:32.000Z"  itemprop="datePublished">2019-12-02</time>
 
         
-	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/bat/">bat</a></li></ul>
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/%E6%8F%90%E9%AB%98%E6%95%88%E7%8E%87%E5%B0%8F%E5%B7%A5%E5%85%B7/">提高效率小工具</a></li></ul>
 
 
 
@@ -180,7 +180,7 @@
 
   
     <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2019/12/02/e5b8e142063a8c402dcf6c09ad1a5e98/">bat脚本对文件目录的复制和移动</a>
+      <a class="post-title-link" href="/2019/12/02/4e4ecb6ed5d63865ab06b4fae834bb1d/">用python os模块完成查询一个目录下当前的文件总数，和文件个数，俩者之差为文件夹个数</a>
     </h3>
   
 
@@ -190,18 +190,325 @@
     <div class="post-content" id="post-content" itemprop="postContent">
 
     
-        ﻿# 一、复制：
-FOR /F %%I IN (&apos;DIR /B /S &quot;E:\save_photo_from_video\*.*&quot;&apos;) DO (COPY %%I  &quot;E:\004-dangdang&quot;)其中，E:\save_photo_from_video是需要复制的文件夹，下面的多级文件都会被复制到指定目录E:\004-dangda...
+        ﻿首先这个只能用递归的方式进行统计和计算，计算的数为全局变量
+import os
+
+
+def get_file_num(path):
+    global num_total, file_num
+    # path = r&quot;E:\004_kongfuz_selenium70_120W&quot;
+    os.chdir(path)
+    ret = os.listdir()
+...
     
 
-        <a href="/2019/12/02/e5b8e142063a8c402dcf6c09ad1a5e98/" class="post-more waves-effect waves-button">
+        <a href="/2019/12/02/4e4ecb6ed5d63865ab06b4fae834bb1d/" class="post-more waves-effect waves-button">
             阅读全文…
         </a>
     </div>
     
     <div class="post-footer">
         
-	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/bat/" rel="tag">bat</a></li></ul>
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%8F%90%E9%AB%98%E6%95%88%E7%8E%87%E5%B0%8F%E5%B7%A5%E5%85%B7/" rel="tag">提高效率小工具</a></li></ul>
+
+    </div>
+    
+</article>
+
+        </li>
+    
+        <li class="post-list-item fade">
+            <article id="post-b4f0a6fa884af3cc71178037adb6fed6"
+  class="article-card article-type-post" itemprop="blogPost">
+
+    <div class="post-meta">
+        <time class="post-time" title="2019-12-02 11:34:32" datetime="2019-12-02T03:34:32.000Z"  itemprop="datePublished">2019-12-02</time>
+
+        
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/%E5%85%B6%E4%BB%96/">其他</a></li></ul>
+
+
+
+    </div>
+
+    
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/2019/12/02/b4f0a6fa884af3cc71178037adb6fed6/">使用python base64模块实现 base64与图片的转换</a>
+    </h3>
+  
+
+
+
+
+    <div class="post-content" id="post-content" itemprop="postContent">
+
+    
+        需求：有时候，图片需要储存到数据库时，可以进行base64，进行先转换再进行保存到数据库，然后取出来时在使用base64，解码转换：
+base64与图片互转直接上代码，需要的可以参考。
+import base64
+
+
+# 图片转base64
+def from_photo_to_base64(path):
+    with open(path, &quot;rb&quot;) as file_...
+    
+
+        <a href="/2019/12/02/b4f0a6fa884af3cc71178037adb6fed6/" class="post-more waves-effect waves-button">
+            阅读全文…
+        </a>
+    </div>
+    
+    <div class="post-footer">
+        
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/base64%E4%B8%8E%E5%9B%BE%E7%89%87%E7%9A%84%E8%BD%AC%E6%8D%A2/" rel="tag">base64与图片的转换</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%85%B6%E4%BB%96/" rel="tag">其他</a></li></ul>
+
+    </div>
+    
+</article>
+
+        </li>
+    
+        <li class="post-list-item fade">
+            <article id="post-dca4df860e060adc999558a81856a431"
+  class="article-card article-type-post" itemprop="blogPost">
+
+    <div class="post-meta">
+        <time class="post-time" title="2019-12-02 11:34:32" datetime="2019-12-02T03:34:32.000Z"  itemprop="datePublished">2019-12-02</time>
+
+        
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/python/">python</a></li></ul>
+
+
+
+    </div>
+
+    
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/2019/12/02/dca4df860e060adc999558a81856a431/">Python拼接字符串的7种方法</a>
+    </h3>
+  
+
+
+
+
+    <div class="post-content" id="post-content" itemprop="postContent">
+
+    
+        ﻿@[toc]
+说明：今天突然看到一种好像是字符串的拼接方法substitute，但是不确定，于是就百度搜索了一下，然后搜到一个博客，写的不错，虽然他写的7中方法，除了这个substitute和第5种我不知道，其他的5种都知道，也都用过，今天也是学习俩种方法，Thanks♪(･ω･)ﾉ
+1、直接通过+操作：s = &apos;Python&apos;+&apos;，&apos;+&apos;...
+    
+
+        <a href="/2019/12/02/dca4df860e060adc999558a81856a431/" class="post-more waves-effect waves-button">
+            阅读全文…
+        </a>
+    </div>
+    
+    <div class="post-footer">
+        
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python/" rel="tag">python</a></li></ul>
+
+    </div>
+    
+</article>
+
+        </li>
+    
+        <li class="post-list-item fade">
+            <article id="post-acbe5bb1443aaafc1acd73cf97c0dbc3"
+  class="article-card article-type-post" itemprop="blogPost">
+
+    <div class="post-meta">
+        <time class="post-time" title="2019-12-02 11:34:32" datetime="2019-12-02T03:34:32.000Z"  itemprop="datePublished">2019-12-02</time>
+
+        
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/selenium/">selenium</a></li></ul>
+
+
+
+    </div>
+
+    
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/2019/12/02/acbe5bb1443aaafc1acd73cf97c0dbc3/">python 使用selenium 批量获取url的cookies</a>
+    </h3>
+  
+
+
+
+
+    <div class="post-content" id="post-content" itemprop="postContent">
+
+    
+        需求：有时候有些网站的反爬对cookies有限制，比如亚马逊会结合cookies+ip+user-agent,进行反爬，然后这时候需要找代理ip,然后每次随机一个代理ip,user_agent也要每次随机一个，代理ip高匿性和user-agent，我之前写过，不会的可以参考下面，这次博客主要写我使用selenium批量搜集cookies的方法；
+这个是我之前写的user-agent博客，里面...
+    
+
+        <a href="/2019/12/02/acbe5bb1443aaafc1acd73cf97c0dbc3/" class="post-more waves-effect waves-button">
+            阅读全文…
+        </a>
+    </div>
+    
+    <div class="post-footer">
+        
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/selenium/" rel="tag">selenium</a></li></ul>
+
+    </div>
+    
+</article>
+
+        </li>
+    
+        <li class="post-list-item fade">
+            <article id="post-5337277cfc36984fcaa62344ecf3e10b"
+  class="article-card article-type-post" itemprop="blogPost">
+
+    <div class="post-meta">
+        <time class="post-time" title="2019-12-02 11:34:32" datetime="2019-12-02T03:34:32.000Z"  itemprop="datePublished">2019-12-02</time>
+
+        
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/JavaScript/">JavaScript</a></li></ul>
+
+
+
+    </div>
+
+    
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/2019/12/02/5337277cfc36984fcaa62344ecf3e10b/">JavaScript 实现的几种加密方式（后续持续更新中。。。）</a>
+    </h3>
+  
+
+
+
+
+    <div class="post-content" id="post-content" itemprop="postContent">
+
+    
+        ﻿@[toc]
+说明：这个是我js破解时遇到的，然后把代码抠出来了，现在整理一下，日后遇到其他加密，也会更新保留在博客里面。如果有需要可以参考，如果有转载，请标明作者和链接，违者必究。如果觉得不错，可以给我点个赞，如果有更好的加密方法，欢迎评论分享哈，Thanks♪(･ω･)ﾉ
+1、JavaScript实现md5加密这个我直接上代码吧，可以运行出来，我这个是之前弄的，具体网站忘了，需要的可以...
+    
+
+        <a href="/2019/12/02/5337277cfc36984fcaa62344ecf3e10b/" class="post-more waves-effect waves-button">
+            阅读全文…
+        </a>
+    </div>
+    
+    <div class="post-footer">
+        
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/" rel="tag">JavaScript</a></li></ul>
+
+    </div>
+    
+</article>
+
+        </li>
+    
+        <li class="post-list-item fade">
+            <article id="post-ac4709166c2060ebb9cdcea4fd534e50"
+  class="article-card article-type-post" itemprop="blogPost">
+
+    <div class="post-meta">
+        <time class="post-time" title="2019-12-02 11:34:32" datetime="2019-12-02T03:34:32.000Z"  itemprop="datePublished">2019-12-02</time>
+
+        
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/scrapy/">scrapy</a></li></ul>
+
+
+
+    </div>
+
+    
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/2019/12/02/ac4709166c2060ebb9cdcea4fd534e50/">Python爬虫之windows10安装scrapy</a>
+    </h3>
+  
+
+
+
+
+    <div class="post-content" id="post-content" itemprop="postContent">
+
+    
+        ﻿@[toc]
+Python爬虫之windows10安装scrapy一、scrapy的配置第一次写博客，既可以分享学习，也可以记录下自己学习时遇到的问题，如果日后再需要也方便自己使用，当做补充，上网搜了好多类似的分享，总算可以弄成功了。有点小紧张，嘻嘻，加油，希望对我们学习都用帮助！（我的是win10 64位，如果不是可以搜索相关的设置，我没有尝试，我在已经装好Python3.5版本下，如果...
+    
+
+        <a href="/2019/12/02/ac4709166c2060ebb9cdcea4fd534e50/" class="post-more waves-effect waves-button">
+            阅读全文…
+        </a>
+    </div>
+    
+    <div class="post-footer">
+        
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/scrapy/" rel="tag">scrapy</a></li></ul>
+
+    </div>
+    
+</article>
+
+        </li>
+    
+        <li class="post-list-item fade">
+            <article id="post-509550cc8aca4ee13dbacb4ccb58828f"
+  class="article-card article-type-post" itemprop="blogPost">
+
+    <div class="post-meta">
+        <time class="post-time" title="2019-12-02 11:34:32" datetime="2019-12-02T03:34:32.000Z"  itemprop="datePublished">2019-12-02</time>
+
+        
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/%E6%AD%A3%E5%88%99re/">正则re</a></li></ul>
+
+
+
+    </div>
+
+    
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/2019/12/02/509550cc8aca4ee13dbacb4ccb58828f/">正则表达式-匹配中英文、字母和数字</a>
+    </h3>
+  
+
+
+
+
+    <div class="post-content" id="post-content" itemprop="postContent">
+
+    
+        ﻿最近需要用到正则匹配，上网找了一下，发现这个博客写的不错，想着保留了下载，日后用时就省事了。转载来自：https://blog.csdn.net/jinruoyanxu/article/details/79385815
+在做项目的过程中，使用正则表达式来匹配一段文本中的特定种类字符，是比较常用的一种方式，下面是对常用的正则匹配做了一个归纳整理。
+
+匹配中文:[\u4e00-\u9fa5]
+...
+    
+
+        <a href="/2019/12/02/509550cc8aca4ee13dbacb4ccb58828f/" class="post-more waves-effect waves-button">
+            阅读全文…
+        </a>
+    </div>
+    
+    <div class="post-footer">
+        
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%AD%A3%E5%88%99re/" rel="tag">正则re</a></li></ul>
 
     </div>
     
@@ -308,7 +615,7 @@ Scrapy爬虫一个页面也爬取不到报错：[scrapy.extensions.logstats] INF
         </li>
     
         <li class="post-list-item fade">
-            <article id="post-d8dfc9cc8b0602641bc652716e23346f"
+            <article id="post-615ebf68260a8b564bb0fd673ab7aea6"
   class="article-card article-type-post" itemprop="blogPost">
 
     <div class="post-meta">
@@ -326,7 +633,7 @@ Scrapy爬虫一个页面也爬取不到报错：[scrapy.extensions.logstats] INF
 
   
     <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2019/12/02/d8dfc9cc8b0602641bc652716e23346f/">python 对列表排序之高级模块natsort</a>
+      <a class="post-title-link" href="/2019/12/02/615ebf68260a8b564bb0fd673ab7aea6/">python的copy模块之deepcopy（深拷贝）和copy（也称之为shallow copy浅拷贝）</a>
     </h3>
   
 
@@ -336,328 +643,22 @@ Scrapy爬虫一个页面也爬取不到报错：[scrapy.extensions.logstats] INF
     <div class="post-content" id="post-content" itemprop="postContent">
 
     
-        说明工作中有时候总会遇到一些功能，比如排序，要么就自己写一个排序函数，这时候如果这个模块就可以使用了，可以大大的提高你的效率，节省你的时间。比如需要合并视频时，或者对文件夹下面的文件进行操作需要进行排序时。。。等
-这个模块对英文和数字都有很好的效果。
-一、安装pip install natsortnatsort模块官网地址：https://pypi.org/project/natsort/
-...
+        说明：今天看到一个小题，然后就好奇的做了一下。
+
+问题： 有四个数字：1、2、3、4，能组成多少个互不相同且无重复数字的三位数？各是多少？
+
+问题解决：代码：
+我这里使用的是copy，但是发现使用copy和deepcopy，num_list2 的改变，num_list1都不会改变，结果都是一样的。所以我就好奇，为什么会这样？我记得好像浅copy下，num_list1浅会随着num_list2...
     
 
-        <a href="/2019/12/02/d8dfc9cc8b0602641bc652716e23346f/" class="post-more waves-effect waves-button">
+        <a href="/2019/12/02/615ebf68260a8b564bb0fd673ab7aea6/" class="post-more waves-effect waves-button">
             阅读全文…
         </a>
     </div>
     
     <div class="post-footer">
         
-	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python%E6%A8%A1%E5%9D%97/" rel="tag">python模块</a></li></ul>
-
-    </div>
-    
-</article>
-
-        </li>
-    
-        <li class="post-list-item fade">
-            <article id="post-4e4ecb6ed5d63865ab06b4fae834bb1d"
-  class="article-card article-type-post" itemprop="blogPost">
-
-    <div class="post-meta">
-        <time class="post-time" title="2019-12-02 11:34:32" datetime="2019-12-02T03:34:32.000Z"  itemprop="datePublished">2019-12-02</time>
-
-        
-	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/%E6%8F%90%E9%AB%98%E6%95%88%E7%8E%87%E5%B0%8F%E5%B7%A5%E5%85%B7/">提高效率小工具</a></li></ul>
-
-
-
-    </div>
-
-    
-
-
-  
-    <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2019/12/02/4e4ecb6ed5d63865ab06b4fae834bb1d/">用python os模块完成查询一个目录下当前的文件总数，和文件个数，俩者之差为文件夹个数</a>
-    </h3>
-  
-
-
-
-
-    <div class="post-content" id="post-content" itemprop="postContent">
-
-    
-        ﻿首先这个只能用递归的方式进行统计和计算，计算的数为全局变量
-import os
-
-
-def get_file_num(path):
-    global num_total, file_num
-    # path = r&quot;E:\004_kongfuz_selenium70_120W&quot;
-    os.chdir(path)
-    ret = os.listdir()
-...
-    
-
-        <a href="/2019/12/02/4e4ecb6ed5d63865ab06b4fae834bb1d/" class="post-more waves-effect waves-button">
-            阅读全文…
-        </a>
-    </div>
-    
-    <div class="post-footer">
-        
-	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%8F%90%E9%AB%98%E6%95%88%E7%8E%87%E5%B0%8F%E5%B7%A5%E5%85%B7/" rel="tag">提高效率小工具</a></li></ul>
-
-    </div>
-    
-</article>
-
-        </li>
-    
-        <li class="post-list-item fade">
-            <article id="post-5337277cfc36984fcaa62344ecf3e10b"
-  class="article-card article-type-post" itemprop="blogPost">
-
-    <div class="post-meta">
-        <time class="post-time" title="2019-12-02 11:34:32" datetime="2019-12-02T03:34:32.000Z"  itemprop="datePublished">2019-12-02</time>
-
-        
-	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/JavaScript/">JavaScript</a></li></ul>
-
-
-
-    </div>
-
-    
-
-
-  
-    <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2019/12/02/5337277cfc36984fcaa62344ecf3e10b/">JavaScript 实现的几种加密方式（后续持续更新中。。。）</a>
-    </h3>
-  
-
-
-
-
-    <div class="post-content" id="post-content" itemprop="postContent">
-
-    
-        ﻿@[toc]
-说明：这个是我js破解时遇到的，然后把代码抠出来了，现在整理一下，日后遇到其他加密，也会更新保留在博客里面。如果有需要可以参考，如果有转载，请标明作者和链接，违者必究。如果觉得不错，可以给我点个赞，如果有更好的加密方法，欢迎评论分享哈，Thanks♪(･ω･)ﾉ
-1、JavaScript实现md5加密这个我直接上代码吧，可以运行出来，我这个是之前弄的，具体网站忘了，需要的可以...
-    
-
-        <a href="/2019/12/02/5337277cfc36984fcaa62344ecf3e10b/" class="post-more waves-effect waves-button">
-            阅读全文…
-        </a>
-    </div>
-    
-    <div class="post-footer">
-        
-	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/" rel="tag">JavaScript</a></li></ul>
-
-    </div>
-    
-</article>
-
-        </li>
-    
-        <li class="post-list-item fade">
-            <article id="post-341a3f2bb65f6520121e55017d1cf338"
-  class="article-card article-type-post" itemprop="blogPost">
-
-    <div class="post-meta">
-        <time class="post-time" title="2019-12-02 11:34:32" datetime="2019-12-02T03:34:32.000Z"  itemprop="datePublished">2019-12-02</time>
-
-        
-	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/python/">python</a></li></ul>
-
-
-
-    </div>
-
-    
-
-
-  
-    <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2019/12/02/341a3f2bb65f6520121e55017d1cf338/">HTML对于一些特殊转义字符&amp;#x的去脏处理。</a>
-    </h3>
-  
-
-
-
-
-    <div class="post-content" id="post-content" itemprop="postContent">
-
-    
-        ﻿
-问题：爬取一些网站的时候，有时候我们会遇到一些比较特殊的字符，比如我这次遇到了很多&amp;#x0A;，折些可有直接进行替换为空，但是有时候会有影响，查找他的准备定义，原来就是换成符，可以直接替换为python的\n,这样就不会会好很多了。
-一些&amp;#开头的特殊符号：找到的一些特殊转义字符，记下来方便后续需要使用。
-1空格 (&amp;#x20;)2Tab (&amp;#x09;)...
-    
-
-        <a href="/2019/12/02/341a3f2bb65f6520121e55017d1cf338/" class="post-more waves-effect waves-button">
-            阅读全文…
-        </a>
-    </div>
-    
-    <div class="post-footer">
-        
-	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python/" rel="tag">python</a></li></ul>
-
-    </div>
-    
-</article>
-
-        </li>
-    
-        <li class="post-list-item fade">
-            <article id="post-dca4df860e060adc999558a81856a431"
-  class="article-card article-type-post" itemprop="blogPost">
-
-    <div class="post-meta">
-        <time class="post-time" title="2019-12-02 11:34:32" datetime="2019-12-02T03:34:32.000Z"  itemprop="datePublished">2019-12-02</time>
-
-        
-	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/python/">python</a></li></ul>
-
-
-
-    </div>
-
-    
-
-
-  
-    <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2019/12/02/dca4df860e060adc999558a81856a431/">Python拼接字符串的7种方法</a>
-    </h3>
-  
-
-
-
-
-    <div class="post-content" id="post-content" itemprop="postContent">
-
-    
-        ﻿@[toc]
-说明：今天突然看到一种好像是字符串的拼接方法substitute，但是不确定，于是就百度搜索了一下，然后搜到一个博客，写的不错，虽然他写的7中方法，除了这个substitute和第5种我不知道，其他的5种都知道，也都用过，今天也是学习俩种方法，Thanks♪(･ω･)ﾉ
-1、直接通过+操作：s = &apos;Python&apos;+&apos;，&apos;+&apos;...
-    
-
-        <a href="/2019/12/02/dca4df860e060adc999558a81856a431/" class="post-more waves-effect waves-button">
-            阅读全文…
-        </a>
-    </div>
-    
-    <div class="post-footer">
-        
-	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python/" rel="tag">python</a></li></ul>
-
-    </div>
-    
-</article>
-
-        </li>
-    
-        <li class="post-list-item fade">
-            <article id="post-d2e12be46ca671b5b6ec3669ab3b118e"
-  class="article-card article-type-post" itemprop="blogPost">
-
-    <div class="post-meta">
-        <time class="post-time" title="2019-12-02 11:34:32" datetime="2019-12-02T03:34:32.000Z"  itemprop="datePublished">2019-12-02</time>
-
-        
-	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/scrapy/">scrapy</a></li></ul>
-
-
-
-    </div>
-
-    
-
-
-  
-    <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2019/12/02/d2e12be46ca671b5b6ec3669ab3b118e/">Windows下安装和使用scrapy-redis</a>
-    </h3>
-  
-
-
-
-
-    <div class="post-content" id="post-content" itemprop="postContent">
-
-    
-        1、Windows下安装Redis服务下载Windows的安装包地址：https://github.com/microsoftarchive/redis/releases/download/win-3.0.504/Redis-x64-3.0.504.msi
-redis可视化工具软件包：https://github.com/uglide/RedisDesktopManager/releases...
-    
-
-        <a href="/2019/12/02/d2e12be46ca671b5b6ec3669ab3b118e/" class="post-more waves-effect waves-button">
-            阅读全文…
-        </a>
-    </div>
-    
-    <div class="post-footer">
-        
-	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/scrapy/" rel="tag">scrapy</a></li></ul>
-
-    </div>
-    
-</article>
-
-        </li>
-    
-        <li class="post-list-item fade">
-            <article id="post-5de1dc66d6edf42256fd25988094ee2a"
-  class="article-card article-type-post" itemprop="blogPost">
-
-    <div class="post-meta">
-        <time class="post-time" title="2019-12-02 11:34:32" datetime="2019-12-02T03:34:32.000Z"  itemprop="datePublished">2019-12-02</time>
-
-        
-	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/python%E6%A8%A1%E5%9D%97/">python模块</a></li></ul>
-
-
-
-    </div>
-
-    
-
-
-  
-    <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2019/12/02/5de1dc66d6edf42256fd25988094ee2a/">使用python os模块复制文件到指定文件夹</a>
-    </h3>
-  
-
-
-
-
-    <div class="post-content" id="post-content" itemprop="postContent">
-
-    
-        ﻿# 复制一个文件夹的文件到指定目录下
-import os
-import shutil
-import time
-
-start_time = time.time()
-# 需要被复制的文件夹
-
-old_path = r&apos;D:\zjf_workspace\001-地标、利器、服饰\004文本\json1&apos;
-new_path = r&apos;D:\zjf_workspace\0...
-    
-
-        <a href="/2019/12/02/5de1dc66d6edf42256fd25988094ee2a/" class="post-more waves-effect waves-button">
-            阅读全文…
-        </a>
-    </div>
-    
-    <div class="post-footer">
-        
-	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python%E6%A8%A1%E5%9D%97/" rel="tag">python模块</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%8F%90%E9%AB%98%E6%95%88%E7%8E%87%E5%B0%8F%E5%B7%A5%E5%85%B7/" rel="tag">提高效率小工具</a></li></ul>
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%B7%B1%E6%8B%B7%E8%B4%9D%E6%B5%85%E6%8B%B7%E8%B4%9D/" rel="tag">深拷贝浅拷贝</a></li></ul>
 
     </div>
     

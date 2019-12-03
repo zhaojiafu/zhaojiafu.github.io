@@ -162,14 +162,14 @@
     <ul class="post-list">
     
         <li class="post-list-item fade">
-            <article id="post-d03f5bb9d53a323cdf6f9b007811e1ae"
+            <article id="post-1d0ed69eb3fafcf862244f1bcb507f48"
   class="article-card article-type-post" itemprop="blogPost">
 
     <div class="post-meta">
         <time class="post-time" title="2019-12-02 11:34:32" datetime="2019-12-02T03:34:32.000Z"  itemprop="datePublished">2019-12-02</time>
 
         
-	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/pycharm/">pycharm</a></li></ul>
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/python%E7%88%AC%E8%99%AB/">python爬虫</a><ul class="article-category-list-child"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/python%E7%88%AC%E8%99%AB/%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3/">问题解决</a></li></ul></li></ul>
 
 
 
@@ -180,7 +180,7 @@
 
   
     <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2019/12/02/d03f5bb9d53a323cdf6f9b007811e1ae/">Pycharm 快捷键</a>
+      <a class="post-title-link" href="/2019/12/02/1d0ed69eb3fafcf862244f1bcb507f48/">python 爬虫之报错 requests.exceptions.TooManyRedirects_ Exceeded 30 redirects.</a>
     </h3>
   
 
@@ -190,18 +190,18 @@
     <div class="post-content" id="post-content" itemprop="postContent">
 
     
-        Pycharm 快捷键1、Python自带ShellALt + N 上一句命令Ctrl + N 新建一个py文件F5 运行当前的py文件Ctrl + C 强制亭子
-2、设置为Eclipse默认的快捷键 + Pycharm 4.0.5Ctrl + Shift + Q 全屏Ctrl + Shift + Alt + Q presentation modeShift + ESC 关闭除编辑区域的其他...
+        ﻿当爬虫时报错：requests.exceptions.TooManyRedirects: Exceeded 30 redirects.可以  request请求时添加allow_redirects=False，默认时allow_redirects=True，所以这样就可以解决我的问题了。  
+resp = requests.get(url=url, headers=headers,allo...
     
 
-        <a href="/2019/12/02/d03f5bb9d53a323cdf6f9b007811e1ae/" class="post-more waves-effect waves-button">
+        <a href="/2019/12/02/1d0ed69eb3fafcf862244f1bcb507f48/" class="post-more waves-effect waves-button">
             阅读全文…
         </a>
     </div>
     
     <div class="post-footer">
         
-	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/pycharm/" rel="tag">pycharm</a></li></ul>
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%88%AC%E8%99%AB/" rel="tag">爬虫</a></li></ul>
 
     </div>
     
@@ -210,14 +210,14 @@
         </li>
     
         <li class="post-list-item fade">
-            <article id="post-126732e4c4ac1a8c71c865f9576ebf8a"
+            <article id="post-ddd3d2831bc288b0e637654fc94c09a1"
   class="article-card article-type-post" itemprop="blogPost">
 
     <div class="post-meta">
         <time class="post-time" title="2019-12-02 11:34:32" datetime="2019-12-02T03:34:32.000Z"  itemprop="datePublished">2019-12-02</time>
 
         
-	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/%E6%8F%90%E9%AB%98%E6%95%88%E7%8E%87%E5%B0%8F%E5%B7%A5%E5%85%B7/">提高效率小工具</a></li></ul>
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/scrapy/">scrapy</a></li></ul>
 
 
 
@@ -228,7 +228,7 @@
 
   
     <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2019/12/02/126732e4c4ac1a8c71c865f9576ebf8a/">使用python的os模块对目录下的所以文件进行json数据去脏和去除空文件夹</a>
+      <a class="post-title-link" href="/2019/12/02/ddd3d2831bc288b0e637654fc94c09a1/">Scrapy爬虫错误</a>
     </h3>
   
 
@@ -238,24 +238,20 @@
     <div class="post-content" id="post-content" itemprop="postContent">
 
     
-        ﻿需求：最近有个需求，需求对目录下的一个json数据进行处理，主要对json里面的title如果为空字符串，将此文件进行删除，如果文件夹为空，也就行递归的查找和删除。
-直接上我的代码，需要自己拿去，O(∩_∩)O哈哈~
-import json
-import os
-
-def remove_none_dirs(path):
-    # 去重空文件夹
-    list = os.listdir(p...
+        ﻿
+Scrapy爬虫一个页面也爬取不到报错：[scrapy.extensions.logstats] INFO: Crawled 0 pages (at 0 pages/min), scraped 0 items (at 0 items/min)
+解决方法俩种：
+方法1，在settings.py中添加用户代理：USER_AGENT = &apos;Mozilla/5.0 (Macintosh...
     
 
-        <a href="/2019/12/02/126732e4c4ac1a8c71c865f9576ebf8a/" class="post-more waves-effect waves-button">
+        <a href="/2019/12/02/ddd3d2831bc288b0e637654fc94c09a1/" class="post-more waves-effect waves-button">
             阅读全文…
         </a>
     </div>
     
     <div class="post-footer">
         
-	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python%E6%A8%A1%E5%9D%97/" rel="tag">python模块</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%8F%90%E9%AB%98%E6%95%88%E7%8E%87%E5%B0%8F%E5%B7%A5%E5%85%B7/" rel="tag">提高效率小工具</a></li></ul>
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/scrapy/" rel="tag">scrapy</a></li></ul>
 
     </div>
     
@@ -305,6 +301,218 @@ pscp命令下载从http://www.chiark.greenend.org.uk/~sgtatham/putty/download.ht
     <div class="post-footer">
         
 	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/pscp%E5%91%BD%E4%BB%A4/" rel="tag">pscp命令</a></li></ul>
+
+    </div>
+    
+</article>
+
+        </li>
+    
+        <li class="post-list-item fade">
+            <article id="post-d03f5bb9d53a323cdf6f9b007811e1ae"
+  class="article-card article-type-post" itemprop="blogPost">
+
+    <div class="post-meta">
+        <time class="post-time" title="2019-12-02 11:34:32" datetime="2019-12-02T03:34:32.000Z"  itemprop="datePublished">2019-12-02</time>
+
+        
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/pycharm/">pycharm</a></li></ul>
+
+
+
+    </div>
+
+    
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/2019/12/02/d03f5bb9d53a323cdf6f9b007811e1ae/">Pycharm 快捷键</a>
+    </h3>
+  
+
+
+
+
+    <div class="post-content" id="post-content" itemprop="postContent">
+
+    
+        Pycharm 快捷键1、Python自带ShellALt + N 上一句命令Ctrl + N 新建一个py文件F5 运行当前的py文件Ctrl + C 强制亭子
+2、设置为Eclipse默认的快捷键 + Pycharm 4.0.5Ctrl + Shift + Q 全屏Ctrl + Shift + Alt + Q presentation modeShift + ESC 关闭除编辑区域的其他...
+    
+
+        <a href="/2019/12/02/d03f5bb9d53a323cdf6f9b007811e1ae/" class="post-more waves-effect waves-button">
+            阅读全文…
+        </a>
+    </div>
+    
+    <div class="post-footer">
+        
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/pycharm/" rel="tag">pycharm</a></li></ul>
+
+    </div>
+    
+</article>
+
+        </li>
+    
+        <li class="post-list-item fade">
+            <article id="post-1d87ccdd9c6c0002bbca36ab36953b55"
+  class="article-card article-type-post" itemprop="blogPost">
+
+    <div class="post-meta">
+        <time class="post-time" title="2019-12-02 11:34:32" datetime="2019-12-02T03:34:32.000Z"  itemprop="datePublished">2019-12-02</time>
+
+        
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/%E6%8F%90%E9%AB%98%E6%95%88%E7%8E%87%E5%B0%8F%E5%B7%A5%E5%85%B7/">提高效率小工具</a></li></ul>
+
+
+
+    </div>
+
+    
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/2019/12/02/1d87ccdd9c6c0002bbca36ab36953b55/">python 将webp的图片格式转换为jpg格式</a>
+    </h3>
+  
+
+
+
+
+    <div class="post-content" id="post-content" itemprop="postContent">
+
+    
+        需求：主要是因为今天爬取一个网站【漫画柜】，然后图片格式读取字节下载下来不能用画图什么的打开，然后下载后缀为webp可以在浏览器中打开，但是如何下载弄成为jpg或者png格式的呐，然后一顿搜索。。。最终找到了一个博主，参考下写了这个博客。
+1、将本地的webp图片转换为jpg from PIL import Image
+
+ filename = &apos;0bb521255dc1eb183...
+    
+
+        <a href="/2019/12/02/1d87ccdd9c6c0002bbca36ab36953b55/" class="post-more waves-effect waves-button">
+            阅读全文…
+        </a>
+    </div>
+    
+    <div class="post-footer">
+        
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%8F%90%E9%AB%98%E6%95%88%E7%8E%87%E5%B0%8F%E5%B7%A5%E5%85%B7/" rel="tag">提高效率小工具</a></li></ul>
+
+    </div>
+    
+</article>
+
+        </li>
+    
+        <li class="post-list-item fade">
+            <article id="post-1af959d41a5de25cfc24e362aff7429f"
+  class="article-card article-type-post" itemprop="blogPost">
+
+    <div class="post-meta">
+        <time class="post-time" title="2019-12-02 11:34:32" datetime="2019-12-02T03:34:32.000Z"  itemprop="datePublished">2019-12-02</time>
+
+        
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/python%E6%A8%A1%E5%9D%97/">python模块</a></li></ul>
+
+
+
+    </div>
+
+    
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/2019/12/02/1af959d41a5de25cfc24e362aff7429f/">python 之os模块学习</a>
+    </h3>
+  
+
+
+
+
+    <div class="post-content" id="post-content" itemprop="postContent">
+
+    
+        ﻿# os模块主要学习参考别人记录的，方便日后用到时好找，自己记录作为学习笔记。
+一、常用的os.*os.sep:取代操作系统特定的路径分隔符
+os.name:指示你正在使用的工作平台。比如对于Windows，它是&apos;nt&apos;，而对于Linux/Unix用户，它是&apos;posix&apos;。
+os.getcwd:得到当前工作目录，即当前python脚本工作的目录路径。...
+    
+
+        <a href="/2019/12/02/1af959d41a5de25cfc24e362aff7429f/" class="post-more waves-effect waves-button">
+            阅读全文…
+        </a>
+    </div>
+    
+    <div class="post-footer">
+        
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python%E6%A8%A1%E5%9D%97/" rel="tag">python模块</a></li></ul>
+
+    </div>
+    
+</article>
+
+        </li>
+    
+        <li class="post-list-item fade">
+            <article id="post-22d06195deff01b416993b503696c160"
+  class="article-card article-type-post" itemprop="blogPost">
+
+    <div class="post-meta">
+        <time class="post-time" title="2019-12-02 11:34:32" datetime="2019-12-02T03:34:32.000Z"  itemprop="datePublished">2019-12-02</time>
+
+        
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/%E8%B5%84%E6%BA%90%E5%88%86%E4%BA%AB/">资源分享</a></li></ul>
+
+
+
+    </div>
+
+    
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/2019/12/02/22d06195deff01b416993b503696c160/">分享一些珍藏和网上搜集的一些接码平台</a>
+    </h3>
+  
+
+
+
+
+    <div class="post-content" id="post-content" itemprop="postContent">
+
+    
+        ﻿
+1、国内在线短信接码平台
+
+
+网站名称
+网址
+简单描述
+
+
+
+云短信
+https://sms.cm/
+国家非常多，有 8 个中国号码，还有美、英、法、加拿大、瑞典、菲律宾、西班牙、以色列、罗马尼亚、克罗地亚、南非、俄罗斯、马里
+
+
+云短信
+https://www.pdflibr.com/
+应该是最早做国内手机在线短信接收的，最初只有中国号码，现在拥有中国（24 个）、美国（2个）、英国和...
+    
+
+        <a href="/2019/12/02/22d06195deff01b416993b503696c160/" class="post-more waves-effect waves-button">
+            阅读全文…
+        </a>
+    </div>
+    
+    <div class="post-footer">
+        
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%B5%84%E6%BA%90%E5%88%86%E4%BA%AB/" rel="tag">资源分享</a></li></ul>
 
     </div>
     
@@ -365,104 +573,6 @@ ffmpeg -i  file.avi   output.flv
         </li>
     
         <li class="post-list-item fade">
-            <article id="post-1af959d41a5de25cfc24e362aff7429f"
-  class="article-card article-type-post" itemprop="blogPost">
-
-    <div class="post-meta">
-        <time class="post-time" title="2019-12-02 11:34:32" datetime="2019-12-02T03:34:32.000Z"  itemprop="datePublished">2019-12-02</time>
-
-        
-	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/python%E6%A8%A1%E5%9D%97/">python模块</a></li></ul>
-
-
-
-    </div>
-
-    
-
-
-  
-    <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2019/12/02/1af959d41a5de25cfc24e362aff7429f/">python 之os模块学习</a>
-    </h3>
-  
-
-
-
-
-    <div class="post-content" id="post-content" itemprop="postContent">
-
-    
-        ﻿# os模块主要学习参考别人记录的，方便日后用到时好找，自己记录作为学习笔记。
-一、常用的os.*os.sep:取代操作系统特定的路径分隔符
-os.name:指示你正在使用的工作平台。比如对于Windows，它是&apos;nt&apos;，而对于Linux/Unix用户，它是&apos;posix&apos;。
-os.getcwd:得到当前工作目录，即当前python脚本工作的目录路径。...
-    
-
-        <a href="/2019/12/02/1af959d41a5de25cfc24e362aff7429f/" class="post-more waves-effect waves-button">
-            阅读全文…
-        </a>
-    </div>
-    
-    <div class="post-footer">
-        
-	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python%E6%A8%A1%E5%9D%97/" rel="tag">python模块</a></li></ul>
-
-    </div>
-    
-</article>
-
-        </li>
-    
-        <li class="post-list-item fade">
-            <article id="post-1d0ed69eb3fafcf862244f1bcb507f48"
-  class="article-card article-type-post" itemprop="blogPost">
-
-    <div class="post-meta">
-        <time class="post-time" title="2019-12-02 11:34:32" datetime="2019-12-02T03:34:32.000Z"  itemprop="datePublished">2019-12-02</time>
-
-        
-	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/python%E7%88%AC%E8%99%AB/">python爬虫</a><ul class="article-category-list-child"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/python%E7%88%AC%E8%99%AB/%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3/">问题解决</a></li></ul></li></ul>
-
-
-
-    </div>
-
-    
-
-
-  
-    <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2019/12/02/1d0ed69eb3fafcf862244f1bcb507f48/">python 爬虫之报错 requests.exceptions.TooManyRedirects_ Exceeded 30 redirects.</a>
-    </h3>
-  
-
-
-
-
-    <div class="post-content" id="post-content" itemprop="postContent">
-
-    
-        ﻿当爬虫时报错：requests.exceptions.TooManyRedirects: Exceeded 30 redirects.可以  request请求时添加allow_redirects=False，默认时allow_redirects=True，所以这样就可以解决我的问题了。  
-resp = requests.get(url=url, headers=headers,allo...
-    
-
-        <a href="/2019/12/02/1d0ed69eb3fafcf862244f1bcb507f48/" class="post-more waves-effect waves-button">
-            阅读全文…
-        </a>
-    </div>
-    
-    <div class="post-footer">
-        
-	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%88%AC%E8%99%AB/" rel="tag">爬虫</a></li></ul>
-
-    </div>
-    
-</article>
-
-        </li>
-    
-        <li class="post-list-item fade">
             <article id="post-509550cc8aca4ee13dbacb4ccb58828f"
   class="article-card article-type-post" itemprop="blogPost">
 
@@ -514,14 +624,14 @@ resp = requests.get(url=url, headers=headers,allo...
         </li>
     
         <li class="post-list-item fade">
-            <article id="post-2388954dd64ba012c026a6986161f10c"
+            <article id="post-26c4c37f17e557963f4fdcfa553d7d93"
   class="article-card article-type-post" itemprop="blogPost">
 
     <div class="post-meta">
         <time class="post-time" title="2019-12-02 11:34:32" datetime="2019-12-02T03:34:32.000Z"  itemprop="datePublished">2019-12-02</time>
 
         
-	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/xpath%E5%AE%9A%E4%BD%8D/">xpath定位</a></li></ul>
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3/">问题解决</a></li></ul>
 
 
 
@@ -532,7 +642,7 @@ resp = requests.get(url=url, headers=headers,allo...
 
   
     <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2019/12/02/2388954dd64ba012c026a6986161f10c/">xpath定位</a>
+      <a class="post-title-link" href="/2019/12/02/26c4c37f17e557963f4fdcfa553d7d93/">requests模块之InsecureRequestWarning警告</a>
     </h3>
   
 
@@ -542,123 +652,19 @@ resp = requests.get(url=url, headers=headers,allo...
     <div class="post-content" id="post-content" itemprop="postContent">
 
     
-        ﻿
-xpath定位标签starts-with 顾名思义，匹配一个属性开始位置的关键字
-contains 匹配一个属性值中包含的字符串
-text()匹配的是显示文本信息，此处也可以用来做定位用
-eg:
-//input[starts-with(@name,&apos;name1&apos;)]     查找name属性中开始位置包含&apos;name1&apos;关键字的页面元素
-
-//inp...
+        ﻿## 解决问题：requests请求出现警告：InsecureRequestWarning: Unverified HTTPS request is being made. Adding certificate verification is strongly advised.
+解决步骤：1、加入verify=False参数：具体如：
+response = requests.get(url...
     
 
-        <a href="/2019/12/02/2388954dd64ba012c026a6986161f10c/" class="post-more waves-effect waves-button">
+        <a href="/2019/12/02/26c4c37f17e557963f4fdcfa553d7d93/" class="post-more waves-effect waves-button">
             阅读全文…
         </a>
     </div>
     
     <div class="post-footer">
         
-	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/xpath%E5%AE%9A%E4%BD%8D/" rel="tag">xpath定位</a></li></ul>
-
-    </div>
-    
-</article>
-
-        </li>
-    
-        <li class="post-list-item fade">
-            <article id="post-1d87ccdd9c6c0002bbca36ab36953b55"
-  class="article-card article-type-post" itemprop="blogPost">
-
-    <div class="post-meta">
-        <time class="post-time" title="2019-12-02 11:34:32" datetime="2019-12-02T03:34:32.000Z"  itemprop="datePublished">2019-12-02</time>
-
-        
-	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/%E6%8F%90%E9%AB%98%E6%95%88%E7%8E%87%E5%B0%8F%E5%B7%A5%E5%85%B7/">提高效率小工具</a></li></ul>
-
-
-
-    </div>
-
-    
-
-
-  
-    <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2019/12/02/1d87ccdd9c6c0002bbca36ab36953b55/">python 将webp的图片格式转换为jpg格式</a>
-    </h3>
-  
-
-
-
-
-    <div class="post-content" id="post-content" itemprop="postContent">
-
-    
-        需求：主要是因为今天爬取一个网站【漫画柜】，然后图片格式读取字节下载下来不能用画图什么的打开，然后下载后缀为webp可以在浏览器中打开，但是如何下载弄成为jpg或者png格式的呐，然后一顿搜索。。。最终找到了一个博主，参考下写了这个博客。
-1、将本地的webp图片转换为jpg from PIL import Image
-
- filename = &apos;0bb521255dc1eb183...
-    
-
-        <a href="/2019/12/02/1d87ccdd9c6c0002bbca36ab36953b55/" class="post-more waves-effect waves-button">
-            阅读全文…
-        </a>
-    </div>
-    
-    <div class="post-footer">
-        
-	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%8F%90%E9%AB%98%E6%95%88%E7%8E%87%E5%B0%8F%E5%B7%A5%E5%85%B7/" rel="tag">提高效率小工具</a></li></ul>
-
-    </div>
-    
-</article>
-
-        </li>
-    
-        <li class="post-list-item fade">
-            <article id="post-360f89959f040d4ac0f61aa0478a98ea"
-  class="article-card article-type-post" itemprop="blogPost">
-
-    <div class="post-meta">
-        <time class="post-time" title="2019-12-02 11:34:32" datetime="2019-12-02T03:34:32.000Z"  itemprop="datePublished">2019-12-02</time>
-
-        
-	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/selenium/">selenium</a></li></ul>
-
-
-
-    </div>
-
-    
-
-
-  
-    <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2019/12/02/360f89959f040d4ac0f61aa0478a98ea/">selenium 的一些常用设置</a>
-    </h3>
-  
-
-
-
-
-    <div class="post-content" id="post-content" itemprop="postContent">
-
-    
-        我默认用的是Chrome浏览器
-一、安装selenium和配置Chromedriver1、安装selenium,直接使用pip安装
-pip install selenium2、chromedriver下载地址：https://sites.google.com/a/chromium.org/chromedriver/downloads （需要翻墙）http://npm.taobao.org/m...
-    
-
-        <a href="/2019/12/02/360f89959f040d4ac0f61aa0478a98ea/" class="post-more waves-effect waves-button">
-            阅读全文…
-        </a>
-    </div>
-    
-    <div class="post-footer">
-        
-	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/selenium/" rel="tag">selenium</a></li></ul>
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python-requests/" rel="tag">python requests</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3/" rel="tag">问题解决</a></li></ul>
 
     </div>
     

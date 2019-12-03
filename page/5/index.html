@@ -162,14 +162,14 @@
     <ul class="post-list">
     
         <li class="post-list-item fade">
-            <article id="post-43414575f515f46bf5612a7ab783aa6f"
+            <article id="post-cc5a14390d75b02017bddc833115adf1"
   class="article-card article-type-post" itemprop="blogPost">
 
     <div class="post-meta">
         <time class="post-time" title="2019-12-02 11:34:32" datetime="2019-12-02T03:34:32.000Z"  itemprop="datePublished">2019-12-02</time>
 
         
-	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/%E4%B8%B4%E6%97%B6%E9%82%AE%E7%AE%B1/">临时邮箱</a></li></ul>
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3/">问题解决</a></li></ul>
 
 
 
@@ -180,7 +180,7 @@
 
   
     <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2019/12/02/43414575f515f46bf5612a7ab783aa6f/">推荐几个测试能接受邮件的临时邮箱</a>
+      <a class="post-title-link" href="/2019/12/02/cc5a14390d75b02017bddc833115adf1/">FutureWarning_ Passing (type, 1) or &#39;1type&#39; as a synonym of type is deprecated; in a future version</a>
     </h3>
   
 
@@ -190,18 +190,18 @@
     <div class="post-content" id="post-content" itemprop="postContent">
 
     
-        ﻿
-这个是我收藏使用的几个临时邮箱地址，直接浏览器访问就可以使用，有些网站不限制临时邮箱，就可以用来注册账号。1、http://www.yopmail.com/zh/email-generator.php2、https://temp-mail.org/zh/3、http://24mail.chacuo.net/4、https://www.linshiyouxiang.net/5、https:...
+        今天测试了一个大牛的去除图片马赛克的代码除了不少的错误，这个十个警告，能完成去重的效果，但是看着警告感觉不爽，所以接着寻找解决办法：
+问题：FutureWarning: Passing (type, 1) or &apos;1type&apos; as a synonym of type is deprecated; in a future version of numpy, it will...
     
 
-        <a href="/2019/12/02/43414575f515f46bf5612a7ab783aa6f/" class="post-more waves-effect waves-button">
+        <a href="/2019/12/02/cc5a14390d75b02017bddc833115adf1/" class="post-more waves-effect waves-button">
             阅读全文…
         </a>
     </div>
     
     <div class="post-footer">
         
-	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E4%B8%B4%E6%97%B6%E9%82%AE%E7%AE%B1/" rel="tag">临时邮箱</a></li></ul>
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3/" rel="tag">问题解决</a></li></ul>
 
     </div>
     
@@ -210,14 +210,14 @@
         </li>
     
         <li class="post-list-item fade">
-            <article id="post-f02cf2bcf94b333149b12bf76e37e412"
+            <article id="post-ccb52c00ee7d5e1f192cbf9d134a00e9"
   class="article-card article-type-post" itemprop="blogPost">
 
     <div class="post-meta">
         <time class="post-time" title="2019-12-02 11:34:32" datetime="2019-12-02T03:34:32.000Z"  itemprop="datePublished">2019-12-02</time>
 
         
-	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/pycharm/">pycharm</a></li></ul>
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3/">问题解决</a><ul class="article-category-list-child"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3/python%E7%88%AC%E8%99%AB/">python爬虫</a></li></ul></li></ul>
 
 
 
@@ -228,7 +228,7 @@
 
   
     <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2019/12/02/f02cf2bcf94b333149b12bf76e37e412/">pycharm 报错内存不足： There is not enough memory to perform the requested operation。。。</a>
+      <a class="post-title-link" href="/2019/12/02/ccb52c00ee7d5e1f192cbf9d134a00e9/">爬虫出现301</a>
     </h3>
   
 
@@ -238,72 +238,18 @@
     <div class="post-content" id="post-content" itemprop="postContent">
 
     
-        1、问题我的pycharm第二天早上刚到公司发现报错：
-pycharm There is not enough memory to perform the requested operation.Please increase Xmx’ setting and restart the IDE for change to take effect.
-然后谷歌开始搜索查找原因：最后搜到一个，里面可...
+        ﻿记录一下我爬虫遇到的一个简单问题，为了不试爬虫过多的出现转向问题，我加了一个allow_redirects=False，默认它是为True的，后来跑着跑着就出现301的问，偶然测试我把allow_redirects=False去掉，就出现响应码正常了。为了防止跳转问题，每次运行完，我把resp.close(),手动关闭连接。
+resp = requests.get(url=url, hea...
     
 
-        <a href="/2019/12/02/f02cf2bcf94b333149b12bf76e37e412/" class="post-more waves-effect waves-button">
+        <a href="/2019/12/02/ccb52c00ee7d5e1f192cbf9d134a00e9/" class="post-more waves-effect waves-button">
             阅读全文…
         </a>
     </div>
     
     <div class="post-footer">
         
-	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/pycharm/" rel="tag">pycharm</a></li></ul>
-
-    </div>
-    
-</article>
-
-        </li>
-    
-        <li class="post-list-item fade">
-            <article id="post-f56ed72af5683ca2e0187ec20683eca9"
-  class="article-card article-type-post" itemprop="blogPost">
-
-    <div class="post-meta">
-        <time class="post-time" title="2019-12-02 11:34:32" datetime="2019-12-02T03:34:32.000Z"  itemprop="datePublished">2019-12-02</time>
-
-        
-	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/numpy/">numpy</a></li></ul>
-
-
-
-    </div>
-
-    
-
-
-  
-    <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2019/12/02/f56ed72af5683ca2e0187ec20683eca9/">深度学习问题1：ValueError_ Expected 2D array, got 1D array instead_</a>
-    </h3>
-  
-
-
-
-
-    <div class="post-content" id="post-content" itemprop="postContent">
-
-    
-        ﻿当运行python多元回归，进行预测时报错：ValueError: Expected 2D array, got 1D array instead:
-代码：
-from numpy import genfromtxt
-from sklearn import linear_model
-
-datapath=r&quot;Delivery_Dummy.csv&quot;
-data = genfro...
-    
-
-        <a href="/2019/12/02/f56ed72af5683ca2e0187ec20683eca9/" class="post-more waves-effect waves-button">
-            阅读全文…
-        </a>
-    </div>
-    
-    <div class="post-footer">
-        
-	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/numpy/" rel="tag">numpy</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3/" rel="tag">问题解决</a></li></ul>
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python%E7%88%AC%E8%99%AB/" rel="tag">python爬虫</a></li></ul>
 
     </div>
     
@@ -368,14 +314,14 @@ def get_file_num(path):
         </li>
     
         <li class="post-list-item fade">
-            <article id="post-487191994db8eea33ffca7c87d3001fe"
+            <article id="post-c6f5df7224ad0ad8fb63a2c9fdde4e71"
   class="article-card article-type-post" itemprop="blogPost">
 
     <div class="post-meta">
         <time class="post-time" title="2019-12-02 11:34:32" datetime="2019-12-02T03:34:32.000Z"  itemprop="datePublished">2019-12-02</time>
 
         
-	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/pip-%E5%9B%BD%E5%86%85%E6%BA%90/">pip 国内源</a></li></ul>
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/selenium/">selenium</a></li></ul>
 
 
 
@@ -386,7 +332,7 @@ def get_file_num(path):
 
   
     <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2019/12/02/487191994db8eea33ffca7c87d3001fe/">pip 国内源</a>
+      <a class="post-title-link" href="/2019/12/02/c6f5df7224ad0ad8fb63a2c9fdde4e71/">win32api之python自动化模拟键盘和selenium模拟鼠标</a>
     </h3>
   
 
@@ -396,20 +342,127 @@ def get_file_num(path):
     <div class="post-content" id="post-content" itemprop="postContent">
 
     
-        ﻿PyPI使用国内源通过几次 pip 的使用，对于默认的 pip 源的速度实在无法忍受，从国外下载很慢，于是便搜集了一些国内的pip源，如下：
-阿里云 http://mirrors.aliyun.com/pypi/simple/
-中国科技大学 https://pypi.mirrors.ustc.edu.cn/simple/ 
-豆瓣(douban) http://pypi.douban.com...
+        ﻿# 1、win32api模拟键盘
+import win32api
+import win32con
+ # 输入V键
+win32api.keybd_event(86, 0, 0, 0)  # enter
+win32api.keybd_event(86, 0, win32con.KEYEVENTF_KEYUP, 0)
+time.sleep(2)
+
+# 输入img
+img = [73, 77, 7...
     
 
-        <a href="/2019/12/02/487191994db8eea33ffca7c87d3001fe/" class="post-more waves-effect waves-button">
+        <a href="/2019/12/02/c6f5df7224ad0ad8fb63a2c9fdde4e71/" class="post-more waves-effect waves-button">
             阅读全文…
         </a>
     </div>
     
     <div class="post-footer">
         
-	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/pip/" rel="tag">pip</a></li></ul>
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/selenium/" rel="tag">selenium</a></li></ul>
+
+    </div>
+    
+</article>
+
+        </li>
+    
+        <li class="post-list-item fade">
+            <article id="post-cbb467b2802079ffbe86ff2ee57648cc"
+  class="article-card article-type-post" itemprop="blogPost">
+
+    <div class="post-meta">
+        <time class="post-time" title="2019-12-02 11:34:32" datetime="2019-12-02T03:34:32.000Z"  itemprop="datePublished">2019-12-02</time>
+
+        
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/python%E6%A8%A1%E5%9D%97/">python模块</a></li></ul>
+
+
+
+    </div>
+
+    
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/2019/12/02/cbb467b2802079ffbe86ff2ee57648cc/">lxml模块对xpath定位的元素进行转HTML源码</a>
+    </h3>
+  
+
+
+
+
+    <div class="post-content" id="post-content" itemprop="postContent">
+
+    
+        需求：如何将xpath定位到的元素进行转为HTML源码
+方法1：使用from lxml.html import tostring的tostring方法功能from lxml.html import tostring
+from lxml import etree
+
+html_get = etree.HTML(resp_text)
+div_ok = html_get.xpath(&apos;//...
+    
+
+        <a href="/2019/12/02/cbb467b2802079ffbe86ff2ee57648cc/" class="post-more waves-effect waves-button">
+            阅读全文…
+        </a>
+    </div>
+    
+    <div class="post-footer">
+        
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/lxml/" rel="tag">lxml</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python%E6%A8%A1%E5%9D%97/" rel="tag">python模块</a></li></ul>
+
+    </div>
+    
+</article>
+
+        </li>
+    
+        <li class="post-list-item fade">
+            <article id="post-5337277cfc36984fcaa62344ecf3e10b"
+  class="article-card article-type-post" itemprop="blogPost">
+
+    <div class="post-meta">
+        <time class="post-time" title="2019-12-02 11:34:32" datetime="2019-12-02T03:34:32.000Z"  itemprop="datePublished">2019-12-02</time>
+
+        
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/JavaScript/">JavaScript</a></li></ul>
+
+
+
+    </div>
+
+    
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/2019/12/02/5337277cfc36984fcaa62344ecf3e10b/">JavaScript 实现的几种加密方式（后续持续更新中。。。）</a>
+    </h3>
+  
+
+
+
+
+    <div class="post-content" id="post-content" itemprop="postContent">
+
+    
+        ﻿@[toc]
+说明：这个是我js破解时遇到的，然后把代码抠出来了，现在整理一下，日后遇到其他加密，也会更新保留在博客里面。如果有需要可以参考，如果有转载，请标明作者和链接，违者必究。如果觉得不错，可以给我点个赞，如果有更好的加密方法，欢迎评论分享哈，Thanks♪(･ω･)ﾉ
+1、JavaScript实现md5加密这个我直接上代码吧，可以运行出来，我这个是之前弄的，具体网站忘了，需要的可以...
+    
+
+        <a href="/2019/12/02/5337277cfc36984fcaa62344ecf3e10b/" class="post-more waves-effect waves-button">
+            阅读全文…
+        </a>
+    </div>
+    
+    <div class="post-footer">
+        
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/" rel="tag">JavaScript</a></li></ul>
 
     </div>
     
@@ -476,6 +529,108 @@ m = hashlib.md5()
         </li>
     
         <li class="post-list-item fade">
+            <article id="post-be2ac9bdaed28635983f7e1d18f7ea11"
+  class="article-card article-type-post" itemprop="blogPost">
+
+    <div class="post-meta">
+        <time class="post-time" title="2019-12-02 11:34:32" datetime="2019-12-02T03:34:32.000Z"  itemprop="datePublished">2019-12-02</time>
+
+        
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/selenium/">selenium</a></li></ul>
+
+
+
+    </div>
+
+    
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/2019/12/02/be2ac9bdaed28635983f7e1d18f7ea11/">selenium之常见异常</a>
+    </h3>
+  
+
+
+
+
+    <div class="post-content" id="post-content" itemprop="postContent">
+
+    
+        ﻿# selenium的常见异常
+Exceptions（异常）Python 自带的异常，所有异常的基类。
+异常：　 selenium.common.exceptions.ElementNotSelectableException(msg=None, screen=None, stacktrace=None)
+依据：     selenium.common.exceptions.Invalid...
+    
+
+        <a href="/2019/12/02/be2ac9bdaed28635983f7e1d18f7ea11/" class="post-more waves-effect waves-button">
+            阅读全文…
+        </a>
+    </div>
+    
+    <div class="post-footer">
+        
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/selenium/" rel="tag">selenium</a></li></ul>
+
+    </div>
+    
+</article>
+
+        </li>
+    
+        <li class="post-list-item fade">
+            <article id="post-c242e7787d33334b21d5d4f05be6b4a8"
+  class="article-card article-type-post" itemprop="blogPost">
+
+    <div class="post-meta">
+        <time class="post-time" title="2019-12-02 11:34:32" datetime="2019-12-02T03:34:32.000Z"  itemprop="datePublished">2019-12-02</time>
+
+        
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/python/">python</a></li></ul>
+
+
+
+    </div>
+
+    
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/2019/12/02/c242e7787d33334b21d5d4f05be6b4a8/">python之查询window系统文件夹下的文件数量</a>
+    </h3>
+  
+
+
+
+
+    <div class="post-content" id="post-content" itemprop="postContent">
+
+    
+        ﻿# python之查询window系统文件夹下的文件数量
+import os    
+path = r&apos;E:\008-baokong\006_renqunjuji&apos;
+os.chdir(path)
+key_list = os.listdir()
+print(len(key_list))
+    
+
+        <a href="/2019/12/02/c242e7787d33334b21d5d4f05be6b4a8/" class="post-more waves-effect waves-button">
+            阅读全文…
+        </a>
+    </div>
+    
+    <div class="post-footer">
+        
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python/" rel="tag">python</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%8F%90%E9%AB%98%E6%95%88%E7%8E%87%E5%B0%8F%E5%B7%A5%E5%85%B7/" rel="tag">提高效率小工具</a></li></ul>
+
+    </div>
+    
+</article>
+
+        </li>
+    
+        <li class="post-list-item fade">
             <article id="post-e5f3bd71219f5f561c21f6d1c3882d02"
   class="article-card article-type-post" itemprop="blogPost">
 
@@ -516,153 +671,6 @@ m = hashlib.md5()
     <div class="post-footer">
         
 	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/selenium/" rel="tag">selenium</a></li></ul>
-
-    </div>
-    
-</article>
-
-        </li>
-    
-        <li class="post-list-item fade">
-            <article id="post-df62afd0d2f0ad4e898ee88f201c7283"
-  class="article-card article-type-post" itemprop="blogPost">
-
-    <div class="post-meta">
-        <time class="post-time" title="2019-12-02 11:34:32" datetime="2019-12-02T03:34:32.000Z"  itemprop="datePublished">2019-12-02</time>
-
-        
-	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/python%E7%88%AC%E8%99%AB/">python爬虫</a></li></ul>
-
-
-
-    </div>
-
-    
-
-
-  
-    <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2019/12/02/df62afd0d2f0ad4e898ee88f201c7283/">爬虫Max retries exceeded with url和403错误</a>
-    </h3>
-  
-
-
-
-
-    <div class="post-content" id="post-content" itemprop="postContent">
-
-    
-        一、Max retries exceeded with url方法1、出现这个错误可能跟爬取速度过快而且没有关闭每次的请求有关，导致出错。requests使用了urllib3库，默认的http connection是keep-alive的，requests设置False关闭。
-可以，每次请求的内容保存到其他变量后关闭请求。比如我的：我把response响应的结果赋值给deps之后就把resp...
-    
-
-        <a href="/2019/12/02/df62afd0d2f0ad4e898ee88f201c7283/" class="post-more waves-effect waves-button">
-            阅读全文…
-        </a>
-    </div>
-    
-    <div class="post-footer">
-        
-	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python%E7%88%AC%E8%99%AB/" rel="tag">python爬虫</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3/" rel="tag">问题解决</a></li></ul>
-
-    </div>
-    
-</article>
-
-        </li>
-    
-        <li class="post-list-item fade">
-            <article id="post-ddd3d2831bc288b0e637654fc94c09a1"
-  class="article-card article-type-post" itemprop="blogPost">
-
-    <div class="post-meta">
-        <time class="post-time" title="2019-12-02 11:34:32" datetime="2019-12-02T03:34:32.000Z"  itemprop="datePublished">2019-12-02</time>
-
-        
-	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/scrapy/">scrapy</a></li></ul>
-
-
-
-    </div>
-
-    
-
-
-  
-    <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2019/12/02/ddd3d2831bc288b0e637654fc94c09a1/">Scrapy爬虫错误</a>
-    </h3>
-  
-
-
-
-
-    <div class="post-content" id="post-content" itemprop="postContent">
-
-    
-        ﻿
-Scrapy爬虫一个页面也爬取不到报错：[scrapy.extensions.logstats] INFO: Crawled 0 pages (at 0 pages/min), scraped 0 items (at 0 items/min)
-解决方法俩种：
-方法1，在settings.py中添加用户代理：USER_AGENT = &apos;Mozilla/5.0 (Macintosh...
-    
-
-        <a href="/2019/12/02/ddd3d2831bc288b0e637654fc94c09a1/" class="post-more waves-effect waves-button">
-            阅读全文…
-        </a>
-    </div>
-    
-    <div class="post-footer">
-        
-	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/scrapy/" rel="tag">scrapy</a></li></ul>
-
-    </div>
-    
-</article>
-
-        </li>
-    
-        <li class="post-list-item fade">
-            <article id="post-5337277cfc36984fcaa62344ecf3e10b"
-  class="article-card article-type-post" itemprop="blogPost">
-
-    <div class="post-meta">
-        <time class="post-time" title="2019-12-02 11:34:32" datetime="2019-12-02T03:34:32.000Z"  itemprop="datePublished">2019-12-02</time>
-
-        
-	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/JavaScript/">JavaScript</a></li></ul>
-
-
-
-    </div>
-
-    
-
-
-  
-    <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2019/12/02/5337277cfc36984fcaa62344ecf3e10b/">JavaScript 实现的几种加密方式（后续持续更新中。。。）</a>
-    </h3>
-  
-
-
-
-
-    <div class="post-content" id="post-content" itemprop="postContent">
-
-    
-        ﻿@[toc]
-说明：这个是我js破解时遇到的，然后把代码抠出来了，现在整理一下，日后遇到其他加密，也会更新保留在博客里面。如果有需要可以参考，如果有转载，请标明作者和链接，违者必究。如果觉得不错，可以给我点个赞，如果有更好的加密方法，欢迎评论分享哈，Thanks♪(･ω･)ﾉ
-1、JavaScript实现md5加密这个我直接上代码吧，可以运行出来，我这个是之前弄的，具体网站忘了，需要的可以...
-    
-
-        <a href="/2019/12/02/5337277cfc36984fcaa62344ecf3e10b/" class="post-more waves-effect waves-button">
-            阅读全文…
-        </a>
-    </div>
-    
-    <div class="post-footer">
-        
-	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/" rel="tag">JavaScript</a></li></ul>
 
     </div>
     

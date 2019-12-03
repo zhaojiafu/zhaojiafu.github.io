@@ -162,7 +162,110 @@
     <ul class="post-list">
     
         <li class="post-list-item fade">
-            <article id="post-e4b85e60637cef80c6f02142d16b407f"
+            <article id="post-f86f35dece6d7496e6cbc13b7dfa1549"
+  class="article-card article-type-post" itemprop="blogPost">
+
+    <div class="post-meta">
+        <time class="post-time" title="2019-12-02 11:34:32" datetime="2019-12-02T03:34:32.000Z"  itemprop="datePublished">2019-12-02</time>
+
+        
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Linux/">Linux</a></li></ul>
+
+
+
+    </div>
+
+    
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/2019/12/02/f86f35dece6d7496e6cbc13b7dfa1549/">Linux 系统查看磁盘与文件夹大小命令</a>
+    </h3>
+  
+
+
+
+
+    <div class="post-content" id="post-content" itemprop="postContent">
+
+    
+        ﻿两个命令df 、du结合比较直观
+df    -h                     查看整台服务器的硬盘使用情况
+cd    /                       进入根目录
+du   -sh    *              查看每个文件夹的大小
+du -h  *  查看每个文件夹的大小
+du -h “文件名”     查看这个“文件名”的大小
+du -lh –max...
+    
+
+        <a href="/2019/12/02/f86f35dece6d7496e6cbc13b7dfa1549/" class="post-more waves-effect waves-button">
+            阅读全文…
+        </a>
+    </div>
+    
+    <div class="post-footer">
+        
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li></ul>
+
+    </div>
+    
+</article>
+
+        </li>
+    
+        <li class="post-list-item fade">
+            <article id="post-341a3f2bb65f6520121e55017d1cf338"
+  class="article-card article-type-post" itemprop="blogPost">
+
+    <div class="post-meta">
+        <time class="post-time" title="2019-12-02 11:34:32" datetime="2019-12-02T03:34:32.000Z"  itemprop="datePublished">2019-12-02</time>
+
+        
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/python/">python</a></li></ul>
+
+
+
+    </div>
+
+    
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/2019/12/02/341a3f2bb65f6520121e55017d1cf338/">HTML对于一些特殊转义字符&amp;#x的去脏处理。</a>
+    </h3>
+  
+
+
+
+
+    <div class="post-content" id="post-content" itemprop="postContent">
+
+    
+        ﻿
+问题：爬取一些网站的时候，有时候我们会遇到一些比较特殊的字符，比如我这次遇到了很多&amp;#x0A;，折些可有直接进行替换为空，但是有时候会有影响，查找他的准备定义，原来就是换成符，可以直接替换为python的\n,这样就不会会好很多了。
+一些&amp;#开头的特殊符号：找到的一些特殊转义字符，记下来方便后续需要使用。
+1空格 (&amp;#x20;)2Tab (&amp;#x09;)...
+    
+
+        <a href="/2019/12/02/341a3f2bb65f6520121e55017d1cf338/" class="post-more waves-effect waves-button">
+            阅读全文…
+        </a>
+    </div>
+    
+    <div class="post-footer">
+        
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python/" rel="tag">python</a></li></ul>
+
+    </div>
+    
+</article>
+
+        </li>
+    
+        <li class="post-list-item fade">
+            <article id="post-34ef79447576ebd454fd5437bc9aa4f1"
   class="article-card article-type-post" itemprop="blogPost">
 
     <div class="post-meta">
@@ -180,7 +283,7 @@
 
   
     <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2019/12/02/e4b85e60637cef80c6f02142d16b407f/">python3 hashlib的sha1和md5加密</a>
+      <a class="post-title-link" href="/2019/12/02/34ef79447576ebd454fd5437bc9aa4f1/">python logging的使用</a>
     </h3>
   
 
@@ -190,76 +293,17 @@
     <div class="post-content" id="post-content" itemprop="postContent">
 
     
-        ﻿# 一，md5加密    # 由于MD5模块在python3中被移除    # 在python3中使用hashlib模块进行md5操作
-import hashlib
-
-# 待加密信息
-str = &quot;4CbLXeGSDxg&quot;
-
-# 创建md5对象
-m = hashlib.md5()
-
-# Tips
-# 此处必须encode
-# 若写法为m.update(str)  报错为...
+        ﻿因为每次需要查找麻烦，所以把找到几个不错的别文档链接自己留下来，方便日后需要查找。参考：1、https://blog.csdn.net/liuchunming033/article/details/390804572、官方文档https://docs.python.org/3/library/logging.html3、更详细的汉语讲解：https://blog.csdn.net/zyz5...
     
 
-        <a href="/2019/12/02/e4b85e60637cef80c6f02142d16b407f/" class="post-more waves-effect waves-button">
+        <a href="/2019/12/02/34ef79447576ebd454fd5437bc9aa4f1/" class="post-more waves-effect waves-button">
             阅读全文…
         </a>
     </div>
     
     <div class="post-footer">
         
-	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hashlib/" rel="tag">hashlib</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python%E6%A8%A1%E5%9D%97/" rel="tag">python模块</a></li></ul>
-
-    </div>
-    
-</article>
-
-        </li>
-    
-        <li class="post-list-item fade">
-            <article id="post-e5b8e142063a8c402dcf6c09ad1a5e98"
-  class="article-card article-type-post" itemprop="blogPost">
-
-    <div class="post-meta">
-        <time class="post-time" title="2019-12-02 11:34:32" datetime="2019-12-02T03:34:32.000Z"  itemprop="datePublished">2019-12-02</time>
-
-        
-	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/bat/">bat</a></li></ul>
-
-
-
-    </div>
-
-    
-
-
-  
-    <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2019/12/02/e5b8e142063a8c402dcf6c09ad1a5e98/">bat脚本对文件目录的复制和移动</a>
-    </h3>
-  
-
-
-
-
-    <div class="post-content" id="post-content" itemprop="postContent">
-
-    
-        ﻿# 一、复制：
-FOR /F %%I IN (&apos;DIR /B /S &quot;E:\save_photo_from_video\*.*&quot;&apos;) DO (COPY %%I  &quot;E:\004-dangdang&quot;)其中，E:\save_photo_from_video是需要复制的文件夹，下面的多级文件都会被复制到指定目录E:\004-dangda...
-    
-
-        <a href="/2019/12/02/e5b8e142063a8c402dcf6c09ad1a5e98/" class="post-more waves-effect waves-button">
-            阅读全文…
-        </a>
-    </div>
-    
-    <div class="post-footer">
-        
-	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/bat/" rel="tag">bat</a></li></ul>
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python-logging/" rel="tag">python logging</a></li></ul>
 
     </div>
     
@@ -318,14 +362,14 @@ pip install --upgrade requests
         </li>
     
         <li class="post-list-item fade">
-            <article id="post-43414575f515f46bf5612a7ab783aa6f"
+            <article id="post-e5b8e142063a8c402dcf6c09ad1a5e98"
   class="article-card article-type-post" itemprop="blogPost">
 
     <div class="post-meta">
         <time class="post-time" title="2019-12-02 11:34:32" datetime="2019-12-02T03:34:32.000Z"  itemprop="datePublished">2019-12-02</time>
 
         
-	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/%E4%B8%B4%E6%97%B6%E9%82%AE%E7%AE%B1/">临时邮箱</a></li></ul>
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/bat/">bat</a></li></ul>
 
 
 
@@ -336,7 +380,7 @@ pip install --upgrade requests
 
   
     <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2019/12/02/43414575f515f46bf5612a7ab783aa6f/">推荐几个测试能接受邮件的临时邮箱</a>
+      <a class="post-title-link" href="/2019/12/02/e5b8e142063a8c402dcf6c09ad1a5e98/">bat脚本对文件目录的复制和移动</a>
     </h3>
   
 
@@ -346,68 +390,18 @@ pip install --upgrade requests
     <div class="post-content" id="post-content" itemprop="postContent">
 
     
-        ﻿
-这个是我收藏使用的几个临时邮箱地址，直接浏览器访问就可以使用，有些网站不限制临时邮箱，就可以用来注册账号。1、http://www.yopmail.com/zh/email-generator.php2、https://temp-mail.org/zh/3、http://24mail.chacuo.net/4、https://www.linshiyouxiang.net/5、https:...
+        ﻿# 一、复制：
+FOR /F %%I IN (&apos;DIR /B /S &quot;E:\save_photo_from_video\*.*&quot;&apos;) DO (COPY %%I  &quot;E:\004-dangdang&quot;)其中，E:\save_photo_from_video是需要复制的文件夹，下面的多级文件都会被复制到指定目录E:\004-dangda...
     
 
-        <a href="/2019/12/02/43414575f515f46bf5612a7ab783aa6f/" class="post-more waves-effect waves-button">
+        <a href="/2019/12/02/e5b8e142063a8c402dcf6c09ad1a5e98/" class="post-more waves-effect waves-button">
             阅读全文…
         </a>
     </div>
     
     <div class="post-footer">
         
-	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E4%B8%B4%E6%97%B6%E9%82%AE%E7%AE%B1/" rel="tag">临时邮箱</a></li></ul>
-
-    </div>
-    
-</article>
-
-        </li>
-    
-        <li class="post-list-item fade">
-            <article id="post-405f9b3e4bf062a59a20afa86d0d2802"
-  class="article-card article-type-post" itemprop="blogPost">
-
-    <div class="post-meta">
-        <time class="post-time" title="2019-12-02 11:34:32" datetime="2019-12-02T03:34:32.000Z"  itemprop="datePublished">2019-12-02</time>
-
-        
-	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/MySQL/">MySQL</a></li></ul>
-
-
-
-    </div>
-
-    
-
-
-  
-    <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2019/12/02/405f9b3e4bf062a59a20afa86d0d2802/">window系统下python 与MySQL交互的增删改查</a>
-    </h3>
-  
-
-
-
-
-    <div class="post-content" id="post-content" itemprop="postContent">
-
-    
-        前提、sql命令–基本的增删改查MySQL的一些常用命令可以参考我之前的博客：https://blog.csdn.net/weixin_42081389/article/details/93788977
-1、创建表create table student(
-    id int auto_increment primary key,
-    name varchar(100) not nul...
-    
-
-        <a href="/2019/12/02/405f9b3e4bf062a59a20afa86d0d2802/" class="post-more waves-effect waves-button">
-            阅读全文…
-        </a>
-    </div>
-    
-    <div class="post-footer">
-        
-	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MySQL/" rel="tag">MySQL</a></li></ul>
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/bat/" rel="tag">bat</a></li></ul>
 
     </div>
     
@@ -466,6 +460,104 @@ name = url_video[url_video.rindex(&apos;=&apos;) + 1:]
         </li>
     
         <li class="post-list-item fade">
+            <article id="post-f7d23ae6d6ae4617cf5a46e1b6180074"
+  class="article-card article-type-post" itemprop="blogPost">
+
+    <div class="post-meta">
+        <time class="post-time" title="2019-12-02 11:34:32" datetime="2019-12-02T03:34:32.000Z"  itemprop="datePublished">2019-12-02</time>
+
+        
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/%E8%B5%84%E6%BA%90%E5%88%86%E4%BA%AB/">资源分享</a></li></ul>
+
+
+
+    </div>
+
+    
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/2019/12/02/f7d23ae6d6ae4617cf5a46e1b6180074/">全球60个线上学习资源网站分享！</a>
+    </h3>
+  
+
+
+
+
+    <div class="post-content" id="post-content" itemprop="postContent">
+
+    
+        ﻿
+说明，这个我没有把网站都复制出来，自己可以谷歌搜索，基本上第一个结果出来就是的。我看到这个觉得不错，就整理一下分享到博客里面，觉得需要的可以看看，日后自己需要也方便寻找。觉得有帮助，可以给我点个赞O(∩_∩)O哈哈~
+如果你不能访问谷歌的话，可以使用下面俩个搜索引擎网站，这俩个也是我经常用的，分享出来。镜像网站(推荐收藏)谷歌镜像2(推荐收藏)秘籍搜索：(推荐收藏)
+1、网页设计类HOW...
+    
+
+        <a href="/2019/12/02/f7d23ae6d6ae4617cf5a46e1b6180074/" class="post-more waves-effect waves-button">
+            阅读全文…
+        </a>
+    </div>
+    
+    <div class="post-footer">
+        
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%B5%84%E6%BA%90%E5%88%86%E4%BA%AB/" rel="tag">资源分享</a></li></ul>
+
+    </div>
+    
+</article>
+
+        </li>
+    
+        <li class="post-list-item fade">
+            <article id="post-f7c8714db856d3031d1fd8755224c131"
+  class="article-card article-type-post" itemprop="blogPost">
+
+    <div class="post-meta">
+        <time class="post-time" title="2019-12-02 11:34:32" datetime="2019-12-02T03:34:32.000Z"  itemprop="datePublished">2019-12-02</time>
+
+        
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3/">问题解决</a></li></ul>
+
+
+
+    </div>
+
+    
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/2019/12/02/f7c8714db856d3031d1fd8755224c131/">python 多进程报错：TypeError_ can&#39;t pickle _thread.lock objects</a>
+    </h3>
+  
+
+
+
+
+    <div class="post-content" id="post-content" itemprop="postContent">
+
+    
+        ﻿# 介绍：写这个随笔主要是为了日后再遇见这个问题，而不用百度一直找原因，耽误时间，我用多进程进行爬虫时，使用下面这个process_one.start(),一直报错说这个地方，百度谷歌搜索了好一会，也没有找到可靠的解决方法，后来找了好一会没找到，主要还是以前看到进程学习的使用，start(),就是调用run()方法，想着直接调用run()试试，结果还就可以了。
+process_one = ...
+    
+
+        <a href="/2019/12/02/f7c8714db856d3031d1fd8755224c131/" class="post-more waves-effect waves-button">
+            阅读全文…
+        </a>
+    </div>
+    
+    <div class="post-footer">
+        
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3/" rel="tag">问题解决</a></li></ul>
+
+    </div>
+    
+</article>
+
+        </li>
+    
+        <li class="post-list-item fade">
             <article id="post-d8dfc9cc8b0602641bc652716e23346f"
   class="article-card article-type-post" itemprop="blogPost">
 
@@ -516,14 +608,14 @@ name = url_video[url_video.rindex(&apos;=&apos;) + 1:]
         </li>
     
         <li class="post-list-item fade">
-            <article id="post-dca4df860e060adc999558a81856a431"
+            <article id="post-405f9b3e4bf062a59a20afa86d0d2802"
   class="article-card article-type-post" itemprop="blogPost">
 
     <div class="post-meta">
         <time class="post-time" title="2019-12-02 11:34:32" datetime="2019-12-02T03:34:32.000Z"  itemprop="datePublished">2019-12-02</time>
 
         
-	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/python/">python</a></li></ul>
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/MySQL/">MySQL</a></li></ul>
 
 
 
@@ -534,7 +626,7 @@ name = url_video[url_video.rindex(&apos;=&apos;) + 1:]
 
   
     <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2019/12/02/dca4df860e060adc999558a81856a431/">Python拼接字符串的7种方法</a>
+      <a class="post-title-link" href="/2019/12/02/405f9b3e4bf062a59a20afa86d0d2802/">window系统下python 与MySQL交互的增删改查</a>
     </h3>
   
 
@@ -544,116 +636,20 @@ name = url_video[url_video.rindex(&apos;=&apos;) + 1:]
     <div class="post-content" id="post-content" itemprop="postContent">
 
     
-        ﻿@[toc]
-说明：今天突然看到一种好像是字符串的拼接方法substitute，但是不确定，于是就百度搜索了一下，然后搜到一个博客，写的不错，虽然他写的7中方法，除了这个substitute和第5种我不知道，其他的5种都知道，也都用过，今天也是学习俩种方法，Thanks♪(･ω･)ﾉ
-1、直接通过+操作：s = &apos;Python&apos;+&apos;，&apos;+&apos;...
+        前提、sql命令–基本的增删改查MySQL的一些常用命令可以参考我之前的博客：https://blog.csdn.net/weixin_42081389/article/details/93788977
+1、创建表create table student(
+    id int auto_increment primary key,
+    name varchar(100) not nul...
     
 
-        <a href="/2019/12/02/dca4df860e060adc999558a81856a431/" class="post-more waves-effect waves-button">
+        <a href="/2019/12/02/405f9b3e4bf062a59a20afa86d0d2802/" class="post-more waves-effect waves-button">
             阅读全文…
         </a>
     </div>
     
     <div class="post-footer">
         
-	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python/" rel="tag">python</a></li></ul>
-
-    </div>
-    
-</article>
-
-        </li>
-    
-        <li class="post-list-item fade">
-            <article id="post-0c08cb7c2fdac2367dbeeac904868014"
-  class="article-card article-type-post" itemprop="blogPost">
-
-    <div class="post-meta">
-        <time class="post-time" title="2019-12-02 11:34:32" datetime="2019-12-02T03:34:32.000Z"  itemprop="datePublished">2019-12-02</time>
-
-        
-	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/%E8%B5%84%E6%BA%90%E5%88%86%E4%BA%AB/">资源分享</a></li></ul>
-
-
-
-    </div>
-
-    
-
-
-  
-    <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2019/12/02/0c08cb7c2fdac2367dbeeac904868014/">300个国外优秀网站</a>
-    </h3>
-  
-
-
-
-
-    <div class="post-content" id="post-content" itemprop="postContent">
-
-    
-        ﻿1 People(人物）http://people.aol.com/people/index.html娱乐 全球五十位最XX的人2 TV Guide（电视指南）http://www.tvguide.com娱乐默多克旗下3 Time（时代）http://www.time.com/新闻年度风云人物4 Sports Illustrated（体育画报）http://sportsillustrate...
-    
-
-        <a href="/2019/12/02/0c08cb7c2fdac2367dbeeac904868014/" class="post-more waves-effect waves-button">
-            阅读全文…
-        </a>
-    </div>
-    
-    <div class="post-footer">
-        
-	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%9B%BD%E5%A4%96%E7%BD%91%E7%AB%99/" rel="tag">国外网站</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%B5%84%E6%BA%90%E5%88%86%E4%BA%AB/" rel="tag">资源分享</a></li></ul>
-
-    </div>
-    
-</article>
-
-        </li>
-    
-        <li class="post-list-item fade">
-            <article id="post-487191994db8eea33ffca7c87d3001fe"
-  class="article-card article-type-post" itemprop="blogPost">
-
-    <div class="post-meta">
-        <time class="post-time" title="2019-12-02 11:34:32" datetime="2019-12-02T03:34:32.000Z"  itemprop="datePublished">2019-12-02</time>
-
-        
-	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/pip-%E5%9B%BD%E5%86%85%E6%BA%90/">pip 国内源</a></li></ul>
-
-
-
-    </div>
-
-    
-
-
-  
-    <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2019/12/02/487191994db8eea33ffca7c87d3001fe/">pip 国内源</a>
-    </h3>
-  
-
-
-
-
-    <div class="post-content" id="post-content" itemprop="postContent">
-
-    
-        ﻿PyPI使用国内源通过几次 pip 的使用，对于默认的 pip 源的速度实在无法忍受，从国外下载很慢，于是便搜集了一些国内的pip源，如下：
-阿里云 http://mirrors.aliyun.com/pypi/simple/
-中国科技大学 https://pypi.mirrors.ustc.edu.cn/simple/ 
-豆瓣(douban) http://pypi.douban.com...
-    
-
-        <a href="/2019/12/02/487191994db8eea33ffca7c87d3001fe/" class="post-more waves-effect waves-button">
-            阅读全文…
-        </a>
-    </div>
-    
-    <div class="post-footer">
-        
-	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/pip/" rel="tag">pip</a></li></ul>
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MySQL/" rel="tag">MySQL</a></li></ul>
 
     </div>
     

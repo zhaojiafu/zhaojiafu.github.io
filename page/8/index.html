@@ -162,6 +162,255 @@
     <ul class="post-list">
     
         <li class="post-list-item fade">
+            <article id="post-b4f0a6fa884af3cc71178037adb6fed6"
+  class="article-card article-type-post" itemprop="blogPost">
+
+    <div class="post-meta">
+        <time class="post-time" title="2019-12-02 11:34:32" datetime="2019-12-02T03:34:32.000Z"  itemprop="datePublished">2019-12-02</time>
+
+        
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/%E5%85%B6%E4%BB%96/">其他</a></li></ul>
+
+
+
+    </div>
+
+    
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/2019/12/02/b4f0a6fa884af3cc71178037adb6fed6/">使用python base64模块实现 base64与图片的转换</a>
+    </h3>
+  
+
+
+
+
+    <div class="post-content" id="post-content" itemprop="postContent">
+
+    
+        需求：有时候，图片需要储存到数据库时，可以进行base64，进行先转换再进行保存到数据库，然后取出来时在使用base64，解码转换：
+base64与图片互转直接上代码，需要的可以参考。
+import base64
+
+
+# 图片转base64
+def from_photo_to_base64(path):
+    with open(path, &quot;rb&quot;) as file_...
+    
+
+        <a href="/2019/12/02/b4f0a6fa884af3cc71178037adb6fed6/" class="post-more waves-effect waves-button">
+            阅读全文…
+        </a>
+    </div>
+    
+    <div class="post-footer">
+        
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/base64%E4%B8%8E%E5%9B%BE%E7%89%87%E7%9A%84%E8%BD%AC%E6%8D%A2/" rel="tag">base64与图片的转换</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%85%B6%E4%BB%96/" rel="tag">其他</a></li></ul>
+
+    </div>
+    
+</article>
+
+        </li>
+    
+        <li class="post-list-item fade">
+            <article id="post-89e66e5883aa1ee62b18fcb16a95c86d"
+  class="article-card article-type-post" itemprop="blogPost">
+
+    <div class="post-meta">
+        <time class="post-time" title="2019-12-02 11:34:32" datetime="2019-12-02T03:34:32.000Z"  itemprop="datePublished">2019-12-02</time>
+
+        
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/scrapy/">scrapy</a></li></ul>
+
+
+
+    </div>
+
+    
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/2019/12/02/89e66e5883aa1ee62b18fcb16a95c86d/">scrapy 爬虫之添加代理IP俩种方式</a>
+    </h3>
+  
+
+
+
+
+    <div class="post-content" id="post-content" itemprop="postContent">
+
+    
+        ﻿# 方式一：    一.重写start_request方法    def start_requests(self):中写入        yield scrapy.Request(url=url, meta={‘proxy’: ‘http://117.90.2.212:9000&#39;}, callback=self.parse)
+方式二二、在中间件中加入代理IP，在把中间的类名加入se...
+    
+
+        <a href="/2019/12/02/89e66e5883aa1ee62b18fcb16a95c86d/" class="post-more waves-effect waves-button">
+            阅读全文…
+        </a>
+    </div>
+    
+    <div class="post-footer">
+        
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python%E7%88%AC%E8%99%AB/" rel="tag">python爬虫</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/scrapy/" rel="tag">scrapy</a></li></ul>
+
+    </div>
+    
+</article>
+
+        </li>
+    
+        <li class="post-list-item fade">
+            <article id="post-7385a1df18ec0db0e8a6d08efca90303"
+  class="article-card article-type-post" itemprop="blogPost">
+
+    <div class="post-meta">
+        <time class="post-time" title="2019-12-02 11:34:32" datetime="2019-12-02T03:34:32.000Z"  itemprop="datePublished">2019-12-02</time>
+
+        
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3/">问题解决</a></li></ul>
+
+
+
+    </div>
+
+    
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/2019/12/02/7385a1df18ec0db0e8a6d08efca90303/">python SyntaxError_ Non-UTF-8 code starting with &#39;_xb9&#39;</a>
+    </h3>
+  
+
+
+
+
+    <div class="post-content" id="post-content" itemprop="postContent">
+
+    
+        ﻿## 问题
+原错误：
+SyntaxError: Non-UTF-8 code starting with &apos;\xb9&apos; in file D:/zjf_workspace/自己测试用的/027、百家号/demo-1、get_baijiahao.py on line 8, but no encoding declared; see http://python.org/dev...
+    
+
+        <a href="/2019/12/02/7385a1df18ec0db0e8a6d08efca90303/" class="post-more waves-effect waves-button">
+            阅读全文…
+        </a>
+    </div>
+    
+    <div class="post-footer">
+        
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3/" rel="tag">问题解决</a></li></ul>
+
+    </div>
+    
+</article>
+
+        </li>
+    
+        <li class="post-list-item fade">
+            <article id="post-acbe5bb1443aaafc1acd73cf97c0dbc3"
+  class="article-card article-type-post" itemprop="blogPost">
+
+    <div class="post-meta">
+        <time class="post-time" title="2019-12-02 11:34:32" datetime="2019-12-02T03:34:32.000Z"  itemprop="datePublished">2019-12-02</time>
+
+        
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/selenium/">selenium</a></li></ul>
+
+
+
+    </div>
+
+    
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/2019/12/02/acbe5bb1443aaafc1acd73cf97c0dbc3/">python 使用selenium 批量获取url的cookies</a>
+    </h3>
+  
+
+
+
+
+    <div class="post-content" id="post-content" itemprop="postContent">
+
+    
+        需求：有时候有些网站的反爬对cookies有限制，比如亚马逊会结合cookies+ip+user-agent,进行反爬，然后这时候需要找代理ip,然后每次随机一个代理ip,user_agent也要每次随机一个，代理ip高匿性和user-agent，我之前写过，不会的可以参考下面，这次博客主要写我使用selenium批量搜集cookies的方法；
+这个是我之前写的user-agent博客，里面...
+    
+
+        <a href="/2019/12/02/acbe5bb1443aaafc1acd73cf97c0dbc3/" class="post-more waves-effect waves-button">
+            阅读全文…
+        </a>
+    </div>
+    
+    <div class="post-footer">
+        
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/selenium/" rel="tag">selenium</a></li></ul>
+
+    </div>
+    
+</article>
+
+        </li>
+    
+        <li class="post-list-item fade">
+            <article id="post-a45a2c3091376c88010499ad008dd504"
+  class="article-card article-type-post" itemprop="blogPost">
+
+    <div class="post-meta">
+        <time class="post-time" title="2019-12-02 11:34:32" datetime="2019-12-02T03:34:32.000Z"  itemprop="datePublished">2019-12-02</time>
+
+        
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3/">问题解决</a></li></ul>
+
+
+
+    </div>
+
+    
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/2019/12/02/a45a2c3091376c88010499ad008dd504/">pycharm执行py文件时报错SyntaxError</a>
+    </h3>
+  
+
+
+
+
+    <div class="post-content" id="post-content" itemprop="postContent">
+
+    
+        ﻿
+我的报错：SyntaxError: Non-UTF-8 code starting with ‘\xe6’ in file这个我刚开始以为有问题，找了好久没有找到原因，还一直定位我的一个数据地方，后我直接CTRL + alt + L 格式化，然后就好了。
+原来一行数据太长时运行时也会报错，所以如果过长，直接快捷键格式化就好了。或者手动换行。
+
+    
+
+        <a href="/2019/12/02/a45a2c3091376c88010499ad008dd504/" class="post-more waves-effect waves-button">
+            阅读全文…
+        </a>
+    </div>
+    
+    <div class="post-footer">
+        
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3/" rel="tag">问题解决</a></li></ul>
+
+    </div>
+    
+</article>
+
+        </li>
+    
+        <li class="post-list-item fade">
             <article id="post-ac4709166c2060ebb9cdcea4fd534e50"
   class="article-card article-type-post" itemprop="blogPost">
 
@@ -202,55 +451,6 @@ Python爬虫之windows10安装scrapy一、scrapy的配置第一次写博客，�
     <div class="post-footer">
         
 	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/scrapy/" rel="tag">scrapy</a></li></ul>
-
-    </div>
-    
-</article>
-
-        </li>
-    
-        <li class="post-list-item fade">
-            <article id="post-d4c50ce3239482e4f0aa1cbeba85d6d8"
-  class="article-card article-type-post" itemprop="blogPost">
-
-    <div class="post-meta">
-        <time class="post-time" title="2019-12-02 11:34:32" datetime="2019-12-02T03:34:32.000Z"  itemprop="datePublished">2019-12-02</time>
-
-        
-	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/%E4%BB%A3%E7%90%86ip/">代理ip</a></li></ul>
-
-
-
-    </div>
-
-    
-
-
-  
-    <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2019/12/02/d4c50ce3239482e4f0aa1cbeba85d6d8/">获取高匿代理ip的步骤思路（推荐使用--刚找到的方法判断是否高匿）</a>
-    </h3>
-  
-
-
-
-
-    <div class="post-content" id="post-content" itemprop="postContent">
-
-    
-        一、获取高匿代理IP思路注意事项做第二步之前你需要先找个地址url，用本机访问出来一个成功的页面，建议保留为html，作为后面使用，进行成功和禁用页面的对比，然后才可以高频访问此网站使你的电脑禁用。
-2、（刚找到的，推荐这个）判断高匿代理ip的另外俩个方法url = &quot;http://httpbin.org/ip&quot;  # 如果返回的ip里面有本机ip,则证明不是匿名代理
-u...
-    
-
-        <a href="/2019/12/02/d4c50ce3239482e4f0aa1cbeba85d6d8/" class="post-more waves-effect waves-button">
-            阅读全文…
-        </a>
-    </div>
-    
-    <div class="post-footer">
-        
-	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E4%BB%A3%E7%90%86ip/" rel="tag">代理ip</a></li></ul>
 
     </div>
     
@@ -367,55 +567,6 @@ pip-review --local --interactive二、升级一个模块pip install --upgrade re
         </li>
     
         <li class="post-list-item fade">
-            <article id="post-0605b6462f77d238a1c8b148c949e516"
-  class="article-card article-type-post" itemprop="blogPost">
-
-    <div class="post-meta">
-        <time class="post-time" title="2019-12-02 11:34:32" datetime="2019-12-02T03:34:32.000Z"  itemprop="datePublished">2019-12-02</time>
-
-        
-	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/%E6%8F%90%E9%AB%98%E6%95%88%E7%8E%87%E5%B0%8F%E5%B7%A5%E5%85%B7/">提高效率小工具</a></li></ul>
-
-
-
-    </div>
-
-    
-
-
-  
-    <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2019/12/02/0605b6462f77d238a1c8b148c949e516/">一个方便的支持多种语言的软件--notepad</a>
-    </h3>
-  
-
-
-
-
-    <div class="post-content" id="post-content" itemprop="postContent">
-
-    
-        ﻿
-说明这个是我在B站看到别人讲解JavaScript时，用起来很方便，然后上网搜了下载了一个，发现支持好多语言，java、JavaScript、python等等好多，需要的话自己下载，我也是留着以后下次需要，方便寻找使用。
-下载地址：https://notepad-plus-plus.org/repository/7.x/7.7.1/npp.7.7.1.Installer.exe?spm=...
-    
-
-        <a href="/2019/12/02/0605b6462f77d238a1c8b148c949e516/" class="post-more waves-effect waves-button">
-            阅读全文…
-        </a>
-    </div>
-    
-    <div class="post-footer">
-        
-	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%8F%90%E9%AB%98%E6%95%88%E7%8E%87%E5%B0%8F%E5%B7%A5%E5%85%B7/" rel="tag">提高效率小工具</a></li></ul>
-
-    </div>
-    
-</article>
-
-        </li>
-    
-        <li class="post-list-item fade">
             <article id="post-981a774586eeebefaa04d0db7fc98337"
   class="article-card article-type-post" itemprop="blogPost">
 
@@ -460,153 +611,6 @@ pip install opencv-python1、需求之前使用cv2模块进行过视频截帧，
     <div class="post-footer">
         
 	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/opencv/" rel="tag">opencv</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python%E6%A8%A1%E5%9D%97/" rel="tag">python模块</a></li></ul>
-
-    </div>
-    
-</article>
-
-        </li>
-    
-        <li class="post-list-item fade">
-            <article id="post-d03f5bb9d53a323cdf6f9b007811e1ae"
-  class="article-card article-type-post" itemprop="blogPost">
-
-    <div class="post-meta">
-        <time class="post-time" title="2019-12-02 11:34:32" datetime="2019-12-02T03:34:32.000Z"  itemprop="datePublished">2019-12-02</time>
-
-        
-	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/pycharm/">pycharm</a></li></ul>
-
-
-
-    </div>
-
-    
-
-
-  
-    <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2019/12/02/d03f5bb9d53a323cdf6f9b007811e1ae/">Pycharm 快捷键</a>
-    </h3>
-  
-
-
-
-
-    <div class="post-content" id="post-content" itemprop="postContent">
-
-    
-        Pycharm 快捷键1、Python自带ShellALt + N 上一句命令Ctrl + N 新建一个py文件F5 运行当前的py文件Ctrl + C 强制亭子
-2、设置为Eclipse默认的快捷键 + Pycharm 4.0.5Ctrl + Shift + Q 全屏Ctrl + Shift + Alt + Q presentation modeShift + ESC 关闭除编辑区域的其他...
-    
-
-        <a href="/2019/12/02/d03f5bb9d53a323cdf6f9b007811e1ae/" class="post-more waves-effect waves-button">
-            阅读全文…
-        </a>
-    </div>
-    
-    <div class="post-footer">
-        
-	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/pycharm/" rel="tag">pycharm</a></li></ul>
-
-    </div>
-    
-</article>
-
-        </li>
-    
-        <li class="post-list-item fade">
-            <article id="post-a45a2c3091376c88010499ad008dd504"
-  class="article-card article-type-post" itemprop="blogPost">
-
-    <div class="post-meta">
-        <time class="post-time" title="2019-12-02 11:34:32" datetime="2019-12-02T03:34:32.000Z"  itemprop="datePublished">2019-12-02</time>
-
-        
-	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3/">问题解决</a></li></ul>
-
-
-
-    </div>
-
-    
-
-
-  
-    <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2019/12/02/a45a2c3091376c88010499ad008dd504/">pycharm执行py文件时报错SyntaxError</a>
-    </h3>
-  
-
-
-
-
-    <div class="post-content" id="post-content" itemprop="postContent">
-
-    
-        ﻿
-我的报错：SyntaxError: Non-UTF-8 code starting with ‘\xe6’ in file这个我刚开始以为有问题，找了好久没有找到原因，还一直定位我的一个数据地方，后我直接CTRL + alt + L 格式化，然后就好了。
-原来一行数据太长时运行时也会报错，所以如果过长，直接快捷键格式化就好了。或者手动换行。
-
-    
-
-        <a href="/2019/12/02/a45a2c3091376c88010499ad008dd504/" class="post-more waves-effect waves-button">
-            阅读全文…
-        </a>
-    </div>
-    
-    <div class="post-footer">
-        
-	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3/" rel="tag">问题解决</a></li></ul>
-
-    </div>
-    
-</article>
-
-        </li>
-    
-        <li class="post-list-item fade">
-            <article id="post-a1e142f604f70776e38bd2b6beda9a34"
-  class="article-card article-type-post" itemprop="blogPost">
-
-    <div class="post-meta">
-        <time class="post-time" title="2019-12-02 11:34:32" datetime="2019-12-02T03:34:32.000Z"  itemprop="datePublished">2019-12-02</time>
-
-        
-	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3/">问题解决</a></li></ul>
-
-
-
-    </div>
-
-    
-
-
-  
-    <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2019/12/02/a1e142f604f70776e38bd2b6beda9a34/">SyntaxError_ Non-UTF-8 code starting with &#39;_xd7&#39; in file</a>
-    </h3>
-  
-
-
-
-
-    <div class="post-content" id="post-content" itemprop="postContent">
-
-    
-        1、问题：今天突然在家里遇到一个问题，然后出现这个问题：
-源错误：
-SyntaxError: Non-UTF-8 code starting with &apos;\xd7&apos; in file G:/002、家里敲代码/2、做音乐视频字幕/2、lrc转srt/2、自己Python代码实现将lrc转srt.py on line 4, but no encoding declared; ...
-    
-
-        <a href="/2019/12/02/a1e142f604f70776e38bd2b6beda9a34/" class="post-more waves-effect waves-button">
-            阅读全文…
-        </a>
-    </div>
-    
-    <div class="post-footer">
-        
-	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3/" rel="tag">问题解决</a></li></ul>
 
     </div>
     

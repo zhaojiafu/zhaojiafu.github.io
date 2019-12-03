@@ -16,7 +16,7 @@
     <link rel="canonical" href="https://zhaojiafu.github.io/">
     
     
-    <title>赵家富的博客 | 保持好奇心</title>
+    <title>赵家富的个人博客 | 保持好奇心</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
     <meta name="theme-color" content="#3F51B5">
@@ -26,9 +26,9 @@
     <meta name="description" content="感觉无从下手的时候，问自己“不难，要你干啥？”">
 <meta name="keywords" content="一个人的潜力是无穷尽的！！！">
 <meta property="og:type" content="website">
-<meta property="og:title" content="赵家富的博客">
+<meta property="og:title" content="赵家富的个人博客">
 <meta property="og:url" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;index.html">
-<meta property="og:site_name" content="赵家富的博客">
+<meta property="og:site_name" content="赵家富的个人博客">
 <meta property="og:description" content="感觉无从下手的时候，问自己“不难，要你干啥？”">
 <meta property="og:locale" content="zh-CN">
 <meta name="twitter:card" content="summary">
@@ -120,7 +120,7 @@
           <i class="icon icon-lg icon-navicon"></i>
         </a>
 
-        <div class="flex-col header-title ellipsis">赵家富的博客</div>
+        <div class="flex-col header-title ellipsis">赵家富的个人博客</div>
         
         <div class="search-wrap" id="search-wrap">
             <a href="javascript:;" target="_blank" rel="noopener" class="header-icon waves-effect waves-circle waves-light" id="back">
@@ -143,7 +143,7 @@
 
     <div class="container fade-scale">
 
-        <h1 class="title">赵家富的博客
+        <h1 class="title">赵家富的个人博客
         </h1>
         <h5 class="subtitle">
             
@@ -162,7 +162,57 @@
     <ul class="post-list">
     
         <li class="post-list-item fade">
-            <article id="post-f86f35dece6d7496e6cbc13b7dfa1549"
+            <article id="post-a45a2c3091376c88010499ad008dd504"
+  class="article-card article-type-post" itemprop="blogPost">
+
+    <div class="post-meta">
+        <time class="post-time" title="2019-12-02 11:34:32" datetime="2019-12-02T03:34:32.000Z"  itemprop="datePublished">2019-12-02</time>
+
+        
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3/">问题解决</a></li></ul>
+
+
+
+    </div>
+
+    
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/2019/12/02/a45a2c3091376c88010499ad008dd504/">pycharm执行py文件时报错SyntaxError</a>
+    </h3>
+  
+
+
+
+
+    <div class="post-content" id="post-content" itemprop="postContent">
+
+    
+        ﻿
+我的报错：SyntaxError: Non-UTF-8 code starting with ‘\xe6’ in file这个我刚开始以为有问题，找了好久没有找到原因，还一直定位我的一个数据地方，后我直接CTRL + alt + L 格式化，然后就好了。
+原来一行数据太长时运行时也会报错，所以如果过长，直接快捷键格式化就好了。或者手动换行。
+
+    
+
+        <a href="/2019/12/02/a45a2c3091376c88010499ad008dd504/" class="post-more waves-effect waves-button">
+            阅读全文…
+        </a>
+    </div>
+    
+    <div class="post-footer">
+        
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3/" rel="tag">问题解决</a></li></ul>
+
+    </div>
+    
+</article>
+
+        </li>
+    
+        <li class="post-list-item fade">
+            <article id="post-0051363feac8bb4fe4ea63c8aa44d13c"
   class="article-card article-type-post" itemprop="blogPost">
 
     <div class="post-meta">
@@ -180,7 +230,7 @@
 
   
     <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2019/12/02/f86f35dece6d7496e6cbc13b7dfa1549/">Linux 系统查看磁盘与文件夹大小命令</a>
+      <a class="post-title-link" href="/2019/12/02/0051363feac8bb4fe4ea63c8aa44d13c/">Linux系统tar、rar、7z、zip压缩解压缩命令使用</a>
     </h3>
   
 
@@ -190,16 +240,12 @@
     <div class="post-content" id="post-content" itemprop="postContent">
 
     
-        ﻿两个命令df 、du结合比较直观
-df    -h                     查看整台服务器的硬盘使用情况
-cd    /                       进入根目录
-du   -sh    *              查看每个文件夹的大小
-du -h  *  查看每个文件夹的大小
-du -h “文件名”     查看这个“文件名”的大小
-du -lh –max...
+        ﻿# 1.tar压缩解压缩
+tar命令常见参数：必须的参数：（3个参数不能共存）-c ：创建压缩文件c代表create。-x ：解压缩文件-t ：查看压缩包里面的文件辅助参数：-z ：用 gzip 压缩/解压缩-j ：用 bzip2 压缩/解压缩-v ：显示压缩/解压缩的进度条-f ：使用档名（注意：f后面不要接参数，也就是说-zxfv是不对的，要写成-zxvf）
+打包：tar -cvf [...
     
 
-        <a href="/2019/12/02/f86f35dece6d7496e6cbc13b7dfa1549/" class="post-more waves-effect waves-button">
+        <a href="/2019/12/02/0051363feac8bb4fe4ea63c8aa44d13c/" class="post-more waves-effect waves-button">
             阅读全文…
         </a>
     </div>
@@ -215,14 +261,14 @@ du -lh –max...
         </li>
     
         <li class="post-list-item fade">
-            <article id="post-0605b6462f77d238a1c8b148c949e516"
+            <article id="post-0c08cb7c2fdac2367dbeeac904868014"
   class="article-card article-type-post" itemprop="blogPost">
 
     <div class="post-meta">
         <time class="post-time" title="2019-12-02 11:34:32" datetime="2019-12-02T03:34:32.000Z"  itemprop="datePublished">2019-12-02</time>
 
         
-	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/%E6%8F%90%E9%AB%98%E6%95%88%E7%8E%87%E5%B0%8F%E5%B7%A5%E5%85%B7/">提高效率小工具</a></li></ul>
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/%E8%B5%84%E6%BA%90%E5%88%86%E4%BA%AB/">资源分享</a></li></ul>
 
 
 
@@ -233,7 +279,7 @@ du -lh –max...
 
   
     <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2019/12/02/0605b6462f77d238a1c8b148c949e516/">一个方便的支持多种语言的软件--notepad</a>
+      <a class="post-title-link" href="/2019/12/02/0c08cb7c2fdac2367dbeeac904868014/">300个国外优秀网站</a>
     </h3>
   
 
@@ -243,19 +289,17 @@ du -lh –max...
     <div class="post-content" id="post-content" itemprop="postContent">
 
     
-        ﻿
-说明这个是我在B站看到别人讲解JavaScript时，用起来很方便，然后上网搜了下载了一个，发现支持好多语言，java、JavaScript、python等等好多，需要的话自己下载，我也是留着以后下次需要，方便寻找使用。
-下载地址：https://notepad-plus-plus.org/repository/7.x/7.7.1/npp.7.7.1.Installer.exe?spm=...
+        ﻿1 People(人物）http://people.aol.com/people/index.html娱乐 全球五十位最XX的人2 TV Guide（电视指南）http://www.tvguide.com娱乐默多克旗下3 Time（时代）http://www.time.com/新闻年度风云人物4 Sports Illustrated（体育画报）http://sportsillustrate...
     
 
-        <a href="/2019/12/02/0605b6462f77d238a1c8b148c949e516/" class="post-more waves-effect waves-button">
+        <a href="/2019/12/02/0c08cb7c2fdac2367dbeeac904868014/" class="post-more waves-effect waves-button">
             阅读全文…
         </a>
     </div>
     
     <div class="post-footer">
         
-	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%8F%90%E9%AB%98%E6%95%88%E7%8E%87%E5%B0%8F%E5%B7%A5%E5%85%B7/" rel="tag">提高效率小工具</a></li></ul>
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%9B%BD%E5%A4%96%E7%BD%91%E7%AB%99/" rel="tag">国外网站</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%B5%84%E6%BA%90%E5%88%86%E4%BA%AB/" rel="tag">资源分享</a></li></ul>
 
     </div>
     
@@ -370,7 +414,7 @@ Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/a
         </li>
     
         <li class="post-list-item fade">
-            <article id="post-df62afd0d2f0ad4e898ee88f201c7283"
+            <article id="post-0e73c2398e881f45ebd8a0f742c5ab17"
   class="article-card article-type-post" itemprop="blogPost">
 
     <div class="post-meta">
@@ -388,7 +432,7 @@ Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/a
 
   
     <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2019/12/02/df62afd0d2f0ad4e898ee88f201c7283/">爬虫Max retries exceeded with url和403错误</a>
+      <a class="post-title-link" href="/2019/12/02/0e73c2398e881f45ebd8a0f742c5ab17/">爬虫requests.exceptions.SSLError错误</a>
     </h3>
   
 
@@ -398,18 +442,20 @@ Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/a
     <div class="post-content" id="post-content" itemprop="postContent">
 
     
-        一、Max retries exceeded with url方法1、出现这个错误可能跟爬取速度过快而且没有关闭每次的请求有关，导致出错。requests使用了urllib3库，默认的http connection是keep-alive的，requests设置False关闭。
-可以，每次请求的内容保存到其他变量后关闭请求。比如我的：我把response响应的结果赋值给deps之后就把resp...
+        ﻿# 报错：OpenSSL.SSL.Error: [(‘SSL routines’, ‘tls_process_server_certificate’, ‘certificate verify failed’)]
+完整错误
+Traceback (most recent call last):
+  File &quot;C:\Users\wb-zjf497303\AppData\Roaming...
     
 
-        <a href="/2019/12/02/df62afd0d2f0ad4e898ee88f201c7283/" class="post-more waves-effect waves-button">
+        <a href="/2019/12/02/0e73c2398e881f45ebd8a0f742c5ab17/" class="post-more waves-effect waves-button">
             阅读全文…
         </a>
     </div>
     
     <div class="post-footer">
         
-	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python%E7%88%AC%E8%99%AB/" rel="tag">python爬虫</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3/" rel="tag">问题解决</a></li></ul>
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%88%AC%E8%99%AB/" rel="tag">爬虫</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3/" rel="tag">问题解决</a></li></ul>
 
     </div>
     
@@ -470,56 +516,6 @@ url = &quot;http://dun.163.com/trial/picture-click&quot;...
         </li>
     
         <li class="post-list-item fade">
-            <article id="post-0e73c2398e881f45ebd8a0f742c5ab17"
-  class="article-card article-type-post" itemprop="blogPost">
-
-    <div class="post-meta">
-        <time class="post-time" title="2019-12-02 11:34:32" datetime="2019-12-02T03:34:32.000Z"  itemprop="datePublished">2019-12-02</time>
-
-        
-	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/python%E7%88%AC%E8%99%AB/">python爬虫</a></li></ul>
-
-
-
-    </div>
-
-    
-
-
-  
-    <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2019/12/02/0e73c2398e881f45ebd8a0f742c5ab17/">爬虫requests.exceptions.SSLError错误</a>
-    </h3>
-  
-
-
-
-
-    <div class="post-content" id="post-content" itemprop="postContent">
-
-    
-        ﻿# 报错：OpenSSL.SSL.Error: [(‘SSL routines’, ‘tls_process_server_certificate’, ‘certificate verify failed’)]
-完整错误
-Traceback (most recent call last):
-  File &quot;C:\Users\wb-zjf497303\AppData\Roaming...
-    
-
-        <a href="/2019/12/02/0e73c2398e881f45ebd8a0f742c5ab17/" class="post-more waves-effect waves-button">
-            阅读全文…
-        </a>
-    </div>
-    
-    <div class="post-footer">
-        
-	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%88%AC%E8%99%AB/" rel="tag">爬虫</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3/" rel="tag">问题解决</a></li></ul>
-
-    </div>
-    
-</article>
-
-        </li>
-    
-        <li class="post-list-item fade">
             <article id="post-122412c2d8afcfd626187bc005e25c1c"
   class="article-card article-type-post" itemprop="blogPost">
 
@@ -569,14 +565,14 @@ FutureWarning: The behavior of this method will change in future versions. Use s
         </li>
     
         <li class="post-list-item fade">
-            <article id="post-126732e4c4ac1a8c71c865f9576ebf8a"
+            <article id="post-178962d67fb81d78b26b6393231df736"
   class="article-card article-type-post" itemprop="blogPost">
 
     <div class="post-meta">
         <time class="post-time" title="2019-12-02 11:34:32" datetime="2019-12-02T03:34:32.000Z"  itemprop="datePublished">2019-12-02</time>
 
         
-	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/%E6%8F%90%E9%AB%98%E6%95%88%E7%8E%87%E5%B0%8F%E5%B7%A5%E5%85%B7/">提高效率小工具</a></li></ul>
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Linux/">Linux</a></li></ul>
 
 
 
@@ -587,7 +583,7 @@ FutureWarning: The behavior of this method will change in future versions. Use s
 
   
     <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2019/12/02/126732e4c4ac1a8c71c865f9576ebf8a/">使用python的os模块对目录下的所以文件进行json数据去脏和去除空文件夹</a>
+      <a class="post-title-link" href="/2019/12/02/178962d67fb81d78b26b6393231df736/">windows与Linux间远程拷贝文件-pscp命令</a>
     </h3>
   
 
@@ -597,24 +593,19 @@ FutureWarning: The behavior of this method will change in future versions. Use s
     <div class="post-content" id="post-content" itemprop="postContent">
 
     
-        ﻿需求：最近有个需求，需求对目录下的一个json数据进行处理，主要对json里面的title如果为空字符串，将此文件进行删除，如果文件夹为空，也就行递归的查找和删除。
-直接上我的代码，需要自己拿去，O(∩_∩)O哈哈~
-import json
-import os
-
-def remove_none_dirs(path):
-    # 去重空文件夹
-    list = os.listdir(p...
+        ﻿# windows与Linux间远程拷贝文件-pscp命令
+pscp命令下载从http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html下载pscp，将其放入windows的system32 文件夹下
+(一)上传1.开始→运行→cmd进入到dos模式 输入以下命令 pscp D:\java\apache-tomcat-5....
     
 
-        <a href="/2019/12/02/126732e4c4ac1a8c71c865f9576ebf8a/" class="post-more waves-effect waves-button">
+        <a href="/2019/12/02/178962d67fb81d78b26b6393231df736/" class="post-more waves-effect waves-button">
             阅读全文…
         </a>
     </div>
     
     <div class="post-footer">
         
-	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python%E6%A8%A1%E5%9D%97/" rel="tag">python模块</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%8F%90%E9%AB%98%E6%95%88%E7%8E%87%E5%B0%8F%E5%B7%A5%E5%85%B7/" rel="tag">提高效率小工具</a></li></ul>
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/pscp%E5%91%BD%E4%BB%A4/" rel="tag">pscp命令</a></li></ul>
 
     </div>
     
@@ -623,14 +614,14 @@ def remove_none_dirs(path):
         </li>
     
         <li class="post-list-item fade">
-            <article id="post-dca4df860e060adc999558a81856a431"
+            <article id="post-1d0ed69eb3fafcf862244f1bcb507f48"
   class="article-card article-type-post" itemprop="blogPost">
 
     <div class="post-meta">
         <time class="post-time" title="2019-12-02 11:34:32" datetime="2019-12-02T03:34:32.000Z"  itemprop="datePublished">2019-12-02</time>
 
         
-	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/python/">python</a></li></ul>
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/python%E7%88%AC%E8%99%AB/">python爬虫</a><ul class="article-category-list-child"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/python%E7%88%AC%E8%99%AB/%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3/">问题解决</a></li></ul></li></ul>
 
 
 
@@ -641,7 +632,7 @@ def remove_none_dirs(path):
 
   
     <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2019/12/02/dca4df860e060adc999558a81856a431/">Python拼接字符串的7种方法</a>
+      <a class="post-title-link" href="/2019/12/02/1d0ed69eb3fafcf862244f1bcb507f48/">python 爬虫之报错 requests.exceptions.TooManyRedirects_ Exceeded 30 redirects.</a>
     </h3>
   
 
@@ -651,19 +642,18 @@ def remove_none_dirs(path):
     <div class="post-content" id="post-content" itemprop="postContent">
 
     
-        ﻿@[toc]
-说明：今天突然看到一种好像是字符串的拼接方法substitute，但是不确定，于是就百度搜索了一下，然后搜到一个博客，写的不错，虽然他写的7中方法，除了这个substitute和第5种我不知道，其他的5种都知道，也都用过，今天也是学习俩种方法，Thanks♪(･ω･)ﾉ
-1、直接通过+操作：s = &apos;Python&apos;+&apos;，&apos;+&apos;...
+        ﻿当爬虫时报错：requests.exceptions.TooManyRedirects: Exceeded 30 redirects.可以  request请求时添加allow_redirects=False，默认时allow_redirects=True，所以这样就可以解决我的问题了。  
+resp = requests.get(url=url, headers=headers,allo...
     
 
-        <a href="/2019/12/02/dca4df860e060adc999558a81856a431/" class="post-more waves-effect waves-button">
+        <a href="/2019/12/02/1d0ed69eb3fafcf862244f1bcb507f48/" class="post-more waves-effect waves-button">
             阅读全文…
         </a>
     </div>
     
     <div class="post-footer">
         
-	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python/" rel="tag">python</a></li></ul>
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%88%AC%E8%99%AB/" rel="tag">爬虫</a></li></ul>
 
     </div>
     
@@ -700,7 +690,7 @@ def remove_none_dirs(path):
             
             <span>博客内容遵循 <a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
         </p>
-        <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=0 height=0 src="http://music.163.com/song/media/outer/url?id=1369798757&auto=1"></iframe>
+        <p><iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=0 height=0 src="http://music.163.com/song/media/outer/url?id=1369798757&auto=1"></iframe></p>
 
     </div>
     <div class="bottom">
@@ -723,7 +713,7 @@ def remove_none_dirs(path):
 <div class="global-share" id="globalShare">
     <ul class="reset share-icons">
       <li>
-        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://zhaojiafu.github.io/&title=赵家富的博客&pic=https://zhaojiafu.github.io/img/zhao.jpg" data-title="微博">
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://zhaojiafu.github.io/&title=赵家富的个人博客&pic=https://zhaojiafu.github.io/img/zhao.jpg" data-title="微博">
           <i class="icon icon-weibo"></i>
         </a>
       </li>
@@ -733,7 +723,7 @@ def remove_none_dirs(path):
         </a>
       </li>
       <li>
-        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://zhaojiafu.github.io/&title=赵家富的博客&source=感觉无从下手的时候，问自己“不难，要你干啥？”" data-title=" QQ">
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://zhaojiafu.github.io/&title=赵家富的个人博客&source=感觉无从下手的时候，问自己“不难，要你干啥？”" data-title=" QQ">
           <i class="icon icon-qq"></i>
         </a>
       </li>
@@ -743,7 +733,7 @@ def remove_none_dirs(path):
         </a>
       </li>
       <li>
-        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=赵家富的博客&url=https://zhaojiafu.github.io/&via=https://zhaojiafu.github.io" data-title=" Twitter">
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=赵家富的个人博客&url=https://zhaojiafu.github.io/&via=https://zhaojiafu.github.io" data-title=" Twitter">
           <i class="icon icon-twitter"></i>
         </a>
       </li>

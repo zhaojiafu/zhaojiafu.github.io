@@ -16,7 +16,7 @@
     <link rel="canonical" href="https://zhaojiafu.github.io/2019/10/10/b06dadf2dcd5da45e4c9d7f1359d8005/">
     
     
-    <title>python爬虫之scrapy 框架学习复习整理四--验证发送请求时携带cookies的4种有效性方法 | 赵家富的博客 | 保持好奇心</title>
+    <title>python爬虫之scrapy 框架学习复习整理四--验证发送请求时携带cookies的4种有效性方法 | 赵家富的个人博客 | 保持好奇心</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
     <meta name="theme-color" content="#3F51B5">
@@ -28,7 +28,7 @@
 <meta property="og:type" content="article">
 <meta property="og:title" content="python爬虫之scrapy 框架学习复习整理四--验证发送请求时携带cookies的4种有效性方法">
 <meta property="og:url" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;2019&#x2F;10&#x2F;10&#x2F;b06dadf2dcd5da45e4c9d7f1359d8005&#x2F;index.html">
-<meta property="og:site_name" content="赵家富的博客">
+<meta property="og:site_name" content="赵家富的个人博客">
 <meta property="og:description" content="说明：今天就是想做一个使用scrapy爬取网页时携带cookie或者其他请求头时，携带的有效性方法，进行验证： 我的验证思路： 测试网站是CSDN的写作榜单，使用登录和未登录的cookies对比，对返回的响应是否含有自己的用户名，来进行验证是否携带成功。 一、使用requests模块初步验证cookies的有效性：1、先分析页面结构：做爬虫一定要先分析，学会分析才能接着往下做的更快，分析的时间远远">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https:&#x2F;&#x2F;zhaojiafu.github.io&#x2F;imgs&#x2F;20191010094321689.png">
@@ -740,7 +740,7 @@
 <div class="page-share" id="pageShare">
     <ul class="reset share-icons">
       <li>
-        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://zhaojiafu.github.io/2019/10/10/b06dadf2dcd5da45e4c9d7f1359d8005/&title=《python爬虫之scrapy 框架学习复习整理四--验证发送请求时携带cookies的4种有效性方法》 — 赵家富的博客&pic=https://zhaojiafu.github.io/img/zhao.jpg" data-title="微博">
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://zhaojiafu.github.io/2019/10/10/b06dadf2dcd5da45e4c9d7f1359d8005/&title=《python爬虫之scrapy 框架学习复习整理四--验证发送请求时携带cookies的4种有效性方法》 — 赵家富的个人博客&pic=https://zhaojiafu.github.io/img/zhao.jpg" data-title="微博">
           <i class="icon icon-weibo"></i>
         </a>
       </li>
@@ -750,7 +750,7 @@
         </a>
       </li>
       <li>
-        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://zhaojiafu.github.io/2019/10/10/b06dadf2dcd5da45e4c9d7f1359d8005/&title=《python爬虫之scrapy 框架学习复习整理四--验证发送请求时携带cookies的4种有效性方法》 — 赵家富的博客&source=感觉无从下手的时候，问自己“不难，要你干啥？”" data-title=" QQ">
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://zhaojiafu.github.io/2019/10/10/b06dadf2dcd5da45e4c9d7f1359d8005/&title=《python爬虫之scrapy 框架学习复习整理四--验证发送请求时携带cookies的4种有效性方法》 — 赵家富的个人博客&source=感觉无从下手的时候，问自己“不难，要你干啥？”" data-title=" QQ">
           <i class="icon icon-qq"></i>
         </a>
       </li>
@@ -760,7 +760,7 @@
         </a>
       </li>
       <li>
-        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《python爬虫之scrapy 框架学习复习整理四--验证发送请求时携带cookies的4种有效性方法》 — 赵家富的博客&url=https://zhaojiafu.github.io/2019/10/10/b06dadf2dcd5da45e4c9d7f1359d8005/&via=https://zhaojiafu.github.io" data-title=" Twitter">
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《python爬虫之scrapy 框架学习复习整理四--验证发送请求时携带cookies的4种有效性方法》 — 赵家富的个人博客&url=https://zhaojiafu.github.io/2019/10/10/b06dadf2dcd5da45e4c9d7f1359d8005/&via=https://zhaojiafu.github.io" data-title=" Twitter">
           <i class="icon icon-twitter"></i>
         </a>
       </li>
@@ -797,9 +797,9 @@
 
   
     <div class="waves-block waves-effect next">
-      <a href="/2019/10/09/daa6e3f15670a5ed21506fc4edf51d1e/" id="post-next" class="post-nav-link">
+      <a href="/2019/10/09/b6288208a9fabc0a558dbcfc23223334/" id="post-next" class="post-nav-link">
         <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
-        <h4 class="title">python爬虫之scrapy 框架学习复习整理三--CrawlSpider（自动提取翻页）</h4>
+        <h4 class="title">python爬虫之scrapy 框架学习复习整理二--scrapy.Request（自己提取url再发送请求）</h4>
       </a>
     </div>
   
@@ -897,7 +897,7 @@
             
             <span>博客内容遵循 <a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
         </p>
-        <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=0 height=0 src="http://music.163.com/song/media/outer/url?id=1369798757&auto=1"></iframe>
+        <p><iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=0 height=0 src="http://music.163.com/song/media/outer/url?id=1369798757&auto=1"></iframe></p>
 
     </div>
     <div class="bottom">
@@ -920,7 +920,7 @@
 <div class="global-share" id="globalShare">
     <ul class="reset share-icons">
       <li>
-        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://zhaojiafu.github.io/2019/10/10/b06dadf2dcd5da45e4c9d7f1359d8005/&title=《python爬虫之scrapy 框架学习复习整理四--验证发送请求时携带cookies的4种有效性方法》 — 赵家富的博客&pic=https://zhaojiafu.github.io/img/zhao.jpg" data-title="微博">
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://zhaojiafu.github.io/2019/10/10/b06dadf2dcd5da45e4c9d7f1359d8005/&title=《python爬虫之scrapy 框架学习复习整理四--验证发送请求时携带cookies的4种有效性方法》 — 赵家富的个人博客&pic=https://zhaojiafu.github.io/img/zhao.jpg" data-title="微博">
           <i class="icon icon-weibo"></i>
         </a>
       </li>
@@ -930,7 +930,7 @@
         </a>
       </li>
       <li>
-        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://zhaojiafu.github.io/2019/10/10/b06dadf2dcd5da45e4c9d7f1359d8005/&title=《python爬虫之scrapy 框架学习复习整理四--验证发送请求时携带cookies的4种有效性方法》 — 赵家富的博客&source=感觉无从下手的时候，问自己“不难，要你干啥？”" data-title=" QQ">
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://zhaojiafu.github.io/2019/10/10/b06dadf2dcd5da45e4c9d7f1359d8005/&title=《python爬虫之scrapy 框架学习复习整理四--验证发送请求时携带cookies的4种有效性方法》 — 赵家富的个人博客&source=感觉无从下手的时候，问自己“不难，要你干啥？”" data-title=" QQ">
           <i class="icon icon-qq"></i>
         </a>
       </li>
@@ -940,7 +940,7 @@
         </a>
       </li>
       <li>
-        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《python爬虫之scrapy 框架学习复习整理四--验证发送请求时携带cookies的4种有效性方法》 — 赵家富的博客&url=https://zhaojiafu.github.io/2019/10/10/b06dadf2dcd5da45e4c9d7f1359d8005/&via=https://zhaojiafu.github.io" data-title=" Twitter">
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《python爬虫之scrapy 框架学习复习整理四--验证发送请求时携带cookies的4种有效性方法》 — 赵家富的个人博客&url=https://zhaojiafu.github.io/2019/10/10/b06dadf2dcd5da45e4c9d7f1359d8005/&via=https://zhaojiafu.github.io" data-title=" Twitter">
           <i class="icon icon-twitter"></i>
         </a>
       </li>
